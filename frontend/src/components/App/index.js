@@ -1,11 +1,13 @@
 
 import React from 'react';
 
+import Footer from 'src/components/Footer';
+
 import './app.scss';
 
 const App = () => (
   <div className="app">
-    <h1>Go</h1>
+    <Footer />
   </div>
 );
 
