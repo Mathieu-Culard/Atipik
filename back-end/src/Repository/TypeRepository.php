@@ -19,6 +19,19 @@ class TypeRepository extends ServiceEntityRepository
         parent::__construct($registry, Type::class);
     }
 
+    /**
+     * Method for displaying the list of housing types in alphabetical order
+     *
+     * @return Type[]
+     */
+    public function findAllByType() 
+    {
+        return $this->createQueryBuilder('ty')
+                    ->orderBy('ty.name', 'ASC')
+                    ->getQuery()
+                    ->getResult();
+    }
+
     // /**
     //  * @return Type[] Returns an array of Type objects
     //  */

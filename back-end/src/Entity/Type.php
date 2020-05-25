@@ -6,6 +6,7 @@ use App\Repository\TypeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=TypeRepository::class)
@@ -65,11 +66,17 @@ class Type
         $this->accomodations = new ArrayCollection();
     }
 
+    /**
+     * @Groups({"list_type"})
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @Groups({"list_type"})
+     */
     public function getName(): ?string
     {
         return $this->name;
@@ -82,6 +89,9 @@ class Type
         return $this;
     }
 
+    /**
+     * @Groups({"list_type"})
+     */
     public function getDescription(): ?string
     {
         return $this->description;
@@ -94,6 +104,9 @@ class Type
         return $this;
     }
 
+    /**
+     * @Groups({"list_type"})
+     */
     public function getPicture(): ?string
     {
         return $this->picture;
@@ -106,6 +119,9 @@ class Type
         return $this;
     }
 
+    /**
+     * @Groups({"list_type"})
+     */
     public function getIcon(): ?string
     {
         return $this->icon;
@@ -141,6 +157,7 @@ class Type
 
         return $this;
     }
+
 
     public function getThematic(): ?Thematic
     {

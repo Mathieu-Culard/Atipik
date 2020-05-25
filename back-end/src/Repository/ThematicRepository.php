@@ -19,6 +19,20 @@ class ThematicRepository extends ServiceEntityRepository
         parent::__construct($registry, Thematic::class);
     }
 
+    /**
+     * Method for displaying the list of thematics in alphabetical order
+     *
+     * @return Thematic[]
+     */
+    public function findAllByThematic() 
+    {
+        return $this->createQueryBuilder('th')
+                    ->orderBy('th.name', 'ASC')
+                    ->getQuery()
+                    ->getResult();
+    }
+
+
     // /**
     //  * @return Thematic[] Returns an array of Thematic objects
     //  */
