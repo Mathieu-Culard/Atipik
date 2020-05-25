@@ -19,6 +19,20 @@ class ExtraRepository extends ServiceEntityRepository
         parent::__construct($registry, Extra::class);
     }
 
+    /**
+     * Method for displaying the list of extras in alphabetical order
+     *
+     * @return Extra[]
+     */
+    public function findAllByExtra() 
+    {
+        return $this->createQueryBuilder('e')
+                    ->orderBy('e.name', 'ASC')
+                    ->getQuery()
+                    ->getResult();
+    }
+
+
     // /**
     //  * @return Extra[] Returns an array of Extra objects
     //  */

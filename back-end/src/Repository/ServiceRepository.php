@@ -19,6 +19,19 @@ class ServiceRepository extends ServiceEntityRepository
         parent::__construct($registry, Service::class);
     }
 
+    /**
+     * Method for displaying the list of services in alphabetical order
+     *
+     * @return Service[]
+     */
+    public function findAllByService() 
+    {
+        return $this->createQueryBuilder('s')
+                    ->orderBy('s.name', 'ASC')
+                    ->getQuery()
+                    ->getResult();
+    }
+
     // /**
     //  * @return Service[] Returns an array of Service objects
     //  */

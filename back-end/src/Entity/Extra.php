@@ -6,6 +6,7 @@ use App\Repository\ExtraRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ExtraRepository::class)
@@ -44,16 +45,27 @@ class Extra
      */
     private $accomodations;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $price;
+
     public function __construct()
     {
         $this->accomodations = new ArrayCollection();
     }
 
+    /**
+     * @Groups({"list_extra"})
+     */    
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @Groups({"list_extra"})
+     */    
     public function getName(): ?string
     {
         return $this->name;
@@ -66,6 +78,9 @@ class Extra
         return $this;
     }
 
+    /**
+     * @Groups({"list_extra"})
+     */    
     public function getIcon(): ?string
     {
         return $this->icon;
@@ -126,6 +141,21 @@ class Extra
             $this->accomodations->removeElement($accomodation);
             $accomodation->removeExtra($this);
         }
+
+        return $this;
+    }
+
+    /**
+     * @Groups({"list_extra"})
+     */    
+    public function getPrice(): ?int
+    {
+        return $this->price;
+    }
+
+    public function setPrice(int $price): self
+    {
+        $this->price = $price;
 
         return $this;
     }

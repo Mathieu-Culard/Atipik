@@ -6,6 +6,7 @@ use App\Repository\ServiceRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ServiceRepository::class)
@@ -49,11 +50,17 @@ class Service
         $this->accomodations = new ArrayCollection();
     }
 
+    /**
+     * @Groups({"list_service"})
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @Groups({"list_service"})
+     */
     public function getName(): ?string
     {
         return $this->name;
@@ -66,6 +73,9 @@ class Service
         return $this;
     }
 
+    /**
+     * @Groups({"list_service"})
+     */
     public function getIcon(): ?string
     {
         return $this->icon;
