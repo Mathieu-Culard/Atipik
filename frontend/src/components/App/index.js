@@ -2,10 +2,13 @@
 import React from 'react';
 
 import './app.scss';
+import Header from 'src/containers/Header';
+import Footer from 'src/components/Footer';
 
 const App = () => (
   <div className="app">
-    <h1>Go</h1>
+    <Header />
+    <Footer />
   </div>
 );
 
