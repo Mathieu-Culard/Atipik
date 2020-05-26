@@ -11,6 +11,9 @@ import Slider from '@material-ui/core/Slider';
 import Grid from '@material-ui/core/Grid';
 import './home.scss';
 
+
+import AccomodationTypesDropdown from 'src/containers/AccomodationTypesDropdown';
+
 const CustomSlider = withStyles({
   root: {
     width: '100%',
@@ -20,36 +23,22 @@ const CustomSlider = withStyles({
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
-    margin: '0.6rem 0',
+    // margin: '0.6rem 0',
     minWidth: 220,
     width: '100%',
   },
   textField: {
-    margin: '0.6rem 0',
+    // margin: '0.6rem 0',
     width: '100%',
   },
   selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-  accomodationTypes: {
-    marginRight: '5%',
+   // marginTop: theme.spacing(2),
   },
   slider: {
     width: '100%',
   },
 }));
 
-//! fake data to remove
-const types = [
-  {
-    id: 0,
-    name: 'roulottes',
-  },
-  {
-    id: 1,
-    name: 'bulles',
-  },
-];
 const Home = ({
   cityValue,
   countryValue,
@@ -65,9 +54,6 @@ const Home = ({
   changeAccomodationTypes,
 }) => {
   const classes = useStyles();
-  const handleAccomodationTypesChange = (evt) => {
-    changeAccomodationTypes(evt.target.value);
-  };
 
   const handlePriceScaleChange = (evt, value) => {
     changePriceScale(value);
@@ -173,7 +159,9 @@ const Home = ({
               </Grid>
             </div>
             <div className="row__item">
-              <FormControl variant="outlined" className={`${classes.formControl} ${classes.accomodationTypes}`}>
+
+              <AccomodationTypesDropdown accomodationTypesValue={accomodationTypesValue} changeAccomodationTypes={changeAccomodationTypes} />
+              {/* <FormControl variant="outlined" className={`${classes.formControl} ${classes.accomodationTypes}`}>
                 <InputLabel id="demo-simple-select-outlined-label">Type d'hébergement</InputLabel>
                 <Select
                   labelId="demo-simple-select-outlined-label"
@@ -183,11 +171,11 @@ const Home = ({
                   onChange={handleAccomodationTypesChange}
                   label="Type d'hébergement"
                 >
-                  {types.map((elt) => (
+                  {data.map((elt) => (
                     <MenuItem key={elt.id} value={elt.id}>{elt.name}</MenuItem>
                   ))}
                 </Select>
-              </FormControl>
+              </FormControl> */}
             </div>
           </div>
           <div className="row">

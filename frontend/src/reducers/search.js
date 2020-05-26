@@ -7,6 +7,8 @@ import {
   CHANGE_ACCOMODATION_TYPES,
 } from 'src/actions/search';
 
+import { getCheckedAccomodationTypes } from 'src/utils';
+
 const initialState = {
   city: '',
   country: '',
@@ -46,7 +48,7 @@ const searchReducer = (state = initialState, action = {}) => {
     case CHANGE_ACCOMODATION_TYPES:
       return {
         ...state,
-        accomodationTypes: action.value,
+        accomodationTypes: getCheckedAccomodationTypes(state.accomodationTypes, action.value, action.checked),
       };
     default: return state;
   }

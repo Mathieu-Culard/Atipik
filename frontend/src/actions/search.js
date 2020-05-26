@@ -17,9 +17,10 @@ export const changePriceScale = (newValue) => ({
   type: CHANGE_PRICE_SCALE,
   value: newValue,
 });
-export const changeAccomodationTypes = (newValue) => ({
+export const changeAccomodationTypes = (newValue, checked) => ({
   type: CHANGE_ACCOMODATION_TYPES,
   value: newValue,
+  checked,
 });
 export const changeCountryTextfield = (newValue) => ({
   type: CHANGE_COUNTRY_TEXTFIELD,

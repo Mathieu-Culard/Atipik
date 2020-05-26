@@ -47,6 +47,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.10.0",
+    "material-ui-popup-state": "^1.5.4",
     "prop-types": "*",
     "react": "*",
     "react-dom": "*",
