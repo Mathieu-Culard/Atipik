@@ -13,38 +13,29 @@ import './home.scss';
 
 const CustomSlider = withStyles({
   root: {
+    width: '100%',
     color: '#8dd7dfl',
   },
 })(Slider);
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
-    margin: theme.spacing(2),
+    margin: '0.6rem 0',
     minWidth: 220,
     width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20%',
-    },
   },
   textField: {
-    [theme.breakpoints.up('md')]: {
-      width: '20%',
-    },
+    margin: '0.6rem 0',
     width: '100%',
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
-  test: {
+  accomodationTypes: {
     marginRight: '5%',
   },
   slider: {
-    [theme.breakpoints.up('md')]: {
-      width: '30%',
-      marginRight: '5%',
-    },
     width: '100%',
-    padding: '0 1rem',
   },
 }));
 
@@ -112,80 +103,92 @@ const Home = ({
         <h2 className="search__title">Où veux-tu aller?</h2>
         <form className="search__formular">
           <div className="row">
-            <TextField id="country-input" label="Pays" className={classes.textField} size="small" value={countryValue} onChange={handleCountryChange} />
-            <TextField id="city-input" label="Ville" className={classes.textField} value={cityValue} onChange={handleCityChange} />
+            <div className="row__item">
+              <TextField id="country-input" label="Pays" className={classes.textField} size="small" value={countryValue} onChange={handleCountryChange} />
+            </div>
+            <div className="row__item">
+              <TextField id="city-input" label="Ville" className={classes.textField} value={cityValue} onChange={handleCityChange} />
+            </div>
           </div>
           <div className="row">
-            <FormControl variant="outlined" className={classes.formControl}>
-              <InputLabel id="demo-simple-select-outlined-label">Nombre de personnes</InputLabel>
-              <Select
-                labelId="demo-simple-select-outlined-label"
-                id="demo-simple-select-outlined"
-                value={(nbPersonValue === 0) ? undefined : nbPersonValue}
-                onChange={handleNbPersonChange}
-                label="Nombre de personnes"
-              >
-                {fillDropdowns()}
-              </Select>
-            </FormControl>
-            <FormControl variant="outlined" className={classes.formControl}>
-              <InputLabel id="demo-simple-select-outlined-label">Nombre de nuitées</InputLabel>
-              <Select
-                labelId="demo-simple-select-outlined-label"
-                id="demo-simple-select-outlined"
-                value={(nbNightsValue === 0) ? undefined : nbNightsValue}
-                onChange={handleNbNightsChange}
-                label="Nombre de nuitées"
-              >
-                {fillDropdowns()}
-              </Select>
-            </FormControl>
+            <div className="row__item">
+              <FormControl variant="outlined" className={classes.formControl}>
+                <InputLabel id="demo-simple-select-outlined-label">Nombre de personnes</InputLabel>
+                <Select
+                  labelId="demo-simple-select-outlined-label"
+                  id="demo-simple-select-outlined"
+                  value={(nbPersonValue === 0) ? undefined : nbPersonValue}
+                  onChange={handleNbPersonChange}
+                  label="Nombre de personnes"
+                >
+                  {fillDropdowns()}
+                </Select>
+              </FormControl>
+            </div>
+            <div className="row__item">
+              <FormControl variant="outlined" className={classes.formControl}>
+                <InputLabel id="demo-simple-select-outlined-label">Nombre de nuitées</InputLabel>
+                <Select
+                  labelId="demo-simple-select-outlined-label"
+                  id="demo-simple-select-outlined"
+                  value={(nbNightsValue === 0) ? undefined : nbNightsValue}
+                  onChange={handleNbNightsChange}
+                  label="Nombre de nuitées"
+                >
+                  {fillDropdowns()}
+                </Select>
+              </FormControl>
+            </div>
           </div>
           <div className="row">
-            <Grid container spacing={0} className={classes.slider}>
-              <Grid item className="slider__label" xs={2} md={12}>
-                <p>Prix</p>
-              </Grid>
-              <Grid item xs container direction="column" alignItems="center" className="slider__component" md={12}>
-                <Grid container alignItems="center" className="slider__marks">
-                  <Grid item xs={4} className="slider__mark">
-                    <p>€</p>
+            <div className="row__item">
+              <Grid container spacing={0} className={classes.slider}>
+                <Grid item className="slider__label" xs={2} md={12}>
+                  <p>Prix</p>
+                </Grid>
+                <Grid item xs container direction="column" alignItems="center" className="slider__component" md={12}>
+                  <Grid container alignItems="center" className="slider__marks">
+                    <Grid item xs={4} className="slider__mark">
+                      <p>€</p>
+                    </Grid>
+                    <Grid item xs={4} className="slider__mark">
+                      <p>€€</p>
+                    </Grid>
+                    <Grid item xs={4} className="slider__mark">
+                      <p>€€€</p>
+                    </Grid>
                   </Grid>
-                  <Grid item xs={4} className="slider__mark">
-                    <p>€€</p>
-                  </Grid>
-                  <Grid item xs={4} className="slider__mark">
-                    <p>€€€</p>
+                  <Grid item className="slider__bar" md={12} container xs={11}>
+                    <CustomSlider
+                      value={priceScaleValue}
+                      onChange={handlePriceScaleChange}
+                      aria-labelledby="discrete-slider"
+                      valueLabelDisplay="off"
+                      step={1}
+                      min={0}
+                      max={2}
+                    />
                   </Grid>
                 </Grid>
-                <Grid item className="slider__bar" md={8} container xs={8}>
-                  <CustomSlider
-                    value={priceScaleValue}
-                    onChange={handlePriceScaleChange}
-                    aria-labelledby="discrete-slider"
-                    valueLabelDisplay="off"
-                    step={1}
-                    min={0}
-                    max={2}
-                  />
-                </Grid>
               </Grid>
-            </Grid>
-            <FormControl variant="outlined" className={`${classes.formControl} ${classes.test}`}>
-              <InputLabel id="demo-simple-select-outlined-label">Type d'hébergement</InputLabel>
-              <Select
-                labelId="demo-simple-select-outlined-label"
-                id="demo-simple-select-outlined"
-                multiple
-                value={accomodationTypesValue}
-                onChange={handleAccomodationTypesChange}
-                label="Type d'hébergement"
-              >
-                {types.map((elt) => (
-                  <MenuItem key={elt.id} value={elt.id}>{elt.name}</MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+            </div>
+            <div className="row__item">
+              <FormControl variant="outlined" className={`${classes.formControl} ${classes.accomodationTypes}`}>
+                <InputLabel id="demo-simple-select-outlined-label">Type d'hébergement</InputLabel>
+                <Select
+                  labelId="demo-simple-select-outlined-label"
+                  id="demo-simple-select-outlined"
+                  multiple
+                  value={accomodationTypesValue}
+                  onChange={handleAccomodationTypesChange}
+                  label="Type d'hébergement"
+                >
+                  {types.map((elt) => (
+                    <MenuItem key={elt.id} value={elt.id}>{elt.name}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </div>
           </div>
           <div className="row">
             <button className="search__submit" type="submit">Rechercher</button>
