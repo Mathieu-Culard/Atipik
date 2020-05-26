@@ -4,6 +4,12 @@ export const CHANGE_NB_PERSON = 'CHANGE_NB_PERSON';
 export const CHANGE_NB_NIGHTS = 'CHANGE_NB_NIGHTS';
 export const CHANGE_PRICE_SCALE = 'CHANGE_PRICE_SCALE';
 export const CHANGE_ACCOMODATION_TYPES = 'CHANGE_ACCOMODATION_TYPES';
+export const SELECT_ALL = 'SELECT_ALL';
+
+export const selectAll = (thematicId) => ({
+  type: SELECT_ALL,
+  id: thematicId,
+});
 
 export const changeNbPerson = (newValue) => ({
   type: CHANGE_NB_PERSON,
@@ -31,3 +37,5 @@ export const changeCityTextfield = (newValue) => ({
   type: CHANGE_CITY_TEXTFIELD,
   value: newValue,
 });
+
+

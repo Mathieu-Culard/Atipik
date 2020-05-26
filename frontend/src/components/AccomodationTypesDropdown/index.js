@@ -27,7 +27,7 @@ const useStyles = makeStyles({
   },
 });
 
-const AccomodationTypesDropdown = ({ accomodationTypesValue, changeAccomodationTypes }) => {
+const AccomodationTypesDropdown = ({ accomodationTypesValue, changeAccomodationTypes, selectAll }) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -68,7 +68,7 @@ const AccomodationTypesDropdown = ({ accomodationTypesValue, changeAccomodationT
         <Box className={classes.root}>
           <h2 className="dropdown-title">Types d'hébergements</h2>
           {data.map((thematic) => (
-            <Thematic key={thematic.id} thematic={thematic} changeAccomodationTypes={changeAccomodationTypes} accomodationTypesValue={accomodationTypesValue} />
+            <Thematic key={thematic.id} thematic={thematic} selectAll={selectAll} changeAccomodationTypes={changeAccomodationTypes} accomodationTypesValue={accomodationTypesValue} />
           ))}
         </Box>
       </Popover>
@@ -77,6 +77,7 @@ const AccomodationTypesDropdown = ({ accomodationTypesValue, changeAccomodationT
 };
 
 AccomodationTypesDropdown.propTypes = {
+  selectAll: PropTypes.func.isRequired,
   accomodationTypesValue: PropTypes.array.isRequired,
   changeAccomodationTypes: PropTypes.func.isRequired,
 };

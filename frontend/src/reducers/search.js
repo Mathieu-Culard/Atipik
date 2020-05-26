@@ -5,9 +5,11 @@ import {
   CHANGE_NB_NIGHTS,
   CHANGE_PRICE_SCALE,
   CHANGE_ACCOMODATION_TYPES,
+  SELECT_ALL
 } from 'src/actions/search';
 
-import { getCheckedAccomodationTypes } from 'src/utils';
+import { getCheckedAccomodationTypes, selectAccomodationTypesByThematic } from 'src/utils';
+
 
 const initialState = {
   city: '',
@@ -15,7 +17,7 @@ const initialState = {
   nbPerson: 0,
   nbNights: 0,
   priceScale: 1,
-  accomodationTypes: [],
+  accomodationTypes: [1],
 };
 
 const searchReducer = (state = initialState, action = {}) => {
@@ -49,6 +51,11 @@ const searchReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         accomodationTypes: getCheckedAccomodationTypes(state.accomodationTypes, action.value, action.checked),
+      };
+    case SELECT_ALL:
+      return {
+        ...state,
+        accomodationTypes: selectAccomodationTypesByThematic(state.accomodationTypes, action.id),
       };
     default: return state;
   }

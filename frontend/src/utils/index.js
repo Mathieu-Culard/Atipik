@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-
+import data from 'src/data/accomodationTypes';
 // used to display accomodationTypeDropdown correctly
 export const getAnchorPosition = () => {
   const top = window.screen.height / 3;
@@ -16,11 +16,26 @@ export const getAnchorPosition = () => {
  * @param {boolean} checked true if the user check the item, false if he uncheck it
  */
 export const getCheckedAccomodationTypes = (checkedItems, id, checked) => {
-  console.log(Object.values({ ...checkedItems, id }));
   if (checked) {
     return (Object.values({ ...checkedItems, id }));
   }
   return checkedItems.filter((item) => (
     item !== id
   ));
+};
+
+export const selectAccomodationTypesByThematic = (checkedItems, thematicId) => {
+  const thematic = data.find((item) => (
+    item.id === thematicId
+  ));
+
+  const typesId = thematic.types.map((item) => (
+    item.id
+  ));
+
+  const result = checkedItems.concat(typesId);
+  const removeDuplicate = result.filter((v, i, a) => (
+    a.indexOf(v) === i
+  ));
+  return removeDuplicate;
 };
