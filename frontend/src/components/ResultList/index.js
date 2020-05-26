@@ -21,6 +21,9 @@ ResultList.propTypes = {
       description: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       id: PropTypes.number.isRequired,
+      country: PropTypes.string.isRequired,
+      city: PropTypes.string.isRequired,
+      pictures: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     }).isRequired,
   ).isRequired,
 };
