@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -12,7 +13,7 @@ import './home.scss';
 
 const CustomSlider = withStyles({
   root: {
-    color: '#8dd7df',
+    color: '#8dd7dfl',
   },
 })(Slider);
 
@@ -47,23 +48,53 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const marks = [
+//! fake data to remove
+const types = [
   {
-    value: 0,
-    label: '€',
+    id: 0,
+    name: 'roulottes',
   },
   {
-    value: 1,
-    label: '€€',
-  },
-  {
-    value: 2,
-    label: '€€€',
+    id: 1,
+    name: 'bulles',
   },
 ];
-const Home = () => {
+const Home = ({
+  cityValue,
+  countryValue,
+  nbPersonValue,
+  nbNightsValue,
+  priceScaleValue,
+  accomodationTypesValue,
+  changeCityTextfield,
+  changeCountryTextfield,
+  changePriceScale,
+  changeNbNights,
+  changeNbPerson,
+  changeAccomodationTypes,
+}) => {
   const classes = useStyles();
+  const handleAccomodationTypesChange = (evt) => {
+    changeAccomodationTypes(evt.target.value);
+  };
 
+  const handlePriceScaleChange = (evt, value) => {
+    changePriceScale(value);
+  };
+  const handleNbNightsChange = (evt) => {
+    changeNbNights(evt.target.value);
+  };
+  const handleNbPersonChange = (evt) => {
+    changeNbPerson(evt.target.value);
+  };
+  const handleCityChange = (evt) => {
+    changeCityTextfield(evt.target.value);
+  };
+  const handleCountryChange = (evt) => {
+    changeCountryTextfield(evt.target.value);
+  };
+
+  // temporary
   const fillDropdowns = () => {
     const options = [];
     for (let i = 0; i <= 10; i += 1) {
@@ -81,8 +112,8 @@ const Home = () => {
         <h2 className="search__title">Où veux-tu aller?</h2>
         <form className="search__formular">
           <div className="row">
-            <TextField id="country-input" label="Pays" className={classes.textField} size="small" />
-            <TextField id="city-input" label="Ville" className={classes.textField} />
+            <TextField id="country-input" label="Pays" className={classes.textField} size="small" value={countryValue} onChange={handleCountryChange} />
+            <TextField id="city-input" label="Ville" className={classes.textField} value={cityValue} onChange={handleCityChange} />
           </div>
           <div className="row">
             <FormControl variant="outlined" className={classes.formControl}>
@@ -90,8 +121,8 @@ const Home = () => {
               <Select
                 labelId="demo-simple-select-outlined-label"
                 id="demo-simple-select-outlined"
-                // value={age}
-                // onChange={handleChange}
+                value={(nbPersonValue === 0) ? undefined : nbPersonValue}
+                onChange={handleNbPersonChange}
                 label="Nombre de personnes"
               >
                 {fillDropdowns()}
@@ -102,8 +133,8 @@ const Home = () => {
               <Select
                 labelId="demo-simple-select-outlined-label"
                 id="demo-simple-select-outlined"
-                // value={age}
-                // onChange={handleChange}
+                value={(nbNightsValue === 0) ? undefined : nbNightsValue}
+                onChange={handleNbNightsChange}
                 label="Nombre de nuitées"
               >
                 {fillDropdowns()}
@@ -111,20 +142,6 @@ const Home = () => {
             </FormControl>
           </div>
           <div className="row">
-
-
-            {/* <div className="sli">
-                <Slider
-                  defaultValue={0}
-                  // getAriaValueText={valuetext}
-                  aria-labelledby="discrete-slider"
-                  valueLabelDisplay="off"
-                  step={1}
-                  marks={marks}
-                  min={0}
-                  max={2}
-                />
-              </div> */}
             <Grid container spacing={0} className={classes.slider}>
               <Grid item className="slider__label" xs={2} md={12}>
                 <p>Prix</p>
@@ -143,12 +160,11 @@ const Home = () => {
                 </Grid>
                 <Grid item className="slider__bar" md={8} container xs={8}>
                   <CustomSlider
-                    defaultValue={0}
-                    // getAriaValueText={valuetext}
+                    value={priceScaleValue}
+                    onChange={handlePriceScaleChange}
                     aria-labelledby="discrete-slider"
                     valueLabelDisplay="off"
                     step={1}
-                    marks
                     min={0}
                     max={2}
                   />
@@ -161,12 +177,12 @@ const Home = () => {
                 labelId="demo-simple-select-outlined-label"
                 id="demo-simple-select-outlined"
                 multiple
-                value={marks}
-                // onChange={handleChange}
+                value={accomodationTypesValue}
+                onChange={handleAccomodationTypesChange}
                 label="Type d'hébergement"
               >
-                {marks.map((elt) => (
-                  <MenuItem key={elt.value} value={elt.value}>{elt.value}</MenuItem>
+                {types.map((elt) => (
+                  <MenuItem key={elt.id} value={elt.id}>{elt.name}</MenuItem>
                 ))}
               </Select>
             </FormControl>
@@ -178,6 +194,22 @@ const Home = () => {
       </section>
     </main>
   );
+};
+
+
+Home.propTypes = {
+  cityValue: PropTypes.string.isRequired,
+  countryValue: PropTypes.string.isRequired,
+  nbPersonValue: PropTypes.number.isRequired,
+  nbNightsValue: PropTypes.number.isRequired,
+  priceScaleValue: PropTypes.number.isRequired,
+  accomodationTypesValue: PropTypes.array.isRequired,
+  changeCountryTextfield: PropTypes.func.isRequired,
+  changeCityTextfield: PropTypes.func.isRequired,
+  changeNbNights: PropTypes.func.isRequired,
+  changeNbPerson: PropTypes.func.isRequired,
+  changePriceScale: PropTypes.func.isRequired,
+  changeAccomodationTypes: PropTypes.func.isRequired,
 };
 
 export default Home;
