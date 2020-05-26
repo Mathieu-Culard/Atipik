@@ -19,6 +19,20 @@ class AccomodationRepository extends ServiceEntityRepository
         parent::__construct($registry, Accomodation::class);
     }
 
+    /**
+     * Method for displaying the list of accomodations by capacity
+     *
+     * @return Accomodation[]
+     */
+    public function findAllByCapacity($capacity) 
+    {
+        $qb = $this->createQueryBuilder('a')
+                    ->where('a.capacity >= :capacity AND a.isValidated = 1' )
+                    ->setParameter('capacity', $capacity)
+                    ;
+                    return $qb->getQuery()->getResult();
+    }
+
     // /**
     //  * @return Accomodation[] Returns an array of Accomodation objects
     //  */
