@@ -2,18 +2,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import { makeStyles } from '@material-ui/core/styles';
 
 import ResultCard from 'src/components/ResultCard';
 
-const ResultList = ({ elements }) => (
-  <List>
-    { elements.map((e) => (
-      <ListItem alignItems="flex-start" key={e.id}>
-        <ResultCard {...e} />
-      </ListItem>
-    ))}
-  </List>
-);
+const useStyles = makeStyles(() => ({
+  root: {
+    overflowY: 'auto',
+  },
+}));
+
+const ResultList = ({ elements }) => {
+  const classes = useStyles();
+
+  return (
+    <List className={classes.root}>
+      { elements.map((e) => (
+        <ListItem alignItems="flex-start" key={e.id}>
+          <ResultCard {...e} />
+        </ListItem>
+      ))}
+    </List>
+  );
+};
 
 ResultList.propTypes = {
   elements: PropTypes.arrayOf(
