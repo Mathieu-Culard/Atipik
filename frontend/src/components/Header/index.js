@@ -10,6 +10,8 @@ import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
+import LoginPanel from 'src/components/LoginPanel';
+
 import './header.scss';
 import logo from '../../assets/logo.png';
 
@@ -30,9 +32,15 @@ function ListItemLink(props) {
   return <ListItem button component="a" {...props} />;
 }
 
-const Header = ({ open, toggleOpen }) => {
+const Header = ({
+  open,
+  toggleOpen,
+  loginPanel,
+  openLoginPanel,
+}) => {
   const classes = useStyles();
   const mobileMenuLinksClass = classNames('header__links--mobile', { 'header__links--mobile--hide': !open });
+
   return (
     <header className="header">
       <nav className="header__nav">
@@ -41,7 +49,8 @@ const Header = ({ open, toggleOpen }) => {
           <div className="header__links">
             <a className="header__link" href="#"> Nos hébergements </a>
             <a className="header__link" href="#"> Inscription </a>
-            <a className="header__link" href="#"> Connexion </a>
+            <a className="header__link" href="#" onClick={openLoginPanel}> Connexion </a>
+            {loginPanel && <LoginPanel />}
           </div>
           <input onChange={toggleOpen} name="hamburger-toggle" type="checkbox" id="hamburger-toggle" value={open} />
           <label className="header__hamburger" htmlFor="hamburger-toggle">
@@ -77,6 +86,8 @@ const Header = ({ open, toggleOpen }) => {
 Header.propTypes = {
   open: PropTypes.bool.isRequired,
   toggleOpen: PropTypes.func.isRequired,
+  loginPanel: PropTypes.bool.isRequired,
+  openLoginPanel: PropTypes.func.isRequired,
 };
 
 export default Header;
