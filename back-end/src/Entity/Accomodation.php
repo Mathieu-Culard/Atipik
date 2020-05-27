@@ -6,6 +6,7 @@ use App\Repository\AccomodationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=AccomodationRepository::class)
@@ -158,11 +159,17 @@ class Accomodation
         $this->picture = new ArrayCollection();
     }
 
+    /**
+     * @Groups({"search_result"})
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @Groups({"search_result"})
+     */
     public function getTitle(): ?string
     {
         return $this->title;
@@ -175,6 +182,9 @@ class Accomodation
         return $this;
     }
 
+    /**
+     * @Groups({"search_result"})
+     */
     public function getCapacity(): ?int
     {
         return $this->capacity;
@@ -187,6 +197,9 @@ class Accomodation
         return $this;
     }
 
+    /**
+     * @Groups({"search_result"})
+     */
     public function getDescription(): ?string
     {
         return $this->description;
@@ -199,6 +212,9 @@ class Accomodation
         return $this;
     }
 
+    /**
+     * @Groups({"search_result"})
+     */
     public function getPrice(): ?int
     {
         return $this->price;
@@ -211,6 +227,9 @@ class Accomodation
         return $this;
     }
 
+    /**
+     * @Groups({"search_result"})
+     */
     public function getAdress(): ?string
     {
         return $this->adress;
@@ -223,6 +242,9 @@ class Accomodation
         return $this;
     }
 
+    /**
+     * @Groups({"search_result"})
+     */
     public function getCity(): ?string
     {
         return $this->city;
@@ -235,6 +257,9 @@ class Accomodation
         return $this;
     }
 
+    /**
+     * @Groups({"search_result"})
+     */
     public function getCountry(): ?string
     {
         return $this->country;
@@ -415,6 +440,9 @@ class Accomodation
         return $this;
     }
 
+    /**
+     * @Groups({"search_result"})
+     */
     public function getType(): ?Type
     {
         return $this->type;
@@ -462,7 +490,7 @@ class Accomodation
     {
         $this->user = $user;
 
-        return $this;
+        return $this;dd($currentData);
     }
 
     /**
@@ -492,6 +520,7 @@ class Accomodation
     }
 
     /**
+     * @Groups({"search_result"})
      * @return Collection|Picture[]
      */
     public function getPicture(): Collection
