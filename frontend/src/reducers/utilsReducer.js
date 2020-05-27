@@ -1,4 +1,4 @@
-import { TOGGLE_OPEN, OPEN_LOGIN_PANEL, CLOSE_LOGIN_PANEL } from 'src/actions/utils';
+import { TOGGLE_OPEN, SET_LOGIN_PANEL } from 'src/actions/utils';
 
 const initialState = {
   open: true,
@@ -13,16 +13,10 @@ const utilsReducer = (state = initialState, action = {}) => {
         open: !state.open,
       };
 
-    case OPEN_LOGIN_PANEL:
+    case SET_LOGIN_PANEL:
       return {
         ...state,
-        loginPanel: true,
-      };
-
-    case CLOSE_LOGIN_PANEL:
-      return {
-        ...state,
-        loginPanel: false,
+        loginPanel: action.newValue,
       };
 
     default: return state;

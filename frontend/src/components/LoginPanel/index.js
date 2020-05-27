@@ -1,42 +1,63 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import Modal from '@material-ui/core/Modal';
+import Box from '@material-ui/core/Box';
+import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
 
-const LoginPanel = ({ closeLoginPanel }) => {
-  const clickEventFunction = (e) => {
-    e.stopPropagation();
-    closeLoginPanel();
-  };
+const useStyles = makeStyles(() => ({
+  root: {
+  },
+  box: {
+    backgroundColor: '#fff',
+    position: 'fixed',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%,-50%)',
+  },
+}));
 
-  const escapeEventFunction = (e) => {
-    if (e.keyCode === 27) {
-      closeLoginPanel();
-    }
-  };
-
-  const addClosingEventListeners = () => {
-    document.addEventListener('click', clickEventFunction);
-    window.addEventListener('keydown', escapeEventFunction);
-  };
-
-  const removeClosingEventListeners = () => {
-    document.removeEventListener('click', clickEventFunction);
-    window.removeEventListener('keydown', escapeEventFunction);
-  };
-
-  useEffect(() => {
-    addClosingEventListeners();
-    return function cleanUp() {
-      removeClosingEventListeners();
-    };
-  }, []);
-
+const LoginPanel = ({
+  loginPanel,
+  setLoginPanel,
+  email,
+  changeField,
+  password,
+}) => {
+  const classes = useStyles();
   return (
-    <div>coucou</div>
+    <Modal
+      open={loginPanel}
+      onClose={() => setLoginPanel(false)}
+      className={classes.root}
+    >
+      <Box component="div" className={classes.box}>
+        <form>
+          <TextField
+            id="login-panel-email"
+            label="Email"
+            value={email}
+            onChange={(e) => changeField('email', e.target.value)}
+          />
+          <TextField
+            id="login-panel-password"
+            label="Password"
+            type="Password"
+            value={password}
+            onChange={(e) => changeField('password', e.target.value)}
+          />
+        </form>
+      </Box>
+    </Modal>
   );
 };
 
 LoginPanel.propTypes = {
-  closeLoginPanel: PropTypes.func.isRequired,
+  loginPanel: PropTypes.bool.isRequired,
+  setLoginPanel: PropTypes.func.isRequired,
+  email: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
+  changeField: PropTypes.func.isRequired,
 };
 
 export default LoginPanel;

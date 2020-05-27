@@ -4,7 +4,7 @@ export const SAVE_USER = 'SAVE_USER';
 export const CHECK_LOGGED = 'CHECK_LOGGED';
 export const LOG_OUT = 'LOG_OUT';
 
-export const changeField = (newValue, identifier) => ({
+export const changeField = (identifier, newValue) => ({
   type: CHANGE_FIELD,
   newValue,
   identifier,
