@@ -136,12 +136,6 @@ class Accomodation
     private $extra;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="accomodations")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $user;
-
-    /**
      * @ORM\ManyToMany(targetEntity=Service::class, inversedBy="accomodations")
      */
     private $service;
@@ -150,6 +144,12 @@ class Accomodation
      * @ORM\OneToMany(targetEntity=Picture::class, mappedBy="accomodation", orphanRemoval=true)
      */
     private $picture;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="accomodations")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
 
     public function __construct()
     {
@@ -453,17 +453,6 @@ class Accomodation
         return $this;
     }
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
 
     /**
      * @return Collection|Service[]
@@ -518,6 +507,18 @@ class Accomodation
                 $picture->setAccomodation(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
