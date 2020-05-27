@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Thematic from './Thematic';
+import { getAnchorPosition } from 'src/utils';
+import './accomodationTypesDropdown.scss';
+import data from 'src/data/accomodationTypes';
 
 import Box from '@material-ui/core/Box';
 import Popover from '@material-ui/core/Popover';
@@ -8,13 +10,12 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import { makeStyles } from '@material-ui/core/styles';
-import data from 'src/data/accomodationTypes';
 
-import { getAnchorPosition } from 'src/utils';
-import './accomodationTypesDropdown.scss';
+import Thematic from './Thematic';
 
 const useStyles = makeStyles({
   formControl: {
+    zIndex: 0,
     margin: '0.6rem 0',
     minWidth: 220,
     width: '100%',

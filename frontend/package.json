@@ -48,6 +48,8 @@
   "dependencies": {
     "@material-ui/core": "^4.10.0",
     "material-ui-popup-state": "^1.5.4",
+    "@material-ui/icons": "^4.9.1",
+    "classnames": "^2.2.6",
     "prop-types": "*",
     "react": "*",
     "react-dom": "*",

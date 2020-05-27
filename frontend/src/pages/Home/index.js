@@ -26,13 +26,11 @@ const useStyles = makeStyles((theme) => ({
     // margin: '0.6rem 0',
     minWidth: 220,
     width: '100%',
+    zIndex: 0,
   },
   textField: {
     // margin: '0.6rem 0',
     width: '100%',
-  },
-  selectEmpty: {
-   // marginTop: theme.spacing(2),
   },
   slider: {
     width: '100%',
