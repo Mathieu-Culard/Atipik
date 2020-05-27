@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-
+import { fetchAccomodationTypes } from 'src/actions/search';
 import App from 'src/components/App';
 
 const mapStateToProps = (state) => ({
@@ -7,7 +7,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  //TODO
+  fetchAccomodationTypes: () => {
+    dispatch(fetchAccomodationTypes());
+  },
 });
 
 export default connect(

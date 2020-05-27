@@ -8,11 +8,13 @@ import {
   SAVE_SEARCH_RESULT,
   CHANGE_FILTER_SWITCH,
   CHANGE_MIN_SURFACE,
+  SAVE_ACCOMODATION_TYPES,
 } from 'src/actions/search';
 
 import { getCheckedAccomodationTypes, selectAccomodationTypesByThematic } from 'src/utils';
 
 const initialState = {
+  accomodationTypes: [],
   city: '',
   country: '',
   capacity: 0,
@@ -87,6 +89,11 @@ const searchReducer = (state = initialState, action = {}) => {
         animals: true,
         smockers: true,
         apmr: true,
+      };
+    case SAVE_ACCOMODATION_TYPES:
+      return {
+        ...state,
+        accomodationTypes: action.accomodationTypes,
       };
     default: return state;
   }

@@ -1,5 +1,10 @@
 import axios from 'axios';
-import { SEARCH, saveSearchResult } from '../actions/search';
+import {
+  SEARCH,
+  saveSearchResult,
+  FETCH_ACCOMODATION_TYPES,
+  saveAccomodationTypes,
+} from '../actions/search';
 
 const searchMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -38,11 +43,24 @@ const searchMiddleware = (store) => (next) => (action) => {
       }).then((response) => {
         store.dispatch(saveSearchResult(response.data));
       }).catch((error) => {
-        console.log(error);
+        console.warn(error);
       });
       next(action);
       break;
     }
+
+
+    case FETCH_ACCOMODATION_TYPES:
+      axios.get('.../types')
+        .then((response) => {
+          store.dispatch(saveAccomodationTypes(response.data));
+        })
+        .catch((error) => {
+          console.warn(error);
+        });
+      next(action);
+      break;
+
     default:
       next(action);
   }

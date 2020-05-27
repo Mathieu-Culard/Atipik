@@ -27,8 +27,12 @@ const useStyles = makeStyles({
     // padding: '100px',
   },
 });
-
-const AccomodationTypesDropdown = ({ accomodationTypesValue, changeAccomodationTypes, selectAll }) => {
+// TODO add accomodationTypes to props, replace data by accomodationTypes, uncomment propTypes
+const AccomodationTypesDropdown = ({
+  accomodationTypesValue,
+  changeAccomodationTypes,
+  selectAll,
+}) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -69,7 +73,13 @@ const AccomodationTypesDropdown = ({ accomodationTypesValue, changeAccomodationT
         <Box className={classes.root}>
           <h2 className="dropdown-title">Types d'hébergements</h2>
           {data.map((thematic) => (
-            <Thematic key={thematic.id} thematic={thematic} selectAll={selectAll} changeAccomodationTypes={changeAccomodationTypes} accomodationTypesValue={accomodationTypesValue} />
+            <Thematic
+              key={thematic.id}
+              thematic={thematic}
+              selectAll={selectAll}
+              changeAccomodationTypes={changeAccomodationTypes}
+              accomodationTypesValue={accomodationTypesValue}
+            />
           ))}
         </Box>
       </Popover>
@@ -81,6 +91,22 @@ AccomodationTypesDropdown.propTypes = {
   selectAll: PropTypes.func.isRequired,
   accomodationTypesValue: PropTypes.array.isRequired,
   changeAccomodationTypes: PropTypes.func.isRequired,
+  // accomodationTypes: PropTypes.arrayOf(
+  //   PropTypes.shape({
+  //     id: PropTypes.number.isRequired,
+  //     name: PropTypes.string.isRequired,
+  //     types: PropTypes.arrayOf(
+  //       PropTypes.shape({
+  //         id: PropTypes.number.isRequired,
+  //         name: PropTypes.string.isRequired,
+  //         icon: PropTypes.string.isRequired,
+  //         description: PropTypes.string.isRequired,
+  //         picture: PropTypes.string.isRequired,
+
+  //       }).isRequired,
+  //     ).isRequired,
+  //   }).isRequired,
+  // ).isRequired,
 };
 
 export default AccomodationTypesDropdown;

@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import Home from 'src/pages/Home';
 import {
   changeTextfield,
-  // changeCountryTextfield,
   changeCapacity,
   changeNbNights,
   changeMaxPrice,
   changeAccomodationTypes,
   search,
+  fetchAccomodationTypes,
 } from 'src/actions/search';
 
 
@@ -39,6 +39,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   handleSearch: () => {
     dispatch(search());
+  },
+  fetchAccomodationTypes: () => {
+    dispatch(fetchAccomodationTypes());
   },
 });
 

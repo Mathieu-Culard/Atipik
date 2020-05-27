@@ -14,6 +14,7 @@ import './home.scss';
 
 import AccomodationTypesDropdown from 'src/containers/AccomodationTypesDropdown';
 
+
 const CustomSlider = withStyles({
   root: {
     width: '100%',
