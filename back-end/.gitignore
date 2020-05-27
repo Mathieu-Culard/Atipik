@@ -14,5 +14,6 @@
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
-doc.md
 
+public/assets/type/icon
+public/assets/type/picture

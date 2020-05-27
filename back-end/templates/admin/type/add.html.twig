@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+<h1 class="addTitle">Ajouter un nouveau type d'hebergement</h1>
+
+<div class="container">
+{{form_start(form)}}
+
+  <div class="pictureIcon">
+    <div class="pictureTypeAdmin">
+    {{form_widget(form.picture, {'attr': {'placeholder': 'Photo'}}) }}
+    </div>
+
+    <div class="IconTypeAdmin">
+    {{form_widget(form.icon, {'attr': {'placeholder': 'Icon'}}) }}
+    </div>
+  </div>
+
+  <div class="nameDescThemType">
+    <div class="nameType">
+    {{form_widget(form.name, {'attr': {'placeholder': 'Nom'}}) }}
+    </div>
+
+    <div class="descriptionType">
+    {{form_widget(form.description, {'attr': {'placeholder': 'Description'}}) }}
+    </div>
+
+    <div class="thematicType">{{form_widget(form.thematic)}}</div>
+</div>
+  
+
+  <div class="buttonType">
+    <button type="submit" class="btn btn-primary">Ajouter</button>
+    <a href="{{path('admin_type_browse')}}" class="linkBack">Retour à la liste</a>
+  </div>
+
+{{form_end(form)}}
+</div>
+
+{% endblock %}
