@@ -1,4 +1,4 @@
-import { CHANGE_FIELD, SAVE_USER } from '../actions/user';
+import { CHANGE_FIELD, SAVE_USER, SUBMIT_CONNECTION } from '../actions/user';
 
 const initialState = {
   username: '',
@@ -15,6 +15,13 @@ const userReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         [action.identifier]: action.newValue,
+      };
+
+    case SUBMIT_CONNECTION:
+      return {
+        ...state,
+        email: '',
+        password: '',
       };
 
     case SAVE_USER:

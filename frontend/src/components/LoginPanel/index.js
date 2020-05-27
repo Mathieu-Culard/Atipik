@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Modal from '@material-ui/core/Modal';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
@@ -23,8 +24,15 @@ const LoginPanel = ({
   email,
   changeField,
   password,
+  submitConnection,
 }) => {
   const classes = useStyles();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setLoginPanel(false);
+    submitConnection();
+  };
+
   return (
     <Modal
       open={loginPanel}
@@ -32,7 +40,7 @@ const LoginPanel = ({
       className={classes.root}
     >
       <Box component="div" className={classes.box}>
-        <form>
+        <form onSubmit={handleSubmit}>
           <TextField
             id="login-panel-email"
             label="Email"
@@ -46,6 +54,7 @@ const LoginPanel = ({
             value={password}
             onChange={(e) => changeField('password', e.target.value)}
           />
+          <Button type="submit" variant="plain">Se connecter</Button>
         </form>
       </Box>
     </Modal>
@@ -58,6 +67,7 @@ LoginPanel.propTypes = {
   email: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
   changeField: PropTypes.func.isRequired,
+  submitConnection: PropTypes.func.isRequired,
 };
 
 export default LoginPanel;
