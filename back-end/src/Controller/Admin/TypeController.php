@@ -3,7 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Type;
-use App\Form\FormDelete;
+use App\Form\FormTypeDelete;
 use App\Form\FormType;
 use App\Services\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -27,29 +27,33 @@ class TypeController extends AbstractController
     //Browse Method to list types
     public function browse(TypeRepository $typeRepository)
     {
-        return $this->render('admin/type/browse.html.twig', [
-            'types' => $typeRepository->findAll(),
-        ]);
-    }
+        //We recover the list's type
+        $types = $typeRepository->findAll();
 
-
-    /**
-     * @Route("/read/{id}", name="read", requirements={"id": "\d+"})
-     */
-    //read Method to display one type
-    public function read(Type $type)
-    {
-          // We create a form to delete the type
-          $formDelete = $this->createForm(FormDelete::class, null, [
-            'action' => $this->generateUrl('admin_type_delete', ['id' => $type->getId() ])
-         ]);
-         
-        return $this->render('admin/type/browse.html.twig', [
-            'type' => $type,
-            'formDelete' => $formDelete->createView(),
-        ]);
-    }
+        //Declare an empty array
+        $forms = [];
     
+        //To loop on each type in our variable $types
+        foreach ($types as $type){
+            //We declare a variable $formOptions which allow to be
+            //redirected on the delete's page (to execute the delete method)
+            $formOptions = [
+                'action' => $this->generateUrl('admin_type_delete', ['id' => $type->getId() ])
+            ];
+            
+            //We associate to $forms, an array which contain, a delete button for each type
+             $forms[] = $this->createForm(FormTypeDelete::class,$type,$formOptions)->createView();
+        }
+     
+        
+        return $this->render('admin/type/browse.html.twig', [
+            'types' => $types,
+            'forms' => $forms
+        ]);
+    }
+
+
+
      /**
       * @Route("/edit/{id}", name="edit", methods={"GET", "POST", "DELETE"}, requirements={"id": "\d+"})
       */
@@ -96,7 +100,7 @@ class TypeController extends AbstractController
 
     }
         // We create a form to delete the type
-        $formDelete = $this->createForm(FormDelete::class, null, [
+        $formDelete = $this->createForm(FormTypeDelete::class, null, [
         'action' => $this->generateUrl('admin_type_delete', ['id' => $type->getId() ])
      ]);
 
@@ -104,9 +108,7 @@ class TypeController extends AbstractController
         return $this->render('admin/type/edit.html.twig', [
         'form' => $form->createView(),
         'formDelete' => $formDelete->createView(),
-    ]);
-
-       
+    ]); 
       }
 
     /**
@@ -185,20 +187,23 @@ class TypeController extends AbstractController
      * @Route("/delete/{id}", name="delete", methods={"DELETE"})
      */
     //
-    public function delete(Type $type, Request $request, EntityManagerInterface $em)
+    public function delete(Request $request, EntityManagerInterface $em, Type $type)
     {
-        $formDelete = $this->createForm(FormDelete::class);
+        $formDelete = $this->createForm(FormTypeDelete::class, $type);
 
         $formDelete->handleRequest($request);
 
+        //dd($formDelete->getData());
+
         if ($formDelete->isSubmitted() && $formDelete->isValid()) {
+           
             // we delete the data
             $em->remove($type);
-            // we flush
+         
             $em->flush();
   
             //We redirect to the list page
             return $this->redirectToRoute('admin_type_browse');
         }
     }
-}
+    }

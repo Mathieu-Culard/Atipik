@@ -1,0 +1,48 @@
+[33mcommit 03796cb1125662f47186835e5e6f7f3f76811feb[m[33m ([m[1;36mHEAD -> [m[1;32mBREAD_type_Admin[m[33m)[m
+Author: elisa-crusoe <elisabrcc@gmail.com>
+Date:   Wed May 27 16:20:24 2020 +0200
+
+    BREAD Admin panel for types
+
+[33mcommit 1159b867e339f82e9ccffb5224134a5718c630a5[m[33m ([m[1;31morigin/dev-back[m[33m, [m[1;31morigin/Display-filters-list[m[33m, [m[1;32mdev-back[m[33m)[m
+Author: Alexandra-pelletier <alexandra.pelletier@hotmail.fr>
+Date:   Mon May 25 15:03:31 2020 +0200
+
+    Display lists of Services and Extras
+
+[33mcommit 21655b3bdf31528ef1098e13bb5ab65b8fa1e422[m
+Author: Alexandra-pelletier <alexandra.pelletier@hotmail.fr>
+Date:   Mon May 25 13:53:20 2020 +0200
+
+    Display liste of type
+
+[33mcommit a7099656d83cdf85e19bcdec51a59c85675c0253[m[33m ([m[1;31morigin/Entity[m[33m)[m
+Author: Alexandra-pelletier <alexandra.pelletier@hotmail.fr>
+Date:   Mon May 25 11:29:53 2020 +0200
+
+    Creation Entités
+
+[33mcommit 427c2883f5288a3b5d3e2e6f5416e322da39bdc5[m
+Merge: c86e48a 6b86f72
+Author: Alexandra-pelletier <alexandra.pelletier@hotmail.fr>
+Date:   Mon May 25 10:30:10 2020 +0200
+
+    'Installation-Symfo' récupérée
+
+[33mcommit 6b86f7250e246525913fb830f580cf37a85e45c3[m[33m ([m[1;31morigin/Installation-Symfo[m[33m)[m
+Author: Alexandra-pelletier <alexandra.pelletier@hotmail.fr>
+Date:   Mon May 25 10:20:55 2020 +0200
+
+    Installation Symfo
+
+[33mcommit c86e48af0777ef84c1e6ffd1fa066b2cc07b68e4[m
+Author: Kevin Lanvin <info.lanvink@gmail.com>
+Date:   Mon May 25 09:21:18 2020 +0200
+
+    First backend commit
+
+[33mcommit 4f118ae55bc4a74070b063788fe0029d77e95292[m
+Author: Kevin Lanvin <info.lanvink@gmail.com>
+Date:   Mon May 25 09:15:00 2020 +0200
+
+    First commit
