@@ -440,6 +440,9 @@ class Accomodation
         return $this;
     }
 
+    /**
+     * @Groups({"search_result"})
+     */
     public function getType(): ?Type
     {
         return $this->type;
@@ -487,7 +490,7 @@ class Accomodation
     {
         $this->user = $user;
 
-        return $this;
+        return $this;dd($currentData);
     }
 
     /**

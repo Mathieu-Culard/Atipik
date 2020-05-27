@@ -1,1 +1,0 @@
-{ "capacity":4,"types":[1,2,3],"nb_night":8, "city":"Montpellier", "country":"France", "max_price": 300, "min_surface":25, "piped_water":false, "electricity": false, "animals":true, "smokers":true, "apmr":false}

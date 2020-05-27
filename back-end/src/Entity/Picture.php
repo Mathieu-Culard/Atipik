@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\PictureRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=PictureRepository::class)
@@ -43,11 +44,19 @@ class Picture
      */
     private $accomodation;
 
+    public function __toString()
+    {
+        return $this->name;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @Groups({"search_result"})
+     */
     public function getName(): ?string
     {
         return $this->name;
@@ -60,6 +69,9 @@ class Picture
         return $this;
     }
 
+    /**
+     * @Groups({"search_result"})
+     */
     public function getMain(): ?bool
     {
         return $this->main;

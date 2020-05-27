@@ -102,6 +102,8 @@ class AccomodationRepository extends ServiceEntityRepository
         }
 
         $qb->andWhere('a.isValidated = 1');
+    
+
         return $qb->getQuery()->getResult();
 
     }
