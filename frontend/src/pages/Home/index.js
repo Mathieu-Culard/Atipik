@@ -21,7 +21,7 @@ const CustomSlider = withStyles({
   },
 })(Slider);
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   formControl: {
     // margin: '0.6rem 0',
     minWidth: 220,
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   slider: {
     width: '100%',
   },
-}));
+});
 
 const Home = ({
   cityValue,
@@ -164,22 +164,10 @@ const Home = ({
             </div>
             <div className="row__item">
 
-              <AccomodationTypesDropdown accomodationTypesValue={accomodationTypesValue} changeAccomodationTypes={changeAccomodationTypes} />
-              {/* <FormControl variant="outlined" className={`${classes.formControl} ${classes.accomodationTypes}`}>
-                <InputLabel id="demo-simple-select-outlined-label">Type d'hébergement</InputLabel>
-                <Select
-                  labelId="demo-simple-select-outlined-label"
-                  id="demo-simple-select-outlined"
-                  multiple
-                  value={accomodationTypesValue}
-                  onChange={handleAccomodationTypesChange}
-                  label="Type d'hébergement"
-                >
-                  {data.map((elt) => (
-                    <MenuItem key={elt.id} value={elt.id}>{elt.name}</MenuItem>
-                  ))}
-                </Select>
-              </FormControl> */}
+              <AccomodationTypesDropdown
+                accomodationTypesValue={accomodationTypesValue}
+                changeAccomodationTypes={changeAccomodationTypes}
+              />
             </div>
           </div>
           <div className="row">

@@ -9,8 +9,7 @@ const Type = ({ type, accomodationTypesValue, changeAccomodationTypes }) => {
     id === type.id
   ));
 
-  const handleChange = (evt) => {
-    console.log(evt.target.checked);
+  const handleChange = () => {
     changeAccomodationTypes(type.id, !checked);
   };
 

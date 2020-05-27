@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Type from './Type';
 
 const Thematic = ({ thematic, accomodationTypesValue, changeAccomodationTypes, selectAll }) => {
-  console.log(thematic);
 
   const handleClick = () => {
     selectAll(thematic.id);

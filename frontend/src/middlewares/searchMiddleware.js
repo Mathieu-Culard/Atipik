@@ -4,7 +4,6 @@ import { SEARCH, saveSearchResult } from '../actions/search';
 const searchMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case SEARCH: {
-      console.log('SEARCH');
       const {
         minSurface,
         pipedWater,

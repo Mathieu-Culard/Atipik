@@ -8,7 +8,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   changeAccomodationTypes: (newValue, checked) => {
-    console.log(newValue);
     dispatch(changeAccomodationTypes(newValue, checked));
   },
   selectAll: (thematicId) => {

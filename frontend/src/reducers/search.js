@@ -7,6 +7,8 @@ import {
   CHANGE_ACCOMODATION_TYPES,
   SELECT_ALL,
   SAVE_SEARCH_RESULT,
+  CHANGE_FILTER_SWITCH,
+  CHANGE_MIN_SURFACE,
 } from 'src/actions/search';
 
 import { getCheckedAccomodationTypes, selectAccomodationTypesByThematic } from 'src/utils';
@@ -29,6 +31,16 @@ const initialState = {
 
 const searchReducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case CHANGE_MIN_SURFACE:
+      return {
+        ...state,
+        minSurface: action.value,
+      };
+    case CHANGE_FILTER_SWITCH:
+      return {
+        ...state,
+        [action.identifier]: !state[action.identifier],
+      };
     case CHANGE_CITY_TEXTFIELD:
       return {
         ...state,
@@ -68,6 +80,18 @@ const searchReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         searchResult: action.searchResult,
+        city: '',
+        country: '',
+        capacity: 0,
+        nbNights: 0,
+        maxPrice: 0,
+        types: [],
+        minSurface: 0,
+        pipedWater: true,
+        electricity: true,
+        animals: true,
+        smockers: true,
+        apmr: true,
       };
     default: return state;
   }
