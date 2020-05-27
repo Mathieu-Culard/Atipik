@@ -1,7 +1,8 @@
-import { combineReducers} from 'redux';
+import { combineReducers } from 'redux';
+import UtilsReducer from './UtilsReducer';
 
 const rootReducer = combineReducers({
-//TODO 
+  utils: UtilsReducer,
 });
 
-export default rootReducer
+export default rootReducer;
