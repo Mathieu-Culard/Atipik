@@ -1,11 +1,11 @@
 import {
   CHANGE_CITY_TEXTFIELD,
   CHANGE_COUNTRY_TEXTFIELD,
-  CHANGE_NB_PERSON,
+  CHANGE_CAPACITY,
   CHANGE_NB_NIGHTS,
-  CHANGE_PRICE_SCALE,
+  CHANGE_MAX_PRICE,
   CHANGE_ACCOMODATION_TYPES,
-  SELECT_ALL
+  SELECT_ALL,
 } from 'src/actions/search';
 
 import { getCheckedAccomodationTypes, selectAccomodationTypesByThematic } from 'src/utils';
@@ -14,10 +14,10 @@ import { getCheckedAccomodationTypes, selectAccomodationTypesByThematic } from '
 const initialState = {
   city: '',
   country: '',
-  nbPerson: 0,
+  capacity: 0,
   nbNights: 0,
-  priceScale: 1,
-  accomodationTypes: [1],
+  maxPrice: 1,
+  types: [1],
 };
 
 const searchReducer = (state = initialState, action = {}) => {
@@ -37,25 +37,25 @@ const searchReducer = (state = initialState, action = {}) => {
         ...state,
         nbNights: action.value,
       };
-    case CHANGE_NB_PERSON:
+    case CHANGE_CAPACITY:
       return {
         ...state,
-        nbPerson: action.value,
+        capacity: action.value,
       };
-    case CHANGE_PRICE_SCALE:
+    case CHANGE_MAX_PRICE:
       return {
         ...state,
-        priceScale: action.value,
+        maxPrice: action.value,
       };
     case CHANGE_ACCOMODATION_TYPES:
       return {
         ...state,
-        accomodationTypes: getCheckedAccomodationTypes(state.accomodationTypes, action.value, action.checked),
+        types: getCheckedAccomodationTypes(state.types, action.value, action.checked),
       };
     case SELECT_ALL:
       return {
         ...state,
-        accomodationTypes: selectAccomodationTypesByThematic(state.accomodationTypes, action.id),
+        types: selectAccomodationTypesByThematic(state.types, action.id),
       };
     default: return state;
   }

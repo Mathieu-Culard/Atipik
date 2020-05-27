@@ -4,41 +4,44 @@ import Home from 'src/pages/Home';
 import {
   changeCityTextfield,
   changeCountryTextfield,
-  changeNbPerson,
+  changeCapacity,
   changeNbNights,
-  changePriceScale,
+  changeMaxPrice,
   changeAccomodationTypes,
+  search,
 } from 'src/actions/search';
 
 
 const mapStateToProps = (state) => ({
   cityValue: state.search.city,
   countryValue: state.search.country,
-  nbPersonValue: state.search.nbPerson,
+  nbPersonValue: state.search.capacity,
   nbNightsValue: state.search.nbNights,
-  priceScaleValue: state.search.priceScale,
-  accomodationTypesValue: state.search.accomodationTypes,
+  priceScaleValue: state.search.maxPrice,
+  accomodationTypesValue: state.search.types,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   changeCityTextfield: (newValue) => {
-    console.log(`noooooon ${newValue}`);
     dispatch(changeCityTextfield(newValue));
   },
   changeCountryTextfield: (newValue) => {
     dispatch(changeCountryTextfield(newValue));
   },
   changeNbPerson: (newValue) => {
-    dispatch(changeNbPerson(newValue));
+    dispatch(changeCapacity(newValue));
   },
   changeNbNights: (newValue) => {
     dispatch(changeNbNights(newValue));
   },
   changePriceScale: (newValue) => {
-    dispatch(changePriceScale(newValue));
+    dispatch(changeMaxPrice(newValue));
   },
   changeAccomodationTypes: (newValue) => {
     dispatch(changeAccomodationTypes(newValue));
+  },
+  handleSearch: () => {
+    dispatch(search());
   },
 });
 

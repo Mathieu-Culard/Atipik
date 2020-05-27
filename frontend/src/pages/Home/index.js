@@ -50,6 +50,7 @@ const Home = ({
   changeNbNights,
   changeNbPerson,
   changeAccomodationTypes,
+  handleSearch,
 }) => {
   const classes = useStyles();
 
@@ -80,12 +81,17 @@ const Home = ({
     return options;
   };
 
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    handleSearch();
+  };
+
   return (
     // <Header />
     <main className="home">
       <section className="search">
         <h2 className="search__title">Où veux-tu aller?</h2>
-        <form className="search__formular">
+        <form className="search__formular" onSubmit={handleSubmit}>
           <div className="row">
             <div className="row__item">
               <TextField id="country-input" label="Pays" className={classes.textField} size="small" value={countryValue} onChange={handleCountryChange} />
@@ -187,6 +193,7 @@ const Home = ({
 
 
 Home.propTypes = {
+  handleSearch: PropTypes.func.isRequired,
   cityValue: PropTypes.string.isRequired,
   countryValue: PropTypes.string.isRequired,
   nbPersonValue: PropTypes.number.isRequired,
