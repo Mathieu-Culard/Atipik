@@ -12,8 +12,10 @@ export const getAnchorPosition = () => {
 
 /**
  * @param {array} checkedItems values that are already present in the state accomodationTypeValue field
- * @param {number} id id of the curretly checked item
- * @param {boolean} checked true if the user check the item, false if he uncheck it
+ * @param {number} id id of the curretly selected type
+ * @param {boolean} checked true if the user select the type that correspond to the id, false if he uncheck it
+ * 
+ * add or remove the selected id of the accomodationTypesValue of the state.
  */
 export const getCheckedAccomodationTypes = (checkedItems, id, checked) => {
   if (checked) {
@@ -23,7 +25,10 @@ export const getCheckedAccomodationTypes = (checkedItems, id, checked) => {
     item !== id
   ));
 };
-
+/**
+ * @param {array} checkedItems values that are already present in the state accomodationTypeValue field
+ * @param {number} thematicId id of the thematic whose items will be added to the state
+ */
 export const selectAccomodationTypesByThematic = (checkedItems, thematicId) => {
   const thematic = data.find((item) => (
     item.id === thematicId
