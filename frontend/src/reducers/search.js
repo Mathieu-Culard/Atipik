@@ -17,7 +17,7 @@ const initialState = {
   country: '',
   capacity: 0,
   nbNights: 0,
-  maxPrice: 1,
+  maxPrice: 100,
   types: [1],
   minSurface: 0,
   pipedWater: true,

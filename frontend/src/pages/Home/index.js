@@ -19,7 +19,25 @@ const CustomSlider = withStyles({
     width: '100%',
     color: '#8dd7dfl',
   },
+  thumb: {
+    border: '2px solid currentColor',
+    backgroundColor: '#ff',
+    background: '#fff',
+    marginTop: -15,
+    marginLeft: -15,
+    height: 30,
+    width: 30,
+  },
+  valueLabel: {
+    left: 'calc(-50% + 10px)',
+    top: 8,
+    '& *': {
+      background: 'transparent',
+      color: '#000',
+    },
+  },
 })(Slider);
+
 
 const useStyles = makeStyles({
   formControl: {
@@ -43,7 +61,6 @@ const Home = ({
   priceScaleValue,
   accomodationTypesValue,
   changeTextfield,
-  // changeCountryTextfield,
   changePriceScale,
   changeNbNights,
   changeNbPerson,
@@ -68,7 +85,7 @@ const Home = ({
   // temporary
   const fillDropdowns = () => {
     const options = [];
-    for (let i = 0; i <= 10; i += 1) {
+    for (let i = 1; i <= 10; i += 1) {
       options.push(
         <MenuItem key={i} value={i}>{i}</MenuItem>,
       );
@@ -88,10 +105,10 @@ const Home = ({
         <form className="search__formular" onSubmit={handleSubmit}>
           <div className="row">
             <div className="row__item">
-              <TextField id="country" label="Pays" className={classes.textField} size="small" value={countryValue} onChange={handleChange} />
+              <TextField id="country-input" label="Pays" className={classes.textField} size="small" value={countryValue} onChange={handleChange} />
             </div>
             <div className="row__item">
-              <TextField id="city" label="Ville" className={classes.textField} value={cityValue} onChange={handleChange} />
+              <TextField id="city-input" label="Ville" className={classes.textField} value={cityValue} onChange={handleChange} />
             </div>
           </div>
           <div className="row">
@@ -127,30 +144,19 @@ const Home = ({
           <div className="row">
             <div className="row__item">
               <Grid container spacing={0} className={classes.slider}>
-                <Grid item className="slider__label" xs={2} md={12}>
+                <Grid item className="slider__label" xs={2} sm={12}>
                   <p>Prix</p>
                 </Grid>
-                <Grid item xs container direction="column" alignItems="center" className="slider__component" md={12}>
-                  <Grid container alignItems="center" className="slider__marks">
-                    <Grid item xs={4} className="slider__mark">
-                      <p>€</p>
-                    </Grid>
-                    <Grid item xs={4} className="slider__mark">
-                      <p>€€</p>
-                    </Grid>
-                    <Grid item xs={4} className="slider__mark">
-                      <p>€€€</p>
-                    </Grid>
-                  </Grid>
-                  <Grid item className="slider__bar" md={12} container xs={11}>
+                <Grid item xs container direction="column" alignItems="center" className="slider__component" sm={12}>
+                  <Grid item className="slider__bar" sm={12} container xs={11}>
                     <CustomSlider
                       value={priceScaleValue}
                       onChange={handlePriceScaleChange}
                       aria-labelledby="discrete-slider"
-                      valueLabelDisplay="off"
-                      step={1}
+                      valueLabelDisplay="on"
+                      step={10}
                       min={0}
-                      max={2}
+                      max={200}
                     />
                   </Grid>
                 </Grid>
