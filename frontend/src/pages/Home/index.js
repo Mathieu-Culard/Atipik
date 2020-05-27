@@ -107,7 +107,7 @@ const Home = ({
                 <Select
                   labelId="demo-simple-select-outlined-label"
                   id="demo-simple-select-outlined"
-                  value={(nbPersonValue === 0) ? undefined : nbPersonValue}
+                  value={(nbPersonValue === 0) ? '' : nbPersonValue}
                   onChange={handleNbPersonChange}
                   label="Nombre de personnes"
                 >
@@ -121,7 +121,7 @@ const Home = ({
                 <Select
                   labelId="demo-simple-select-outlined-label"
                   id="demo-simple-select-outlined"
-                  value={(nbNightsValue === 0) ? undefined : nbNightsValue}
+                  value={(nbNightsValue === 0) ? '' : nbNightsValue}
                   onChange={handleNbNightsChange}
                   label="Nombre de nuitées"
                 >

@@ -6,6 +6,12 @@ export const CHANGE_MAX_PRICE = 'CHANGE_MAX_PRICE';
 export const CHANGE_ACCOMODATION_TYPES = 'CHANGE_ACCOMODATION_TYPES';
 export const SELECT_ALL = 'SELECT_ALL';
 export const SEARCH = 'SEARCH';
+export const SAVE_SEARCH_RESULT = 'SAVE_SEARCH_RESULT';
+
+export const saveSearchResult = (searchResult) => ({
+  type: SAVE_SEARCH_RESULT,
+  searchResult,
+});
 
 export const search = () => ({
   type: SEARCH,
@@ -42,5 +48,3 @@ export const changeCityTextfield = (newValue) => ({
   type: CHANGE_CITY_TEXTFIELD,
   value: newValue,
 });
-
-

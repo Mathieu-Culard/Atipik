@@ -6,10 +6,10 @@ import {
   CHANGE_MAX_PRICE,
   CHANGE_ACCOMODATION_TYPES,
   SELECT_ALL,
+  SAVE_SEARCH_RESULT,
 } from 'src/actions/search';
 
 import { getCheckedAccomodationTypes, selectAccomodationTypesByThematic } from 'src/utils';
-
 
 const initialState = {
   city: '',
@@ -18,6 +18,13 @@ const initialState = {
   nbNights: 0,
   maxPrice: 1,
   types: [1],
+  minSurface: 0,
+  pipedWater: true,
+  electricity: true,
+  animals: true,
+  smockers: true,
+  apmr: true,
+  searchResult: [],
 };
 
 const searchReducer = (state = initialState, action = {}) => {
@@ -56,6 +63,11 @@ const searchReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         types: selectAccomodationTypesByThematic(state.types, action.id),
+      };
+    case SAVE_SEARCH_RESULT:
+      return {
+        ...state,
+        searchResult: action.searchResult,
       };
     default: return state;
   }
