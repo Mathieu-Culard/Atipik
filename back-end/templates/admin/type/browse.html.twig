@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TypeController!
+{% endblock %}
+
+{% block body %}
+
+	<h1 class="typeTitleList">Types d'hebergements</h1>
+
+	<a href="{{path('admin_type_add')}}">
+    <button type="edit" class="btn btn-primary">Ajouter un nouveau type</button>
+	</a>
+
+	<table class="table table-hover">
+		<thead>
+			<tr class="table-primary">
+				<th scope="col">ID</th>
+				<th scope="col">Image</th>
+				<th scope="col">Icone</th>
+				<th scope="col">Nom</th>
+				<th scope="col">Thématique</th>
+				<th scope="col">Modifier</th>
+				{# <th scope="col">Supprimer</th> #}
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				{% for type in types %}
+					<th scope="row">{{type.id}}</th>
+					<td><img src="{{ asset('assets/type/picture/' ~ type.picture) }}" class='imgTypesList' alt=""></td>
+					<td><img src="{{ asset('assets/type/icon/' ~ type.icon) }}" class='icone-type-admin' alt=""></td>
+					<td>{{type.name}}</td>
+					<td>{{type.thematic.name}}</td>
+					<td>
+						<a href="{{path('admin_type_edit', {'id' : type.id })}}">
+							<button type="edit" class="btn btn-primary">Modifier</button>
+						</a>
+					</td>
+
+					{# <td>{{ form_start(formDelete) }}
+
+						{{ form_end(formDelete) }}</td> #}
+
+			</tr>
+				{% endfor %}
+
+	</tbody>
+		{% endblock %}
+

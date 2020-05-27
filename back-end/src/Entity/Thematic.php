@@ -45,6 +45,11 @@ class Thematic
         $this->types = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->name;
+    }
+
     /**
      * @Groups({"list_type"})
      */
