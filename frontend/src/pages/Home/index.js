@@ -23,13 +23,11 @@ const CustomSlider = withStyles({
 
 const useStyles = makeStyles({
   formControl: {
-    // margin: '0.6rem 0',
     minWidth: 220,
     width: '100%',
     zIndex: 0,
   },
   textField: {
-    // margin: '0.6rem 0',
     width: '100%',
   },
   slider: {
@@ -44,8 +42,8 @@ const Home = ({
   nbNightsValue,
   priceScaleValue,
   accomodationTypesValue,
-  changeCityTextfield,
-  changeCountryTextfield,
+  changeTextfield,
+  // changeCountryTextfield,
   changePriceScale,
   changeNbNights,
   changeNbPerson,
@@ -63,11 +61,8 @@ const Home = ({
   const handleNbPersonChange = (evt) => {
     changeNbPerson(evt.target.value);
   };
-  const handleCityChange = (evt) => {
-    changeCityTextfield(evt.target.value);
-  };
-  const handleCountryChange = (evt) => {
-    changeCountryTextfield(evt.target.value);
+  const handleChange = (evt) => {
+    changeTextfield(evt.target.value, evt.target.id);
   };
 
   // temporary
@@ -87,17 +82,16 @@ const Home = ({
   };
 
   return (
-    // <Header />
     <main className="home">
       <section className="search">
         <h2 className="search__title">Où veux-tu aller?</h2>
         <form className="search__formular" onSubmit={handleSubmit}>
           <div className="row">
             <div className="row__item">
-              <TextField id="country-input" label="Pays" className={classes.textField} size="small" value={countryValue} onChange={handleCountryChange} />
+              <TextField id="country" label="Pays" className={classes.textField} size="small" value={countryValue} onChange={handleChange} />
             </div>
             <div className="row__item">
-              <TextField id="city-input" label="Ville" className={classes.textField} value={cityValue} onChange={handleCityChange} />
+              <TextField id="city" label="Ville" className={classes.textField} value={cityValue} onChange={handleChange} />
             </div>
           </div>
           <div className="row">
@@ -188,8 +182,7 @@ Home.propTypes = {
   nbNightsValue: PropTypes.number.isRequired,
   priceScaleValue: PropTypes.number.isRequired,
   accomodationTypesValue: PropTypes.array.isRequired,
-  changeCountryTextfield: PropTypes.func.isRequired,
-  changeCityTextfield: PropTypes.func.isRequired,
+  changeTextfield: PropTypes.func.isRequired,
   changeNbNights: PropTypes.func.isRequired,
   changeNbPerson: PropTypes.func.isRequired,
   changePriceScale: PropTypes.func.isRequired,

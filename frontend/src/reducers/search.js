@@ -1,6 +1,5 @@
 import {
-  CHANGE_CITY_TEXTFIELD,
-  CHANGE_COUNTRY_TEXTFIELD,
+  CHANGE_TEXTFIELD,
   CHANGE_CAPACITY,
   CHANGE_NB_NIGHTS,
   CHANGE_MAX_PRICE,
@@ -41,16 +40,12 @@ const searchReducer = (state = initialState, action = {}) => {
         ...state,
         [action.identifier]: !state[action.identifier],
       };
-    case CHANGE_CITY_TEXTFIELD:
+    case CHANGE_TEXTFIELD:
       return {
         ...state,
-        city: action.value,
+        [action.identifier]: action.value,
       };
-    case CHANGE_COUNTRY_TEXTFIELD:
-      return {
-        ...state,
-        country: action.value,
-      };
+
     case CHANGE_NB_NIGHTS:
       return {
         ...state,

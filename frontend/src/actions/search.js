@@ -1,5 +1,4 @@
-export const CHANGE_CITY_TEXTFIELD = 'CHANGE_CITY_TEXTFIELD';
-export const CHANGE_COUNTRY_TEXTFIELD = 'CHANGE_COUNTRY_TEXTFIELD';
+export const CHANGE_TEXTFIELD = 'CHANGE_TEXTFIELD';
 export const CHANGE_CAPACITY = 'CHANGE_NB_PERSON';
 export const CHANGE_NB_NIGHTS = 'CHANGE_NB_NIGHTS';
 export const CHANGE_MAX_PRICE = 'CHANGE_MAX_PRICE';
@@ -51,12 +50,9 @@ export const changeAccomodationTypes = (newValue, checked) => ({
   value: newValue,
   checked,
 });
-export const changeCountryTextfield = (newValue) => ({
-  type: CHANGE_COUNTRY_TEXTFIELD,
+export const changeTextfield = (newValue, identifier) => ({
+  type: CHANGE_TEXTFIELD,
   value: newValue,
+  identifier,
 });
 
-export const changeCityTextfield = (newValue) => ({
-  type: CHANGE_CITY_TEXTFIELD,
-  value: newValue,
-});

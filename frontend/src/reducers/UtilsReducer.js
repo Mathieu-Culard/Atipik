@@ -11,7 +11,6 @@ const UtilsReducer = (state = initialState, action = {}) => {
         ...state,
         open: !state.open,
       };
-
     default: return state;
   }
 };

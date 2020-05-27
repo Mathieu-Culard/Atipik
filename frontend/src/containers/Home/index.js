@@ -2,8 +2,8 @@ import { connect } from 'react-redux';
 
 import Home from 'src/pages/Home';
 import {
-  changeCityTextfield,
-  changeCountryTextfield,
+  changeTextfield,
+  // changeCountryTextfield,
   changeCapacity,
   changeNbNights,
   changeMaxPrice,
@@ -22,11 +22,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  changeCityTextfield: (newValue) => {
-    dispatch(changeCityTextfield(newValue));
-  },
-  changeCountryTextfield: (newValue) => {
-    dispatch(changeCountryTextfield(newValue));
+  changeTextfield: (newValue, identifier) => {
+    dispatch(changeTextfield(newValue, identifier));
   },
   changeNbPerson: (newValue) => {
     dispatch(changeCapacity(newValue));
