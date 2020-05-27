@@ -1,10 +1,10 @@
-import { TOGGLE_OPEN } from 'src/actions/UtilsActions';
+import { TOGGLE_OPEN } from 'src/actions/utils';
 
 const initialState = {
   open: true,
 };
 
-const UtilsReducer = (state = initialState, action = {}) => {
+const utilsReducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case TOGGLE_OPEN:
       return {
@@ -16,4 +16,4 @@ const UtilsReducer = (state = initialState, action = {}) => {
   }
 };
 
-export default UtilsReducer;
+export default utilsReducer;

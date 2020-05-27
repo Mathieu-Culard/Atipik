@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Header from 'src/components/Header';
 
-import { toggleOpen } from 'src/actions/UtilsActions';
+import { toggleOpen } from 'src/actions/utils';
 
 const mapStateToProps = (state) => ({
   open: state.utils.open,
