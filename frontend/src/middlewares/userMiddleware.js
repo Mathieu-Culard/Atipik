@@ -5,6 +5,7 @@ const userMiddleware = (store) => (next) => (action) => {
     case LOG_IN: {
       const { email, password } = store.getState().user;
       // TODO Login request
+      console.log(`Sending login request to ${process.env.REACT_APP_API_URL} with email: ${email} password: ${password}`);
       next(action);
       break;
     }

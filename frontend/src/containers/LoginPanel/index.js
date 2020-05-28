@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import LoginPanel from 'src/components/LoginPanel';
 
 import { setLoginPanel } from 'src/actions/utils';
-import { changeField, submitConnection } from 'src/actions/user';
+import { changeField, logIn } from 'src/actions/user';
 
 const mapStateToProps = (state) => ({
   loginPanel: state.utils.loginPanel,
@@ -16,7 +16,7 @@ const mapDispatchToProps = (dispatch) => ({
   changeField: (identifier, newValue) => {
     dispatch(changeField(identifier, newValue));
   },
-  submitConnection: () => dispatch(submitConnection()),
+  logIn: () => dispatch(logIn()),
 });
 
 export default connect(

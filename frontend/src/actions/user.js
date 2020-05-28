@@ -11,10 +11,6 @@ export const changeField = (identifier, newValue) => ({
   identifier,
 });
 
-export const submitConnection = () => ({
-  type: SUBMIT_CONNECTION,
-});
-
 export const logIn = () => ({
   type: LOG_IN,
 });

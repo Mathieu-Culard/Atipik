@@ -24,13 +24,13 @@ const LoginPanel = ({
   email,
   changeField,
   password,
-  submitConnection,
+  logIn,
 }) => {
   const classes = useStyles();
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoginPanel(false);
-    submitConnection();
+    logIn();
   };
 
   return (
@@ -67,7 +67,7 @@ LoginPanel.propTypes = {
   email: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
   changeField: PropTypes.func.isRequired,
-  submitConnection: PropTypes.func.isRequired,
+  logIn: PropTypes.func.isRequired,
 };
 
 export default LoginPanel;
