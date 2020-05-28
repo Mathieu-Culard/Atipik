@@ -12,7 +12,8 @@ const Map = ({ elements }) => {
     lng: 30.33,
   };
   const zoom = 11;
-  const markers = getMarkersPositions(elements);
+  // const markers = getMarkersPositions(elements);
+
   return (
     <div className="map">
       <GoogleMapReact

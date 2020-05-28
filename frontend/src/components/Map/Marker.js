@@ -5,5 +5,8 @@ const Marker = ({ text }) => (
   <div>{text}</div>
 );
 
-export default Marker;
+Marker.propTypes = {
+  text: PropTypes.string.isRequired,
+};
 
+export default Marker;

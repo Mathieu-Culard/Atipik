@@ -1,7 +1,7 @@
 import { TOGGLE_OPEN } from 'src/actions/UtilsActions';
 
 const initialState = {
-  open: true,
+  open: false,
 };
 
 const UtilsReducer = (state = initialState, action = {}) => {
@@ -11,7 +11,6 @@ const UtilsReducer = (state = initialState, action = {}) => {
         ...state,
         open: !state.open,
       };
-
     default: return state;
   }
 };
