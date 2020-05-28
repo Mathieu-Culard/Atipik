@@ -36,6 +36,8 @@ const Header = ({
   open,
   toggleOpen,
   setLoginPanel,
+  isLogged,
+  disconnect,
 }) => {
   const classes = useStyles();
   const mobileMenuLinksClass = classNames('header__links--mobile', { 'header__links--mobile--hide': !open });
@@ -47,9 +49,16 @@ const Header = ({
           <img className="header__logo" src={logo} alt="Logo" />
           <div className="header__links">
             <a className="header__link" href="#"> Nos hébergements </a>
-            <a className="header__link" href="#"> Inscription </a>
-            <a className="header__link" href="#" onClick={() => setLoginPanel(true)}> Connexion </a>
-            <LoginPanel />
+            { isLogged && (
+              <>
+                <a className="header__link" href="#"> Inscription </a>
+                <a className="header__link" href="#" onClick={() => setLoginPanel(true)}> Connexion </a>
+                <LoginPanel />
+              </>
+            )}
+            { isLogged && (
+              <a className="header__link" href="#" onClick={disconnect}>Déconnexion</a>
+            )}
           </div>
           <input onChange={toggleOpen} name="hamburger-toggle" type="checkbox" id="hamburger-toggle" value={open} />
           <label className="header__hamburger" htmlFor="hamburger-toggle">
@@ -86,6 +95,8 @@ Header.propTypes = {
   open: PropTypes.bool.isRequired,
   toggleOpen: PropTypes.func.isRequired,
   setLoginPanel: PropTypes.func.isRequired,
+  isLogged: PropTypes.bool.isRequired,
+  disconnect: PropTypes.func.isRequired,
 };
 
 export default Header;
