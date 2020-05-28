@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
-{% block body %}
+
+{% block body %} 
 
 <h1 class="addTitle">Ajouter un nouveau type d'hebergement</h1>
 
@@ -31,7 +32,7 @@
 
   <div class="buttonType">
     <button type="submit" class="btn btn-primary">Ajouter</button>
-    <a href="{{path('admin_type_browse')}}" class="linkBack">Retour à la liste</a>
+    <a href="{{path('admin_type_browse')}}" class="linkBack">Retour a la liste</a>
   </div>
 
 {{form_end(form)}}
