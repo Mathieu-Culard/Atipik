@@ -1,9 +1,11 @@
-import React from 'react';
-
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
+import Geocode from 'react-geocode';
 
 import './searchPage.scss';
 import ResultList from 'src/components/ResultList';
-import Map from 'src/components/Map';
+import Map from 'src/containers/Map';
+import Loader from 'src/components/Loader';
 
 const elements = [
   {
@@ -16,7 +18,7 @@ const elements = [
     ],
     country: 'France',
     city: 'semoutiers-Montsaon',
-    adress: ' 3 Rue du val quenille',
+    adress: '3 Rue du val quenille',
   },
   {
     id: 2,
@@ -27,16 +29,33 @@ const elements = [
       'https://picsum.photos/203',
     ],
     country: 'France',
-    city: 'semoutiers-Montsaon',
-    adress: '25 Rue de chaumont',
+    city: 'raon aux bois',
+    adress: '6 rue de la vieille ville',
   },
 ];
 
-const SearchPage = () => (
-  <div className="search-page">
-    <ResultList elements={elements} />
-    <Map elements={elements} />
-  </div>
-);
+const SearchPage = ({ accomodations, mapCenter, fetchMarkerPositions, loading }) => {
+  useEffect(() => {
+    Geocode.setApiKey('AIzaSyDgvwB0FMtMpdC6bgjDKGE-hLGdTFxEhts');
+    // eslint-disable-next-line react/prop-types
+    elements.map((accomodation) => {
+      fetchMarkerPositions(`${accomodation.adress} ${accomodation.city} ${accomodation.country}`, 'markerPositions');
+    });
+    fetchMarkerPositions(mapCenter, 'center');
+  }, []);
+  return (
+    <div className="search-page">
+      <ResultList elements={elements} />
+      {loading && <Loader />}
+      {!loading && <Map />}
+    </div>
+  );
+};
+
+SearchPage.propTypes = {
+  mapCenter: PropTypes.string.isRequired,
+  fetchMarkerPositions: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+};
 
 export default SearchPage;

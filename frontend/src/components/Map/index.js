@@ -1,17 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import GoogleMapReact from 'google-map-react';
-import { getMarkersPositions } from 'src/utils';
+
 
 import Marker from './Marker';
 import './map.scss';
 
-const Map = ({ elements }) => {
-
+const Map = ({
+  markerPositions, centerPosition,
+}) => {
+ 
   const center = {
-    lat: 59.95,
-    lng: 30.33,
+    lat: centerPosition.lat,
+    lng: centerPosition.lng,
   };
-  const zoom = 11;
+
+  const zoom = 10;
   // const markers = getMarkersPositions(elements);
 
   return (
@@ -21,19 +25,27 @@ const Map = ({ elements }) => {
         defaultCenter={center}
         defaultZoom={zoom}
       >
-        {/* {
-          elements.map((element) => (
-
-       ))
-        } */}
-        <Marker
-          lat={59.955413}
-          lng={30.337844}
-          text="My Marker"
-        />
+        {
+          markerPositions.map((element) => (
+            <Marker
+              lat={element.lat}
+              lng={element.lng}
+            />
+          ))
+        }
       </GoogleMapReact>
     </div>
   );
+};
+
+Map.propTypes = {
+  markerPositions: PropTypes.arrayOf(
+    PropTypes.shape({
+      lat: PropTypes.number.isRequired,
+      lng: PropTypes.number.isRequired,
+    }).isRequired,
+  ).isRequired,
+  centerPosition: PropTypes.object.isRequired,
 };
 
 export default Map;

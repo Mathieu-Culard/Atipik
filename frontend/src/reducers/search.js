@@ -15,8 +15,8 @@ import { getCheckedAccomodationTypes, selectAccomodationTypesByThematic } from '
 
 const initialState = {
   accomodationTypes: [],
-  city: '',
-  country: '',
+  city: 'Strasbourg',
+  country: 'France',
   capacity: 0,
   nbNights: 0,
   maxPrice: 100,

@@ -4,7 +4,7 @@ import Footer from 'src/components/Footer';
 import Home from 'src/containers/Home';
 import './app.scss';
 import Header from 'src/containers/Header';
-import SearchPage from 'src/pages/SearchPage';
+import SearchPage from 'src/containers/SearchPage';
 
 const App = ({ fetchAccomodationTypes }) => {
   useEffect(() => {
@@ -14,7 +14,7 @@ const App = ({ fetchAccomodationTypes }) => {
     <div className="app">
       <Header />
       <SearchPage />
-      <Home />
+      {/* <Home /> */}
       <Footer />
     </div>
   );

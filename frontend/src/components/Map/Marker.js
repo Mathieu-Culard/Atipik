@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Marker = ({ text }) => (
-  <div>{text}</div>
+const Marker = () => (
+  <div className="pin1" />
 );
 
-Marker.propTypes = {
-  text: PropTypes.string.isRequired,
-};
+// Marker.propTypes = {
+//   text: PropTypes.string.isRequired,
+// };
 
 export default Marker;

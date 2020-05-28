@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import {
   SEARCH,
   saveSearchResult,
@@ -60,7 +61,6 @@ const searchMiddleware = (store) => (next) => (action) => {
         });
       next(action);
       break;
-
     default:
       next(action);
   }
