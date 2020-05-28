@@ -1,4 +1,4 @@
-import { LOG_IN, LOG_OUT, CHECK_LOGGED, saveUser } from 'src/actions/user';
+import { LOG_IN, loginChanged, LOG_OUT } from 'src/actions/user';
 
 const userMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -6,19 +6,19 @@ const userMiddleware = (store) => (next) => (action) => {
       const { email, password } = store.getState().user;
       // TODO Login request
       console.log(`Sending login request to ${process.env.REACT_APP_API_URL} with email: ${email} password: ${password}`);
+      // on success :
+      // localStorage.setItem('jwt', response.jwt);
+      // store.dispatch(loginChanged());
       next(action);
       break;
     }
 
-    case CHECK_LOGGED:
-      // TODO check-logged request
+    case LOG_OUT: {
+      localStorage.removeItem('jwt');
+      store.dispatch(loginChanged());
       next(action);
       break;
-
-    case LOG_OUT:
-      // TODO logOut request
-      next(action);
-      break;
+    }
 
     default:
       next(action);

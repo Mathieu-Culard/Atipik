@@ -1,4 +1,8 @@
-import { CHANGE_FIELD, SAVE_USER, LOG_IN } from '../actions/user';
+import {
+  CHANGE_FIELD,
+  LOGIN_CHANGED,
+  LOG_IN,
+} from '../actions/user';
 
 const initialState = {
   username: '',
@@ -6,7 +10,7 @@ const initialState = {
   email: '',
   firstname: '',
   lastname: '',
-  isLogged: false,
+  isLogged: !!localStorage.getItem('jwt'),
 };
 
 const userReducer = (state = initialState, action = {}) => {
@@ -24,10 +28,10 @@ const userReducer = (state = initialState, action = {}) => {
         password: '',
       };
 
-    case SAVE_USER:
+    case LOGIN_CHANGED:
       return {
         ...state,
-        isLogged: action.isLogged,
+        isLogged: !!localStorage.getItem('jwt'),
       };
 
     default: return state;
