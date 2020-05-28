@@ -1,6 +1,9 @@
 import React from 'react';
 
+
+import './searchPage.scss';
 import ResultList from 'src/components/ResultList';
+import Map from 'src/components/Map';
 
 const elements = [
   {
@@ -11,8 +14,9 @@ const elements = [
       'https://picsum.photos/200',
       'https://picsum.photos/201',
     ],
-    country: 'Brésil',
-    city: 'Marseille',
+    country: 'France',
+    city: 'semoutiers-Montsaon',
+    adress: ' 3 Rue du val quenille',
   },
   {
     id: 2,
@@ -22,13 +26,17 @@ const elements = [
       'https://picsum.photos/202',
       'https://picsum.photos/203',
     ],
-    country: 'glaglaska',
-    city: 'Northtown',
+    country: 'France',
+    city: 'semoutiers-Montsaon',
+    adress: '25 Rue de chaumont',
   },
 ];
 
 const SearchPage = () => (
-  <ResultList elements={elements} />
+  <div className="search-page">
+    <ResultList elements={elements} />
+    <Map elements={elements} />
+  </div>
 );
 
 export default SearchPage;
