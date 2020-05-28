@@ -24,7 +24,6 @@ const useStyles = makeStyles({
     width: '80vw',
     height: 'fit-content',
     padding: '2rem 1rem',
-    // padding: '100px',
   },
 });
 // TODO add accomodationTypes to props, replace data by accomodationTypes, uncomment propTypes

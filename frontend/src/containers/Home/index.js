@@ -8,7 +8,6 @@ import {
   changeMaxPrice,
   changeAccomodationTypes,
   search,
-  fetchAccomodationTypes,
 } from 'src/actions/search';
 
 
@@ -39,9 +38,6 @@ const mapDispatchToProps = (dispatch) => ({
   },
   handleSearch: () => {
     dispatch(search());
-  },
-  fetchAccomodationTypes: () => {
-    dispatch(fetchAccomodationTypes());
   },
 });
 

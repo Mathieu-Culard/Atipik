@@ -1,9 +1,14 @@
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import Type from './Type';
 
-const Thematic = ({ thematic, accomodationTypesValue, changeAccomodationTypes, selectAll }) => {
-
+const Thematic = ({
+  thematic,
+  accomodationTypesValue,
+  changeAccomodationTypes,
+  selectAll,
+}) => {
   const handleClick = () => {
     selectAll(thematic.id);
   };
@@ -16,7 +21,12 @@ const Thematic = ({ thematic, accomodationTypesValue, changeAccomodationTypes, s
       </div>
       <div className="thematic__items">
         {thematic.types.map((type) => (
-          <Type key={type.id} type={type} accomodationTypesValue={accomodationTypesValue} changeAccomodationTypes={changeAccomodationTypes} />
+          <Type
+            key={type.id}
+            type={type}
+            accomodationTypesValue={accomodationTypesValue}
+            changeAccomodationTypes={changeAccomodationTypes}
+          />
         ))}
       </div>
     </div>
