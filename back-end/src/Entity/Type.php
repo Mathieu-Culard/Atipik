@@ -10,6 +10,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=TypeRepository::class)
+ * @ORM\HasLifecycleCallbacks
  */
 class Type
 {
@@ -65,6 +66,13 @@ class Type
     public function __construct()
     {
         $this->accomodations = new ArrayCollection();
+        $this->createdAt = new \DateTime();
+    }
+
+    public function __toString()
+    {
+        return $this->thematic;
+        
     }
 
     /**
@@ -201,5 +209,13 @@ class Type
         }
 
         return $this;
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function onPreUpdate()
+    {
+        $this->updatedAt = new \DateTime();
     }
 }

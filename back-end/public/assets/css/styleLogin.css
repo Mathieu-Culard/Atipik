@@ -1,0 +1,58 @@
+.container {
+    display: flex;
+    justify-content: center;
+    border: 1px solid #CACFD3 ;
+    border-radius: 1em;
+    margin-top: 5em;
+}
+
+form{
+     font-family: 'Tenali Ramakrishna', sans-serif; 
+     
+}
+
+h1 {
+    margin-top: 1em;
+    height:2em;
+    background-color:rgb(24, 189, 126);
+    border: 1px solid #18BD7E;
+    border-radius: 0.2em;
+    color:rgb(241, 232, 232);
+    padding:0.5em;
+   
+}
+
+label {
+   
+    font-size: 1.5em;
+    padding-left: 0.5em;
+}
+
+input {
+
+    margin-left: 0.5em;
+    margin-bottom: 0.7em;
+    max-width: 19em;
+    
+}
+
+.btn-primary {
+   
+    font-size: 1.5em;
+    margin-left: 0.5em;
+    background-color:rgb(26, 122, 85);
+    font-weight:bold;
+    margin-bottom: 1.9em;
+    margin-top: 1em;
+  
+}
+
+#logout {
+    font-size: 1.5em;
+    justify-content: flex-end;
+}
+
+#error {
+    font-size: 1.5em;
+
+}
