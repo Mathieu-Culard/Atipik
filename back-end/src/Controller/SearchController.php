@@ -11,7 +11,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 class SearchController extends AbstractController
 {
     /**
-     * @Route("/search", name="search", methods={"POST"})
+     * @Route("/api/search", name="search", methods={"POST"})
      */
     public function searchResults(Request $request, SerializerInterface $serializer, AccomodationRepository $accomodationRepository)
     {
