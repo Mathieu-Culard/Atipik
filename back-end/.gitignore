@@ -15,5 +15,7 @@
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 
-public/assets/type/icon
-public/assets/type/picture
+
+/public/assets/extra/icon/*.jpg
+/public/assets/extra/icon/*.jpeg
+/public/assets/extra/icon/*.png

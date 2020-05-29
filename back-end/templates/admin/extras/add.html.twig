@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+<h1 class="addTitle">Ajouter un nouvel extra</h1>
+
+<div class="container">
+{{form_start(form)}}
+
+  
+    <div class="extra-name-admin">
+    {{form_widget(form.name, {'attr': {'placeholder': 'Nom'}}) }}
+    </div>
+
+    <div class="extra-icon-admin">
+    {{form_widget(form.icon, {'attr': {'placeholder': 'Icon'}}) }}
+    </div>
+
+    <div class="extra-name-admin">
+    {{form_widget(form.price, {'attr': {'placeholder': 'Prix'}}) }}
+    </div>
+
+  <div class="button-Extra">
+    <button type="submit" class="btn btn-primary">Ajouter</button>
+    <a href="{{path('admin_extras_browse')}}" class="linkBack">Retour à la liste</a>
+  </div>
+
+{{form_end(form)}}
+</div>
+
+{% endblock %}
