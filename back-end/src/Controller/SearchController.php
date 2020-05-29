@@ -29,7 +29,7 @@ class SearchController extends AbstractController
 
             // We serialize our filtered data and normalize it to avoid circular references. 
             $searchResult = $serializer->normalize($newData, 'json', ['groups' => 'search_result']);
-
+            
             // We create a variable that will be used to store each of the accommodations.
             $finalResult = [];
 
@@ -69,7 +69,7 @@ class SearchController extends AbstractController
                 //dd($currentData);
 
                 //We store each hosting in the variable $finalResult
-                $finalResult[] = $currentData;
+                $finalResult[] = $currentData;        
             }
         }
 

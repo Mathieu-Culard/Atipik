@@ -75,6 +75,7 @@ class User implements UserInterface
     public function __construct()
     {
         $this->accomodations = new ArrayCollection();
+        $this->createdAt = new \DateTime();
     }
 
 
