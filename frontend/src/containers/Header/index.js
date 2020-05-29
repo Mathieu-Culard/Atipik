@@ -1,16 +1,19 @@
 import { connect } from 'react-redux';
 import Header from 'src/components/Header';
 
-import { toggleOpen } from 'src/actions/UtilsActions';
+import { toggleOpen, setLoginPanel } from 'src/actions/utils';
+import { logOut } from 'src/actions/user';
 
 const mapStateToProps = (state) => ({
   open: state.utils.open,
+  loginPanel: state.utils.loginPanel,
+  isLogged: state.user.isLogged,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  toggleOpen: () => {
-    dispatch(toggleOpen());
-  },
+  toggleOpen: () => dispatch(toggleOpen()),
+  setLoginPanel: (newValue) => dispatch(setLoginPanel(newValue)),
+  disconnect: () => dispatch(logOut()),
 });
 
 export default connect(

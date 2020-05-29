@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -9,6 +10,8 @@ import Divider from '@material-ui/core/Divider';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+
+import LoginPanel from 'src/containers/LoginPanel';
 
 import './header.scss';
 import logo from '../../assets/logo.png';
@@ -30,9 +33,16 @@ function ListItemLink(props) {
   return <ListItem button component="a" {...props} />;
 }
 
-const Header = ({ open, toggleOpen }) => {
+const Header = ({
+  open,
+  toggleOpen,
+  setLoginPanel,
+  isLogged,
+  disconnect,
+}) => {
   const classes = useStyles();
   const mobileMenuLinksClass = classNames('header__links--mobile', { 'header__links--mobile--hide': !open });
+
   return (
     <header className="header">
       <nav className="header__nav">
@@ -40,8 +50,16 @@ const Header = ({ open, toggleOpen }) => {
           <img className="header__logo" src={logo} alt="Logo" />
           <div className="header__links">
             <a className="header__link" href="#"> Nos hébergements </a>
-            <a className="header__link" href="#"> Inscription </a>
-            <a className="header__link" href="#"> Connexion </a>
+            { !isLogged && (
+              <>
+                <a className="header__link" href="#"> Inscription </a>
+                <a className="header__link" href="#" onClick={() => setLoginPanel(true)}> Connexion </a>
+                <LoginPanel />
+              </>
+            )}
+            { isLogged && (
+              <a className="header__link" href="#" onClick={disconnect}>Déconnexion</a>
+            )}
           </div>
           <input onChange={toggleOpen} name="hamburger-toggle" type="checkbox" id="hamburger-toggle" value={open} />
           <label className="header__hamburger" htmlFor="hamburger-toggle">
@@ -77,6 +95,9 @@ const Header = ({ open, toggleOpen }) => {
 Header.propTypes = {
   open: PropTypes.bool.isRequired,
   toggleOpen: PropTypes.func.isRequired,
+  setLoginPanel: PropTypes.func.isRequired,
+  isLogged: PropTypes.bool.isRequired,
+  disconnect: PropTypes.func.isRequired,
 };
 
 export default Header;

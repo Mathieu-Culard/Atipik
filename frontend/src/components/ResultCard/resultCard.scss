@@ -1,0 +1,26 @@
+@import 'src/styles/vars';
+
+.slick-slider {
+  height: 200px;
+  .slick-slide img {
+    border-radius: .5rem;
+  }
+  .slick-dots {
+    bottom: 0;
+    & > li > button::before {
+      color: $color-separator;
+    }
+    & > li.slick-active > button::before {
+      color: $color-separator;
+    }
+  }
+  .slick-prev {
+    left: 5px;
+  }
+  .slick-next {
+    right: 5px;
+  }
+  .slick-arrow {
+    z-index: 1;
+  }
+}
