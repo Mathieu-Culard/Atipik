@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+<h1 class="typeTitleEdit">Modifier le service</h1>
+
+<div class="container">
+{{form_start(form)}}
+
+     <div class="serviceName">
+          <div class="serviceName">{{form_widget(form.name, {'attr': {'placeholder': 'Nom'}}) }}
+          </div>
+
+          <div class="iconServiceAdmin">{{form_widget(form.icon, {'attr': {'placeholder': 'Icon'}}) }}
+          </div>
+     </div>
+
+     <div class="buttonType">
+          <button type="submit" class="btn btn-primary">Valider</button>
+          <a href="{{path('admin_services_browse')}}" class="linkBack"> Retour a la liste</a>
+     </div>
+
+{{form_end(form)}}
+
+{{form(formDelete)}} 
+
+
+</div>
+
+
+{% endblock %}

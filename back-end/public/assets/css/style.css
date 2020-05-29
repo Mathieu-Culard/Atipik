@@ -12,14 +12,17 @@ height:auto;
 
 .nameType, 
 .descriptionType,
-.thematicType {
+.thematicType,
+.serviceName 
+{
     padding:1em 3em;
     max-width:20em;
     flex-wrap:wrap;
 }
 
 .pictureTypeAdmin,
-.iconTypeAdmin {
+.iconTypeAdmin
+.iconServiceAdmin {
     padding:1em 1em 8em 0em;
 }
 
@@ -53,7 +56,8 @@ height:auto;
     padding-top:0.5em;
 }
 
-.deleteButtonType{
+.deleteButtonType,
+.deleteButtonService{
     color:white;
     background-color:red;
     font-weight:bold;
