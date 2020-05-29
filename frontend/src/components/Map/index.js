@@ -9,7 +9,6 @@ import './map.scss';
 const Map = ({
   markerPositions, centerPosition,
 }) => {
- 
   const center = {
     lat: centerPosition.lat,
     lng: centerPosition.lng,

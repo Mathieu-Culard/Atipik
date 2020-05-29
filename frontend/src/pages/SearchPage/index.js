@@ -19,6 +19,7 @@ const elements = [
     country: 'France',
     city: 'semoutiers-Montsaon',
     adress: '3 Rue du val quenille',
+    type: 23,
   },
   {
     id: 2,
@@ -31,6 +32,7 @@ const elements = [
     country: 'France',
     city: 'raon aux bois',
     adress: '6 rue de la vieille ville',
+    type: 13,
   },
 ];
 
