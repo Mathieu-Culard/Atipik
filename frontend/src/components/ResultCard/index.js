@@ -62,7 +62,7 @@ const ResultCard = ({
   return (
     <Card className={classes.root}>
       <Slider {...carouselSettings} className={classes.pictures}>
-        {pictures.map((picture) => (<div><img src={picture} alt="" key={picture} width="150" /></div>))}
+        {pictures.map((picture) => (<div key={picture}><img src={picture} alt="" width="150" /></div>))}
       </Slider>
       <CardContent className={classes.content}>
         <Typography variant="h6" component="h3">
