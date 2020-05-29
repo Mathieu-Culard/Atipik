@@ -48,15 +48,20 @@
   "dependencies": {
     "@material-ui/core": "^4.10.0",
     "@material-ui/icons": "^4.9.1",
+    "axios": "^0.19.2",
     "classnames": "^2.2.6",
     "dotenv-webpack": "^1.8.0",
+    "google-map-react": "^1.1.7",
     "prop-types": "*",
     "react": "*",
     "react-dom": "*",
     "react-feather": "^2.0.8",
+    "react-geocode": "^0.2.1",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
+    "react-slick": "^0.26.1",
     "redux": "^4.0.5",
-    "redux-devtools-extension": "^2.13.8"
+    "redux-devtools-extension": "^2.13.8",
+    "slick-carousel": "^1.8.1"
   }
 }

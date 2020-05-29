@@ -1,0 +1,65 @@
+.loader-container {
+  margin:auto;
+  height: 100vh;
+  opacity: 0.8;
+
+  .loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+  }
+
+  .loader {
+    max-width: 15rem;
+    width: 100%;
+    height: auto;
+    stroke-linecap: round;
+  }
+
+  circle {
+    fill: none;
+    border: 5px solid yellow;
+    stroke-width: 5px;
+    animation-name: preloader;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    transform-origin: 170px 170px;
+    will-change: transform;
+
+    &:nth-of-type(1) {
+      animation-duration: 1.2s;
+      stroke-dasharray: 550px;
+    }
+
+    &:nth-of-type(2) {
+      animation-duration: 1.4s;
+      stroke-dasharray: 500px;
+    }
+
+    &:nth-of-type(3) {
+      animation-duration: 1.6s;
+      stroke-dasharray: 450px;
+    }
+
+    &:nth-of-type(4) {
+      animation-duration: 1.8s;
+      stroke-dasharray: 300px;
+    }
+
+    @for $i from 1 through 4 {
+      &:nth-of-type(#{$i}) {
+        animation-delay: -#{$i * 0.15}s;
+      }
+    }
+  }
+
+  @keyframes preloader {
+    0%{
+      transform:rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
