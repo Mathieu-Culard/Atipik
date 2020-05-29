@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -165,7 +166,6 @@ const Home = ({
               </Grid>
             </div>
             <div className="row__item">
-
               <AccomodationTypesDropdown
                 accomodationTypesValue={accomodationTypesValue}
                 changeAccomodationTypes={changeAccomodationTypes}
@@ -173,7 +173,9 @@ const Home = ({
             </div>
           </div>
           <div className="row">
-            <button className="search__submit" type="submit">Rechercher</button>
+            <Link to="/recherche">
+              <button className="search__submit" type="submit">Rechercher</button>
+            </Link>
           </div>
         </form>
       </section>
