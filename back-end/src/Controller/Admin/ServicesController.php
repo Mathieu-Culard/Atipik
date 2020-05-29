@@ -59,32 +59,41 @@ class ServicesController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()){
 
-            // $iconFile = $form->get('icon')->getData();
+              // We get the data for property icon
+              $iconFile = $form->get('icon')->getData();
 
-            // // dd($form);
+              // dd($form);
+  
+              // If we get an icon 
+              if ($iconFile){
+                  // we do a slugger with the type name
+                  $sluggerName = $slugger->slug($form->get('name')->getData());
+                  // we retrieve the extension 
+                  $extension = $iconFile->getClientOriginalExtension();
+                  // We rename the file 
+                  $newName = $sluggerName . '.' . $extension; 
+                  // We move the file to the folder
+                  $iconFile->move($this->getParameter('service_icons_directory'), $newName);
+  
+                //  dd($iconFile); 
+  
+              }
+              $service->setIcon($newName);
+              //We update the DB
+              $em = $this->getDoctrine()->getManager();
+              $em->persist($service);
+              $em->flush(); 
 
-            // if ($iconFile){
-            //     $sluggerName = $slugger->slug($form->get('name')->getData());
-            //     $extension = $iconFile->getClientOriginalExtension();
-            //     $newName = $sluggerName . '.' . $extension; 
-            //     $iconFile->move($this->getParameter('service_icons_directory'), $newName);
+            //  //We use a service in order to move the picture
+            //  $newIcon = $fileUploader->saveFile($form['icon'], 'assets/service/icon');
 
-            //     //dd($iconFile); 
-
-            // }
-            // $em->persist($service);
-            // $em->flush(); 
-
-             //We use a service in order to move the picture
-             $newIcon = $fileUploader->saveFile($form['icon'], 'assets/service/icon');
-
-             //We associate this new file to our type
-             $service->setIcon($newIcon);
+            //  //We associate this new file to our type
+            //  $service->setIcon($newIcon);
  
-             // We update the database
-             $em = $this->getDoctrine()->getManager();
-             $em->persist($service);
-             $em->flush();
+            //  // We update the database
+            //  $em = $this->getDoctrine()->getManager();
+            //  $em->persist($service);
+            //  $em->flush();
 
                  return $this->redirectToRoute('admin_services_browse');
         }
@@ -102,7 +111,7 @@ class ServicesController extends AbstractController
      */
     // Method to add a new Service
 
-    public function add(Request $request, ServiceRepository $serviceRepository, FileUploader $fileUploader, SluggerInterface $slugger)
+    public function add(Request $request, ServiceRepository $serviceRepository, SluggerInterface $slugger)
     {   
         // We create a new service
         $service = new Service();
@@ -113,16 +122,33 @@ class ServicesController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
     
-            //We use a service in order to move the icon
-            $newIcon = $fileUploader->saveFile($form['icon'], 'assets/service/icon');
+            $iconFile = $form->get('icon')->getData();
 
-            //We associate this new file to our service
-            $service->setIcon($newIcon);
+            // dd($form);
 
-            // We update the database
+            // If we get an icon 
+            if ($iconFile){
+                // we do a slugger with the type name
+                $sluggerName = $slugger->slug($form->get('name')->getData());
+                // we retrieve the extension 
+                $extension = $iconFile->getClientOriginalExtension();
+                //We rename the file
+                $newName = $sluggerName . '.' . $extension; 
+                // We move the file to the folder
+                $iconFile->move($this->getParameter('service_icons_directory'), $newName);
+
+                //dd($iconFile); 
+            }
+            //dd($iconFile); 
+            $service->setIcon($newName);
+     
+
+            //We update the DB
             $em = $this->getDoctrine()->getManager();
             $em->persist($service);
-            $em->flush();
+            $em->flush(); 
+
+          
 
             // We redirect to the list page
             return $this->redirectToRoute('admin_services_browse');
