@@ -56,11 +56,8 @@ class AuthenticationController extends AbstractController
                 throw $this->createNotFoundException('Merci de saisir votre nom');
             } elseif (!isset($jsonData->pseudo)){
                 throw $this->createNotFoundException('Merci de saisir votre pseudo');
-            }
-            
+            }  
         }
-        
-        
     }
 
 
