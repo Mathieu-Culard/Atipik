@@ -10,6 +10,7 @@ const useStyles = makeStyles(() => ({
   root: {
     overflowY: 'auto',
     width: '30%',
+    minWidth: '600px',
   },
 }));
 
