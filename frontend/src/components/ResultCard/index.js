@@ -22,9 +22,10 @@ const useStyles = makeStyles(() => ({
     },
   },
   pictures: {
-    width: 200,
+    width: 150,
+    height: 150,
     flex: '0 0 auto',
-    margin: '.5rem',
+    margin: 'auto .5rem',
     borderRadius: '.5rem',
   },
   content: {
@@ -34,13 +35,11 @@ const useStyles = makeStyles(() => ({
   },
   description: {
     flex: 1,
-  },
-  title: {
-    fontWeight: 'bold',
+    margin: '.5rem 0',
+    textAlign: 'justify',
   },
   location: {
     fontWeight: 'bold',
-    marginBottom: '.5rem',
   },
 }));
 
@@ -63,10 +62,10 @@ const ResultCard = ({
   return (
     <Card className={classes.root}>
       <Slider {...carouselSettings} className={classes.pictures}>
-        {pictures.map((picture) => (<div><img src={picture} alt="" key={picture} width="200" /></div>))}
+        {pictures.map((picture) => (<div><img src={picture} alt="" key={picture} width="150" /></div>))}
       </Slider>
       <CardContent className={classes.content}>
-        <Typography variant="h5" component="h3" className={classes.title}>
+        <Typography variant="h6" component="h3">
           {title}
         </Typography>
         <Typography variant="subtitle2" className={classes.location}>
