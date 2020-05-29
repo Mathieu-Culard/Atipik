@@ -12,17 +12,23 @@ height:auto;
 
 .nameType, 
 .descriptionType,
-.thematicType,
-.serviceName 
+.thematicType 
 {
     padding:1em 3em;
     max-width:20em;
     flex-wrap:wrap;
 }
 
+
+#form_services_name{
+  font-size:1.5em; 
+  margin-top:1em; 
+  margin-left:0.04em;
+}
+
 .pictureTypeAdmin,
 .iconTypeAdmin
-.iconServiceAdmin {
+ {
     padding:1em 1em 8em 0em;
 }
 

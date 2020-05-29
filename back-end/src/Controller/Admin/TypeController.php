@@ -99,20 +99,14 @@ class TypeController extends AbstractController
             return $this->redirectToRoute('admin_type_browse');
 
     }
-         // We create a form to delete the type
-         $formDelete = $this->createForm(FormTypeDelete::class, null, [
-            'action' => $this->generateUrl('admin_type_delete', ['id' => $type->getId() ])
-         ]);
-
+    
 
 
         // We send it to the edit page
         return $this->render('admin/type/edit.html.twig', [
         'form' => $form->createView(),
-      
-        'formDelete' => $formDelete->createView(),
-    ]); 
-      }
+        ]); 
+      } 
 
     /**
      * @Route("/add", name="add", requirements={"id" : "\d+"})

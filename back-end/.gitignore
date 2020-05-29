@@ -16,6 +16,13 @@
 ###< symfony/phpunit-bridge ###
 
 public/assets/type/icon/*.png
+public/assets/type/icon/*.jpg
+public/assets/type/icon/*.jpeg
+
 public/assets/type/picture/*.png
+public/assets/type/icon/*.jpg
+public/assets/type/icon/*.jpeg
 
 /public/service/icon/*.jpg
+/public/service/icon/*.jpeg
+/public/service/icon/*.png

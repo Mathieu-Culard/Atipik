@@ -89,14 +89,8 @@ class ServicesController extends AbstractController
                  return $this->redirectToRoute('admin_services_browse');
         }
 
-          // We create a form to delete the service
-          $formDelete = $this->createForm(FormServiceDelete::class, null, [
-            'action' => $this->generateUrl('admin_services_delete', ['id' => $service->getId() ])
-         ]);
-
         return $this->render('admin/services/edit.html.twig', [
             'form' => $form->createView(),
-            'formDelete' => $formDelete->createView(),
         ]);
     }
 
