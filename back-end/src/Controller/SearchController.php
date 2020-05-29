@@ -73,6 +73,6 @@ class SearchController extends AbstractController
             }
         }
 
-        return $this->json($finalResult);
+        return $this->json($finalResult, 201);
     }
 }

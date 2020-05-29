@@ -7,6 +7,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -43,9 +44,24 @@ class AuthenticationController extends AbstractController
             $em->flush();
 
             return $this->json('',201);
+            
+        } else {
+            if (!isset($jsonData->email)) {
+                throw $this->createNotFoundException('Merci de saisir votre email');
+            } elseif (!isset($jsonData->password)){
+                throw $this->createNotFoundException('Merci de saisir votre mot de passe');
+            } elseif (!isset($jsonData->lastname)){
+                throw $this->createNotFoundException('Merci de saisir votre prénom');
+            } elseif (!isset($jsonData->firstname)){
+                throw $this->createNotFoundException('Merci de saisir votre nom');
+            } elseif (!isset($jsonData->pseudo)){
+                throw $this->createNotFoundException('Merci de saisir votre pseudo');
+            }
+            
         }
         
-        throw $this->createNotFoundException('Merci de remplir toutes les informations afin de pouvoir vous inscrire');
         
     }
+
+
 }
