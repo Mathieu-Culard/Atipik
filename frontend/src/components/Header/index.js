@@ -49,7 +49,7 @@ const Header = ({
           <img className="header__logo" src={logo} alt="Logo" />
           <div className="header__links">
             <a className="header__link" href="#"> Nos hébergements </a>
-            { isLogged && (
+            { !isLogged && (
               <>
                 <a className="header__link" href="#"> Inscription </a>
                 <a className="header__link" href="#" onClick={() => setLoginPanel(true)}> Connexion </a>
