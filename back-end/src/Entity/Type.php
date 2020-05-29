@@ -72,6 +72,7 @@ class Type
     public function __toString()
     {
         return $this->thematic;
+        return $this->icon; 
         
     }
 
