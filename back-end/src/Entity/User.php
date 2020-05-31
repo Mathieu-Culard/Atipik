@@ -12,6 +12,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @ORM\HasLifecycleCallbacks
  */
 class User implements UserInterface
 {
@@ -278,6 +279,14 @@ class User implements UserInterface
         $this->pseudo = $pseudo;
 
         return $this;
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function onPreUpdate()
+    {
+        $this->updatedAt = new \DateTime();
     }
 
 
