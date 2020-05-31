@@ -24,14 +24,14 @@ class AuthentifiedUserController extends AbstractController
     public function displayAccount(UserInterface $user, SerializerInterface $serializer)
     {
         // We create a new object from the received JSON
-        $userData = $serializer->normalize($user, 'json',['groups' => 'authentified_user_account']);
+        $userData = $serializer->normalize($user, 'json', ['groups' => 'authentified_user_account']);
 
         // We create a variable that will be used to store each of the accommodations.
         $houses = [];
 
-         // We loop on the accomodations property of user
-        foreach($userData['accomodations'] as $accomodation) {
-        
+        // We loop on the accomodations property of user
+        foreach ($userData['accomodations'] as $accomodation) {
+
             // We store the ID of each accommodation in the new $houses table
             $houses[] = $accomodation['id'];
         }
@@ -52,7 +52,7 @@ class AuthentifiedUserController extends AbstractController
 
         // If data was transmitted in json
         if (isset($jsonData)) {
-            
+
             // We store in a variable $newData the data of the user whose id corresponds to that of the connected user.
             $newData = $userRepository->find($user->getId());
             // dd($newData);
@@ -61,20 +61,31 @@ class AuthentifiedUserController extends AbstractController
             $newData->setLastname($jsonData->lastname);
             $newData->setPseudo($jsonData->pseudo);
             $newData->setAvatar($jsonData->avatar);
-            
+
             // The password is encrypted before being assigned to the user.
             $clearPassword = $jsonData->password;
             $newData->setPassword($passwordEncoder->encodePassword($user, $clearPassword));
 
+            // We're updating the database
             $em->flush();
 
-            return $this->json('',200);
+            return $this->json('', 200);
         }
     }
 
+    /**
+     * @Route("/account/delete", name="edit_account", methods={"DELETE"})
+     */
+    public function deleteAccount(UserInterface $user, UserRepository $userRepository, EntityManagerInterface $em)
+    {
+        // We store in a variable $newData the data of the user whose id corresponds to that of the connected user.
+        $newData = $userRepository->find($user->getId());
+        
+        // We delete the user stored in the variable $newData
+        $em->remove($newData);
+        // We're updating the database
+        $em->flush();
 
-
-
-
-
+        return $this->json('',200);
+    }
 }
