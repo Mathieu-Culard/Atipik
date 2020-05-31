@@ -45,10 +45,6 @@ class Extra
      */
     private $accomodations;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $price;
 
     public function __construct()
     {
@@ -145,18 +141,5 @@ class Extra
         return $this;
     }
 
-    /**
-     * @Groups({"list_extra"})
-     */    
-    public function getPrice(): ?int
-    {
-        return $this->price;
-    }
-
-    public function setPrice(int $price): self
-    {
-        $this->price = $price;
-
-        return $this;
-    }
+    
 }
