@@ -19,11 +19,22 @@ class AuthentifiedUserController extends AbstractController
      */
     public function displayAccount(UserInterface $user, SerializerInterface $serializer)
     {
-        return $this->json($user, 200, [], ['groups' => 'authentified_user_account']);
+        $userData = $serializer->normalize($user, 'json',['groups' => 'authentified_user_account']);
+
+        $houses = [];
+
+        foreach($userData['accomodations'] as $accomodation) {
+        
+            $houses[] = $accomodation['id'];
+        }
+
+        $userData['accomodations'] = $houses;
+
+        return $this->json($userData, 200);
     }
 
- 
-    
+
+
 
 
 

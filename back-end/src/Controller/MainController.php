@@ -16,7 +16,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 class MainController extends AbstractController
 {
     /**
-     * @Route("/api/types", name="type", methods={"GET"})
+     * @Route("/types", name="type", methods={"GET"})
      */
     public function browseTypes(ThematicRepository $thematicRepository, SerializerInterface $serializer)
     {
@@ -31,9 +31,9 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/api/services", name="service")
+     * @Route("/services", name="service")
      */
-    public function browseService(ServiceRepository $serviceRepository, SerializerInterface $serializer)
+    public function browseServices(ServiceRepository $serviceRepository, SerializerInterface $serializer)
     {
         // we retrieve the list of services
         $services = $serviceRepository->findAllByService();
@@ -46,9 +46,9 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/api/extras", name="extra")
+     * @Route("/extras", name="extra")
      */
-    public function browseExtra(ExtraRepository $extraRepository, SerializerInterface $serializer)
+    public function browseExtras(ExtraRepository $extraRepository, SerializerInterface $serializer)
     {
         // we retrieve the list of services
         $extras = $extraRepository->findAllByExtra();

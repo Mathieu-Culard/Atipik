@@ -160,7 +160,7 @@ class Accomodation
     }
 
     /**
-     * @Groups({"search_result"})
+     * @Groups({"search_result","authentified_user_account"})
      */
     public function getId(): ?int
     {
