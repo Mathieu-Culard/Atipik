@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -84,12 +86,17 @@ class User implements UserInterface
         return $this->roles;
     }
     
-
+    /**
+     * @Groups({"authentified_user_account"})
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @Groups({"authentified_user_account"})
+     */
     public function getEmail(): ?string
     {
         return $this->email;
@@ -164,7 +171,9 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
-
+    /**
+     * @Groups({"authentified_user_account"})
+     */
     public function getFirstname(): ?string
     {
         return $this->firstname;
@@ -177,6 +186,9 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @Groups({"authentified_user_account"})
+     */
     public function getLastname(): ?string
     {
         return $this->lastname;
@@ -189,6 +201,9 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @Groups({"authentified_user_account"})
+     */
     public function getAvatar(): ?string
     {
         return $this->avatar;
@@ -226,6 +241,7 @@ class User implements UserInterface
     }
 
     /**
+     * @Groups({"authentified_user_account"})
      * @return Collection|Accomodation[]
      */
     public function getAccomodations(): Collection
@@ -257,12 +273,8 @@ class User implements UserInterface
     }
 
     /**
-     * @ORM\PreUpdate
+     * @Groups({"authentified_user_account"})
      */
-    public function onPreUpdate()
-    {
-        $this->updatedAt = new \DateTime();
-    }
     public function getPseudo(): ?string
     {
         return $this->pseudo;
@@ -273,6 +285,14 @@ class User implements UserInterface
         $this->pseudo = $pseudo;
 
         return $this;
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function onPreUpdate()
+    {
+        $this->updatedAt = new \DateTime();
     }
 
 
