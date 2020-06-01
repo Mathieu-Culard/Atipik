@@ -1,0 +1,10 @@
+.search-page{
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(600px, 33%) auto;
+  grid-template-rows: min-content;
+  grid-gap: 0;
+}

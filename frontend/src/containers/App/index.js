@@ -1,16 +1,14 @@
 import { connect } from 'react-redux';
-
+import { fetchAccomodationTypes } from 'src/actions/search';
 import App from 'src/components/App';
-
-import { checkLogged } from 'src/actions/user';
 
 const mapStateToProps = (state) => ({
   //TODO
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  checkLogged: () => {
-    dispatch(checkLogged());
+  fetchAccomodationTypes: () => {
+    dispatch(fetchAccomodationTypes());
   },
 });
 

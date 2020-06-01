@@ -1,7 +1,7 @@
 import { TOGGLE_OPEN, SET_LOGIN_PANEL } from 'src/actions/utils';
 
 const initialState = {
-  open: true,
+  open: false,
   loginPanel: false,
 };
 

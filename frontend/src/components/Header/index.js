@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -49,7 +50,7 @@ const Header = ({
           <img className="header__logo" src={logo} alt="Logo" />
           <div className="header__links">
             <a className="header__link" href="#"> Nos hébergements </a>
-            { isLogged && (
+            { !isLogged && (
               <>
                 <a className="header__link" href="#"> Inscription </a>
                 <a className="header__link" href="#" onClick={() => setLoginPanel(true)}> Connexion </a>
