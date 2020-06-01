@@ -15,5 +15,23 @@
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 
-public/assets/type/icon
-public/assets/type/picture
+/public/assets/type/icon/*.png
+/public/assets/type/icon/*.jpg
+/public/assets/type/icon/*.jpeg
+
+/public/assets/type/picture/*.png
+/public/assets/type/picture/*.jpg
+/public/assets/type/picture/*.jpeg
+
+/public/assets/service/icon/*.jpg
+/public/assets/service/icon/*.jpeg
+/public/assets/service/icon/*.png
+
+/public/assets/extra/icon/*.jpg
+/public/assets/extra/icon/*.jpeg
+/public/assets/extra/icon/*.png
+
+###> lexik/jwt-authentication-bundle ###
+/config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###
+

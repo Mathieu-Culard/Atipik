@@ -37,10 +37,6 @@ class User implements UserInterface
      */
     private $password;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $username;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -72,11 +68,15 @@ class User implements UserInterface
      */
     private $accomodations;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $pseudo;
+
     public function __construct()
     {
         $this->accomodations = new ArrayCollection();
-        $this->createdAt = new \Datetime(); 
-       
+        $this->createdAt = new \DateTime();
     }
 
     public function __toString()
@@ -164,12 +164,6 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
-    public function setUsername(string $username): self
-    {
-        $this->username = $username;
-
-        return $this;
-    }
 
     public function getFirstname(): ?string
     {
@@ -269,5 +263,17 @@ class User implements UserInterface
     {
         $this->updatedAt = new \DateTime();
     }
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(string $pseudo): self
+    {
+        $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
 
 }

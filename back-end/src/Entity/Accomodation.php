@@ -152,6 +152,11 @@ class Accomodation
      */
     private $user;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slugger;
+
     public function __construct()
     {
         $this->extra = new ArrayCollection();
@@ -548,6 +553,21 @@ class Accomodation
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @Groups({"search_result"})
+     */
+    public function getSlugger(): ?string
+    {
+        return $this->slugger;
+    }
+
+    public function setSlugger(string $slugger): self
+    {
+        $this->slugger = $slugger;
 
         return $this;
     }

@@ -1,0 +1,45 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Hello ServicesController!{% endblock %}
+
+{% block body %}
+
+<h1 class="typeTitleList">Services</h1>
+
+	<a href="{{path('admin_services_add')}}">
+    <button type="edit" class="btn btn-primary">Ajouter un nouveau service</button>
+	</a>
+
+	<table class="table table-hover">
+		<thead>
+			<tr class="table-primary">
+				<th scope="col">ID</th>
+				<th scope="col">Icone</th>
+				<th scope="col">Nom</th>
+				<th scope="col">Modifier</th>
+				<th scope="col">Supprimer</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				{% for service in services %}
+					<th scope="row">{{service.id}}</th>
+   
+	   {#{{ dump(service) }}#}
+
+					<td><img src="{{ asset('assets/service/icon/' ~ service.icon) }}" class='icone-service-admin' alt=""></td>
+
+					<td>{{service.name}}</td>
+					
+					<td>
+                        <a href="{{path('admin_services_edit', {'id' : service.id })}}">
+							<button type="edit" class="btn btn-primary">Modifier</button>
+						</a>
+					</td>
+
+					 <td>{{ form(forms[loop.index0]) }}</td>
+                    </tr>
+	{% endfor %}
+
+	</tbody>
+		{% endblock %}

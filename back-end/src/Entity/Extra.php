@@ -10,6 +10,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ExtraRepository::class)
+ * @ORM\HasLifecycleCallbacks
  */
 class Extra
 {
@@ -45,14 +46,11 @@ class Extra
      */
     private $accomodations;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $price;
 
     public function __construct()
     {
         $this->accomodations = new ArrayCollection();
+        $this->createdAt = new \DateTime();
     }
 
     /**
@@ -159,4 +157,13 @@ class Extra
 
         return $this;
     }
+
+      /**
+     * @ORM\PreUpdate
+     */
+    public function onPreUpdate()
+    {
+        $this->updatedAt = new \DateTime();
+    }
 }
+

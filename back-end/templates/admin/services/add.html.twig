@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+<h1 class="addTitle">Ajouter un nouveau type service</h1>
+
+<div class="container">
+{{form_start(form)}}
+
+  <div class="name-service">
+    <div class="name-Service-admin">
+    {{form_widget(form.name, {'attr': {'placeholder': 'Nom'}}) }}
+    </div>
+</div>
+
+  <div class="icon-service">
+    <div class="icon-service-admin">
+    {{form_widget(form.icon, {'attr': {'placeholder': 'Icon'}}) }}
+    </div>
+  </div>
+
+
+  
+
+  <div class="button-service">
+    <button type="submit" class="btn btn-primary">Ajouter</button>
+    <a href="{{path('admin_services_browse')}}" class="button-service-link-back">Retour a la liste</a>
+  </div>
+
+{{form_end(form)}}
+</div>
+
+{% endblock %}

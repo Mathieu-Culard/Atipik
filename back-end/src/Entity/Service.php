@@ -10,6 +10,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ServiceRepository::class)
+ * @ORM\HasLifecycleCallbacks
  */
 class Service
 {
@@ -48,6 +49,7 @@ class Service
     public function __construct()
     {
         $this->accomodations = new ArrayCollection();
+        $this->createdAt = new \DateTime();
     }
 
     /**
@@ -138,5 +140,13 @@ class Service
         }
 
         return $this;
+    }
+
+     /**
+     * @ORM\PreUpdate
+     */
+    public function onPreUpdate()
+    {
+        $this->updatedAt = new \DateTime();
     }
 }
