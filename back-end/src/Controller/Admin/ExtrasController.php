@@ -170,10 +170,7 @@ class ExtrasController extends AbstractController
         //We redirect to the list page
         return $this->redirectToRoute('admin_extras_browse');
     }
-    return $this->redirectToRoute('admin_extras_browse');
+    return $this->render('admin/extras/browse.html.twig');
 }
-
-
-
 
 }

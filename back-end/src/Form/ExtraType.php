@@ -22,9 +22,6 @@ class ExtraType extends AbstractType
                 'required' => false,
                 'mapped' => false, 
            ])
-            ->add('price', null, [
-                'required' => false,
-                ])
               
         ;
     }
