@@ -10,6 +10,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @ORM\HasLifecycleCallbacks
  */
 class User implements UserInterface
 {
@@ -74,9 +75,15 @@ class User implements UserInterface
     public function __construct()
     {
         $this->accomodations = new ArrayCollection();
+        $this->createdAt = new \Datetime(); 
+       
     }
 
-
+    public function __toString()
+    {
+        return $this->roles;
+    }
+    
 
     public function getId(): ?int
     {
@@ -255,5 +262,12 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @ORM\PreUpdate
+     */
+    public function onPreUpdate()
+    {
+        $this->updatedAt = new \DateTime();
+    }
 
 }

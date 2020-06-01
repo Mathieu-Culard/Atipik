@@ -45,7 +45,8 @@ height:auto;
 
  .addTitle,
  .typeTitleList,
- .typeTitleEdit{
+ .typeTitleEdit
+ {
     height:2em;
     background-color:rgb(24, 189, 126);
     color:rgb(241, 232, 232);
@@ -53,7 +54,8 @@ height:auto;
     padding-top:0.5em;
 }
 
-.deleteButtonType{
+.deleteButtonType, 
+.deleteButtonUser{
     color:white;
     background-color:red;
     font-weight:bold;

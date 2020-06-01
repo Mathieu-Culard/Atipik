@@ -1,0 +1,35 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+	<h1>Ajouter un utilisateur</h1>
+
+	{{form_start(form)}}
+
+	{{ form_widget(form.lastname, {
+  'attr': {'placeholder': 'Nom'}
+       }) }}
+	{{ form_widget(form.firstname, {
+  'attr': {'placeholder': 'Prénom'}
+       }) }}
+	{{ form_widget(form.email, {
+  'attr': {'placeholder': 'Email'}
+       }) }}
+	{{ form_widget(form.username, {
+  'attr': {'placeholder': 'Pseudo'}
+       }) }}
+	{{ form_widget(form.password)}}
+	{{ form_widget(form.roles) }}
+  	{{ form_widget(form.avatar) }}
+
+	
+
+	
+
+  <button type="submit" class="btn btn-primary">Ajouter</button>
+  <a href="{{path('admin_users_browse')}}">Retour à la liste</a>
+
+
+{{form_end(form)}}
+
+{% endblock %}
