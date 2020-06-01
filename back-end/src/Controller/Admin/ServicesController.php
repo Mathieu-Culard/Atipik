@@ -84,16 +84,6 @@ class ServicesController extends AbstractController
               $em->persist($service);
               $em->flush(); 
 
-            //  //We use a service in order to move the picture
-            //  $newIcon = $fileUploader->saveFile($form['icon'], 'assets/service/icon');
-
-            //  //We associate this new file to our type
-            //  $service->setIcon($newIcon);
- 
-            //  // We update the database
-            //  $em = $this->getDoctrine()->getManager();
-            //  $em->persist($service);
-            //  $em->flush();
 
                  return $this->redirectToRoute('admin_services_browse');
         }
@@ -178,7 +168,7 @@ class ServicesController extends AbstractController
             //We redirect to the list page
             return $this->redirectToRoute('admin_services_browse');
         }
-        return $this->redirectToRoute('admin_services_browse');
+        return $this->render('admin/services/browse.html.twig');
     }
 }
     
