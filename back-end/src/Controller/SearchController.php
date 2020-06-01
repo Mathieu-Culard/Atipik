@@ -11,7 +11,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 class SearchController extends AbstractController
 {
     /**
-     * @Route("/search", name="search", methods={"POST"})
+     * @Route("/api/search", name="search", methods={"POST"})
      */
     public function searchResults(Request $request, SerializerInterface $serializer, AccomodationRepository $accomodationRepository)
     {
@@ -29,7 +29,7 @@ class SearchController extends AbstractController
 
             // We serialize our filtered data and normalize it to avoid circular references. 
             $searchResult = $serializer->normalize($newData, 'json', ['groups' => 'search_result']);
-
+            
             // We create a variable that will be used to store each of the accommodations.
             $finalResult = [];
 
@@ -69,10 +69,10 @@ class SearchController extends AbstractController
                 //dd($currentData);
 
                 //We store each hosting in the variable $finalResult
-                $finalResult[] = $currentData;
+                $finalResult[] = $currentData;        
             }
         }
 
-        return $this->json($finalResult);
+        return $this->json($finalResult, 201);
     }
 }

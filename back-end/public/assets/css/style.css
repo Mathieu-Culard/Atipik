@@ -1,5 +1,19 @@
+.rightSide {
+   display: flex;
+   
+ 
+}
+main {
+ min-width: 85%;
+ margin-left : 3em; 
 
+}
 
+#titleList {
+    padding-left: 0.3em;
+    font-size: 3em;
+
+}
 .imgTypesList{
 max-width: 10em;
 height:auto;
@@ -7,7 +21,12 @@ height:auto;
 
 
 .container{
-    display:flex;  
+    display:flex; 
+    justify-content: center;
+    border: 1px solid #CACFD3 ;
+    border-radius: 1em;
+    margin-top: 5em; 
+    padding-top:2em;
 }
 
 .nameType, 
@@ -17,6 +36,7 @@ height:auto;
     padding:1em 3em;
     max-width:20em;
     flex-wrap:wrap;
+   
 }
 
 
@@ -30,6 +50,7 @@ height:auto;
 .iconTypeAdmin
  {
     padding:1em 1em 8em 0em;
+   
 }
 
 
@@ -41,34 +62,171 @@ height:auto;
     float:right;
 }
 
-.buttonType{ 
-   padding-top:18em;
-   text-align:center;
-}
-
 .btn-primary{
     margin-right:3em;
     background-color:rgb(26, 122, 85);
     font-weight:bold;
+    border-radius:10px;
+    
+}
+.buttonType{ 
+   padding-top:18em;
+   text-align:center;
+
 }
 
+.title{
+   display: flex;
+   background-color:rgb(37, 126, 92);
+    color:rgb(241, 232, 232);
+    font-family: 'Tenali Ramakrishna', sans-serif; 
+
+}
+
+#titleButton{
+    margin-top: 1.7em ;
+    margin-left: 20em;
+    background-color : #0F7864;
+    font-size: large;
+    color: white;
+}
+#titleButton:hover{
+    background-color: #1E2B37;
+    color:white;
+}
  .addTitle,
  .typeTitleList,
  .typeTitleEdit{
     height:2em;
-    background-color:rgb(24, 189, 126);
+    background-color:rgb(37, 126, 92);
     color:rgb(241, 232, 232);
     font-family: 'Tenali Ramakrishna', sans-serif; 
     padding-top:0.5em;
+    padding-left: 2em;
+}
+
+.linkBack{
+    font-size:1.8em;
 }
 
 .deleteButtonType,
 .deleteButtonService{
     color:white;
     background-color:red;
+    padding:0.3em 0.5em;
     font-weight:bold;
-    border-style:solid;
+    border-style:solid 1px black;
     border-width:2.5px;
     border-radius:10px;
+    display:inline-block;
+    font-size: 0.9375rem;
+}
+
+.deleteButtonType:hover{
+    background-color: #1E2B37;
+    color:white;
+}
+
+.aside {
+   width: 20%;
+   position: fixed;
+}
+
+.sidebar {
+    font-family: 'Tenali Ramakrishna', sans-serif; 
+    display: grid; 
+    grid-template-columns: 21em 1fr ;
+    background-color:rgb(37, 126, 92);
+    float:left;
+    margin-right: -7em;
+    border : 1px solid #0F7864;
+    margin: 0em 1em;
+    padding-top:1em;
+    padding-right: 1.6em;
+    font-size:20px;
+    height: 100vh;
+    
+   
+}
+
+.navigation-list {
+    display: grid;
+    gap: .5rem;
+    list-style-type:none;
+    text-align:center;  
+}
+
+.navigation-link{
+      color:white;
+      font-size:1.3em;
+}
+
+  .navigation-item:active .navigation-link:active{
+    color:white;
+    font-size:1.3em;
+    background-color: #f0f;
+}
+
+  
+  .navigation-link:hover{
+    color:rgb(12, 238, 151);
+}
+
+  .navigation-item
+  { 
+    font-family: 'Tenali Ramakrishna', sans-serif; 
+    padding:0em 6em;
+    background-color:rgb(168, 68, 10);
+    color:white;
+    margin:0.2em;
+  }
+
+  .button-site{
+      background-color:white;
+      margin-top:7em;
+      margin-bottom: 3em;
+      border-radius:10px;
+  }
+
+  .button-site:hover{
+    background-color: #1E2B37;
+    color:white;
+}
  
+  .navigation-item-validate{
+      margin-top:8em;
+      background-color:rgb(27, 221, 147);
+      padding:2em;
+      
+  }
+
+  .navigation-link-validate{
+      background-color:rgb(27, 221, 147);
+      font-size:1.3em;
+      color:black;
+  }
+
+  .navigation-item-validate:hover{
+    background-color: #1E2B37;
+    color:white;
+  }
+
+  
+  .navigation-titre{
+      font-size:1.5em;
+      text-transform:uppercase;
+      line-height:0.7em;
+      padding-top:0.7em;
+  }
+  
+.deleteButtonOnEdit{
+    background-color: red;
+    color: white;
+    padding:0.3em 0.5em;
+    font-weight:bold;
+    border-style:solid 1px black;
+    border-width:2.5px;
+    border-radius:10px;
+    display:inline-block;
+    font-size: 0.9375rem;
 }
