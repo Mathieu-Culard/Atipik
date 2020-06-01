@@ -65,7 +65,7 @@ class SearchController extends AbstractController
                 $currentData['pictures'] = $pictures;
                 //we delete the picture property initially present
                 unset($currentData['picture']);
-
+                
                 //dd($currentData);
 
                 //We store each hosting in the variable $finalResult

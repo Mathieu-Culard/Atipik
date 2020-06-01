@@ -143,20 +143,6 @@ class Extra
         return $this;
     }
 
-    /**
-     * @Groups({"list_extra"})
-     */    
-    public function getPrice(): ?int
-    {
-        return $this->price;
-    }
-
-    public function setPrice(int $price): self
-    {
-        $this->price = $price;
-
-        return $this;
-    }
 
       /**
      * @ORM\PreUpdate
