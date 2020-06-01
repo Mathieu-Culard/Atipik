@@ -82,7 +82,9 @@ class User implements UserInterface
     }
 
 
-
+    /**
+     * @Groups({"authentified_user_account"})
+     */
     public function getId(): ?int
     {
         return $this->id;
