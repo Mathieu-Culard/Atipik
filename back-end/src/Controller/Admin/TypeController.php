@@ -56,7 +56,7 @@ class TypeController extends AbstractController
 
 
      /**
-      * @Route("/edit/{id}", name="edit", methods={"GET", "POST", "DELETE"}, requirements={"id": "\d+"})
+      * @Route("/edit/{id}", name="edit", methods={"GET", "POST"}, requirements={"id": "\d+"})
       */
     //Method to edit a type 
      public function edit(Type $type, Request $request, SluggerInterface $slugger, EntityManagerInterface $em, FileUploader $fileUploader ) : Response

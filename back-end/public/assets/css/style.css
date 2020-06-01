@@ -230,3 +230,87 @@ height:auto;
     display:inline-block;
     font-size: 0.9375rem;
 }
+.imgTypesList{
+    max-width: 10em;
+    height:auto;
+    }
+    
+    
+    .container{
+        display:flex;  
+    }
+    
+    .nameType, 
+    .descriptionType,
+    .thematicType 
+    {
+        padding:1em 3em;
+        max-width:20em;
+        flex-wrap:wrap;
+    }
+    
+    
+    #form_services_name{
+      font-size:1.5em; 
+      margin-top:1em; 
+      margin-left:0.04em;
+    }
+    
+    .pictureTypeAdmin,
+    .iconTypeAdmin
+     {
+        padding:1em 1em 8em 0em;
+    }
+    
+    
+    .pictureIcon{
+        float:left;
+    }
+    
+    .nameDescThemType{
+        float:right;
+    }
+    
+    .buttonType { 
+       padding-top:18em;
+       text-align:center;
+    }
+    
+    .btn-primary{
+        margin-right:3em;
+        background-color:rgb(26, 122, 85);
+        font-weight:bold;
+    }
+    
+     .addTitle,
+     .typeTitleList,
+     .typeTitleEdit{
+        height:2em;
+        background-color:rgb(24, 189, 126);
+        color:rgb(241, 232, 232);
+        font-family: 'Tenali Ramakrishna', sans-serif; 
+        padding-top:0.5em;
+    }
+    
+    .deleteButtonType,
+    .deleteButtonService, 
+    .deleteButtonExtra
+    {
+        color:white;
+        background-color:red;
+        font-weight:bold;
+        border-style:solid;
+        border-width:2.5px;
+        border-radius:10px;
+     
+    }
+    
+    #extra_icon, 
+    #extra_name, 
+    #extra_price {
+        font-size:1.5em; 
+        margin-top:1em; 
+        margin-left:0.04em;
+    }
+    
+    
