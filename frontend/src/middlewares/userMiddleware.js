@@ -10,7 +10,7 @@ const userMiddleware = (store) => (next) => (action) => {
         username: email,
         password,
       }).then((response) => {
-        localStorage.setItem('jwt', response.token);
+        localStorage.setItem('jwt', response.data.token);
         store.dispatch(loginChanged());
       });
       next(action);

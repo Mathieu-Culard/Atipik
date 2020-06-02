@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import search from './search';
+import search from './searchReducer';
 import utils from './utilsReducer';
 import user from './userReducer';
-import map from './map';
+import map from './mapReducer';
 
 const rootReducer = combineReducers({
   search,

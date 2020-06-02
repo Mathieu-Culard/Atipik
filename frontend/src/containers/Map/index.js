@@ -8,6 +8,7 @@ const mapStateToProps = (state) => ({
   // accomodations: state.search.searchResult,
   centerPosition: state.map.center,
   markerPositions: state.map.markerPositions,
+  zoom: state.map.zoom,
 });
 
 const mapDispatchToProps = (dispatch) => ({

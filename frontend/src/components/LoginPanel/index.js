@@ -54,7 +54,7 @@ const LoginPanel = ({
             value={password}
             onChange={(e) => changeField('password', e.target.value)}
           />
-          <Button type="submit" variant="plain">Se connecter</Button>
+          <Button type="submit" variant="text">Se connecter</Button>
         </form>
       </Box>
     </Modal>

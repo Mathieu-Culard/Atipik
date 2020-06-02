@@ -1,0 +1,17 @@
+.filter-bar{
+  margin-top: 0.5rem;
+  display: flex;
+  max-height: 150px;
+  justify-content: space-around;
+  align-items: center;
+  &__dropdowns{
+    display: flex;
+    flex-direction: column;
+    .row{
+      display: flex;
+    }
+  }
+  &__slider-item{
+    min-width: 200px;
+  }
+}

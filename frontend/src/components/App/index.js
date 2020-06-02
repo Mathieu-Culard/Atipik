@@ -15,6 +15,7 @@ import './app.scss';
 const App = ({ fetchAccomodationTypes }) => {
   useEffect(() => {
     fetchAccomodationTypes();
+    localStorage.setItem('apiKey', 'AIzaSyDgvwB0FMtMpdC6bgjDKGE-hLGdTFxEhts');
   }, []);
   return (
     <div className="app">

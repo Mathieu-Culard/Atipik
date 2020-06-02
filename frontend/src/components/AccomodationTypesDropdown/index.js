@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { getAnchorPosition } from 'src/utils';
 import './accomodationTypesDropdown.scss';
-import data from 'src/data/accomodationTypes';
 
 import Box from '@material-ui/core/Box';
 import Popover from '@material-ui/core/Popover';
@@ -26,8 +25,8 @@ const useStyles = makeStyles({
     padding: '2rem 1rem',
   },
 });
-// TODO add accomodationTypes to props, replace data by accomodationTypes, uncomment propTypes
 const AccomodationTypesDropdown = ({
+  accomodationTypes,
   accomodationTypesValue,
   changeAccomodationTypes,
   selectAll,
@@ -71,7 +70,7 @@ const AccomodationTypesDropdown = ({
       >
         <Box className={classes.root}>
           <h2 className="dropdown-title">Types d'hébergements</h2>
-          {data.map((thematic) => (
+          {accomodationTypes.map((thematic) => (
             <Thematic
               key={thematic.id}
               thematic={thematic}
@@ -90,22 +89,21 @@ AccomodationTypesDropdown.propTypes = {
   selectAll: PropTypes.func.isRequired,
   accomodationTypesValue: PropTypes.array.isRequired,
   changeAccomodationTypes: PropTypes.func.isRequired,
-  // accomodationTypes: PropTypes.arrayOf(
-  //   PropTypes.shape({
-  //     id: PropTypes.number.isRequired,
-  //     name: PropTypes.string.isRequired,
-  //     types: PropTypes.arrayOf(
-  //       PropTypes.shape({
-  //         id: PropTypes.number.isRequired,
-  //         name: PropTypes.string.isRequired,
-  //         icon: PropTypes.string.isRequired,
-  //         description: PropTypes.string.isRequired,
-  //         picture: PropTypes.string.isRequired,
-
-  //       }).isRequired,
-  //     ).isRequired,
-  //   }).isRequired,
-  // ).isRequired,
+  accomodationTypes: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      types: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.number.isRequired,
+          name: PropTypes.string.isRequired,
+          icon: PropTypes.string.isRequired,
+          description: PropTypes.string.isRequired,
+          picture: PropTypes.string.isRequired,
+        }).isRequired,
+      ).isRequired,
+    }).isRequired,
+  ).isRequired,
 };
 
 export default AccomodationTypesDropdown;

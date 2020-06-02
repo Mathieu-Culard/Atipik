@@ -7,20 +7,19 @@ import Marker from './Marker';
 import './map.scss';
 
 const Map = ({
-  markerPositions, centerPosition,
+  markerPositions, centerPosition, zoom,
 }) => {
   const center = {
     lat: centerPosition.lat,
     lng: centerPosition.lng,
   };
 
-  const zoom = 10;
   // const markers = getMarkersPositions(elements);
 
   return (
     <div className="map">
       <GoogleMapReact
-        bootstrapURLKeys={{ key: 'AIzaSyDgvwB0FMtMpdC6bgjDKGE-hLGdTFxEhts' }}
+        bootstrapURLKeys={{ key: localStorage.getItem('apiKey') }}
         defaultCenter={center}
         defaultZoom={zoom}
       >
@@ -45,6 +44,7 @@ Map.propTypes = {
     }).isRequired,
   ).isRequired,
   centerPosition: PropTypes.object.isRequired,
+  zoom: PropTypes.number.isRequired,
 };
 
 export default Map;
