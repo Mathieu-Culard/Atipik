@@ -30,7 +30,6 @@ const searchMiddleware = (store) => (next) => (action) => {
     }
     case SEARCH: {
       const data = createDataForSearch(store.getState().search);
-      console.log(data);
       axios({
         method: 'post',
         url: `${process.env.REACT_APP_BACKEND_URL}/search`,

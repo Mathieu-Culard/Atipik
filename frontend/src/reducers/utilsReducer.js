@@ -1,8 +1,9 @@
-import { TOGGLE_OPEN, SET_LOGIN_PANEL } from 'src/actions/utils';
+import { TOGGLE_OPEN, SET_LOGIN_PANEL, SET_BREADCRUMBS } from 'src/actions/utils';
 
 const initialState = {
   open: false,
   loginPanel: false,
+  breadcrumbs: [{ label: 'Accueil', route: '/' }],
 };
 
 const utilsReducer = (state = initialState, action = {}) => {
@@ -17,6 +18,12 @@ const utilsReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         loginPanel: action.newValue,
+      };
+
+    case SET_BREADCRUMBS:
+      return {
+        ...state,
+        breadcrumbs: action.breadcrumbs,
       };
 
     default: return state;

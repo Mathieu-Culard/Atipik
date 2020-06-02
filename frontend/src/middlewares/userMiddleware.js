@@ -5,7 +5,6 @@ const userMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case LOG_IN: {
       const { email, password } = store.getState().user;
-      console.log(process.env.REACT_APP_API_URL);
       axios.post(`${process.env.REACT_APP_API_URL}/login_check`, {
         username: email,
         password,

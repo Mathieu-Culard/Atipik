@@ -8,6 +8,7 @@ const mapStateToProps = (state) => ({
   open: state.utils.open,
   loginPanel: state.utils.loginPanel,
   isLogged: state.user.isLogged,
+  breadcrumbs: state.utils.breadcrumbs,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import SearchPage from 'src/pages/SearchPage';
 
 import { fetchMarkerPositions, resetMarkerPositions } from 'src/actions/map';
+import { setBreadcrumbs } from 'src/actions/utils';
 
 
 const mapStateToProps = (state) => ({
@@ -17,6 +18,7 @@ const mapDispatchToProps = (dispatch) => ({
   resetMarkerPositions: () => {
     dispatch(resetMarkerPositions());
   },
+  setBreadcrumbs: (newValue) => dispatch(setBreadcrumbs(newValue)),
 });
 
 export default connect(

@@ -9,6 +9,7 @@ import {
   changeAccomodationTypes,
   search,
 } from 'src/actions/search';
+import { setBreadcrumbs } from 'src/actions/utils';
 
 
 const mapStateToProps = (state) => ({
@@ -39,6 +40,7 @@ const mapDispatchToProps = (dispatch) => ({
   handleSearch: () => {
     dispatch(search());
   },
+  setBreadcrumbs: (newValue) => dispatch(setBreadcrumbs(newValue)),
 });
 
 export default connect(
