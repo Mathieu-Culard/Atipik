@@ -15,18 +15,18 @@ import { getCheckedAccomodationTypes, selectAccomodationTypesByThematic } from '
 
 const initialState = {
   accomodationTypes: [],
-  city: 'Strasbourg',
-  country: 'France',
+  city: '',
+  country: '',
   capacity: 0,
   nbNights: 0,
-  maxPrice: 100,
-  types: [1],
+  maxPrice: 0,
+  types: [],
   minSurface: 0,
-  pipedWater: true,
-  electricity: true,
-  animals: true,
-  smockers: true,
-  apmr: true,
+  pipedWater: false,
+  electricity: false,
+  animals: false,
+  smokers: false,
+  apmr: false,
   searchResult: [],
 };
 
@@ -84,11 +84,11 @@ const searchReducer = (state = initialState, action = {}) => {
         maxPrice: 0,
         types: [],
         minSurface: 0,
-        pipedWater: true,
-        electricity: true,
-        animals: true,
-        smockers: true,
-        apmr: true,
+        pipedWater: false,
+        electricity: false,
+        animals: false,
+        smokers: false,
+        apmr: false,
       };
     case SAVE_ACCOMODATION_TYPES:
       return {

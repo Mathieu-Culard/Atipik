@@ -6,6 +6,7 @@ import './searchPage.scss';
 import ResultList from 'src/components/ResultList';
 import Map from 'src/containers/Map';
 import Loader from 'src/components/Loader';
+import FilterPanel from 'src/containers/FilterPanel';
 
 const elements = [
   {
@@ -47,6 +48,7 @@ const SearchPage = ({ accomodations, mapCenter, fetchMarkerPositions, loading })
   }, []);
   return (
     <div className="search-page">
+      <FilterPanel />
       <ResultList elements={elements} />
       {loading && <Loader />}
       {!loading && <Map />}

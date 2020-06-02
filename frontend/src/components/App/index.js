@@ -9,7 +9,7 @@ import Footer from 'src/components/Footer';
 import Home from 'src/containers/Home';
 import Header from 'src/containers/Header';
 import SearchPage from 'src/containers/SearchPage';
-
+import AccomodationPage from 'src/pages/AccomodationPage';
 import './app.scss';
 
 const App = ({ fetchAccomodationTypes }) => {
@@ -22,6 +22,9 @@ const App = ({ fetchAccomodationTypes }) => {
       <Switch>
         <Route path="/recherche">
           <SearchPage />
+        </Route>
+        <Route path="/hebergement/:id">
+          <AccomodationPage />
         </Route>
         <Route path="/">
           <Home />

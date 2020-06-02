@@ -52,7 +52,7 @@ const searchMiddleware = (store) => (next) => (action) => {
 
 
     case FETCH_ACCOMODATION_TYPES:
-      axios.get('.../types')
+      axios.get(`${process.env.REACT_APP_BACKEND_URL}/types`)
         .then((response) => {
           store.dispatch(saveAccomodationTypes(response.data));
         })

@@ -1,4 +1,5 @@
 @import 'src/styles/vars';
+@import 'src/styles/responsive';
 
 .header{
   position: relative;
@@ -90,7 +91,7 @@
   }
 }
 
-@media (min-width: 650px) {
+@include respond-to(desktop) {
   .header {
     &__links {
       flex: 1;
