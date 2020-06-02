@@ -9,7 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\HasLifecycleCallbacks
@@ -85,9 +84,9 @@ class User implements UserInterface
     {
         return $this->roles;
     }
-    
+
     /**
-     * @Groups({"authentified_user_account"})
+     * @Groups({"accomodation_detail","authentified_user_account"})
      */
     public function getId(): ?int
     {

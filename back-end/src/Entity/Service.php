@@ -53,7 +53,7 @@ class Service
     }
 
     /**
-     * @Groups({"list_service"})
+     * @Groups({"list_service","accomodation_detail"})
      */
     public function getId(): ?int
     {

@@ -76,7 +76,7 @@ class Type
     }
 
     /**
-     * @Groups({"list_type","search_result"})
+     * @Groups({"list_type","search_result","accomodation_detail"})
      */
     public function getId(): ?int
     {

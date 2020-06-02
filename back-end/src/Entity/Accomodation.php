@@ -165,7 +165,7 @@ class Accomodation
     }
 
     /**
-     * @Groups({"search_result","authentified_user_account"})
+     * @Groups({"search_result","accomodation_detail","authentified_user_account"})
      */
     public function getId(): ?int
     {
@@ -173,7 +173,7 @@ class Accomodation
     }
 
     /**
-     * @Groups({"search_result"})
+     * @Groups({"search_result","accomodation_detail"})
      */
     public function getTitle(): ?string
     {
@@ -188,7 +188,7 @@ class Accomodation
     }
 
     /**
-     * @Groups({"search_result"})
+     * @Groups({"search_result","accomodation_detail"})
      */
     public function getCapacity(): ?int
     {
@@ -203,7 +203,7 @@ class Accomodation
     }
 
     /**
-     * @Groups({"search_result"})
+     * @Groups({"search_result","accomodation_detail"})
      */
     public function getDescription(): ?string
     {
@@ -218,7 +218,7 @@ class Accomodation
     }
 
     /**
-     * @Groups({"search_result"})
+     * @Groups({"search_result","accomodation_detail"})
      */
     public function getPrice(): ?int
     {
@@ -233,7 +233,7 @@ class Accomodation
     }
 
     /**
-     * @Groups({"search_result"})
+     * @Groups({"search_result","accomodation_detail"})
      */
     public function getAdress(): ?string
     {
@@ -248,7 +248,7 @@ class Accomodation
     }
 
     /**
-     * @Groups({"search_result"})
+     * @Groups({"search_result","accomodation_detail"})
      */
     public function getCity(): ?string
     {
@@ -263,7 +263,7 @@ class Accomodation
     }
 
     /**
-     * @Groups({"search_result"})
+     * @Groups({"search_result","accomodation_detail"})
      */
     public function getCountry(): ?string
     {
@@ -301,6 +301,9 @@ class Accomodation
         return $this;
     }
 
+    /**
+     * @Groups({"accomodation_detail"})
+     */
     public function getSurface(): ?int
     {
         return $this->surface;
@@ -313,6 +316,9 @@ class Accomodation
         return $this;
     }
 
+    /**
+     * @Groups({"accomodation_detail"})
+     */
     public function getNbNight(): ?int
     {
         return $this->nbNight;
@@ -325,6 +331,9 @@ class Accomodation
         return $this;
     }
 
+    /**
+     * @Groups({"accomodation_detail"})
+     */
     public function getElectricity(): ?bool
     {
         return $this->electricity;
@@ -337,6 +346,9 @@ class Accomodation
         return $this;
     }
 
+    /**
+     * @Groups({"accomodation_detail"})
+     */
     public function getPipedWater(): ?bool
     {
         return $this->pipedWater;
@@ -349,6 +361,9 @@ class Accomodation
         return $this;
     }
 
+    /**
+     * @Groups({"accomodation_detail"})
+     */
     public function getAccessibility(): ?bool
     {
         return $this->accessibility;
@@ -361,6 +376,9 @@ class Accomodation
         return $this;
     }
 
+    /**
+     * @Groups({"accomodation_detail"})
+     */
     public function getSmokers(): ?bool
     {
         return $this->smokers;
@@ -373,6 +391,9 @@ class Accomodation
         return $this;
     }
 
+    /**
+     * @Groups({"accomodation_detail"})
+     */
     public function getAnimals(): ?bool
     {
         return $this->animals;
@@ -385,6 +406,9 @@ class Accomodation
         return $this;
     }
 
+    /**
+     * @Groups({"accomodation_detail"})
+     */
     public function getFacebookLink(): ?string
     {
         return $this->facebookLink;
@@ -397,6 +421,9 @@ class Accomodation
         return $this;
     }
 
+    /**
+     * @Groups({"accomodation_detail"})
+     */
     public function getInstagramLink(): ?string
     {
         return $this->instagramLink;
@@ -409,6 +436,9 @@ class Accomodation
         return $this;
     }
 
+    /**
+     * @Groups({"accomodation_detail"})
+     */
     public function getIsValidated(): ?bool
     {
         return $this->isValidated;
@@ -446,7 +476,7 @@ class Accomodation
     }
 
     /**
-     * @Groups({"search_result"})
+     * @Groups({"search_result","accomodation_detail"})
      */
     public function getType(): ?Type
     {
@@ -462,6 +492,7 @@ class Accomodation
 
     /**
      * @return Collection|Extra[]
+     * @Groups({"accomodation_detail"})
      */
     public function getExtra(): Collection
     {
@@ -489,6 +520,7 @@ class Accomodation
 
     /**
      * @return Collection|Service[]
+     * @Groups({"accomodation_detail"})
      */
     public function getService(): Collection
     {
@@ -514,7 +546,7 @@ class Accomodation
     }
 
     /**
-     * @Groups({"search_result"})
+     * @Groups({"search_result","accomodation_detail"})
      * @return Collection|Picture[]
      */
     public function getPicture(): Collection
@@ -545,6 +577,9 @@ class Accomodation
         return $this;
     }
 
+    /**
+     * @Groups({"accomodation_detail"})
+     */
     public function getUser(): ?User
     {
         return $this->user;
@@ -558,7 +593,7 @@ class Accomodation
     }
 
     /**
-     * @Groups({"search_result"})
+     * @Groups({"search_result","accomodation_detail"})
      */
     public function getSlugger(): ?string
     {

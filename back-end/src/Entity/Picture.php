@@ -55,7 +55,7 @@ class Picture
     }
 
     /**
-     * @Groups({"search_result"})
+     * @Groups({"search_result","accomodation_detail"})
      */
     public function getName(): ?string
     {
@@ -70,7 +70,7 @@ class Picture
     }
 
     /**
-     * @Groups({"search_result"})
+     * @Groups({"search_result","accomodation_detail"})
      */
     public function getMain(): ?bool
     {

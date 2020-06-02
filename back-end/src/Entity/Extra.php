@@ -54,7 +54,7 @@ class Extra
     }
 
     /**
-     * @Groups({"list_extra"})
+     * @Groups({"list_extra","accomodation_detail"})
      */    
     public function getId(): ?int
     {

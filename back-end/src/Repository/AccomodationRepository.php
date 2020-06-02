@@ -108,7 +108,6 @@ class AccomodationRepository extends ServiceEntityRepository
 
     }
 
-
     // /**
     //  * @return Accomodation[] Returns an array of Accomodation objects
     //  */
