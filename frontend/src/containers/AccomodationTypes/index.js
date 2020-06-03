@@ -1,18 +1,14 @@
 import { connect } from 'react-redux';
-import { fetchAccomodationTypes } from 'src/actions/data';
-import App from 'src/components/App';
+import AccomodationTypes from 'src/components/AccomodationTypes';
 
 const mapStateToProps = (state) => ({
-  //TODO
+  types: state.data.accomodationTypes,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchAccomodationTypes: () => {
-    dispatch(fetchAccomodationTypes());
-  },
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(App);
+)(AccomodationTypes);

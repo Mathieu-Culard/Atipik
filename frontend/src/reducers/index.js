@@ -6,6 +6,7 @@ import utils from './utilsReducer';
 import connection from './connectionReducer';
 import map from './mapReducer';
 import user from './userReducer';
+import data from './dataReducer';
 
 const rootReducer = combineReducers({
   inscription,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   connection,
   map,
   user,
+  data,
 });
 
 export default rootReducer;

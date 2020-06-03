@@ -3,8 +3,6 @@ import axios from 'axios';
 import {
   SEARCH,
   saveSearchResult,
-  FETCH_ACCOMODATION_TYPES,
-  saveAccomodationTypes,
 } from '../actions/search';
 
 const searchMiddleware = (store) => (next) => (action) => {
@@ -51,16 +49,6 @@ const searchMiddleware = (store) => (next) => (action) => {
     }
 
 
-    case FETCH_ACCOMODATION_TYPES:
-      axios.get(`${process.env.REACT_APP_BACKEND_URL}/types`)
-        .then((response) => {
-          store.dispatch(saveAccomodationTypes(response.data));
-        })
-        .catch((error) => {
-          console.warn(error);
-        });
-      next(action);
-      break;
     default:
       next(action);
   }

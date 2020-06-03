@@ -13,10 +13,7 @@ export const SELECT_ALL = 'SELECT_ALL';
 
 // =========  API related actions
 export const SEARCH = 'SEARCH';
-export const FETCH_ACCOMODATION_TYPES = 'FETCH_ACCOMODATION_TYPES';
-
 export const SAVE_SEARCH_RESULT = 'SAVE_SEARCH_RESULT';
-export const SAVE_ACCOMODATION_TYPES = 'SAVE_ACCOMODATION_TYPES';
 
 
 // ========= control
@@ -68,13 +65,4 @@ export const saveSearchResult = (searchResult) => ({
 
 export const search = () => ({
   type: SEARCH,
-});
-
-export const fetchAccomodationTypes = () => ({
-  type: FETCH_ACCOMODATION_TYPES,
-});
-
-export const saveAccomodationTypes = (accomodationTypes) => ({
-  type: SAVE_ACCOMODATION_TYPES,
-  accomodationTypes,
 });

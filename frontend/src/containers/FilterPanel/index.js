@@ -11,7 +11,7 @@ import {
 } from 'src/actions/search';
 
 const mapStateToProps = (state) => ({
-  allTypes: state.search.accomodationTypes,
+  allTypes: state.data.accomodationTypes,
   types: state.search.types,
   capacity: state.search.capacity,
   nbNights: state.search.nbNights,

@@ -5,7 +5,7 @@ import { changeInscriptionField, submitInscription } from 'src/actions/inscripti
 
 const mapStateToProps = (state) => ({
   firstname: state.inscription.firstname,
-  lastname: state.inscription.lastName,
+  lastname: state.inscription.lastname,
   pseudo: state.inscription.pseudo,
   email: state.inscription.email,
   password: state.inscription.password,

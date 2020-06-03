@@ -8,7 +8,6 @@ import {
   SAVE_SEARCH_RESULT,
   CHANGE_FILTER_SWITCH,
   CHANGE_MIN_SURFACE,
-  SAVE_ACCOMODATION_TYPES,
 } from 'src/actions/search';
 
 import { getCheckedAccomodationTypes, selectAccomodationTypesByThematic } from 'src/utils';
@@ -37,11 +36,13 @@ const searchReducer = (state = initialState, action = {}) => {
         ...state,
         minSurface: action.value,
       };
+
     case CHANGE_FILTER_SWITCH:
       return {
         ...state,
         [action.identifier]: !state[action.identifier],
       };
+
     case CHANGE_TEXTFIELD:
       return {
         ...state,
@@ -53,26 +54,31 @@ const searchReducer = (state = initialState, action = {}) => {
         ...state,
         nbNights: action.value,
       };
+
     case CHANGE_CAPACITY:
       return {
         ...state,
         capacity: action.value,
       };
+
     case CHANGE_MAX_PRICE:
       return {
         ...state,
         maxPrice: action.value,
       };
+
     case CHANGE_ACCOMODATION_TYPES:
       return {
         ...state,
         types: getCheckedAccomodationTypes(state.types, action.value, action.checked),
       };
+
     case SELECT_ALL:
       return {
         ...state,
         types: selectAccomodationTypesByThematic(state.accomodationTypes, state.types, action.id),
       };
+
     case SAVE_SEARCH_RESULT:
       return {
         ...state,
@@ -90,11 +96,7 @@ const searchReducer = (state = initialState, action = {}) => {
         // smokers: true,
         // apmr: true,
       };
-    case SAVE_ACCOMODATION_TYPES:
-      return {
-        ...state,
-        accomodationTypes: action.accomodationTypes,
-      };
+
     default: return state;
   }
 };

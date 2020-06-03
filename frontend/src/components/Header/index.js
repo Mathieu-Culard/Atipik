@@ -44,7 +44,7 @@ const Header = ({
         <section className="header__top-bar">
           <img className="header__logo" src={logo} alt="Logo" />
           <div className="header__links">
-            <a className="header__link" href="#"> Nos hébergements </a>
+            <Link className="header__link" to="/types"> Nos hébergements </Link>
             { !isLogged && (
               <>
                 <Link className="header__link" to="/inscription"> Inscription </Link>
