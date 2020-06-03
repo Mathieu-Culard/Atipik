@@ -25,7 +25,7 @@ const initialState = {
   pipedWater: false,
   electricity: false,
   animals: false,
-  smokers: false,
+  smockers: false,
   apmr: false,
   searchResult: [],
 };
@@ -71,24 +71,24 @@ const searchReducer = (state = initialState, action = {}) => {
     case SELECT_ALL:
       return {
         ...state,
-        types: selectAccomodationTypesByThematic(state.types, action.id),
+        types: selectAccomodationTypesByThematic(state.accomodationTypes, state.types, action.id),
       };
     case SAVE_SEARCH_RESULT:
       return {
         ...state,
+        // city: '',
+        // country: '',
         searchResult: action.searchResult,
-        city: '',
-        country: '',
-        capacity: 0,
-        nbNights: 0,
-        maxPrice: 0,
-        types: [],
-        minSurface: 0,
-        pipedWater: false,
-        electricity: false,
-        animals: false,
-        smokers: false,
-        apmr: false,
+        // capacity: 0,
+        // nbNights: 0,
+        // maxPrice: 0,
+        // types: [],
+        // minSurface: 0,
+        // pipedWater: true,
+        // electricity: true,
+        // animals: true,
+        // smockers: true,
+        // apmr: true,
       };
     case SAVE_ACCOMODATION_TYPES:
       return {

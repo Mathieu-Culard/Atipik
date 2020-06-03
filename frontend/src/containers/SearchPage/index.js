@@ -1,18 +1,21 @@
 import { connect } from 'react-redux';
 import SearchPage from 'src/pages/SearchPage';
 
-import { fetchMarkerPositions } from 'src/actions/map';
+import { fetchMarkerPositions, resetMarkerPositions } from 'src/actions/map';
 
 
 const mapStateToProps = (state) => ({
-  // accomodations: state.search.searchResult,
-  mapCenter: `${state.search.city} ${state.search.country}`,
+  accomodations: state.search.searchResult,
+  mapCenter: `${state.map.city} ${state.map.country}`,
   loading: state.map.loading,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   fetchMarkerPositions: (adress, identifier) => {
     dispatch(fetchMarkerPositions(adress, identifier));
+  },
+  resetMarkerPositions: () => {
+    dispatch(resetMarkerPositions());
   },
 });
 

@@ -9,12 +9,15 @@ import Footer from 'src/components/Footer';
 import Home from 'src/containers/Home';
 import Header from 'src/containers/Header';
 import SearchPage from 'src/containers/SearchPage';
-import AccomodationPage from 'src/pages/AccomodationPage';
+import AccomodationPage from 'src/containers/AccomodationPage';
 import './app.scss';
 
-const App = ({ fetchAccomodationTypes }) => {
+const App = ({ fetchAccomodationTypes, fetchServices, fetchExtras }) => {
   useEffect(() => {
     fetchAccomodationTypes();
+    fetchServices();
+    fetchExtras();
+    localStorage.setItem('apiKey', 'AIzaSyDgvwB0FMtMpdC6bgjDKGE-hLGdTFxEhts');
   }, []);
   return (
     <div className="app">

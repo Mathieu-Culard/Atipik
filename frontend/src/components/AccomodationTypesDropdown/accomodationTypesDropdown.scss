@@ -25,7 +25,6 @@
   //   width: 20%;
   // }
   &__btn{
-    
     text-decoration: underline;
     padding-bottom: 0;
     border: none;
@@ -34,12 +33,13 @@
   &__items{
     overflow-x: auto;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     padding: 1rem 0;
   }
 }
 
 .type{
+  margin: 0 1rem;
   &__icon{
     width: 100px;
     padding: 1rem;
@@ -94,5 +94,3 @@
   box-shadow: 0 0 5px #333;
   z-index: -1;
 }
-
-

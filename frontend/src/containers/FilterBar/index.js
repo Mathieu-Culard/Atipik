@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import Home from 'src/pages/HomePage';
+import FilterBar from 'src/components/FilterBar';
 import {
   changeTextfield,
   changeCapacity,
@@ -8,6 +8,8 @@ import {
   changeMaxPrice,
   changeAccomodationTypes,
   search,
+  changeMinSurface,
+  changeFilterSwitch,
 } from 'src/actions/search';
 
 
@@ -18,9 +20,22 @@ const mapStateToProps = (state) => ({
   nbNightsValue: state.search.nbNights,
   priceScaleValue: state.search.maxPrice,
   accomodationTypesValue: state.search.types,
+  surfaceValue: state.search.minSurface,
+  pipedWaterValue: state.search.pipedWater,
+  electricityValue: state.search.electricity,
+  animalsValue: state.search.animals,
+  smockersValue: state.search.smockers,
+  apmrValue: state.search.apmr,
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  changeFilterSwitch: (identifier) => {
+    dispatch(changeFilterSwitch(identifier));
+  },
+
+  changeSurface: (newValue) => {
+    dispatch(changeMinSurface(newValue));
+  },
   changeTextfield: (newValue, identifier) => {
     dispatch(changeTextfield(newValue, identifier));
   },
@@ -44,4 +59,4 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Home);
+)(FilterBar);

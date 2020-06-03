@@ -1,0 +1,177 @@
+.accomodation {
+  width: 90%;
+  margin: auto;
+
+  &__head {
+    width: 100%;
+
+    &__carrousel {
+      width: 100%;
+      position: relative;
+
+      &__item {
+        position: relative;
+        width: 100%;
+        background-color: #ddf;
+
+        &__background {
+          position: absolute;
+          filter: opacity(10%);
+          z-index: 0;
+          top: -50%;
+          width: 100%;
+        }
+
+        &__image {
+          position: relative;
+          z-index: 1;
+          height: 500px;
+          margin: auto;
+          width: auto;
+        }
+      }
+
+      &__info {
+        position: absolute;
+        top: 90%;
+        left: 5%;
+      }
+    }
+
+    &__additional-info {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+
+      &__characteristics {
+        font-size: 1.5rem;
+        width: 50%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 3rem;
+        width: 50%;
+
+        img{
+          width: auto;
+          height: 50px;
+        }
+        &__capacity{
+          
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+
+      &__social-links {}
+    }
+  }
+
+  &__owner-card {
+    // display: none;
+    width: 15%;
+    position: fixed;
+    left: 80%;
+    top: 650px;
+
+    &__card {
+      padding: 1rem 1rem;
+      border: 1px solid #ccc;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      &__avatar {
+        margin: 0.5rem;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+      }
+
+      &__pseudo {
+        padding: 0.5rem;
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+      }
+
+      &__reservation {
+        padding: 1rem;
+        margin-top: 1rem;
+        border-top: 1px solid #ccc;
+      }
+    }
+  }
+
+  &__content {
+    width: 80%;
+
+    &__description {
+      &__title {
+        padding-bottom: 0.5rem;
+        width: 100%;
+        border-bottom: 1px solid #ccc;
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+
+      &__content {
+        padding: 3rem;
+        line-height: 1.5rem;
+      }
+    }
+
+    &__services {
+      &__title {
+        padding-bottom: 0.5rem;
+        width: 100%;
+        border-bottom: 1px solid #ccc;
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+
+      &__items {
+        padding: 3rem;
+        height: 37vh;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+      }
+
+      &__item {
+        width: 12%;
+        justify-content: space-between;
+        padding: 2rem 0;
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    &__extras {
+      &__title {
+        padding-bottom: 0.5rem;
+        width: 100%;
+        border-bottom: 1px solid #ccc;
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+
+      &__items {
+        padding: 3rem;
+        height: 37vh;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+      }
+
+      &__item {
+        width: 12%;
+        justify-content: space-between;
+        padding: 2rem 0;
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+}

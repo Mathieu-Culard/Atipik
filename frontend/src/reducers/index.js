@@ -1,15 +1,17 @@
 import { combineReducers } from 'redux';
 
-import search from './search';
+import search from './searchReducer';
 import utils from './utilsReducer';
 import user from './userReducer';
-import map from './map';
+import map from './mapReducer';
+import accomodation from './accomodationReducer';
 
 const rootReducer = combineReducers({
   search,
   utils,
   user,
   map,
+  accomodation,
 });
 
 export default rootReducer;

@@ -5,6 +5,7 @@ import {
 } from '../actions/user';
 
 const initialState = {
+  id: -1,
   username: '',
   password: '',
   email: '',

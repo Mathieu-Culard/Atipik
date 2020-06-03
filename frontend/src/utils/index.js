@@ -1,6 +1,3 @@
-/* eslint-disable import/prefer-default-export */
-import data from 'src/data/accomodationTypes';
-
 // used to display accomodationTypeDropdown correctly
 export const getAnchorPosition = () => {
   const top = window.screen.height / 3;
@@ -35,11 +32,10 @@ export const getCheckedAccomodationTypes = (checkedItems, id, checked) => {
  * @param {number} thematicId
  * id of the thematic whose items will be added to the state
  */
-export const selectAccomodationTypesByThematic = (checkedItems, thematicId) => {
-  const thematic = data.find((item) => (
+export const selectAccomodationTypesByThematic = (accomodationTypes, checkedItems, thematicId) => {
+  const thematic = accomodationTypes.find((item) => (
     item.id === thematicId
   ));
-
   const typesId = thematic.types.map((item) => (
     item.id
   ));
@@ -49,4 +45,85 @@ export const selectAccomodationTypesByThematic = (checkedItems, thematicId) => {
     a.indexOf(v) === i
   ));
   return removeDuplicate;
+};
+
+export const truncateDescription = (description) => (!!description && description.length > 100 ? `${description.slice(0, 100)}...` : description);
+
+export const createDataForSearch = (state) => {
+  const {
+    minSurface,
+    pipedWater,
+    electricity,
+    animals,
+    smockers,
+    apmr,
+    city,
+    country,
+    types,
+    nbNights,
+    maxPrice,
+    capacity,
+  } = state;
+  const data = {};
+  if (minSurface !== 0) {
+    data.min_surface = minSurface;
+  }
+  if (pipedWater) {
+    data.piped_water = true;
+  }
+  if (electricity) {
+    data.electricity = true;
+  }
+  if (animals) {
+    data.animals = true;
+  }
+  if (smockers) {
+    data.smokers = true;
+  }
+  if (apmr) {
+    data.apmr = true;
+  }
+  if (city !== '') {
+    data.city = city;
+  }
+  if (country !== '') {
+    data.country = country;
+  }
+  if (types.length !== 0) {
+    data.types = types;
+  }
+  if (nbNights !== 0) {
+    data.nbNights = nbNights;
+  }
+  if (capacity !== 0) {
+    data.capacity = capacity;
+  }
+  if (maxPrice !== 0) {
+    data.max_price = maxPrice;
+  }
+  return data;
+};
+
+export const getServices = (servicesList, accomodationServices) => {
+  const services = [];
+  for (let i = 0; i < servicesList.length; i += 1) {
+    for (let j = 0; j < accomodationServices.length; j += 1) {
+      if (servicesList[i].id === accomodationServices[j]) {
+        services.push(servicesList[i]);
+      }
+    }
+  }
+  return services;
+};
+
+export const getExtras = (extrasList, accomodationExtras) => {
+  const extras = [];
+  for (let i = 0; i < extrasList.length; i += 1) {
+    for (let j = 0; j < accomodationExtras.length; j += 1) {
+      if (extrasList[i].id === accomodationExtras[j]) {
+        extras.push(extrasList[i]);
+      }
+    }
+  }
+  return extras;
 };
