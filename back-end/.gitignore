@@ -31,6 +31,10 @@
 /public/assets/extra/icon/*.jpeg
 /public/assets/extra/icon/*.png
 
+/public/assets/accomodation/icon/*.jpg
+/public/assets/accomodation/icon/*.jpeg
+/public/assets/accomodation/icon/*.png
+
 ###> lexik/jwt-authentication-bundle ###
 /config/jwt/*.pem
 ###< lexik/jwt-authentication-bundle ###

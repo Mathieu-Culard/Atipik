@@ -153,10 +153,11 @@ class UserController extends AbstractController
             // We remove the user
             $em->remove($user);
             // We flush
-            $em->flush();
-        }
-        // We are redirected to the browse page
+            $em->flush();   
+            // We are redirected to the browse page
         return $this->redirectToRoute('admin_users_browse');
+        }
+     
     }
 
 

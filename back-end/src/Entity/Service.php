@@ -51,6 +51,10 @@ class Service
         $this->accomodations = new ArrayCollection();
         $this->createdAt = new \DateTime();
     }
+    public function __toString()
+    {
+        return $this->name; 
+    }
 
     /**
      * @Groups({"list_service","accomodation_detail"})

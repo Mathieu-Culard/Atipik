@@ -28,11 +28,11 @@ class AccomodationRepository extends ServiceEntityRepository
         if (isset($filters->types) && count($filters->types)> 0){
             $type = $filters->types;
             $qb->where("a.type = ".$type[0]);
-           
+
             // if there's other types
             for($i = 1;$i < count($type);$i++) {
                $qb->orWhere('a.type = '. $type[$i].' ');
-            } 
+            }
         }
 
         if (isset($filters->capacity)) {
@@ -102,9 +102,19 @@ class AccomodationRepository extends ServiceEntityRepository
         }
 
         $qb->andWhere('a.isValidated = 1');
-    
+
 
         return $qb->getQuery()->getResult();
+
+    }
+
+    public function findByValidateStatus()
+    {
+        return $this->createQueryBuilder('a')
+                    ->orderBy('a.createdAt','ASC')
+                    ->where('a.isValidated = 0')
+                    ->getQuery()
+                    ->getResult();
 
     }
 

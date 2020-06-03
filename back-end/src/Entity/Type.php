@@ -71,9 +71,10 @@ class Type
 
     public function __toString()
     {
+        return $this->name;
         return $this->thematic;
-        return $this->icon; 
-        
+        return $this->icon;
+        return $this->accomodations;
     }
 
     /**

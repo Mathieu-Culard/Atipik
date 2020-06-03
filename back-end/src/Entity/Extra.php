@@ -53,6 +53,10 @@ class Extra
         $this->createdAt = new \DateTime();
     }
 
+    public function __toString()
+    {
+        return $this->name; 
+    }
     /**
      * @Groups({"list_extra","accomodation_detail"})
      */    

@@ -1,0 +1,126 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+	<main>
+		<div class="title">
+			<h1 class="typeTitleList" id="titleList">Validation de l'hébergement</h1>
+		
+
+
+			<a href="{{path('admin_validate_accomodations_browse') }}" class="back-list-validate">Retour à la liste</a>
+
+		</div>
+
+	<hr class="my-4">
+
+<div class="validateBody">
+
+		<h3 class="validateUser">{{currentAccomodation.user.avatar}}{{currentAccomodation.user.pseudo}}
+			<a href="{{currentAccomodation.facebookLink}}">
+				<i class="fa fa-facebook-official" aria-hidden="true"></i>
+			</a>
+			<a href="{{currentAccomodation.InstagramLink}}">
+				<i class="fa fa-instagram" aria-hidden="true"></i>
+			</a>
+		</h3>
+
+		{% if currentAccomodation.picture is not null %}
+			{% for currentPicture in currentAccomodation.picture %}
+				<img
+				src="{{asset('assets/accomodation/'~ currentPicture.name)}}" alt="">
+			{% endfor %}
+		{% endif %}
+
+
+		<p>{{currentAccomodation.title}}</p>
+		<p>{{currentAccomodation.adress}}</p>
+		<p>{{currentAccomodation.city}},
+			{{currentAccomodation.country}}</p>
+
+		<p>{{currentAccomodation.type.name}}</p>
+
+		<p>Description :
+			{{currentAccomodation.description}}</p>
+
+		<p>Prix :
+			{{currentAccomodation.price}} € /nuit</p>
+
+		{% if currentAccomodation.pipedWater == true %}
+			<img src="{{asset('assets/accomodation/icon/water.png')}}" alt="">
+		
+		{% endif %}
+
+
+		{% if currentAccomodation.electricity == true %}
+			<img src="{{asset('assets/accomodation/icon/thunder.png')}}" alt="">
+		
+		{% endif %}
+			
+		
+		{% if currentAccomodation.animals == true %}
+			<img src="{{asset('assets/accomodation/icon/dogok.png')}}" alt="">
+		
+		{% endif %}
+
+		{% if currentAccomodation.smokers == true %}
+			<img src="{{asset('assets/accomodation/icon/smoke.png')}}" alt="">
+		
+		{% endif %}
+	
+		{% if currentAccomodation.accessibility == true %}
+			<img src="{{asset('assets/accomodation/icon/apmr.png')}}" alt="">
+		
+		{% endif %}
+		
+		{% if currentAccomodation.nbNight == true %} 
+			<p><img src="{{asset('assets/accomodation/icon/lit.png')}}" alt="">{{currentAccomodation.nbNight}}</p>
+		{% endif %}
+		
+	
+		<p>Surface :
+			{{currentAccomodation.surface}} m²</p>
+
+		<div class="row" id="validateExtrasServices">
+			<div class ="accomodationServices">
+			<h4>Services</h4>
+			<hr class="my-4">
+         <div>
+         {% for service in currentAccomodation.service %}
+			<div>
+			<p>{{service.name}}
+			<img src="{{asset('assets/service/icon/'~ service.icon)}}" alt=""></p>
+			{% endfor %}
+		</div>
+         </div>
+
+     
+         	<div> <h4>Extras</h4>    
+			 <hr class="my-4">
+         
+         <div class="accomodationExtras">
+         {% for extra in currentAccomodation.extra %}
+			<div><p>{{extra.name}}<img src="{{asset('assets/extra/icon/'~ extra.icon)}}" alt=""></p>
+			{% endfor %}
+		</div>
+         </div>
+
+
+         </div>
+		</div>
+	</div>
+</div>
+
+ <a href="{{ path('admin_validate_accomodations_validate', {'id' : currentAccomodation.id}) }}"><button type="submit" class="btn btn-success">Mettre en ligne</button></a>
+
+{{ form_start(deleteValidationType) }}
+{{ form_widget(deleteValidationType) }}
+{{ form_end(deleteValidationType) }}  
+
+{{ form_start(userBanish) }}
+{{ form_widget(userBanish) }}
+{{ form_end(userBanish) }}  
+
+<a href="{{path('admin_validate_accomodations_edit', {'id' : currentAccomodation.id })}}">
+<button type="edit" class="accomodation-button-edit">Modifier</button></a>
+
+	{% endblock %}

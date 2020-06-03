@@ -162,6 +162,15 @@ class Accomodation
         $this->extra = new ArrayCollection();
         $this->service = new ArrayCollection();
         $this->picture = new ArrayCollection();
+ 
+    }
+
+    public function __toString() : ?string
+    {
+        return $this->picture; 
+        return $this->type;
+        return $this->user;
+     
     }
 
     /**
@@ -482,6 +491,7 @@ class Accomodation
     {
         return $this->type;
     }
+
 
     public function setType(?Type $type): self
     {
