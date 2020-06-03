@@ -57,14 +57,23 @@ class AuthentifiedUserController extends AbstractController
             $newData = $userRepository->find($user->getId());
             // dd($newData);
 
-            $newData->setFirstname($jsonData->firstname);
-            $newData->setLastname($jsonData->lastname);
-            $newData->setPseudo($jsonData->pseudo);
-            $newData->setAvatar($jsonData->avatar);
-
-            // The password is encrypted before being assigned to the user.
-            $clearPassword = $jsonData->password;
-            $newData->setPassword($passwordEncoder->encodePassword($user, $clearPassword));
+            if (isset($jsonData->firstname)) {
+                $newData->setFirstname($jsonData->firstname);
+            }
+            if (isset($jsonData->lastname)) {
+                $newData->setLastname($jsonData->lastname);
+            }
+            if (isset($jsonData->pseudo)) {
+                $newData->setPseudo($jsonData->pseudo);
+            }
+            if (isset($jsonData->avatar)) {
+                $newData->setAvatar($jsonData->avatar);
+            }
+            if (isset($jsonData->password)) {
+                // The password is encrypted before being assigned to the user.
+                $clearPassword = $jsonData->password;
+                $newData->setPassword($passwordEncoder->encodePassword($user, $clearPassword));
+            }
 
             // We're updating the database
             $em->flush();
