@@ -35,8 +35,8 @@
 			<tr>
 				{% for type in types %}
 					<th class="align-middle" scope="row">{{type.id}}</th>
-					<td><img src="{{ asset('assets/type/picture/' ~ type.picture) }}" class='imgTypesList' alt=""></td>
-					<td><img src="{{ asset('assets/type/icon/' ~ type.icon) }}" class='icone-type-admin' alt=""></td>
+					<td><img src="{{ asset('assets/type/' ~ type.picture) }}" class='imgTypesList' alt=""></td>
+					<td><img src="{{ asset('assets/icon/' ~ type.icon) }}" class='icone-type-admin' alt=""></td>
 					<td class="align-middle">{{type.name}}</td>
 					<td class="align-middle">{{type.thematic.name}}</td>
 					<td>

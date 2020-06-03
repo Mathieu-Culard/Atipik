@@ -80,7 +80,7 @@ class ExtrasController extends AbstractController
                 // We rename the file 
                 $newName = $sluggerName . '.' . $extension; 
                 // We move the file to the folder
-                $iconFile->move($this->getParameter('extra_icons_directory'), $newName);
+                $iconFile->move($this->getParameter('icon_directory'), $newName);
 
               //  dd($iconFile); 
 
@@ -127,7 +127,7 @@ class ExtrasController extends AbstractController
                 //We rename the file
                 $newName = $sluggerName . '.' . $extension; 
                 // We move the file to the folder
-                $iconFile->move($this->getParameter('extra_icons_directory'), $newName);
+                $iconFile->move($this->getParameter('icon_directory'), $newName);
 
                 //dd($iconFile); 
             }

@@ -1,9 +1,14 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base.html.twig' %}
 
 {% block title %}Liste des utilisateurs{% endblock %}
 
 {% block body %}
 
+{{parent()}}
+
+<div class="rightSide">
+
+<main>
 
     <h1 class="typeTitleList">Utilisateurs de AtipiK</h1>
 
@@ -54,5 +59,8 @@
   {% endfor %}
 
 
+	</tbody>
+	</main>
+	</div>
 
 {% endblock %}

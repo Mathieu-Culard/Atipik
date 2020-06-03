@@ -91,15 +91,15 @@ class TypeController extends AbstractController
             //     // We rename the file 
             //     $newIconName = $sluggerIconName . '.' . $extension;
             //     // We move the file to the folder
-            //     $iconFile->move($this->getParameter('type_icons_directory'), $newIconName);
+            //     $iconFile->move($this->getParameter('icons_directory'), $newIconName);
             // }
 
             // // We flush 
             // $em->flush();
 
               //We use a service in order to move the picture
-              $newFileName = $fileUploader->saveFile($form['picture'], 'assets/type/picture');
-              $newIcon = $fileUploader->saveFile($form['icon'], 'assets/type/icon');
+              $newFileName = $fileUploader->saveFile($form['picture'], 'assets/type');
+              $newIcon = $fileUploader->saveFile($form['icon'], 'assets/icon');
           
               //We associate this new file to our type
               $type->setPicture($newFileName);
@@ -180,8 +180,8 @@ class TypeController extends AbstractController
        
        
             //We use a service in order to move the picture
-            $newFileName = $fileUploader->saveFile($form['picture'], 'assets/type/picture');
-            $newIcon = $fileUploader->saveFile($form['icon'], 'assets/type/icon');
+            $newFileName = $fileUploader->saveFile($form['picture'], 'assets/type');
+            $newIcon = $fileUploader->saveFile($form['icon'], 'assets/icon');
         
             //We associate this new file to our type
             $type->setPicture($newFileName);
