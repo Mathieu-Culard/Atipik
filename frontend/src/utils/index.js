@@ -55,7 +55,7 @@ export const createDataForSearch = (state) => {
     pipedWater,
     electricity,
     animals,
-    smockers,
+    smokers,
     apmr,
     city,
     country,
@@ -77,7 +77,7 @@ export const createDataForSearch = (state) => {
   if (animals) {
     data.animals = true;
   }
-  if (smockers) {
+  if (smokers) {
     data.smokers = true;
   }
   if (apmr) {

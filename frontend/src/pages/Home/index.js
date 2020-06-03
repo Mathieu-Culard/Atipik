@@ -81,7 +81,6 @@ const Home = ({
     changeNbPerson(evt.target.value);
   };
   const handleChange = (evt) => {
-    console.log(evt.target.value, evt.target.id);
     changeTextfield(evt.target.value, evt.target.id);
   };
 

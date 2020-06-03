@@ -1,22 +1,19 @@
-export const CHANGE_FIELD = 'CHANGE_FIELD';
-export const LOG_IN = 'LOG_IN';
-export const LOGIN_CHANGED = 'LOGIN_CHANGED';
-export const LOG_OUT = 'LOG_OUT';
+export const CHANGE_USER_FIELD = 'CHANGE_USER_FIELD';
+export const SUBMIT_USER_MODIFICATION = 'SUBMIT_USER_MODIFICATION';
+export const SAVE_USER_INFOS = 'SAVE_USER_INFOS';
+export const DELETE_ACCOUNT = 'DELETE_ACCOUNT';
 
-export const changeField = (identifier, newValue) => ({
-  type: CHANGE_FIELD,
+export const changeUserField = (newValue, identifier) => ({
+  type: CHANGE_USER_FIELD,
   newValue,
   identifier,
 });
 
-export const logIn = () => ({
-  type: LOG_IN,
+export const submitUserModification = () => ({ type: SUBMIT_USER_MODIFICATION });
+
+export const saveUserInfos = (data) => ({
+  type: SAVE_USER_INFOS,
+  data,
 });
 
-export const logOut = () => ({
-  type: LOG_OUT,
-});
-
-export const loginChanged = () => ({
-  type: LOGIN_CHANGED,
-});
+export const deleteAccount = () => ({ type: DELETE_ACCOUNT });

@@ -25,7 +25,7 @@ const initialState = {
   pipedWater: false,
   electricity: false,
   animals: false,
-  smockers: false,
+  smokers: false,
   apmr: false,
   searchResult: [],
 };
@@ -87,7 +87,7 @@ const searchReducer = (state = initialState, action = {}) => {
         // pipedWater: true,
         // electricity: true,
         // animals: true,
-        // smockers: true,
+        // smokers: true,
         // apmr: true,
       };
     case SAVE_ACCOMODATION_TYPES:

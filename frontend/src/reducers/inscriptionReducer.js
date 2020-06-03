@@ -9,7 +9,7 @@ const initialState = {
   confirmPassword: '',
 };
 
-const mapReducer = (state = initialState, action = {}) => {
+const inscriptionReducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case CHANGE_INSCRIPTION_FIELD:
       return {
@@ -27,4 +27,4 @@ const mapReducer = (state = initialState, action = {}) => {
   }
 };
 
-export default mapReducer;
+export default inscriptionReducer;

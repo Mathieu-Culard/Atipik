@@ -35,7 +35,6 @@ const searchMiddleware = (store) => (next) => (action) => {
         url: `${process.env.REACT_APP_BACKEND_URL}/search`,
         data,
       }).then((response) => {
-        console.log(response);
         store.dispatch(saveSearchResult(response.data));
       }).catch((error) => {
         console.warn(error);

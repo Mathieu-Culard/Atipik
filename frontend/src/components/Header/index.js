@@ -53,7 +53,10 @@ const Header = ({
               </>
             )}
             { isLogged && (
-              <a className="header__link" href="#" onClick={disconnect}>Déconnexion</a>
+              <>
+                <Link className="header__link" to="/profil"> Mon Profil </Link>
+                <a className="header__link" href="#" onClick={disconnect}>Déconnexion</a>
+              </>
             )}
           </div>
           <input onChange={toggleOpen} name="hamburger-toggle" type="checkbox" id="hamburger-toggle" value={open} />
@@ -72,9 +75,9 @@ const Header = ({
           </Breadcrumbs>
         </section>
         <List className={`${classes.root} ${mobileMenuLinksClass}`}>
-          <Link href="#"> Nos hébergements </Link>
+          <Link to="#"> Nos hébergements </Link>
           <Divider className="header__divider" />
-          <Link> Inscription </Link>
+          <Link to="/inscription"> Inscription </Link>
           <Link to="#"> Connexion </Link>
         </List>
       </nav>

@@ -1,37 +1,28 @@
-import {
-  CHANGE_FIELD,
-  LOGIN_CHANGED,
-  LOG_IN,
-} from '../actions/user';
+import { CHANGE_USER_FIELD, SAVE_USER_INFOS } from 'src/actions/user';
 
 const initialState = {
-  username: '',
-  password: '',
-  email: '',
+  id: 0,
   firstname: '',
   lastname: '',
-  isLogged: !!localStorage.getItem('jwt'),
+  pseudo: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
+  accomodations: [],
 };
 
 const userReducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case CHANGE_FIELD:
+    case CHANGE_USER_FIELD:
       return {
         ...state,
         [action.identifier]: action.newValue,
       };
 
-    case LOG_IN:
+    case SAVE_USER_INFOS:
       return {
         ...state,
-        email: '',
-        password: '',
-      };
-
-    case LOGIN_CHANGED:
-      return {
-        ...state,
-        isLogged: !!localStorage.getItem('jwt'),
+        ...action.data,
       };
 
     default: return state;

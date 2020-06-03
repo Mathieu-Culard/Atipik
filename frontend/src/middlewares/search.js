@@ -15,7 +15,7 @@ const searchMiddleware = (store) => (next) => (action) => {
         pipedWater,
         electricity,
         animals,
-        smockers,
+        smokers,
         apmr,
         city,
         types,
@@ -38,7 +38,7 @@ const searchMiddleware = (store) => (next) => (action) => {
           pipedWater,
           electricity,
           animals,
-          smockers,
+          smokers,
           apmr,
         },
       }).then((response) => {
