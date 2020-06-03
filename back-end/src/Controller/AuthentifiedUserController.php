@@ -74,7 +74,7 @@ class AuthentifiedUserController extends AbstractController
     }
 
     /**
-     * @Route("/account/delete", name="edit_account", methods={"DELETE"})
+     * @Route("/account/delete", name="delete_account", methods={"DELETE"})
      */
     public function deleteAccount(UserInterface $user, UserRepository $userRepository, EntityManagerInterface $em)
     {
