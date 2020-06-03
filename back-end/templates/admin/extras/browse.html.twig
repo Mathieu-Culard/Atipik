@@ -5,6 +5,12 @@
 
 {% block body %}
 
+{{parent()}}
+
+<div class="rightSide">
+
+<main>
+
 	<h1 class="typeTitleList">Extras</h1>
 
 	<a href="{{path('admin_extras_add')}}">
@@ -42,6 +48,8 @@
 				{% endfor %}
 
 	</tbody>
+	</main>
+	</div>
 		{% endblock %}
 
 
