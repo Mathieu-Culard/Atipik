@@ -311,16 +311,18 @@ height:auto;
     
     .deleteButtonType,
     .deleteButtonService, 
-    .deleteButtonExtra
+    .deleteButtonExtra,
+    .deleteButtonAccomodation
     {
         color:white;
-        background-color:red;
+        background-color : red;
         font-weight:bold;
         border-style:solid;
         border-width:2.5px;
         border-radius:10px;
      
-    }
+    
+    } 
     
     #extra_icon, 
     #extra_name, 

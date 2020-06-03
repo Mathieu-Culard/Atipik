@@ -108,6 +108,16 @@ class AccomodationRepository extends ServiceEntityRepository
 
     }
 
+    public function findByValidation()
+    {
+        return $this->createQueryBuilder('a')
+                    ->orderBy('a.createdAt','ASC')
+                    ->where('a.isValidated = 1')
+                    ->getQuery()
+                    ->getResult();
+
+    }
+
     public function findByValidateStatus()
     {
         return $this->createQueryBuilder('a')
