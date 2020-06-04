@@ -59,7 +59,7 @@ const CustomSlider = ({
         <Grid item className="slider__bar" sm={12} container xs={11}>
           <MUISlider
             value={value}
-            onChangeCommitted={handleChangeValue}
+            onChange={handleChangeValue}
             aria-labelledby="discrete-slider"
             valueLabelDisplay="on"
             step={step}

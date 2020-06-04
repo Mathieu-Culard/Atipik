@@ -1,0 +1,69 @@
+.manage-accomodation {
+  width: 90%;
+  margin: auto;
+
+  &__form {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    &__images {
+      order: 1;
+      width: 45%;
+      height: 500px;
+      background-color: #ccc;
+    }
+
+    &__info {
+      order: 2;
+      width: 45%;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-evenly;
+    }
+
+    &__switchs {
+      order: 4;
+      width: 45%;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-evenly;
+    }
+
+    &__social-links {
+      align-self: center;
+      display: flex;
+      justify-content: space-evenly;
+      width: 45%;
+      order: 3;
+    }
+
+    &__bottom {
+      justify-content: space-between;
+      display: flex;
+      flex-flow:row wrap;
+      margin-top: 2rem;
+      width: 100%;
+      order: 5;
+    }
+    &__services-extras{
+      min-height: 200px;
+      position: relative;
+      margin-top: 1rem;
+      padding: 1rem;
+      width: 49%;
+      border: 1px solid #ccc;
+      &__add{
+        position: absolute;
+        right: 5px;
+        bottom: 5px;
+      }
+    }
+
+    &__submit {
+      position: relative;
+      right: 0;
+      order: 6;
+    }
+  }
+}

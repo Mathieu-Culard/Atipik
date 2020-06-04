@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Slider from 'react-slick';
+import { Link } from 'react-router-dom';
 
 import { truncateDescription } from 'src/utils';
 import 'slick-carousel/slick/slick.css';
@@ -45,6 +46,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const ResultCard = ({
+  slugger,
   title,
   pictures,
   description,
@@ -61,23 +63,25 @@ const ResultCard = ({
   };
 
   return (
-    <Card className={classes.root}>
-      <Slider {...carouselSettings} className={classes.pictures}>
-        {pictures.map((picture) => (<div key={picture}><img src={`${process.env.REACT_APP_BACKEND_URL}/assets/type/picture/${picture}`} alt="" width="150" /></div>))}
-      </Slider>
-      <CardContent className={classes.content}>
-        <Typography variant="h6" component="h3">
-          {title}
-        </Typography>
-        <Typography variant="subtitle2" className={classes.location}>
-          {city}, {country}
-        </Typography>
-        <Typography variant="body2" component="p" className={classes.description}>
-          {truncateDescription(description)}
-        </Typography>
-        <Button size="small" color="primary" variant="outlined">En savoir plus</Button>
-      </CardContent>
-    </Card>
+    <Link to={`/hebergement/${slugger}`}>
+      <Card className={classes.root}>
+        <Slider {...carouselSettings} className={classes.pictures}>
+          {pictures.map((picture) => (<div key={picture}><img src={`${process.env.REACT_APP_BACKEND_URL}/assets/type/picture/${picture}`} alt="" width="150" /></div>))}
+        </Slider>
+        <CardContent className={classes.content}>
+          <Typography variant="h6" component="h3">
+            {title}
+          </Typography>
+          <Typography variant="subtitle2" className={classes.location}>
+            {city}, {country}
+          </Typography>
+          <Typography variant="body2" component="p" className={classes.description}>
+            {truncateDescription(description)}
+          </Typography>
+          <Button size="small" color="primary" variant="outlined">En savoir plus</Button>
+        </CardContent>
+      </Card>
+    </Link>
   );
 };
 
