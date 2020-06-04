@@ -4,13 +4,14 @@ import {
   CHANGE_NB_NIGHTS,
   CHANGE_MAX_PRICE,
   CHANGE_ACCOMODATION_TYPES,
-  SELECT_ALL,
+  CHANGE_MULTIPLE_ACCOMODATION_TYPES,
   SAVE_SEARCH_RESULT,
   CHANGE_FILTER_SWITCH,
   CHANGE_MIN_SURFACE,
+  CLEAR_FILTERS,
 } from 'src/actions/search';
 
-import { getCheckedAccomodationTypes, selectAccomodationTypesByThematic } from 'src/utils';
+import { getCheckedAccomodationTypes } from 'src/utils';
 
 const initialState = {
   accomodationTypes: [],
@@ -73,11 +74,16 @@ const searchReducer = (state = initialState, action = {}) => {
         types: getCheckedAccomodationTypes(state.types, action.value, action.checked),
       };
 
-    case SELECT_ALL:
+    case CHANGE_MULTIPLE_ACCOMODATION_TYPES: {
+      let newTypes = [...state.types];
+      for (let i = 0; i < action.value.length; i += 1) {
+        newTypes = getCheckedAccomodationTypes(newTypes, action.value[i], action.checked);
+      }
       return {
         ...state,
-        types: selectAccomodationTypesByThematic(state.accomodationTypes, state.types, action.id),
+        types: newTypes,
       };
+    }
 
     case SAVE_SEARCH_RESULT:
       return {
@@ -95,6 +101,11 @@ const searchReducer = (state = initialState, action = {}) => {
         // animals: true,
         // smokers: true,
         // apmr: true,
+      };
+
+    case CLEAR_FILTERS:
+      return {
+        ...initialState,
       };
 
     default: return state;

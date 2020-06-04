@@ -13,7 +13,7 @@ const dataReducer = (state = initialState, action = {}) => {
       };
 
     default:
-      return state
+      return state;
   }
 };
 

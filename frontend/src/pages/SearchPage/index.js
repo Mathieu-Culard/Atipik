@@ -14,6 +14,7 @@ const SearchPage = ({
   loading,
   resetMarkerPositions,
   setBreadcrumbs,
+  clearFilters,
 }) => {
   // resets and remakes a markerPosition list each time our results list changes
   useEffect(() => {
@@ -40,6 +41,7 @@ const SearchPage = ({
       },
     ];
     setBreadcrumbs(breadcrumbs);
+    return clearFilters;
   }, []);
 
   return (

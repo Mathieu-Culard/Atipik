@@ -3,6 +3,7 @@ import SearchPage from 'src/pages/SearchPage';
 
 import { fetchMarkerPositions, resetMarkerPositions } from 'src/actions/map';
 import { setBreadcrumbs } from 'src/actions/utils';
+import { clearFilters } from 'src/actions/search';
 
 
 const mapStateToProps = (state) => ({
@@ -19,6 +20,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(resetMarkerPositions());
   },
   setBreadcrumbs: (newValue) => dispatch(setBreadcrumbs(newValue)),
+  clearFilters: () => dispatch(clearFilters()),
 });
 
 export default connect(

@@ -5,8 +5,10 @@ export const CHANGE_CAPACITY = 'CHANGE_NB_PERSON';
 export const CHANGE_NB_NIGHTS = 'CHANGE_NB_NIGHTS';
 export const CHANGE_MAX_PRICE = 'CHANGE_MAX_PRICE';
 export const CHANGE_ACCOMODATION_TYPES = 'CHANGE_ACCOMODATION_TYPES';
+export const CHANGE_MULTIPLE_ACCOMODATION_TYPES = 'CHANGE_MULTIPLE_ACCOMODATION_TYPES';
 export const CHANGE_FILTER_SWITCH = 'CHANGE_FILTER_SWITCH';
 export const CHANGE_MIN_SURFACE = 'CHANGE_MIN_SURFACE';
+export const CLEAR_FILTERS = 'CLEAR_FILTERS';
 
 // ========= page related actions
 export const SELECT_ALL = 'SELECT_ALL';
@@ -34,6 +36,11 @@ export const changeAccomodationTypes = (newValue, checked) => ({
   value: newValue,
   checked,
 });
+export const changeMultipleAccomodationTypes = (ids, checked) => ({
+  type: CHANGE_MULTIPLE_ACCOMODATION_TYPES,
+  value: ids,
+  checked,
+});
 export const changeTextfield = (newValue, identifier) => ({
   type: CHANGE_TEXTFIELD,
   value: newValue,
@@ -49,6 +56,8 @@ export const changeFilterSwitch = (identifier) => ({
   type: CHANGE_FILTER_SWITCH,
   identifier,
 });
+
+export const clearFilters = () => ({ type: CLEAR_FILTERS });
 
 // ========= page
 
