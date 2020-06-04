@@ -9,6 +9,8 @@ const initialState = {
   password: '',
   confirmPassword: '',
   accomodations: [],
+  avatar: {},
+  avatarUrl: '',
 };
 
 const userReducer = (state = initialState, action = {}) => {
@@ -23,6 +25,8 @@ const userReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         ...action.data,
+        avatar: {},
+        avatarUrl: `${process.env.REACT_APP_BACKEND_URL}/assets/avatar/${action.data.avatar}`,
       };
 
     default: return state;

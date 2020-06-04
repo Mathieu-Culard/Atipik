@@ -1,7 +1,11 @@
 import { connect } from 'react-redux';
 import ProfileForm from 'src/components/ProfileForm';
 
-import { changeUserField, submitUserModification, deleteAccount } from 'src/actions/user';
+import {
+  changeUserField,
+  submitUserModification,
+  deleteAccount,
+} from 'src/actions/user';
 
 const mapStateToProps = (state) => ({
   pseudo: state.user.pseudo,
@@ -9,6 +13,8 @@ const mapStateToProps = (state) => ({
   lastname: state.user.lastname,
   password: state.user.password,
   confirmPassword: state.user.confirmPassword,
+  avatar: state.user.avatar,
+  avatarUrl: state.user.avatarUrl,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -11,16 +11,21 @@ const userMiddleware = (store) => (next) => (action) => {
         pseudo,
         password,
         confirmPassword,
+        avatar,
       } = store.getState().user;
-      const data = { firstname, lastname, pseudo };
+      const formData = new FormData();
+      formData.append('avatar', avatar);
+      formData.append('firstname', firstname);
+      formData.append('lastname', lastname);
+      formData.append('pseudo', pseudo);
       if (password !== '' && password === confirmPassword) {
-        data.password = password;
+        formData.append('password', password);
       }
-      axios({
-        method: 'post',
-        url: `${process.env.REACT_APP_API_URL}/account/edit`,
-        data,
-        headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}` },
+      axios.post(`${process.env.REACT_APP_API_URL}/account/edit`, formData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+          'Content-Type': 'multipart/form-data',
+        },
       })
         .then(() => {
           // TODO Display confirm message
