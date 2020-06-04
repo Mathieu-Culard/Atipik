@@ -10,6 +10,7 @@ import Home from 'src/containers/Home';
 import Header from 'src/containers/Header';
 import SearchPage from 'src/containers/SearchPage';
 import AccomodationPage from 'src/containers/AccomodationPage';
+import ContactPage from 'src/containers/ContactPage';
 import './app.scss';
 
 const App = ({ fetchAccomodationTypes, fetchServices, fetchExtras }) => {
@@ -29,6 +30,9 @@ const App = ({ fetchAccomodationTypes, fetchServices, fetchExtras }) => {
         <Route path="/hebergement/:id">
           <AccomodationPage />
         </Route>
+        <Route path="/contact">
+          <ContactPage />
+        </Route>
         <Route path="/">
           <Home />
         </Route>
@@ -40,6 +44,8 @@ const App = ({ fetchAccomodationTypes, fetchServices, fetchExtras }) => {
 
 App.propTypes = {
   fetchAccomodationTypes: PropTypes.func.isRequired,
+  fetchServices: PropTypes.func.isRequired,
+  fetchExtras: PropTypes.func.isRequired,
 };
 
 // == Export

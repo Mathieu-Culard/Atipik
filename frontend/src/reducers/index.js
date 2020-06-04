@@ -5,6 +5,7 @@ import utils from './utilsReducer';
 import user from './userReducer';
 import map from './mapReducer';
 import accomodation from './accomodationReducer';
+import contact from './contactReducer';
 
 const rootReducer = combineReducers({
   search,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   user,
   map,
   accomodation,
+  contact,
 });
 
 export default rootReducer;
