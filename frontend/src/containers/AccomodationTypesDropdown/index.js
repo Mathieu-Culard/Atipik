@@ -4,7 +4,7 @@ import { changeAccomodationTypes, selectAll } from 'src/actions/search';
 
 const mapStateToProps = (state) => ({
   accomodationTypesValue: state.search.types,
-  accomodationTypes: state.search.accomodationTypes,
+  accomodationTypes: state.data.accomodationTypes,
 });
 
 const mapDispatchToProps = (dispatch) => ({

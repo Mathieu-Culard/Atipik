@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
-import { fetchAccomodationTypes } from 'src/actions/search';
+
 import { fetchServices, fetchExtras } from 'src/actions/accomodation';
+import { fetchAccomodationTypes } from 'src/actions/data';
 import App from 'src/components/App';
 
 const mapStateToProps = (state) => ({

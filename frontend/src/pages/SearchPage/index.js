@@ -8,7 +8,13 @@ import Loader from 'src/components/Loader';
 import FilterPanel from 'src/containers/FilterPanel';
 
 const SearchPage = ({
-  accomodations, mapCenter, fetchMarkerPositions, loading, resetMarkerPositions
+  accomodations,
+  mapCenter,
+  fetchMarkerPositions,
+  loading,
+  resetMarkerPositions,
+  setBreadcrumbs,
+  clearFilters,
 }) => {
   // resets and remakes a markerPosition list each time our results list changes
   useEffect(() => {
@@ -22,6 +28,22 @@ const SearchPage = ({
   useEffect(() => {
     fetchMarkerPositions(mapCenter, 'center');
   }, []);
+
+  useEffect(() => {
+    const breadcrumbs = [
+      {
+        label: 'Accueil',
+        route: '/',
+      },
+      {
+        label: 'Recherche',
+        route: '#',
+      },
+    ];
+    setBreadcrumbs(breadcrumbs);
+    return clearFilters;
+  }, []);
+
   return (
     <div className="search-page">
       <FilterPanel />
@@ -51,6 +73,7 @@ SearchPage.propTypes = {
       pictures: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     }).isRequired,
   ).isRequired,
+  setBreadcrumbs: PropTypes.func.isRequired,
 };
 
 export default SearchPage;

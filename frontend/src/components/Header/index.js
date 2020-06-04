@@ -1,14 +1,12 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import Link from '@material-ui/core/Link';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 import LoginPanel from 'src/containers/LoginPanel';
@@ -29,16 +27,13 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function ListItemLink(props) {
-  return <ListItem button component="a" {...props} />;
-}
-
 const Header = ({
   open,
   toggleOpen,
   setLoginPanel,
   isLogged,
   disconnect,
+  breadcrumbs,
 }) => {
   const classes = useStyles();
   const mobileMenuLinksClass = classNames('header__links--mobile', { 'header__links--mobile--hide': !open });
@@ -49,16 +44,19 @@ const Header = ({
         <section className="header__top-bar">
           <img className="header__logo" src={logo} alt="Logo" />
           <div className="header__links">
-            <a className="header__link" href="#"> Nos hébergements </a>
+            <Link className="header__link" to="/types"> Nos hébergements </Link>
             { !isLogged && (
               <>
-                <a className="header__link" href="#"> Inscription </a>
+                <Link className="header__link" to="/inscription"> Inscription </Link>
                 <a className="header__link" href="#" onClick={() => setLoginPanel(true)}> Connexion </a>
                 <LoginPanel />
               </>
             )}
             { isLogged && (
-              <a className="header__link" href="#" onClick={disconnect}>Déconnexion</a>
+              <>
+                <Link className="header__link" to="/profil"> Mon Profil </Link>
+                <a className="header__link" href="#" onClick={disconnect}>Déconnexion</a>
+              </>
             )}
           </div>
           <input onChange={toggleOpen} name="hamburger-toggle" type="checkbox" id="hamburger-toggle" value={open} />
@@ -71,21 +69,16 @@ const Header = ({
         </section>
         <section className="header__breadcrumb">
           <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
-            <Link href="/">Accueil</Link>
-            <Link href="#">Recherche</Link>
+            { breadcrumbs.map((link) => (
+              <Link to={link.route} key={link.route}>{link.label}</Link>
+            ))}
           </Breadcrumbs>
         </section>
         <List className={`${classes.root} ${mobileMenuLinksClass}`}>
-          <ListItemLink href="#">
-            <ListItemText primary="Nos hébergements" />
-          </ListItemLink>
+          <Link to="#"> Nos hébergements </Link>
           <Divider className="header__divider" />
-          <ListItemLink href="#">
-            <ListItemText primary="Inscription" />
-          </ListItemLink>
-          <ListItemLink href="#">
-            <ListItemText primary="Connexion" />
-          </ListItemLink>
+          <Link to="/inscription"> Inscription </Link>
+          <Link to="#"> Connexion </Link>
         </List>
       </nav>
     </header>
@@ -98,6 +91,12 @@ Header.propTypes = {
   setLoginPanel: PropTypes.func.isRequired,
   isLogged: PropTypes.bool.isRequired,
   disconnect: PropTypes.func.isRequired,
+  breadcrumbs: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      route: PropTypes.string.isRequired,
+    }).isRequired,
+  ).isRequired,
 };
 
 export default Header;

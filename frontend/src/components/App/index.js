@@ -6,11 +6,15 @@ import {
 } from 'react-router-dom';
 
 import Footer from 'src/components/Footer';
-import Home from 'src/containers/Home';
 import Header from 'src/containers/Header';
+import HomePage from 'src/containers/Home';
 import SearchPage from 'src/containers/SearchPage';
 import AccomodationPage from 'src/containers/AccomodationPage';
 import ContactPage from 'src/containers/ContactPage';
+import ProfilePage from 'src/containers/ProfilePage';
+import InscriptionPage from 'src/containers/InscriptionPage';
+import AccomodationTypesPage from 'src/containers/AccomodationTypesPage';
+
 import './app.scss';
 
 const App = ({ fetchAccomodationTypes, fetchServices, fetchExtras }) => {
@@ -33,8 +37,17 @@ const App = ({ fetchAccomodationTypes, fetchServices, fetchExtras }) => {
         <Route path="/contact">
           <ContactPage />
         </Route>
+        <Route path="/inscription">
+          <InscriptionPage />
+        </Route>
+        <Route path="/profil">
+          <ProfilePage />
+        </Route>
+        <Route path="/types">
+          <AccomodationTypesPage />
+        </Route>
         <Route path="/">
-          <Home />
+          <HomePage />
         </Route>
       </Switch>
       <Footer />

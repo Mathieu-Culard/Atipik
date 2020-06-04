@@ -4,14 +4,14 @@ import {
   CHANGE_NB_NIGHTS,
   CHANGE_MAX_PRICE,
   CHANGE_ACCOMODATION_TYPES,
-  SELECT_ALL,
+  CHANGE_MULTIPLE_ACCOMODATION_TYPES,
   SAVE_SEARCH_RESULT,
   CHANGE_FILTER_SWITCH,
   CHANGE_MIN_SURFACE,
-  SAVE_ACCOMODATION_TYPES,
+  CLEAR_FILTERS,
 } from 'src/actions/search';
 
-import { getCheckedAccomodationTypes, selectAccomodationTypesByThematic } from 'src/utils';
+import { getCheckedAccomodationTypes } from 'src/utils';
 
 const initialState = {
   accomodationTypes: [],
@@ -25,7 +25,7 @@ const initialState = {
   pipedWater: false,
   electricity: false,
   animals: false,
-  smockers: false,
+  smokers: false,
   apmr: false,
   searchResult: [],
 };
@@ -37,11 +37,13 @@ const searchReducer = (state = initialState, action = {}) => {
         ...state,
         minSurface: action.value,
       };
+
     case CHANGE_FILTER_SWITCH:
       return {
         ...state,
         [action.identifier]: !state[action.identifier],
       };
+
     case CHANGE_TEXTFIELD:
       return {
         ...state,
@@ -53,26 +55,36 @@ const searchReducer = (state = initialState, action = {}) => {
         ...state,
         nbNights: action.value,
       };
+
     case CHANGE_CAPACITY:
       return {
         ...state,
         capacity: action.value,
       };
+
     case CHANGE_MAX_PRICE:
       return {
         ...state,
         maxPrice: action.value,
       };
+
     case CHANGE_ACCOMODATION_TYPES:
       return {
         ...state,
         types: getCheckedAccomodationTypes(state.types, action.value, action.checked),
       };
-    case SELECT_ALL:
+
+    case CHANGE_MULTIPLE_ACCOMODATION_TYPES: {
+      let newTypes = [...state.types];
+      for (let i = 0; i < action.value.length; i += 1) {
+        newTypes = getCheckedAccomodationTypes(newTypes, action.value[i], action.checked);
+      }
       return {
         ...state,
-        types: selectAccomodationTypesByThematic(state.accomodationTypes, state.types, action.id),
+        types: newTypes,
       };
+    }
+
     case SAVE_SEARCH_RESULT:
       return {
         ...state,
@@ -87,14 +99,15 @@ const searchReducer = (state = initialState, action = {}) => {
         // pipedWater: true,
         // electricity: true,
         // animals: true,
-        // smockers: true,
+        // smokers: true,
         // apmr: true,
       };
-    case SAVE_ACCOMODATION_TYPES:
+
+    case CLEAR_FILTERS:
       return {
-        ...state,
-        accomodationTypes: action.accomodationTypes,
+        ...initialState,
       };
+
     default: return state;
   }
 };

@@ -5,15 +5,22 @@ import searchMiddleware from 'src/middlewares/searchMiddleware';
 import mapMiddleware from 'src/middlewares/mapMiddleware';
 import accomodationMiddleware from 'src/middlewares/accomodationMiddleware';
 import contactMiddleware from 'src/middlewares/contactMiddleware';
+import connectionMiddleware from 'src/middlewares/connectionMiddleware';
+import inscriptionMiddleware from 'src/middlewares/inscriptionMiddleware';
+import dataMiddleware from 'src/middlewares/dataMiddleware';
+
 import reducer from 'src/reducers';
 
 const enhancer = composeWithDevTools(
   applyMiddleware(
-    userMiddleware,
+    connectionMiddleware,
     searchMiddleware,
     mapMiddleware,
     accomodationMiddleware,
     contactMiddleware,
+    userMiddleware,
+    inscriptionMiddleware,
+    dataMiddleware,
   ),
 );
 
