@@ -6,6 +6,7 @@
 parameters:
     type_pictures_directory: '%kernel.project_dir%/public/assets/type'
     icon_directory: '%kernel.project_dir%/public/assets/icon'
+    avatar_directory: '%kernel.project_dir%/public/assets/avatar'
 
 services:
     # default configuration for services in *this* file

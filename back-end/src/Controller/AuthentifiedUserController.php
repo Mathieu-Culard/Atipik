@@ -3,15 +3,18 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\AccountUser\UserType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 /**
  * @Route("/api", name="authentified_user_")
@@ -44,42 +47,63 @@ class AuthentifiedUserController extends AbstractController
     /**
      * @Route("/account/edit", name="edit_account", methods={"POST"})
      */
-    public function editAccount(Request $request, UserInterface $user, UserRepository $userRepository, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $em)
+    public function editAccount(UserRepository $userRepository, UserInterface $userInterface, Request $request, EntityManagerInterface $em, UserPasswordEncoderInterface $passwordEncoder)
     {
-        // We create a new object from the received JSON
-        $jsonData = json_decode($request->getContent());
-        //dd($jsonData);
+        // The information of the connected user is retrieved from the database.
+        $connectedUser = $userRepository->find($userInterface->getId());
 
-        // If data was transmitted in json
-        if (isset($jsonData)) {
+        // If an image was transmitted in the request
+        if (isset($request->files->all()['avatar'])) {
+            // We assign it to our user as an avatar.
+            $connectedUser->setAvatar($request->files->all()['avatar']);
+        }
 
-            // We store in a variable $newData the data of the user whose id corresponds to that of the connected user.
-            $newData = $userRepository->find($user->getId());
-            // dd($newData);
 
-            if (isset($jsonData->firstname)) {
-                $newData->setFirstname($jsonData->firstname);
-            }
-            if (isset($jsonData->lastname)) {
-                $newData->setLastname($jsonData->lastname);
-            }
-            if (isset($jsonData->pseudo)) {
-                $newData->setPseudo($jsonData->pseudo);
-            }
-            if (isset($jsonData->avatar)) {
-                $newData->setAvatar($jsonData->avatar);
-            }
-            if (isset($jsonData->password)) {
-                // The password is encrypted before being assigned to the user.
-                $clearPassword = $jsonData->password;
-                $newData->setPassword($passwordEncoder->encodePassword($user, $clearPassword));
+        // We create a form with the information of the logged-in user.
+        $form = $this->createForm(UserType::class, $connectedUser);
+
+        // The password already present in the database is saved.
+        $passwordInDB = $form->get('password')->getData();
+
+        // The form is submitted with the new data received
+        $form->submit($request->request->all(), false);
+        // The password is saved after submitting the form.
+        $newPassword = $form->get('password')->getData();
+
+        // If the form is valid
+        if ($form->isValid()) {
+            // If the password submitted is different from the one in the database
+            if ($passwordInDB !== $newPassword) {
+                // we encrypt the new password
+                $connectedUser->setPassword($passwordEncoder->encodePassword($connectedUser, $newPassword));
             }
 
-            // We're updating the database
+            // If a new avatar has been transmitted
+            if (isset($request->files->all()['avatar'])) {
+
+                //We store the file in a variable $newAvatar
+                $newAvatar = $request->files->all()['avatar'];
+
+                // We retrieve the extension of the transmitted image file
+                $extension = $newAvatar->getClientOriginalExtension();
+
+                // We rename the image file so that it follows a standard
+                $avatarName = 'User' . $connectedUser->getId() . '.' . $extension;
+
+                // The new file name is saved in the database.
+                $connectedUser->setAvatar($avatarName);
+
+                // The image is stored in a special folder and given the new name defined above.
+                $newAvatar->move($this->getParameter('avatar_directory'), $avatarName);
+            }
+
+            // The database is being updated
             $em->flush();
 
-            return $this->json('', 200);
+            return $this->json('', 201);
         }
+
+        return $this->json('', 403);
     }
 
     /**
@@ -89,12 +113,12 @@ class AuthentifiedUserController extends AbstractController
     {
         // We store in a variable $newData the data of the user whose id corresponds to that of the connected user.
         $newData = $userRepository->find($user->getId());
-        
+
         // We delete the user stored in the variable $newData
         $em->remove($newData);
         // We're updating the database
         $em->flush();
 
-        return $this->json('',200);
+        return $this->json('', 200);
     }
 }
