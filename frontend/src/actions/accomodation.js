@@ -10,7 +10,6 @@ export const RESET_MESSAGE = 'RESET_MESSAGE';
 export const CHANGE_DATE = 'CHANGE_DATE';
 export const SEND_RESERVATION = 'SEND_RESERVATION';
 
-
 export const sendReservation = (dateTo, dateFrom, accomodationId) => ({
   type: SEND_RESERVATION,
   dateTo,

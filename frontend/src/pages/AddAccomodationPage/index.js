@@ -148,7 +148,7 @@ const AddAccomodationPage = ({
             className={classes.formControl}
             // className={classes.textField}
             value={titleValue}
-          // onChange={handleFieldsChange}
+            onChange={handleFieldsChange}
           />
           <FormControl variant="outlined" className={classes.formControl}>
             <InputLabel id="demo-simple-select-outlined-label">Type</InputLabel>

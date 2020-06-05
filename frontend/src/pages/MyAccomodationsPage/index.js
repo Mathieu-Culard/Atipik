@@ -61,7 +61,6 @@ const MyAccomodationsPage = ({ fetchMyAccomodations, myAccomodationIds, myAccomo
 };
 
 MyAccomodationsPage.propTypes = {
-
 };
 
 export default MyAccomodationsPage;

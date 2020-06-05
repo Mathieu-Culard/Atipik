@@ -91,7 +91,6 @@ const AccomodationPage = ({
   };
 
   const handleContactOwnerClick = () => {
-    console.log(isLogged);
     if (!isLogged) {
       setLoginPanel(true);
     }
