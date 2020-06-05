@@ -8,7 +8,7 @@ import contactMiddleware from 'src/middlewares/contactMiddleware';
 import connectionMiddleware from 'src/middlewares/connectionMiddleware';
 import inscriptionMiddleware from 'src/middlewares/inscriptionMiddleware';
 import dataMiddleware from 'src/middlewares/dataMiddleware';
-
+import manageAccomodationMiddleware from 'src/middlewares/manageAccomodationMiddleware';
 import reducer from 'src/reducers';
 
 const enhancer = composeWithDevTools(
@@ -21,6 +21,7 @@ const enhancer = composeWithDevTools(
     userMiddleware,
     inscriptionMiddleware,
     dataMiddleware,
+    manageAccomodationMiddleware,
   ),
 );
 

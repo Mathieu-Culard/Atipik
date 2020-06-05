@@ -4,9 +4,16 @@ import { setManageAccomodationPanel } from 'src/actions/utils';
 import {
   changeMyAccomodationFields,
   changeMyAccomodationSwitchs,
+  changeMyAccomodationType,
+  submitAddAccomodationForm,
+  setEditMyAccomodationInfos,
+  resetMyAccomodationInfos,
+  submitEditMyAccomodationForm,
 } from 'src/actions/manageAccomodation';
 
 const mapStateToProps = (state) => ({
+  typeValue: state.manageAccomodation.type,
+  allTypes: state.data.accomodationTypes,
   priceValue: state.manageAccomodation.price,
   surfaceValue: state.manageAccomodation.surface,
   nbNightsValue: state.manageAccomodation.nbNights,
@@ -25,17 +32,34 @@ const mapStateToProps = (state) => ({
   animalsValue: state.manageAccomodation.animals,
   servicesList: state.accomodation.services,
   extrasList: state.accomodation.extras,
+  servicesValue: state.manageAccomodation.services,
+  extrasValue: state.manageAccomodation.extras,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setManageAccomodationPanel: () => {
-    dispatch(setManageAccomodationPanel());
+  submitAdd: () => {
+    dispatch(submitAddAccomodationForm());
+  },
+  submitEdit: (id) => {
+    dispatch(submitEditMyAccomodationForm(id));
+  },
+  setManageAccomodationPanel: (content, identifier) => {
+    dispatch(setManageAccomodationPanel(content, identifier));
   },
   changeFields: (identifier, newValue) => {
     dispatch(changeMyAccomodationFields(identifier, newValue));
   },
   changeSwitchs: (identifier) => {
     dispatch(changeMyAccomodationSwitchs(identifier));
+  },
+  changeType: (newValue) => {
+    dispatch(changeMyAccomodationType(newValue));
+  },
+  setInfo: (id) => {
+    dispatch(setEditMyAccomodationInfos(id));
+  },
+  resetInfo: () => {
+    dispatch(resetMyAccomodationInfos());
   },
 });
 

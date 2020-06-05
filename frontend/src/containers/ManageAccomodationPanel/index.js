@@ -1,19 +1,27 @@
 import { connect } from 'react-redux';
 
-import ContactOwnerPanel from 'src/components/ContactOwnerPanel';
+import ManageAccomodationPanel from 'src/components/ManageAccomodationPanel';
 
-import { setContactOwnerPanel } from 'src/actions/utils';
-import { sendMessage, changeContactOwnerPanelFields } from 'src/actions/accomodation';
+import { changeExtrasOrServices } from 'src/actions/manageAccomodation';
+import { setManageAccomodationPanel } from 'src/actions/utils';
 
 const mapStateToProps = (state) => ({
   isManageAccomodationPanelOpen: state.utils.isManageAccomodationPanelOpen,
+  content: state.manageAccomodation.panelContent,
+  checkedValues: state.manageAccomodation.panelCheckedItems,
+  identifier: state.manageAccomodation.panelIdentifier,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setManageAccomodationPanel: (newValue) => dispatch(setContactOwnerPanel(newValue)),
+  setManageAccomodationPanel: (content, identifier) => {
+    dispatch(setManageAccomodationPanel(content, identifier));
+  },
+  changeExtrasOrServices: (identifier, item, checked) => {
+    dispatch(changeExtrasOrServices(identifier, item, checked));
+  },
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ContactOwnerPanel);
+)(ManageAccomodationPanel);

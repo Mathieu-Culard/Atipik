@@ -26,6 +26,15 @@ export const getCheckedAccomodationTypes = (checkedItems, id, checked) => {
     item !== id
   ));
 };
+
+export const getCheckedItemsForServicesAndExtras = (checkedItems, item, checked) => {
+  if (checked) {
+    return (Object.values({ ...checkedItems, item }));
+  }
+  return checkedItems.filter((el) => (
+    el.id !== item.id
+  ));
+};
 /**
  * @param {array} checkedItems
  * values that are already present in the state accomodationTypeValue field
@@ -103,7 +112,13 @@ export const createDataForSearch = (state) => {
   }
   return data;
 };
-
+/**
+ * 
+ * @param {Array} servicesList array of object that represent all possible services
+ * @param {Array} accomodationServices array of number which are the ids of the services of the current accomodation
+ * 
+ * return an array of object that represent all the services of the current accomodation
+ */
 export const getServices = (servicesList, accomodationServices) => {
   const services = [];
   for (let i = 0; i < servicesList.length; i += 1) {
@@ -126,4 +141,11 @@ export const getExtras = (extrasList, accomodationExtras) => {
     }
   }
   return extras;
+};
+
+export const getCurrentAccomodation = (myAccomodations, id) => {
+  const currentAccomodation = myAccomodations.filter((accomodation) => (
+    accomodation.id === parseInt(id, 10)
+  ));
+  return currentAccomodation[0];
 };

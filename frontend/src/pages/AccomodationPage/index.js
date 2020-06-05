@@ -25,8 +25,8 @@ const useStyles = makeStyles(() => ({
 // ================fake data
 const accomodation = {
   pictures: [
-    `${process.env.REACT_APP_BACKEND_URL}/assets/type/picture/Igloo.jpg`,
-    `${process.env.REACT_APP_BACKEND_URL}/assets/type/picture/Igloo.jpeg`,
+    'Igloo.jpg',
+    'Igloo.jpeg',
   ],
   title: 'Tente tout confort',
   capacity: 3,
@@ -41,7 +41,7 @@ const accomodation = {
   animals: true,
   facebookLink: '',
   instagramLink: 'https://instagram.com',
-  services: [2, 0, 4],
+  services: [1, 2, 0, 4],
   extras: [0, 1, 2, 3, 4, 5],
   user: {
     id: 1,
@@ -91,6 +91,7 @@ const AccomodationPage = ({
   };
 
   const handleContactOwnerClick = () => {
+    console.log(isLogged);
     if (!isLogged) {
       setLoginPanel(true);
     }
@@ -100,9 +101,9 @@ const AccomodationPage = ({
   };
 
   const services = getServices(servicesList, accomodation.services);
-  console.log(services);
+
   const extras = getExtras(extrasList, accomodation.extras);
-  console.log(extras);
+
   return (
     <main className="accomodation">
       <div className="accomodation__head">
@@ -110,8 +111,8 @@ const AccomodationPage = ({
           <Slider {...carouselSettings} className={classes.pictures}>
             {accomodation.pictures.map((picture) => (
               <div key={picture} className="accomodation__head__carrousel__item">
-                <img src={picture} alt="" className="accomodation__head__carrousel__item__background" />
-                <img src={picture} alt="" className="accomodation__head__carrousel__item__image" />
+                <img src={`${process.env.REACT_APP_BACKEND_URL}/assets/type/picture/${picture}`} alt="" className="accomodation__head__carrousel__item__background" />
+                <img src={`${process.env.REACT_APP_BACKEND_URL}/assets/type/picture/${picture}`} alt="" className="accomodation__head__carrousel__item__image" />
               </div>
             ))}
           </Slider>
@@ -122,7 +123,7 @@ const AccomodationPage = ({
         </div>
         <div className="accomodation__head__additional-info">
           <div className="accomodation__head__additional-info__characteristics">
-            {accomodation.electricity && <img alt="electricity" src={`${process.env.REACT_APP_BACKEND_URL}/assets/type/icon/RY2Kef5s.png`} />}
+            {accomodation.electricity && <img alt="electricity" src={`${process.env.REACT_APP_BACKEND_URL}/assets/type/RY2Kef5s.png`} />}
             {accomodation.pipedWater && <img alt="piped water" src={`${process.env.REACT_APP_BACKEND_URL}/assets/type/icon/RY2Kef5s.png`} />}
             {accomodation.animals && <img alt="animals" src={`${process.env.REACT_APP_BACKEND_URL}/assets/type/icon/RY2Kef5s.png`} />}
             {accomodation.smokers && <img alt="smockers" src={`${process.env.REACT_APP_BACKEND_URL}/assets/type/icon/RY2Kef5s.png`} />}
@@ -179,7 +180,7 @@ const AccomodationPage = ({
           <div className="accomodation__content__services__items">
             {services.map((service) => (
               <div className="accomodation__content__services__item">
-                <img alt={service.name} src={`${process.env.REACT_APP_BACKEND_URL}/assets/type/icon/${service.icon}`} />
+                <img alt={service.name} src={`${process.env.REACT_APP_BACKEND_URL}/assets/icon/${service.icon}`} />
                 <p className="accomodation__content__services__item__name">{service.name}</p>
               </div>
             ))}
@@ -192,7 +193,7 @@ const AccomodationPage = ({
           <div className="accomodation__content__extras__items">
             {extras.map((extra) => (
               <div className="accomodation__content__extras__item">
-                <img alt={extra.name} src={`${process.env.REACT_APP_BACKEND_URL}/assets/type/icon/${extra.icon}`} />
+                <img alt={extra.name} src={`${process.env.REACT_APP_BACKEND_URL}/assets/icon/${extra.icon}`} />
                 <p className="accomodation__content__extras__item__name">{extra.name}</p>
               </div>
             ))}
@@ -200,7 +201,7 @@ const AccomodationPage = ({
           {/* <button type="button">Voir tous les extras</button> */}
         </div>
       </div>
-      <ContactOwnerPanel />_
+      <ContactOwnerPanel />
     </main>
   );
 };
