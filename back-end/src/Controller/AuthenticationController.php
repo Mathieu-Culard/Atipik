@@ -33,7 +33,7 @@ class AuthenticationController extends AbstractController
             $user->setFirstname($jsonData->firstname);
             $user->setLastname($jsonData->lastname);
             $user->setPseudo($jsonData->pseudo);
-            $user->setAvatar('avatar.jpg');
+            $user->setAvatar('avatar.png');
             $user->setRoles($user->getRoles());
     
             // The password is encrypted before being assigned to the user.
