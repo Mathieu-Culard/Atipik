@@ -10,6 +10,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import ManageAccomodationPanel from 'src/containers/ManageAccomodationPanel';
 import './addAccomodationPage.scss';
+import { useParams } from 'react-router-dom';
 
 const useStyles = makeStyles({
   formControl: {
@@ -22,36 +23,40 @@ const useStyles = makeStyles({
   },
 });
 
-// ================fake data
-const accomodation = {
-  pictures: [
-    `${process.env.REACT_APP_BACKEND_URL}/assets/type/picture/Igloo.jpg`,
-    `${process.env.REACT_APP_BACKEND_URL}/assets/type/picture/Igloo.jpeg`,
-  ],
-  title: 'Tente tout confort',
-  capacity: 3,
-  description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque maxime accusantium culpa, autem a eligendi doloremque iure iusto voluptate at, expedita labore veritatis qui? Provident doloremque sed sint, asperiores facilis tempora sapiente deleniti quas illum ad recusandae praesentium sequi nemo aperiam ullam debitis. Neque nobis accusantium quo dolore in temporibus ut, amet enim eaque necessitatibus natus placeat, provident sunt perspiciatis illo sapiente aspernatur veniam porro aliquam dolorem id laudantium! Vel perferendis nihil nulla quas impedit et nostrum itaque dolorem atque iste, assumenda nesciunt deleniti dolorum libero voluptatibus sit. Ex amet, nulla quo blanditiis ad voluptas ut, pariatur ullam nihil soluta error corporis illo voluptates atque alias consequatur ea, et fugiat ipsum nobis fuga? Eveniet magni cum tempore distinctio? Labore omnis tempora nisi mollitia eum eveniet? Dolore provident nihil beatae sequi quas ipsam at dolorem mollitia dignissimos ratione, ea nisi! Eos id vitae velit, hic eum quo sed nesciunt doloribus! Sed consectetur magnam deleniti architecto quod tempora possimus, quam saepe unde reiciendis eius vero id exercitationem molestias tempore amet beatae optio consequuntur vel dolore porro incidunt hic, doloribus recusandae. Repellendus ea consequuntur veritatis voluptatibus at, cumque error minima id delectus asperiores quaerat illo quos sint atque ab? Distinctio, dolorem rerum. Ex, sit nihil harum asperiores necessitatibus consequatur eligendi molestiae vero officia facere impedit veniam, explicabo expedita. Ab quaerat nostrum fugiat harum magnam ea. Aspernatur tempora nobis quae aliquam asperiores maiores reprehenderit ipsam vitae, saepe error rerum, voluptatem veritatis! Tempore, dolor. Reprehenderit maxime architecto cumque quas. Facere, saepe cum iusto similique nobis praesentium porro maiores alias repellat possimus maxime enim nihil unde at aperiam dolorem debitis eligendi corporis inventore voluptatem minima. Dicta quibusdam necessitatibus at perspiciatis, qui possimus voluptas eum velit rem earum asperiores culpa quae, deleniti quos sed molestias? Suscipit deleniti voluptatem, modi at sunt asperiores architecto repudiandae eligendi exercitationem amet, doloribus officia atque dignissimos. Autem labore beatae distinctio eum amet atque voluptates dolores hic minus quo ipsum eligendi natus velit, cumque quibusdam aliquam voluptas. Architecto est aliquid iusto vero. Illum odit esse omnis molestiae eaque labore. Modi, quaerat! Commodi dolorem fugit facilis ullam et voluptas possimus temporibus eos tenetur minima. Ipsam nisi recusandae laborum quisquam excepturi, dolorem totam officia doloremque ratione vitae, eligendi quia. Unde dolores doloremque cupiditate eos, provident vero, minus rem aperiam enim error quos modi. Provident odio voluptatem, similique in libero maxime perspiciatis cupiditate culpa explicabo, a eaque perferendis. Veritatis eius, tempore sit suscipit repudiandae libero reprehenderit iure tenetur aut! Deserunt harum architecto eligendi nisi dignissimos rerum, dicta, saepe voluptatibus eum vero et sapiente quia ratione iure, accusantium laboriosam illum earum neque a ipsum repudiandae facilis. Harum asperiores possimus soluta voluptate blanditiis adipisci, iusto cum, amet ratione nesciunt tempore. Quibusdam voluptatibus doloribus, veritatis atque laboriosam perferendis sunt recusandae asperiores libero ea suscipit quia aliquam. Tempora, ducimus praesentium nobis commodi dolorum neque earum mollitia illo excepturi quisquam hic culpa magni explicabo reiciendis dicta. Iusto minima autem asperiores harum quod, explicabo ab porro itaque libero dolore, iste veniam consequuntur rerum possimus incidunt! Veniam nemo ea, atque blanditiis dolorem nobis.',
-  city: 'Toulouse',
-  country: 'France',
-  surface: 20,
-  electricity: true,
-  pipedWater: true,
-  accessibility: false,
-  smokers: true,
-  animals: true,
-  facebookLink: '',
-  instagramLink: 'https://instagram.com',
-  services: [2, 0, 4],
-  extras: [0, 1, 2, 3, 4, 5],
-  user: {
-    id: 1,
-    avatar: 'Igloo.jpeg',
-    pseudo: 'Jean-Mich\'',
-  },
-};
+// // ================fake data
+// const accomodation = {
+//   pictures: [
+//     `${process.env.REACT_APP_BACKEND_URL}/assets/type/picture/Igloo.jpg`,
+//     `${process.env.REACT_APP_BACKEND_URL}/assets/type/picture/Igloo.jpeg`,
+//   ],
+//   title: 'Tente tout confort',
+//   capacity: 3,
+//   city: 'Toulouse',
+//   country: 'France',
+//   surface: 20,
+//   electricity: true,
+//   pipedWater: true,
+//   accessibility: false,
+//   smokers: true,
+//   animals: true,
+//   facebookLink: '',
+//   instagramLink: 'https://instagram.com',
+//   services: [2, 0, 4],
+//   extras: [0, 1, 2, 3, 4, 5],
+//   user: {
+//     id: 1,
+//     avatar: 'Igloo.jpeg',
+//     pseudo: 'Jean-Mich\'',
+//   },
+// };
 
-// ================fake data
+// // ================fake data
 const AddAccomodationPage = ({
+  submitAdd,
+  submitEdit,
+  changeType,
+  typeValue,
+  allTypes,
   setManageAccomodationPanel,
   servicesList,
   extrasList,
@@ -72,24 +77,59 @@ const AddAccomodationPage = ({
   smokersValue,
   animalsValue,
   changeFields,
-  changeSwitchs
+  changeSwitchs,
+  servicesValue,
+  extrasValue,
+  setInfo,
+  resetInfo,
 }) => {
-  const handleClick = () => {
-    setManageAccomodationPanel();
+  const { id } = useParams();
+  useEffect(() => {
+    if (id) {
+      setInfo(id);
+    }
+    else {
+      resetInfo();
+    }
+  }, [extrasList]);
+
+  const handleClick = (evt) => {
+    console.log(servicesList);
+    let content = servicesList;
+    let identifier = 'services';
+    if (evt.target.id === 'extras') {
+      identifier = 'extras';
+      content = extrasList;
+    }
+    console.log(content);
+    setManageAccomodationPanel(content, identifier);
   };
+  const handleTypeChange = (evt) => {
+    changeType(evt.target.value);
+  };
+
   const handleFieldsChange = (evt) => {
-    console.log(evt.target.value);
+    console.log(evt.target.id);
     changeFields(evt.target.id, evt.target.value);
   };
   const handleSwitchsChange = (evt) => {
     console.log(evt.target.id);
     changeSwitchs(evt.target.id);
   };
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    if (id) {
+      submitEdit(id);
+    }
+    else {
+      submitAdd();
+    }
+  };
 
   const classes = useStyles();
   return (
     <main className="manage-accomodation">
-      <form className="manage-accomodation__form">
+      <form className="manage-accomodation__form" onSubmit={handleSubmit}>
         <div className="manage-accomodation__form__images">
           <div className="manage-accomodation__form__image">
             <label htmlFor="img1">
@@ -115,11 +155,16 @@ const AddAccomodationPage = ({
             <Select
               // labelId="demo-simple-select-outlined-label"
               // id="demo-simple-select-outlined"
-              // value={(value === 0) ? '' : value}
-              // onChange={handleChangeValue}
+              id="type"
+              value={(typeValue === -1) ? '' : typeValue}
+              onChange={handleTypeChange}
               label="Type"
             >
-              {/* {fillDropdowns()} */}
+              {allTypes.map((thematic) => (
+                thematic.types.map((type) => (
+                  <MenuItem key={type.id} value={type.id}>{type.name}</MenuItem>
+                ))
+              ))}
             </Select>
           </FormControl>
           <TextField
@@ -290,19 +335,37 @@ const AddAccomodationPage = ({
           />
           <div className="manage-accomodation__form__services-extras">
             <p>Services</p>
-            <button type="button" className="manage-accomodation__form__services-extras__add" onClick={handleClick}>Ajouter</button>
+            <div className="manage-accomodation__form__services-extras__values">
+              {servicesValue.map((service) => (
+                <div className="manage-accomodation__form__services-extras__values__item" key={`service${service.id}`}>
+                  <img src={`${process.env.REACT_APP_BACKEND_URL}/assets/icon/${service.icon}`} alt="icon" />
+                  <p>{service.name}</p>
+                </div>
+              ))}
+            </div>
+            <button id="services" type="button" className="manage-accomodation__form__services-extras__add" onClick={handleClick}>Ajouter</button>
           </div>
           <div className="manage-accomodation__form__services-extras">
             <p>Extras</p>
-            <button type="button" className="manage-accomodation__form__services-extras__add" onClick={handleClick}>Ajouter</button>
+            <div className="manage-accomodation__form__services-extras__values">
+              {extrasValue.map((extra) => (
+                <div className="manage-accomodation__form__services-extras__values__item" key={`extra${extra.id}`}>
+                  <img src={`${process.env.REACT_APP_BACKEND_URL}/assets/icon/${extra.icon}`} alt="icon" />
+                  <p>{extra.name}</p>
+                </div>
+              ))}
+            </div>
+            <button id="extras" type="button" className="manage-accomodation__form__services-extras__add" onClick={handleClick}>Ajouter</button>
           </div>
         </div>
         <button type="submit" className="manage-accomodation__form__submit">Enregistrer</button>
       </form>
-    </main >
+      <ManageAccomodationPanel />
+    </main>
   );
 };
 AddAccomodationPage.propTypes = {
+  allTypes: PropTypes.array.isRequired,
 };
 
 export default AddAccomodationPage;

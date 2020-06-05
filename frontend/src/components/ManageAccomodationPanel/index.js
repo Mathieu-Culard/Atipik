@@ -7,6 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import { TextareaAutosize } from '@material-ui/core';
+import Item from './Item';
 
 const useStyles = makeStyles(() => ({
   box: {
@@ -24,6 +25,9 @@ const ManageAccomodationPanel = ({
   content,
   isManageAccomodationPanelOpen,
   setManageAccomodationPanel,
+  checkedValues,
+  changeExtrasOrServices,
+  identifier,
 }) => {
   const classes = useStyles();
 
@@ -31,11 +35,14 @@ const ManageAccomodationPanel = ({
   return (
     <Modal
       open={isManageAccomodationPanelOpen}
-      onClose={() => setManageAccomodationPanel(false)}
+      onClose={() => setManageAccomodationPanel(content, '')}
       className={classes.root}
     >
       <Box component="div" className={classes.box}>
 
+        {content.map((el) => (
+          <Item key={`panelItem${el.id}`} item={el} checkedValues={checkedValues} changeExtrasOrServices={changeExtrasOrServices} identifier={identifier} />
+        ))}
 
       </Box>
     </Modal>
@@ -43,7 +50,7 @@ const ManageAccomodationPanel = ({
 };
 
 ManageAccomodationPanel.propTypes = {
-
+  content: PropTypes.array.isRequired,
 };
 
 export default ManageAccomodationPanel;

@@ -1,5 +1,5 @@
 
-import { TOGGLE_OPEN, SET_LOGIN_PANEL, SET_BREADCRUMBS, SET_CONTACT_OWNER_PANEL } from 'src/actions/utils';
+import { TOGGLE_OPEN, SET_LOGIN_PANEL, SET_BREADCRUMBS, SET_CONTACT_OWNER_PANEL, SET_MANAGE_ACCOMODATION_PANEL  } from 'src/actions/utils';
 
 
 const initialState = {
@@ -7,6 +7,7 @@ const initialState = {
   loginPanel: false,
   isContactOwnerPanelOpen: false,
   breadcrumbs: [{ label: 'Accueil', route: '/' }],
+  isManageAccomodationPanelOpen: false,
 };
 
 const utilsReducer = (state = initialState, action = {}) => {
@@ -34,6 +35,11 @@ const utilsReducer = (state = initialState, action = {}) => {
         breadcrumbs: action.breadcrumbs,
       };
 
+    case SET_MANAGE_ACCOMODATION_PANEL:
+      return {
+        ...state,
+        isManageAccomodationPanelOpen: !state.isManageAccomodationPanelOpen,
+      };
     default: return state;
   }
 };

@@ -9,7 +9,7 @@ const mapStateToProps = (state) => ({
   dateFromFormated: state.accomodation.dateFromFormated,
   servicesList: state.accomodation.services,
   extrasList: state.accomodation.extras,
-  isLogged: state.user.isLogged,
+  isLogged: state.connection.isLogged,
   dateFrom: state.accomodation.dateFrom,
   dateTo: state.accomodation.dateTo,
   accomodationId: state.accomodation.id,

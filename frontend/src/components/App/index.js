@@ -16,6 +16,8 @@ import InscriptionPage from 'src/containers/InscriptionPage';
 import AccomodationTypesPage from 'src/containers/AccomodationTypesPage';
 
 import './app.scss';
+import MyAccomodationsPage from 'src/containers/MyAccomodationsPage';
+import AddAccomodationPage from 'src/containers/AddAccomodationPage';
 
 const App = ({ fetchAccomodationTypes, fetchServices, fetchExtras }) => {
   useEffect(() => {
@@ -45,6 +47,15 @@ const App = ({ fetchAccomodationTypes, fetchServices, fetchExtras }) => {
         </Route>
         <Route path="/types">
           <AccomodationTypesPage />
+        </Route>
+        <Route path="/gerer-mes-hebergements/modifier-un-hebergement/:id">
+          <AddAccomodationPage />
+        </Route>
+        <Route path="/gerer-mes-hebergements/nouvel-hebergement">
+          <AddAccomodationPage />
+        </Route>
+        <Route path="/gerer-mes-hebergements">
+          <MyAccomodationsPage />
         </Route>
         <Route path="/">
           <HomePage />

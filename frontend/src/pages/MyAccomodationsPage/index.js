@@ -37,11 +37,19 @@ const accomodation = {
 };
 
 // ================fake data
-const MyAccomodationsPage = () => {
-
+const MyAccomodationsPage = ({ fetchMyAccomodations, myAccomodationIds, myAccomodations }) => {
+  useEffect(() => {
+    // eslint-disable-next-line array-callback-return
+    myAccomodationIds.map((id) => {
+      fetchMyAccomodations(id);
+    });
+  }, []);
   return (
     <main className="my-accomodations">
-      <MyAccomodationCard {...accomodation} />
+
+      {myAccomodations.map((acc) => (
+        <MyAccomodationCard {...acc} />
+      ))}
       <MyAccomodationCard {...accomodation} />
       <MyAccomodationCard {...accomodation} />
       <MyAccomodationCard {...accomodation} />

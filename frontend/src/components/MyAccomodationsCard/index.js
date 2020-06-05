@@ -36,7 +36,7 @@ const MyAccomodationsPage = ({
           </div>
         </div>
       </div>
-      <Link to={`/gerer-mes-hebergements/${id}`}>
+      <Link to={`/gerer-mes-hebergements/modifier-un-hebergement/${id}`}>
         <button type="button">Modifier</button>
       </Link>
     </div>

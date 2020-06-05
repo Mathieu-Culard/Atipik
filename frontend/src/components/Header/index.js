@@ -34,6 +34,7 @@ const Header = ({
   isLogged,
   disconnect,
   breadcrumbs,
+  userAccomodations,
 }) => {
   const classes = useStyles();
   const mobileMenuLinksClass = classNames('header__links--mobile', { 'header__links--mobile--hide': !open });
@@ -45,16 +46,18 @@ const Header = ({
           <img className="header__logo" src={logo} alt="Logo" />
           <div className="header__links">
             <Link className="header__link" to="/types"> Nos hébergements </Link>
-            { !isLogged && (
+            {!isLogged && (
               <>
                 <Link className="header__link" to="/inscription"> Inscription </Link>
                 <a className="header__link" href="#" onClick={() => setLoginPanel(true)}> Connexion </a>
                 <LoginPanel />
               </>
             )}
-            { isLogged && (
+            {isLogged && (
               <>
                 <Link className="header__link" to="/profil"> Mon Profil </Link>
+                {userAccomodations.length === 0 && <Link className="header__link" to="/gerer-mes-hebergements/nouvel-hebergement"> Ajouter un hébergement </Link>}
+                {userAccomodations.length > 0 && <Link className="header__link" to="/gerer-mes-hebergements">Gerer mes hebergements</Link>}
                 <a className="header__link" href="#" onClick={disconnect}>Déconnexion</a>
               </>
             )}
@@ -69,7 +72,7 @@ const Header = ({
         </section>
         <section className="header__breadcrumb">
           <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
-            { breadcrumbs.map((link) => (
+            {breadcrumbs.map((link) => (
               <Link to={link.route} key={link.route}>{link.label}</Link>
             ))}
           </Breadcrumbs>
@@ -97,6 +100,7 @@ Header.propTypes = {
       route: PropTypes.string.isRequired,
     }).isRequired,
   ).isRequired,
+  userAccomodations: PropTypes.array.isRequired,
 };
 
 export default Header;
