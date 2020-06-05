@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
+
 /**
  * @ORM\Entity(repositoryClass=AccomodationRepository::class)
  */
@@ -159,9 +160,11 @@ class Accomodation
 
     public function __construct()
     {
+
         $this->extra = new ArrayCollection();
         $this->service = new ArrayCollection();
         $this->picture = new ArrayCollection();
+        $this->createdAt = new \DateTime();
  
     }
 
@@ -170,8 +173,12 @@ class Accomodation
         return $this->picture; 
         return $this->type;
         return $this->user;
-     
+        return $this->extra;
     }
+
+ /*    public function __toString() {
+        return implode(',', $this->extras);
+    } */
 
     /**
      * @Groups({"search_result","accomodation_detail","authentified_user_account"})
@@ -543,6 +550,11 @@ class Accomodation
             $this->service[] = $service;
         }
 
+        return $this;
+    }
+    public function setServices(ArrayCollection $services) : self
+    {
+        $this->service = $services;
         return $this;
     }
 

@@ -100,7 +100,6 @@ class ServicesController extends AbstractController
      * 
      */
     // Method to add a new Service
-
     public function add(Request $request, ServiceRepository $serviceRepository, SluggerInterface $slugger)
     {   
         // We create a new service

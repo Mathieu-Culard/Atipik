@@ -11,6 +11,7 @@ use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
+
 class AuthenticationController extends AbstractController
 {
     /**
@@ -60,5 +61,15 @@ class AuthenticationController extends AbstractController
         }
     }
 
+    /**
+     * @Route("/reset-password", name="reset_password", methods={"POST"})
+     */
+    public function resetPassword(Request $request) 
+    {
+        // We create a new object from the received JSON
+        $jsonData = json_decode($request->getContent());
+
+        return $this->json('',201);
+    }
 
 }
