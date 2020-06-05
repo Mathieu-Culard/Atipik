@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import LoginPanel from 'src/components/LoginPanel';
 
-import { setLoginPanel } from 'src/actions/utils';
+import { setLoginPanel, setLostPasswordPanel } from 'src/actions/utils';
 import { changeConnectionField, logIn } from 'src/actions/connection';
 
 const mapStateToProps = (state) => ({
@@ -13,6 +13,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   setLoginPanel: (newValue) => dispatch(setLoginPanel(newValue)),
+  setLostPasswordPanel: (newValue) => dispatch(setLostPasswordPanel(newValue)),
   changeField: (identifier, newValue) => {
     dispatch(changeConnectionField(identifier, newValue));
   },

@@ -30,7 +30,6 @@ const accomodationMiddleware = (store) => (next) => (action) => {
         headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}` },
       })
         .then((response) => {
-          console.log(response.data);
           store.dispatch(resetMessage());
         })
         .catch((error) => {
@@ -55,7 +54,6 @@ const accomodationMiddleware = (store) => (next) => (action) => {
     case FETCH_SERVICES: {
       axios.get(`${process.env.REACT_APP_BACKEND_URL}/services`)
         .then((response) => {
-          console.log(response.data);
           store.dispatch(saveServices(response.data));
         })
         .catch((error) => {
@@ -67,7 +65,6 @@ const accomodationMiddleware = (store) => (next) => (action) => {
     case FETCH_EXTRAS: {
       axios.get(`${process.env.REACT_APP_BACKEND_URL}/extras`)
         .then((response) => {
-          console.log(response.data);
           store.dispatch(saveExtras(response.data));
         })
         .catch((error) => {
@@ -95,7 +92,6 @@ const accomodationMiddleware = (store) => (next) => (action) => {
         headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}` },
       })
         .then((response) => {
-          console.log(response.data);
           store.dispatch(resetMessage());
         })
         .catch((error) => {

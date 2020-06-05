@@ -10,6 +10,7 @@ import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 import LoginPanel from 'src/containers/LoginPanel';
+import LostPasswordPanel from 'src/containers/LostPasswordPanel';
 
 import './header.scss';
 import logo from '../../assets/logo.png';
@@ -51,6 +52,7 @@ const Header = ({
                 <Link className="header__link" to="/inscription"> Inscription </Link>
                 <a className="header__link" href="#" onClick={() => setLoginPanel(true)}> Connexion </a>
                 <LoginPanel />
+                <LostPasswordPanel />
               </>
             )}
             {isLogged && (

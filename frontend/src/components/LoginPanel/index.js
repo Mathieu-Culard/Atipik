@@ -21,16 +21,23 @@ const useStyles = makeStyles(() => ({
 const LoginPanel = ({
   loginPanel,
   setLoginPanel,
+  setLostPasswordPanel,
   email,
   changeField,
   password,
   logIn,
 }) => {
   const classes = useStyles();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoginPanel(false);
     logIn();
+  };
+
+  const handleLostPassword = () => {
+    setLoginPanel(false);
+    setLostPasswordPanel(true);
   };
 
   return (
@@ -56,6 +63,7 @@ const LoginPanel = ({
           />
           <Button type="submit" variant="text">Se connecter</Button>
         </form>
+        <Button onClick={handleLostPassword}>Mot de passe oublié ?</Button>
       </Box>
     </Modal>
   );
@@ -64,6 +72,7 @@ const LoginPanel = ({
 LoginPanel.propTypes = {
   loginPanel: PropTypes.bool.isRequired,
   setLoginPanel: PropTypes.func.isRequired,
+  setLostPasswordPanel: PropTypes.func.isRequired,
   email: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
   changeField: PropTypes.func.isRequired,

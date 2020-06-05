@@ -1,5 +1,6 @@
 export const TOGGLE_OPEN = 'TOGGLE_OPEN';
 export const SET_LOGIN_PANEL = 'SET_LOGIN_PANEL';
+export const SET_LOST_PASSWORD_PANEL = 'SET_LOST_PASSWORD_PANEL';
 export const SET_CONTACT_OWNER_PANEL = 'SET_CONTACT_OWNER_PANEL';
 export const SET_MANAGE_ACCOMODATION_PANEL = 'SET_MANAGE_ACCOMODATION_PANEL';
 export const SET_BREADCRUMBS = 'SET_BREADCRUMBS';
@@ -16,6 +17,11 @@ export const toggleOpen = () => ({
 
 export const setLoginPanel = (newValue) => ({
   type: SET_LOGIN_PANEL,
+  newValue,
+});
+
+export const setLostPasswordPanel = (newValue) => ({
+  type: SET_LOST_PASSWORD_PANEL,
   newValue,
 });
 
