@@ -72,4 +72,5 @@ class AuthenticationController extends AbstractController
         return $this->json('',201);
     }
 
+
 }
