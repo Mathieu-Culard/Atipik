@@ -25,12 +25,11 @@ const useStyles = makeStyles(() => ({
 // ================fake data
 const accomodation = {
   pictures: [
-    'Igloo.jpg',
-    'Igloo.jpeg',
+    'tipi.jpg',
+    'tipi2.jpg',
   ],
   title: 'Tente tout confort',
   capacity: 3,
-  description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque maxime accusantium culpa, autem a eligendi doloremque iure iusto voluptate at, expedita labore veritatis qui? Provident doloremque sed sint, asperiores facilis tempora sapiente deleniti quas illum ad recusandae praesentium sequi nemo aperiam ullam debitis. Neque nobis accusantium quo dolore in temporibus ut, amet enim eaque necessitatibus natus placeat, provident sunt perspiciatis illo sapiente aspernatur veniam porro aliquam dolorem id laudantium! Vel perferendis nihil nulla quas impedit et nostrum itaque dolorem atque iste, assumenda nesciunt deleniti dolorum libero voluptatibus sit. Ex amet, nulla quo blanditiis ad voluptas ut, pariatur ullam nihil soluta error corporis illo voluptates atque alias consequatur ea, et fugiat ipsum nobis fuga? Eveniet magni cum tempore distinctio? Labore omnis tempora nisi mollitia eum eveniet? Dolore provident nihil beatae sequi quas ipsam at dolorem mollitia dignissimos ratione, ea nisi! Eos id vitae velit, hic eum quo sed nesciunt doloribus! Sed consectetur magnam deleniti architecto quod tempora possimus, quam saepe unde reiciendis eius vero id exercitationem molestias tempore amet beatae optio consequuntur vel dolore porro incidunt hic, doloribus recusandae. Repellendus ea consequuntur veritatis voluptatibus at, cumque error minima id delectus asperiores quaerat illo quos sint atque ab? Distinctio, dolorem rerum. Ex, sit nihil harum asperiores necessitatibus consequatur eligendi molestiae vero officia facere impedit veniam, explicabo expedita. Ab quaerat nostrum fugiat harum magnam ea. Aspernatur tempora nobis quae aliquam asperiores maiores reprehenderit ipsam vitae, saepe error rerum, voluptatem veritatis! Tempore, dolor. Reprehenderit maxime architecto cumque quas. Facere, saepe cum iusto similique nobis praesentium porro maiores alias repellat possimus maxime enim nihil unde at aperiam dolorem debitis eligendi corporis inventore voluptatem minima. Dicta quibusdam necessitatibus at perspiciatis, qui possimus voluptas eum velit rem earum asperiores culpa quae, deleniti quos sed molestias? Suscipit deleniti voluptatem, modi at sunt asperiores architecto repudiandae eligendi exercitationem amet, doloribus officia atque dignissimos. Autem labore beatae distinctio eum amet atque voluptates dolores hic minus quo ipsum eligendi natus velit, cumque quibusdam aliquam voluptas. Architecto est aliquid iusto vero. Illum odit esse omnis molestiae eaque labore. Modi, quaerat! Commodi dolorem fugit facilis ullam et voluptas possimus temporibus eos tenetur minima. Ipsam nisi recusandae laborum quisquam excepturi, dolorem totam officia doloremque ratione vitae, eligendi quia. Unde dolores doloremque cupiditate eos, provident vero, minus rem aperiam enim error quos modi. Provident odio voluptatem, similique in libero maxime perspiciatis cupiditate culpa explicabo, a eaque perferendis. Veritatis eius, tempore sit suscipit repudiandae libero reprehenderit iure tenetur aut! Deserunt harum architecto eligendi nisi dignissimos rerum, dicta, saepe voluptatibus eum vero et sapiente quia ratione iure, accusantium laboriosam illum earum neque a ipsum repudiandae facilis. Harum asperiores possimus soluta voluptate blanditiis adipisci, iusto cum, amet ratione nesciunt tempore. Quibusdam voluptatibus doloribus, veritatis atque laboriosam perferendis sunt recusandae asperiores libero ea suscipit quia aliquam. Tempora, ducimus praesentium nobis commodi dolorum neque earum mollitia illo excepturi quisquam hic culpa magni explicabo reiciendis dicta. Iusto minima autem asperiores harum quod, explicabo ab porro itaque libero dolore, iste veniam consequuntur rerum possimus incidunt! Veniam nemo ea, atque blanditiis dolorem nobis.',
   city: 'Toulouse',
   country: 'France',
   surface: 20,
@@ -52,6 +51,7 @@ const accomodation = {
 
 // ================fake data
 const AccomodationPage = ({
+  // accomodation,
   changeDate,
   dateFromFormated,
   dateToFormated,
@@ -110,8 +110,8 @@ const AccomodationPage = ({
           <Slider {...carouselSettings} className={classes.pictures}>
             {accomodation.pictures.map((picture) => (
               <div key={picture} className="accomodation__head__carrousel__item">
-                <img src={`${process.env.REACT_APP_BACKEND_URL}/assets/type/picture/${picture}`} alt="" className="accomodation__head__carrousel__item__background" />
-                <img src={`${process.env.REACT_APP_BACKEND_URL}/assets/type/picture/${picture}`} alt="" className="accomodation__head__carrousel__item__image" />
+                <img src={`${process.env.REACT_APP_BACKEND_URL}/assets/accomodation/${picture}`} alt="" className="accomodation__head__carrousel__item__background" />
+                <img src={`${process.env.REACT_APP_BACKEND_URL}/assets/accomodation/${picture}`} alt="" className="accomodation__head__carrousel__item__image" />
               </div>
             ))}
           </Slider>
@@ -122,14 +122,14 @@ const AccomodationPage = ({
         </div>
         <div className="accomodation__head__additional-info">
           <div className="accomodation__head__additional-info__characteristics">
-            {accomodation.electricity && <img alt="electricity" src={`${process.env.REACT_APP_BACKEND_URL}/assets/type/RY2Kef5s.png`} />}
-            {accomodation.pipedWater && <img alt="piped water" src={`${process.env.REACT_APP_BACKEND_URL}/assets/type/icon/RY2Kef5s.png`} />}
-            {accomodation.animals && <img alt="animals" src={`${process.env.REACT_APP_BACKEND_URL}/assets/type/icon/RY2Kef5s.png`} />}
-            {accomodation.smokers && <img alt="smockers" src={`${process.env.REACT_APP_BACKEND_URL}/assets/type/icon/RY2Kef5s.png`} />}
-            {accomodation.accessibility && <img alt="accessibility" src={`${process.env.REACT_APP_BACKEND_URL}/assets/type/icon/RY2Kef5s.png`} />}
+            {accomodation.electricity && <img alt="electricity" src={`${process.env.REACT_APP_BACKEND_URL}/assets/icon/electricity.png`} />}
+            {accomodation.pipedWater && <img alt="piped water" src={`${process.env.REACT_APP_BACKEND_URL}/assets/icon/pipedWater.png`} />}
+            {accomodation.animals && <img alt="animals" src={`${process.env.REACT_APP_BACKEND_URL}/assets/icon/Animaux.png`} />}
+            {accomodation.smokers && <img alt="smockers" src={`${process.env.REACT_APP_BACKEND_URL}/assets/icon/smokers.png`} />}
+            {accomodation.accessibility && <img alt="accessibility" src={`${process.env.REACT_APP_BACKEND_URL}/assets/icon/accessibility.png`} />}
             <div className="accomodation__head__additional-info__characteristics__capacity">
               <p>{accomodation.capacity}</p>
-              <img alt="accessibility" src={`${process.env.REACT_APP_BACKEND_URL}/assets/type/icon/RY2Kef5s.png`} />
+              <img alt="capacity" src={`${process.env.REACT_APP_BACKEND_URL}/assets/icon/capacity.png`} />
             </div>
             <p>{accomodation.surface} m²</p>
           </div>

@@ -9,7 +9,7 @@ const useStyles = makeStyles(() => ({
   thematicContent: {
     display: 'flex',
   },
-  type: {
+  accomodationType: {
     display: 'flex',
     flexDirection: 'column',
   },
@@ -29,11 +29,11 @@ const AccomodationTypes = ({ types, changeAccomodationTypes }) => {
           <h2>{thematic.name}</h2>
           <div className={classes.thematicContent}>
             {thematic.types.map((type) => (
-              <div key={type.id} className={classes.type}>
+              <div key={type.id} className={classes.accomodationType}>
                 <h3>{type.name}</h3>
-                <Link to="/recherche" className="type" onClick={() => presetSearch(type.id)}>
-                  <img className="type__picture" src={`${process.env.REACT_APP_BACKEND_URL}/assets/type/picture/${type.picture}`} alt={type.name} />
-                  <img className="type__icon" src={`${process.env.REACT_APP_BACKEND_URL}/assets/type/icon/${type.icon}`} alt={`icon ${type.name}`} />
+                <Link to="/recherche" className="accomodation-type" onClick={() => presetSearch(type.id)}>
+                  <img className="accomodation-type__picture" src={`${process.env.REACT_APP_BACKEND_URL}/assets/type/${type.picture}`} alt={type.name} />
+                  <img className="accomodation-type__icon" src={`${process.env.REACT_APP_BACKEND_URL}/assets/icon/${type.icon}`} alt={`icon ${type.name}`} />
                 </Link>
               </div>
             ))}

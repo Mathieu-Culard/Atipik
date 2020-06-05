@@ -18,7 +18,7 @@ const Type = ({ type, accomodationTypesValue, changeAccomodationTypes }) => {
 
       <input type="checkbox" id={`type-${type.id}`} className="check" checked={checked} onChange={handleChange} />
       <label htmlFor={`type-${type.id}`} className="type__input">
-        <img src={`${process.env.REACT_APP_BACKEND_URL}/assets/type/icon/${type.icon}`} alt="icon" className="type__icon" />
+        <img src={`${process.env.REACT_APP_BACKEND_URL}/assets/icon/${type.icon}`} alt="icon" className="type__icon" />
         <p className="type__name">{type.name}</p>
       </label>
     </div>

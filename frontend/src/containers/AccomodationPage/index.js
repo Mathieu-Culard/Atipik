@@ -13,6 +13,7 @@ const mapStateToProps = (state) => ({
   dateFrom: state.accomodation.dateFrom,
   dateTo: state.accomodation.dateTo,
   accomodationId: state.accomodation.id,
+  accomodation: state.accomodation.currentAccomodation,
 });
 
 const mapDispatchToProps = (dispatch) => ({

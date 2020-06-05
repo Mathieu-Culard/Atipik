@@ -6,6 +6,7 @@ import {
 } from 'src/actions/map';
 import {
   CHANGE_TEXTFIELD,
+  CLEAR_FILTERS,
 } from 'src/actions/search';
 
 
@@ -55,6 +56,12 @@ const mapReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         markerPositions: [],
+      };
+    case CLEAR_FILTERS:
+      return {
+        ...state,
+        city: 'Océan Atlantique',
+        country: '',
       };
     default: return state;
   }

@@ -6,6 +6,7 @@ import {
   SAVE_ACCOMODATION,
   RESET_MESSAGE,
   CHANGE_DATE,
+  FETCH_ACCOMODATION,
 } from '../actions/accomodation';
 
 const initialState = {
@@ -18,6 +19,7 @@ const initialState = {
   userMessage: '',
   userMessageObject: '',
   owner: [],
+  isLoading: true,
   services: [
     // {
     //   id: 0,
@@ -92,6 +94,12 @@ const accomodationReducer = (state = initialState, action = {}) => {
         userMessage: '',
         userMessageObject: '',
       };
+    case FETCH_ACCOMODATION: {
+      return {
+        ...state,
+        isLoading: true,
+      };
+    }
     case SAVE_ACCOMODATION:
       return {
         ...state,

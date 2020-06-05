@@ -66,7 +66,7 @@ const ResultCard = ({
     <Link to={`/hebergement/${slugger}`}>
       <Card className={classes.root}>
         <Slider {...carouselSettings} className={classes.pictures}>
-          {pictures.map((picture) => (<div key={picture}><img src={`${process.env.REACT_APP_BACKEND_URL}/assets/type/picture/${picture}`} alt="" width="150" /></div>))}
+          {pictures.map((picture) => (<div key={picture}><img src={`${process.env.REACT_APP_BACKEND_URL}/assets/accomodation/${picture}`} alt="" width="150" /></div>))}
         </Slider>
         <CardContent className={classes.content}>
           <Typography variant="h6" component="h3">
