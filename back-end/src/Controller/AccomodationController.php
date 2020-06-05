@@ -14,7 +14,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 class AccomodationController extends AbstractController
 {
     /**
-     * @Route("/accomodation/{slugger}", name="detail", methods={"GET"})
+     * @Route("/accomodation/{id}", name="detail", requirements={"id": "\d+"}, methods={"GET"})
      */
     public function accomodationDetail(Accomodation $accomodation, AccomodationRepository $accomodationRepository, SerializerInterface $serializer)
     {
