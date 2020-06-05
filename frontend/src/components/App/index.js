@@ -19,8 +19,14 @@ import './app.scss';
 import MyAccomodationsPage from 'src/containers/MyAccomodationsPage';
 import AddAccomodationPage from 'src/containers/AddAccomodationPage';
 
-const App = ({ fetchAccomodationTypes, fetchServices, fetchExtras }) => {
+const App = ({
+  fetchAccomodationTypes,
+  fetchServices,
+  fetchExtras,
+  fetchUserInfos,
+}) => {
   useEffect(() => {
+    fetchUserInfos();
     fetchAccomodationTypes();
     fetchServices();
     fetchExtras();
@@ -70,6 +76,7 @@ App.propTypes = {
   fetchAccomodationTypes: PropTypes.func.isRequired,
   fetchServices: PropTypes.func.isRequired,
   fetchExtras: PropTypes.func.isRequired,
+  fetchUserInfos: PropTypes.func.isRequired,
 };
 
 // == Export

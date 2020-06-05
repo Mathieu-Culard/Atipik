@@ -1,4 +1,10 @@
-import { LOG_IN, loginChanged, LOG_OUT } from 'src/actions/connection';
+import {
+  LOG_IN,
+  loginChanged,
+  LOG_OUT,
+  REMOVE_TOKEN,
+  removeToken,
+} from 'src/actions/connection';
 import axios from 'axios';
 
 const connectionMiddleware = (store) => (next) => (action) => {
@@ -17,9 +23,15 @@ const connectionMiddleware = (store) => (next) => (action) => {
     }
 
     case LOG_OUT: {
-      localStorage.removeItem('jwt');
       // TODO Redirect to home-page
+      store.dispatch(removeToken());
       store.dispatch(loginChanged());
+      next(action);
+      break;
+    }
+
+    case REMOVE_TOKEN: {
+      localStorage.removeItem('jwt');
       next(action);
       break;
     }

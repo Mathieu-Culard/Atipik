@@ -39,8 +39,7 @@ const accomodation = {
 // ================fake data
 const MyAccomodationsPage = ({ fetchMyAccomodations, myAccomodationIds, myAccomodations }) => {
   useEffect(() => {
-    // eslint-disable-next-line array-callback-return
-    myAccomodationIds.map((id) => {
+    myAccomodationIds.forEach((id) => {
       fetchMyAccomodations(id);
     });
   }, []);
