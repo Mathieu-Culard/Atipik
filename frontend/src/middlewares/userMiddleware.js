@@ -4,10 +4,9 @@ import {
   saveUserInfos,
   DELETE_ACCOUNT,
   FETCH_USER_INFOS,
-  fetchUserInfos,
   SAVE_USER_INFOS,
 } from '../actions/user';
-import { LOGIN_CHANGED, logOut } from '../actions/connection';
+import { logOut } from '../actions/connection';
 import { fetchMyAccomodations } from '../actions/manageAccomodation';
 
 const userMiddleware = (store) => (next) => (action) => {
@@ -43,11 +42,11 @@ const userMiddleware = (store) => (next) => (action) => {
       break;
     }
 
-    case LOGIN_CHANGED: {
+    case SAVE_USER_INFOS: {
       next(action);
-      if (store.getState().connection.isLogged) {
-        store.dispatch(fetchUserInfos());
-      }
+      action.data.accomodations.forEach((id) => {
+        store.dispatch(fetchMyAccomodations(id));
+      });
       break;
     }
 
@@ -64,14 +63,6 @@ const userMiddleware = (store) => (next) => (action) => {
           store.dispatch(logOut());
         });
       next(action);
-      break;
-    }
-
-    case SAVE_USER_INFOS: {
-      next(action);
-      action.data.accomodations.forEach((id) => {
-        store.dispatch(fetchMyAccomodations(id));
-      });
       break;
     }
 

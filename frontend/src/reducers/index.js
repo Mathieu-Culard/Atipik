@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { connectRouter } from 'connected-react-router';
 
 import inscription from './inscriptionReducer';
 import search from './searchReducer';
@@ -11,7 +12,8 @@ import user from './userReducer';
 import data from './dataReducer';
 import manageAccomodation from './manageAccomodationReducer';
 
-const rootReducer = combineReducers({
+const rootReducer = (history) => combineReducers({
+  router: connectRouter(history),
   inscription,
   search,
   utils,

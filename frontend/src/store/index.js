@@ -1,5 +1,7 @@
+import { createBrowserHistory } from 'history';
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { routerMiddleware } from 'connected-react-router';
 import userMiddleware from 'src/middlewares/userMiddleware';
 import searchMiddleware from 'src/middlewares/searchMiddleware';
 import mapMiddleware from 'src/middlewares/mapMiddleware';
@@ -11,8 +13,11 @@ import dataMiddleware from 'src/middlewares/dataMiddleware';
 import manageAccomodationMiddleware from 'src/middlewares/manageAccomodationMiddleware';
 import reducer from 'src/reducers';
 
+export const history = createBrowserHistory();
+
 const enhancer = composeWithDevTools(
   applyMiddleware(
+    routerMiddleware(history),
     connectionMiddleware,
     searchMiddleware,
     mapMiddleware,
@@ -25,9 +30,11 @@ const enhancer = composeWithDevTools(
   ),
 );
 
-const store = createStore(
-  reducer,
-  enhancer,
-);
-
-export default store;
+export default function configureStore(preloadedState) {
+  const store = createStore(
+    reducer(history),
+    preloadedState,
+    enhancer,
+  );
+  return store;
+}

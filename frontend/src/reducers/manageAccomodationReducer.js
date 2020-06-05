@@ -189,7 +189,7 @@ const manageAccomodationReducer = (state = initialState, action = {}) => {
         description: '',
         services: [],
         extras: [],
-      }
+      };
     default: return state;
   }
 };
