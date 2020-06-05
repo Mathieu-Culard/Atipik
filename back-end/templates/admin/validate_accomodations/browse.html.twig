@@ -17,7 +17,7 @@
 		<thead>
 			<tr class="table-primary">
 				<th scope="col">ID</th>
-				<th scope="col">Image principale</th>
+{# 				<th scope="col">Image principale</th> #}
 				<th scope="col">Nom</th>
 				<th scope="col">Type</th>
 				<th scope="col">Pays</th>
@@ -32,11 +32,11 @@
 				{% for accomodation in accomodations %}
         <th class="align-middle" scope="row">{{accomodation.id}}</th>
        
-		<td>{% for currentPicture in accomodation.picture %}
+{# 		<td>{% for currentPicture in accomodation.picture %}
 				<img
 				src="{{asset('assets/accomodation/'~ currentPicture.name)}}" alt="">
 		
-			{% endfor %}</td>
+			{% endfor %}</td> #}
         <td class="align-middle">{{accomodation.title}}</td>
         <td class="align-middle">{{accomodation.type.name}}</td>
         <td class="align-middle">{{accomodation.country}}</td>
