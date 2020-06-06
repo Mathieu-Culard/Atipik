@@ -5,11 +5,13 @@ import { setContactOwnerPanel, setLoginPanel } from 'src/actions/utils';
 
 
 const mapStateToProps = (state) => ({
+  isLoading: state.accomodation.isLoading,
   dateToFormated: state.accomodation.dateToFormated,
   dateFromFormated: state.accomodation.dateFromFormated,
   servicesList: state.accomodation.services,
   extrasList: state.accomodation.extras,
   isLogged: state.connection.isLogged,
+  owner: state.accomodation.owner,
   dateFrom: state.accomodation.dateFrom,
   dateTo: state.accomodation.dateTo,
   accomodationId: state.accomodation.id,

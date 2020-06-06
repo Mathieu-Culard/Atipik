@@ -50,7 +50,16 @@ const ManageAccomodationPanel = ({
 };
 
 ManageAccomodationPanel.propTypes = {
-  content: PropTypes.array.isRequired,
+  content: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+    }),
+  ).isRequired,
+  isManageAccomodationPanelOpen: PropTypes.bool.isRequired,
+  setManageAccomodationPanel: PropTypes.func.isRequired,
+  checkedValues: PropTypes.arrayOf(PropTypes.object).isRequired,
+  changeExtrasOrServices: PropTypes.func.isRequired,
+  identifier: PropTypes.string.isRequired,
 };
 
 export default ManageAccomodationPanel;

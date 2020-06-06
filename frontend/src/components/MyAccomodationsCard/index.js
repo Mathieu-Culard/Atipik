@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 // ================fake data
 const MyAccomodationsPage = ({
-  pictures, id, price, title, country, city, capacity, type
+  pictures, id, price, title, country, city, capacity, type,
 }) => {
 
   return (
@@ -43,6 +43,14 @@ const MyAccomodationsPage = ({
   );
 };
 MyAccomodationsPage.propTypes = {
+  pictures: PropTypes.arrayOf(PropTypes.string).isRequired,
+  id: PropTypes.number.isRequired,
+  price: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  country: PropTypes.string.isRequired,
+  city: PropTypes.string.isRequired,
+  capacity: PropTypes.number.isRequired,
+  type: PropTypes.number.isRequired,
 };
 
 export default MyAccomodationsPage;

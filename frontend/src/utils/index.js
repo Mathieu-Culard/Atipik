@@ -121,10 +121,12 @@ export const createDataForSearch = (state) => {
  */
 export const getServices = (servicesList, accomodationServices) => {
   const services = [];
-  for (let i = 0; i < servicesList.length; i += 1) {
-    for (let j = 0; j < accomodationServices.length; j += 1) {
-      if (servicesList[i].id === accomodationServices[j]) {
-        services.push(servicesList[i]);
+  if (accomodationServices) {
+    for (let i = 0; i < servicesList.length; i += 1) {
+      for (let j = 0; j < accomodationServices.length; j += 1) {
+        if (servicesList[i].id === accomodationServices[j]) {
+          services.push(servicesList[i]);
+        }
       }
     }
   }
@@ -133,10 +135,12 @@ export const getServices = (servicesList, accomodationServices) => {
 
 export const getExtras = (extrasList, accomodationExtras) => {
   const extras = [];
-  for (let i = 0; i < extrasList.length; i += 1) {
-    for (let j = 0; j < accomodationExtras.length; j += 1) {
-      if (extrasList[i].id === accomodationExtras[j]) {
-        extras.push(extrasList[i]);
+  if (accomodationExtras) {
+    for (let i = 0; i < extrasList.length; i += 1) {
+      for (let j = 0; j < accomodationExtras.length; j += 1) {
+        if (extrasList[i].id === accomodationExtras[j]) {
+          extras.push(extrasList[i]);
+        }
       }
     }
   }

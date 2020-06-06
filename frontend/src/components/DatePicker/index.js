@@ -18,9 +18,8 @@ const DatePicker = ({
         variant="inline"
         format="dd/MM/yyyy"
         margin="normal"
-        id="date-picker-inline"
         label={label}
-        value={dateValue}
+        value={dateValue === '' ? null : dateValue}
         onChange={handleDateChange}
         KeyboardButtonProps={{
           'aria-label': 'change date',
@@ -32,7 +31,10 @@ const DatePicker = ({
 
 DatePicker.propTypes = {
   changeDate: PropTypes.func.isRequired,
-  dateValue: PropTypes.instanceOf(Date).isRequired,
+  dateValue: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.instanceOf(Date),
+  ]).isRequired,
   label: PropTypes.string.isRequired,
   identifier: PropTypes.string.isRequired,
 };

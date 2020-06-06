@@ -365,6 +365,59 @@ const AddAccomodationPage = ({
   );
 };
 AddAccomodationPage.propTypes = {
+  submitAdd: PropTypes.func.isRequired,
+  submitEdit: PropTypes.func.isRequired,
+  changeType: PropTypes.func.isRequired,
+  typeValue: PropTypes.number.isRequired,
+  setManageAccomodationPanel: PropTypes.func.isRequired,
+  servicesList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      icon: PropTypes.string.isRequired,
+    }).isRequired,
+  ).isRequired,
+  extrasList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      icon: PropTypes.string.isRequired,
+    }).isRequired,
+  ).isRequired,
+  priceValue: PropTypes.number.isRequired,
+  surfaceValue: PropTypes.number.isRequired,
+  nbNightsValue: PropTypes.number.isRequired,
+  capacityValue: PropTypes.number.isRequired,
+  titleValue: PropTypes.string.isRequired,
+  cityValue: PropTypes.string.isRequired,
+  countryValue: PropTypes.string.isRequired,
+  adressValue: PropTypes.string.isRequired,
+  facebookValue: PropTypes.string.isRequired,
+  instagramValue: PropTypes.string.isRequired,
+  descriptionValue: PropTypes.string.isRequired,
+  pipedWaterValue: PropTypes.bool.isRequired,
+  electricityValue: PropTypes.bool.isRequired,
+  accessibilityValue: PropTypes.bool.isRequired,
+  smokersValue: PropTypes.bool.isRequired,
+  animalsValue: PropTypes.bool.isRequired,
+  changeFields: PropTypes.func.isRequired,
+  changeSwitchs: PropTypes.func.isRequired,
+  servicesValue: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      icon: PropTypes.string.isRequired,
+    }).isRequired,
+  ).isRequired,
+  extrasValue: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      icon: PropTypes.string.isRequired,
+    }).isRequired,
+  ).isRequired,
+  setInfo: PropTypes.func.isRequired,
+  resetInfo: PropTypes.func.isRequired,
   allTypes: PropTypes.array.isRequired,
 };
 

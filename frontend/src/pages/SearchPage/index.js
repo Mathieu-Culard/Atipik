@@ -74,6 +74,7 @@ SearchPage.propTypes = {
     }).isRequired,
   ).isRequired,
   setBreadcrumbs: PropTypes.func.isRequired,
+  clearFilters: PropTypes.func.isRequired,
 };
 
 export default SearchPage;
