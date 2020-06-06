@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Accomodation;
+use App\Entity\User;
 use App\Repository\AccomodationRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -16,7 +18,7 @@ class AccomodationController extends AbstractController
     /**
      * @Route("/accomodation/{id}", name="detail", requirements={"id": "\d+"}, methods={"GET"})
      */
-    public function accomodationDetail(Accomodation $accomodation, AccomodationRepository $accomodationRepository, SerializerInterface $serializer)
+    public function displayAccomodation(Accomodation $accomodation, AccomodationRepository $accomodationRepository, SerializerInterface $serializer)
     {
         // We recover the object Accomodation desired
         $currentAccomodation = $accomodationRepository->find($accomodation->getId());
@@ -80,5 +82,23 @@ class AccomodationController extends AbstractController
         unset($accomodationData['picture']);
 
         return $this->json($accomodationData,201);
+    }
+
+
+    /**
+     * @Route("/accomodation/{id}/owner", name="owner", methods={"GET"})
+     */
+    public function displayOwner(Accomodation $accomodation, AccomodationRepository $accomodationRepository, SerializerInterface $serializer)
+    {
+        // We recover the object Accomodation desired
+        $currentAccomodation = $accomodationRepository->findOwnerOfAccomodation($accomodation->getId());
+
+        //From the id we retrieve the information from the hosting provider
+        $owner = $currentAccomodation->getUser();
+
+        // We serialize our filtered data and normalize it to avoid circular references.
+        $ownerDetail = $serializer->normalize($owner, 'json', ['groups' => 'accomodation_owner']);
+
+        return $this->json($ownerDetail,201);
     }
 }

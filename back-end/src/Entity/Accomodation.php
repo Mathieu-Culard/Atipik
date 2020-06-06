@@ -170,10 +170,10 @@ class Accomodation
 
     public function __toString() : ?string
     {
-        return $this->picture; 
-        return $this->type;
-        return $this->user;
-        return $this->extra;
+        $this->picture; 
+        $this->type;
+        $this->user;
+        $this->extra;
     }
 
  /*    public function __toString() {
