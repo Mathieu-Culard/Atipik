@@ -11,6 +11,7 @@ import { push } from 'connected-react-router';
 
 import { fetchUserInfos, clearUserInfos } from 'src/actions/user';
 import { resetMyAccomodationInfos } from 'src/actions/manageAccomodation';
+import { closeModal } from 'src/actions/utils';
 
 const connectionMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -20,6 +21,7 @@ const connectionMiddleware = (store) => (next) => (action) => {
         username: email,
         password,
       }).then((response) => {
+        store.dispatch(closeModal());
         localStorage.setItem('jwt', response.data.token);
         store.dispatch(loginChanged());
       });

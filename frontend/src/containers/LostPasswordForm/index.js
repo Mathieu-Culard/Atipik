@@ -1,9 +1,8 @@
 import { connect } from 'react-redux';
 
-import LostPasswordPanel from 'src/components/LostPasswordPanel';
+import LostPasswordForm from 'src/components/LostPasswordForm';
 
-import { setLostPasswordPanel } from 'src/actions/utils';
-import { changeContactFields, resetPassword } from 'src/actions/contact';
+import { changeContactFields, resetPassword, resetContactMessage } from 'src/actions/contact';
 
 const mapStateToProps = (state) => ({
   email: state.contact.email,
@@ -11,14 +10,14 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setLostPasswordPanel: (newValue) => dispatch(setLostPasswordPanel(newValue)),
   changeEmail: (newValue) => {
     dispatch(changeContactFields('email', newValue));
   },
   resetPassword: () => dispatch(resetPassword()),
+  resetContactMessage: () => dispatch(resetContactMessage()),
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(LostPasswordPanel);
+)(LostPasswordForm);

@@ -2,8 +2,6 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Slider from 'react-slick';
 import { makeStyles } from '@material-ui/core/styles';
-import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
 import { useParams } from 'react-router-dom';
 import { Facebook, Instagram } from 'react-feather';
 import { getServices, getExtras } from 'src/utils';
@@ -61,7 +59,7 @@ const AccomodationPage = ({
   servicesList,
   extrasList,
   setContactOwnerPanel,
-  setLoginPanel,
+  openModal,
   isLogged,
   sendReservation,
   accomodationId,
@@ -83,7 +81,7 @@ const AccomodationPage = ({
   const handleReservationSubmit = (evt) => {
     evt.preventDefault();
     if (!isLogged) {
-      setLoginPanel(true);
+      openModal('LoginPanel');
     }
     else {
       sendReservation(dateToFormated, dateFromFormated, accomodationId);
@@ -92,7 +90,7 @@ const AccomodationPage = ({
 
   const handleContactOwnerClick = () => {
     if (!isLogged) {
-      setLoginPanel(true);
+      openModal('LoginPanel');
     }
     else {
       setContactOwnerPanel(true);

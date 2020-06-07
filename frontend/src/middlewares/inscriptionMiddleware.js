@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { SUBMIT_INSCRIPTION } from '../actions/inscription';
+import { closeModal } from '../actions/utils';
 
 const inscriptionMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -17,8 +18,8 @@ const inscriptionMiddleware = (store) => (next) => (action) => {
         email,
         password,
         pseudo,
-      }).then((response) => {
-        console.log('inscription ok');
+      }).then(() => {
+        store.dispatch(closeModal());
       });
       next(action);
       break;

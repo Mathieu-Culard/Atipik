@@ -5,21 +5,21 @@ import {
   Route,
 } from 'react-router-dom';
 
-import Footer from 'src/components/Footer';
+import Footer from 'src/containers/Footer';
 import Header from 'src/containers/Header';
 import HomePage from 'src/containers/Home';
 import SearchPage from 'src/containers/SearchPage';
 import AccomodationPage from 'src/containers/AccomodationPage';
-import ContactPage from 'src/containers/ContactPage';
 import ProfilePage from 'src/containers/ProfilePage';
-import InscriptionPage from 'src/containers/InscriptionPage';
 import AccomodationTypesPage from 'src/containers/AccomodationTypesPage';
-
-import './app.scss';
 import MyAccomodationsPage from 'src/containers/MyAccomodationsPage';
 import AddAccomodationPage from 'src/containers/AddAccomodationPage';
+import ModalPanel from 'src/containers/ModalPanel';
+
+import './app.scss';
 
 const App = ({
+  modal,
   fetchAccomodationTypes,
   fetchServices,
   fetchExtras,
@@ -42,12 +42,6 @@ const App = ({
         <Route path="/hebergement/:id">
           <AccomodationPage />
         </Route>
-        <Route path="/contact">
-          <ContactPage />
-        </Route>
-        <Route path="/inscription">
-          <InscriptionPage />
-        </Route>
         <Route path="/profil">
           <ProfilePage />
         </Route>
@@ -68,11 +62,13 @@ const App = ({
         </Route>
       </Switch>
       <Footer />
+      {modal && <ModalPanel />}
     </div>
   );
 };
 
 App.propTypes = {
+  modal: PropTypes.bool.isRequired,
   fetchAccomodationTypes: PropTypes.func.isRequired,
   fetchServices: PropTypes.func.isRequired,
   fetchExtras: PropTypes.func.isRequired,

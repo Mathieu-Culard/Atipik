@@ -1,5 +1,6 @@
 import {
   CHANGE_CONNECTION_FIELD,
+  CLEAR_CONNECTION_FORM,
   LOGIN_CHANGED,
   LOG_IN,
   LOG_OUT,
@@ -20,6 +21,11 @@ const userReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         [action.identifier]: action.newValue,
+      };
+
+    case CLEAR_CONNECTION_FORM:
+      return {
+        ...initialState,
       };
 
     case LOG_IN:

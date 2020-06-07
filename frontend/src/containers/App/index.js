@@ -6,7 +6,7 @@ import { fetchUserInfos } from 'src/actions/user';
 import App from 'src/components/App';
 
 const mapStateToProps = (state) => ({
-  //TODO
+  modal: state.utils.modal,
 });
 
 const mapDispatchToProps = (dispatch) => ({

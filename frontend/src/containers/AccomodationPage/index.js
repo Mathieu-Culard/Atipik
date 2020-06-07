@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import AccomodationPage from 'src/pages/AccomodationPage';
 import { fetchAccomodation, changeDate, sendReservation } from 'src/actions/accomodation';
-import { setContactOwnerPanel, setLoginPanel } from 'src/actions/utils';
+import { setContactOwnerPanel, openModal } from 'src/actions/utils';
 
 
 const mapStateToProps = (state) => ({
@@ -22,8 +22,8 @@ const mapDispatchToProps = (dispatch) => ({
   changeDate: (identifier, date, formatedDate) => {
     dispatch(changeDate(identifier, date, formatedDate));
   },
-  setLoginPanel: (newValue) => {
-    dispatch(setLoginPanel(newValue));
+  openModal: (component) => {
+    dispatch(openModal(component));
   },
   fetchAccomodation: (id) => {
     dispatch(fetchAccomodation(id));

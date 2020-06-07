@@ -1,6 +1,7 @@
 import {
   TOGGLE_OPEN,
-  SET_LOGIN_PANEL,
+  OPEN_MODAL,
+  CLOSE_MODAL,
   SET_LOST_PASSWORD_PANEL,
   SET_BREADCRUMBS,
   SET_CONTACT_OWNER_PANEL,
@@ -9,6 +10,10 @@ import {
 
 const initialState = {
   open: false,
+  menu: false,
+  modal: false,
+  modalComponent: '',
+  modalTitle: '',
   loginPanel: false,
   lostPasswordPanel: false,
   isContactOwnerPanelOpen: false,
@@ -24,10 +29,20 @@ const utilsReducer = (state = initialState, action = {}) => {
         open: !state.open,
       };
 
-    case SET_LOGIN_PANEL:
+    case OPEN_MODAL:
       return {
         ...state,
-        loginPanel: action.newValue,
+        modal: true,
+        modalComponent: action.component,
+        modalTitle: action.title,
+      };
+
+    case CLOSE_MODAL:
+      return {
+        ...state,
+        modal: false,
+        modalComponent: '',
+        modalTitle: '',
       };
 
     case SET_LOST_PASSWORD_PANEL:
@@ -53,6 +68,7 @@ const utilsReducer = (state = initialState, action = {}) => {
         ...state,
         isManageAccomodationPanelOpen: !state.isManageAccomodationPanelOpen,
       };
+
     default: return state;
   }
 };

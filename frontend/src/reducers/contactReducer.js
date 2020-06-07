@@ -16,10 +16,7 @@ const contactReducer = (state = initialState, action = {}) => {
     }
     case RESET_CONTACT_MESSAGE:
       return {
-        ...state,
-        email: '',
-        object: '',
-        message: '',
+        ...initialState,
       };
     default: return state;
   }

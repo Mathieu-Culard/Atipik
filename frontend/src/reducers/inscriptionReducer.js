@@ -1,4 +1,4 @@
-import { CHANGE_INSCRIPTION_FIELD, SUBMIT_INSCRIPTION } from 'src/actions/inscription';
+import { CHANGE_INSCRIPTION_FIELD, CLEAR_INSCRIPTION_FORM } from 'src/actions/inscription';
 
 const initialState = {
   firstname: '',
@@ -17,7 +17,7 @@ const inscriptionReducer = (state = initialState, action = {}) => {
         [action.identifier]: action.newValue,
       };
 
-    case SUBMIT_INSCRIPTION:
+    case CLEAR_INSCRIPTION_FORM:
       return {
         ...state,
         ...initialState,

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { sendMessageToAdmin, changeContactFields } from 'src/actions/contact';
-import ContactPage from 'src/pages/ContactPage';
+import { sendMessageToAdmin, changeContactFields, resetContactMessage } from 'src/actions/contact';
+import ContactForm from 'src/components/ContactForm';
 
 const mapStateToProps = (state) => ({
   emailValue: state.contact.email,
@@ -15,9 +15,10 @@ const mapDispatchToProps = (dispatch) => ({
   sendMessage: () => {
     dispatch(sendMessageToAdmin());
   },
+  resetContactMessage: () => dispatch(resetContactMessage()),
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ContactPage);
+)(ContactForm);
