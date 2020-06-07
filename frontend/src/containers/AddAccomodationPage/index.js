@@ -5,6 +5,7 @@ import {
   changeMyAccomodationFields,
   changeMyAccomodationSwitchs,
   changeMyAccomodationType,
+  changeMyAccomodationPictures,
   submitAddAccomodationForm,
   setEditMyAccomodationInfos,
   resetMyAccomodationInfos,
@@ -34,9 +35,13 @@ const mapStateToProps = (state) => ({
   extrasList: state.accomodation.extras,
   servicesValue: state.manageAccomodation.services,
   extrasValue: state.manageAccomodation.extras,
+  picturesURL: state.manageAccomodation.picturesURL,
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  changePictures: (pictures) => {
+    dispatch(changeMyAccomodationPictures(pictures));
+  },
   submitAdd: () => {
     dispatch(submitAddAccomodationForm());
   },

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 // ================fake data
 const MyAccomodationsPage = ({
-  pictures, id, price, title, country, city, capacity, type,
+  pictures, id, price, title, country, city, capacity, type, deleteMyAccomodation
 }) => {
 
   return (
@@ -12,6 +12,10 @@ const MyAccomodationsPage = ({
       <div className="my-accomodations__card__content">
         <div className="my-accomodations__card__content__image">
           <img src={`${process.env.REACT_APP_BACKEND_URL}/assets/type/picture/${pictures[0]}`} alt="mon hébergement" />
+          <Link to={`/gerer-mes-hebergements/modifier-un-hebergement/${id}`}>
+            <button type="button">Modifier</button>
+          </Link>
+          <button type="button" onClick={() => (deleteMyAccomodation(id))}>Supprimer</button>
         </div>
         <div className="my-accomodations__card__content__infos">
           <div className="my-accomodations__card__content__info">
@@ -36,9 +40,7 @@ const MyAccomodationsPage = ({
           </div>
         </div>
       </div>
-      <Link to={`/gerer-mes-hebergements/modifier-un-hebergement/${id}`}>
-        <button type="button">Modifier</button>
-      </Link>
+
     </div>
   );
 };
@@ -51,6 +53,7 @@ MyAccomodationsPage.propTypes = {
   city: PropTypes.string.isRequired,
   capacity: PropTypes.number.isRequired,
   type: PropTypes.number.isRequired,
+  deleteMyAccomodation: PropTypes.func.isRequired,
 };
 
 export default MyAccomodationsPage;

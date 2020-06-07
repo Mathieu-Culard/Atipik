@@ -82,6 +82,8 @@ const AddAccomodationPage = ({
   extrasValue,
   setInfo,
   resetInfo,
+  picturesURL,
+  changePictures,
 }) => {
   const { id } = useParams();
   useEffect(() => {
@@ -125,19 +127,35 @@ const AddAccomodationPage = ({
       submitAdd();
     }
   };
+  const handleAddPicture = (evt) => {
+    const a = [1, 2, 3, 4];
+    console.log(...a);
+    // console.log(evt.target.files);
+    changePictures(evt.target.files);
+  };
 
   const classes = useStyles();
   return (
     <main className="manage-accomodation">
       <form className="manage-accomodation__form" onSubmit={handleSubmit}>
         <div className="manage-accomodation__form__images">
-          <div className="manage-accomodation__form__image">
+          {
+            picturesURL.map((picture) => (
+              <img src={picture} alt="accomodation" className="manage-accomodation__form__image" />
+            ))
+          }
+
+          <label htmlFor="files-input">
+            <input id="files-input" type="file" multiple onChange={handleAddPicture} />
+            Ajouter
+          </label>
+          {/* <div className="manage-accomodation__form__image">
             <label htmlFor="img1">
               <img src="" alt="" />
               <input type="radio" id="img1" />
             </label>
-          </div>
-          <button type="button">Ajouter</button>
+          </div> */}
+          {/* <button type="button">Ajouter</button> */}
         </div>
 
         <div className="manage-accomodation__form__info">
@@ -365,6 +383,7 @@ const AddAccomodationPage = ({
   );
 };
 AddAccomodationPage.propTypes = {
+  picturesURL: PropTypes.arrayOf(PropTypes.string).isRequired,
   submitAdd: PropTypes.func.isRequired,
   submitEdit: PropTypes.func.isRequired,
   changeType: PropTypes.func.isRequired,

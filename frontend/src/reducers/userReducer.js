@@ -1,3 +1,4 @@
+import { REMOVE_MY_ACCOMODATION } from 'src/actions/manageAccomodation';
 import { CHANGE_USER_FIELD, SAVE_USER_INFOS } from 'src/actions/user';
 
 const initialState = {
@@ -15,6 +16,13 @@ const initialState = {
 
 const userReducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case REMOVE_MY_ACCOMODATION:
+      return {
+        ...state,
+        accomodations: state.accomodations.filter(
+          (accomodationId) => (accomodationId !== action.id),
+        ),
+      };
     case CHANGE_USER_FIELD:
       return {
         ...state,

@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 import MyAccomodationCard from 'src/components/MyAccomodationsCard';
 import './myAccomodationsPage.scss';
-import accomodationReducer from '../../reducers/accomodationReducer';
 
 // ================fake data
 // const accomodation = {
@@ -37,7 +36,7 @@ import accomodationReducer from '../../reducers/accomodationReducer';
 // };
 
 // ================fake data
-const MyAccomodationsPage = ({ fetchMyAccomodations, myAccomodationIds, myAccomodations }) => {
+const MyAccomodationsPage = ({ fetchMyAccomodations, myAccomodationIds, myAccomodations, deleteMyAccomodation }) => {
   useEffect(() => {
     // eslint-disable-next-line array-callback-return
     myAccomodationIds.map((id) => {
@@ -48,7 +47,7 @@ const MyAccomodationsPage = ({ fetchMyAccomodations, myAccomodationIds, myAccomo
     <main className="my-accomodations">
 
       {myAccomodations.map((acc) => (
-        <MyAccomodationCard {...acc} key={acc.id} />
+        <MyAccomodationCard {...acc} key={acc.id} deleteMyAccomodation={deleteMyAccomodation} />
       ))}
       {/* <MyAccomodationCard {...accomodation} />
       <MyAccomodationCard {...accomodation} />
@@ -68,6 +67,7 @@ MyAccomodationsPage.propTypes = {
       id: PropTypes.number.isRequired,
     }).isRequired,
   ).isRequired,
+  deleteMyAccomodation: PropTypes.func.isRequired,
 };
 
 export default MyAccomodationsPage;

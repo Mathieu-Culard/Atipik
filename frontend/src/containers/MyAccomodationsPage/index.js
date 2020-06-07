@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import MyAccomodationsPage from 'src/pages/MyAccomodationsPage';
 
-import { fetchMyAccomodations } from 'src/actions/manageAccomodation';
+import { fetchMyAccomodations, deleteMyAccomodation } from 'src/actions/manageAccomodation';
 
 
 const mapStateToProps = (state) => ({
@@ -12,6 +12,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   fetchMyAccomodations: (id) => {
     dispatch(fetchMyAccomodations(id));
+  },
+  deleteMyAccomodation: (id) => {
+    dispatch(deleteMyAccomodation(id));
   },
 });
 

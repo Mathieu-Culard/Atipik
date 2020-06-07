@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import { SUBMIT_USER_MODIFICATION, saveUserInfos, DELETE_ACCOUNT } from '../actions/user';
 import { LOGIN_CHANGED, logOut } from '../actions/connection';
 

@@ -153,3 +153,12 @@ export const getCurrentAccomodation = (myAccomodations, id) => {
   ));
   return currentAccomodation[0];
 };
+
+export const getMyAccomodationPicturesURL = (statePicturesURL, picturesToAdd) => {
+  const result = [...statePicturesURL];
+  for (let i = 0; i < picturesToAdd.length; i += 1) {
+    result.push(URL.createObjectURL(picturesToAdd[i]));
+  }
+  console.log(result);
+  return result;
+}

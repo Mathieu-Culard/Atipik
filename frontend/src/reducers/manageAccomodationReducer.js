@@ -6,6 +6,8 @@ import {
   SAVE_MY_ACCOMODATIONS,
   SET_EDIT_MY_ACCOMODATION_INFOS,
   RESET_MY_ACCOMODATION_INFOS,
+  REMOVE_MY_ACCOMODATION,
+  CHANGE_MY_ACCOMODATION_PICTURES,
 } from 'src/actions/manageAccomodation';
 import { SAVE_SERVICES, SAVE_EXTRAS } from 'src/actions/accomodation';
 import { SET_MANAGE_ACCOMODATION_PANEL } from 'src/actions/utils';
@@ -14,6 +16,7 @@ import {
   getCurrentAccomodation,
   getServices,
   getExtras,
+  getMyAccomodationPicturesURL,
 } from 'src/utils';
 
 const initialState = {
@@ -41,6 +44,8 @@ const initialState = {
   panelIdentifier: '',
   panelContent: [],
   panelCheckedItems: [],
+  pictures: [],
+  picturesURL: [],
   myAccomodations: [
     {
       id: 1,
@@ -78,6 +83,22 @@ const initialState = {
 
 const manageAccomodationReducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case CHANGE_MY_ACCOMODATION_PICTURES: {
+      console.log(...state.pictures);
+      console.log(...action.pictures);
+      return {
+        ...state,
+        pictures: [...state.pictures, ...action.pictures],
+        picturesURL: getMyAccomodationPicturesURL(state.picturesURL, action.pictures),
+      };
+    }
+    case REMOVE_MY_ACCOMODATION:
+      return {
+        ...state,
+        myAccomodations: state.myAccomodations.filter(
+          (accomodation) => (accomodation.id !== action.id),
+        ),
+      };
     case SAVE_SERVICES:
       return {
         ...state,
