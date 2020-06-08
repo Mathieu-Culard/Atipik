@@ -49,9 +49,6 @@ const MyAccomodationsPage = ({ fetchMyAccomodations, myAccomodationIds, myAccomo
       {myAccomodations.map((acc) => (
         <MyAccomodationCard {...acc} key={acc.id} deleteMyAccomodation={deleteMyAccomodation} />
       ))}
-      {/* <MyAccomodationCard {...accomodation} />
-      <MyAccomodationCard {...accomodation} />
-      <MyAccomodationCard {...accomodation} /> */}
       <Link className="my-accomodations__new-accomodation" to="/gerer-mes-hebergements/nouvel-hebergement">
         <button type="button">Ajouter un hébergement</button>
       </Link>

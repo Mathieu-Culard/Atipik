@@ -9,8 +9,6 @@ import Divider from '@material-ui/core/Divider';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
-import LoginPanel from 'src/containers/LoginPanel';
-
 import './header.scss';
 import logo from '../../assets/logo.png';
 
@@ -30,7 +28,7 @@ const useStyles = makeStyles(() => ({
 const Header = ({
   open,
   toggleOpen,
-  setLoginPanel,
+  openModal,
   isLogged,
   disconnect,
   breadcrumbs,
@@ -48,9 +46,8 @@ const Header = ({
             <Link className="header__link" to="/types"> Nos hébergements </Link>
             {!isLogged && (
               <>
-                <Link className="header__link" to="/inscription"> Inscription </Link>
-                <a className="header__link" href="#" onClick={() => setLoginPanel(true)}> Connexion </a>
-                <LoginPanel />
+                <a className="header__link" href="#" onClick={() => openModal('Inscription', 'InscriptionForm')}> Inscription </a>
+                <a className="header__link" href="#" onClick={() => openModal('Connexion', 'LoginForm')}> Connexion </a>
               </>
             )}
             {isLogged && (
@@ -80,7 +77,7 @@ const Header = ({
         <List className={`${classes.root} ${mobileMenuLinksClass}`}>
           <Link to="#"> Nos hébergements </Link>
           <Divider className="header__divider" />
-          <Link to="/inscription"> Inscription </Link>
+          <Link to="#"> Inscription </Link>
           <Link to="#"> Connexion </Link>
         </List>
       </nav>
@@ -91,7 +88,7 @@ const Header = ({
 Header.propTypes = {
   open: PropTypes.bool.isRequired,
   toggleOpen: PropTypes.func.isRequired,
-  setLoginPanel: PropTypes.func.isRequired,
+  openModal: PropTypes.func.isRequired,
   isLogged: PropTypes.bool.isRequired,
   disconnect: PropTypes.func.isRequired,
   breadcrumbs: PropTypes.arrayOf(

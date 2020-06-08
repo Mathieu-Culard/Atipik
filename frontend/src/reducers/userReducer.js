@@ -1,8 +1,8 @@
 import { REMOVE_MY_ACCOMODATION } from 'src/actions/manageAccomodation';
-import { CHANGE_USER_FIELD, SAVE_USER_INFOS } from 'src/actions/user';
+import { CHANGE_USER_FIELD, SAVE_USER_INFOS, CLEAR_USER_INFOS } from 'src/actions/user';
 
 const initialState = {
-  id: 0,
+  id: -1,
   firstname: '',
   lastname: '',
   pseudo: '',
@@ -35,6 +35,11 @@ const userReducer = (state = initialState, action = {}) => {
         ...action.data,
         avatar: {},
         avatarUrl: `${process.env.REACT_APP_BACKEND_URL}/assets/avatar/${action.data.avatar}`,
+      };
+
+    case CLEAR_USER_INFOS:
+      return {
+        ...initialState,
       };
 
     default: return state;

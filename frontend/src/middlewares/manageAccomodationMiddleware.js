@@ -62,6 +62,7 @@ const manageAccomodationMiddleware = (store) => (next) => (action) => {
       } = store.getState().manageAccomodation;
       const formData = new FormData();
       formData.append('pictures', pictures);
+      console.log(pictures);
       formData.append('title', title);
       formData.append('capacity', capacity);
       formData.append('description', description);

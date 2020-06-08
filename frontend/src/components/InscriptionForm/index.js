@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { TextField, Button } from '@material-ui/core';
@@ -28,6 +28,7 @@ const InscriptionForm = ({
   confirmPassword,
   changeField,
   submitInscription,
+  clearInscriptionForm,
 }) => {
   const classes = useStyles();
 
@@ -35,6 +36,8 @@ const InscriptionForm = ({
     e.preventDefault();
     submitInscription();
   };
+
+  useEffect(() => (clearInscriptionForm), []);
 
   return (
     <form action="" noValidate className={classes.root} onSubmit={handleSubmit}>
@@ -60,6 +63,7 @@ InscriptionForm.propTypes = {
   confirmPassword: PropTypes.string.isRequired,
   changeField: PropTypes.func.isRequired,
   submitInscription: PropTypes.func.isRequired,
+  clearInscriptionForm: PropTypes.func.isRequired,
 };
 
 export default InscriptionForm;

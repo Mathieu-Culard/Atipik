@@ -2,10 +2,11 @@ import { connect } from 'react-redux';
 
 import { fetchServices, fetchExtras } from 'src/actions/accomodation';
 import { fetchAccomodationTypes } from 'src/actions/data';
+import { fetchUserInfos } from 'src/actions/user';
 import App from 'src/components/App';
 
 const mapStateToProps = (state) => ({
-  //TODO
+  modal: state.utils.modal,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -17,6 +18,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   fetchExtras: () => {
     dispatch(fetchExtras());
+  },
+  fetchUserInfos: () => {
+    dispatch(fetchUserInfos());
   },
 });
 

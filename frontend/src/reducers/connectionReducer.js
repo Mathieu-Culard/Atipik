@@ -1,7 +1,9 @@
 import {
   CHANGE_CONNECTION_FIELD,
+  CLEAR_CONNECTION_FORM,
   LOGIN_CHANGED,
   LOG_IN,
+  LOG_OUT,
 } from '../actions/connection';
 
 const initialState = {
@@ -21,6 +23,11 @@ const userReducer = (state = initialState, action = {}) => {
         [action.identifier]: action.newValue,
       };
 
+    case CLEAR_CONNECTION_FORM:
+      return {
+        ...initialState,
+      };
+
     case LOG_IN:
       return {
         ...state,
@@ -32,6 +39,12 @@ const userReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         isLogged: !!localStorage.getItem('jwt'),
+      };
+
+    case LOG_OUT:
+      return {
+        ...initialState,
+        isLogged: false,
       };
 
     default: return state;

@@ -1,7 +1,13 @@
 import axios from 'axios';
-
-import { SUBMIT_USER_MODIFICATION, saveUserInfos, DELETE_ACCOUNT } from '../actions/user';
-import { LOGIN_CHANGED, logOut } from '../actions/connection';
+import {
+  SUBMIT_USER_MODIFICATION,
+  saveUserInfos,
+  DELETE_ACCOUNT,
+  FETCH_USER_INFOS,
+  SAVE_USER_INFOS,
+} from '../actions/user';
+import { logOut } from '../actions/connection';
+import { fetchMyAccomodations } from '../actions/manageAccomodation';
 
 const userMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -36,18 +42,27 @@ const userMiddleware = (store) => (next) => (action) => {
       break;
     }
 
-    case LOGIN_CHANGED: {
+    case SAVE_USER_INFOS: {
       next(action);
-      if (store.getState().connection.isLogged) {
-        axios({
-          method: 'get',
-          url: `${process.env.REACT_APP_API_URL}/account`,
-          headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}` },
+      action.data.accomodations.forEach((id) => {
+        store.dispatch(fetchMyAccomodations(id));
+      });
+      break;
+    }
+
+    case FETCH_USER_INFOS: {
+      axios({
+        method: 'get',
+        url: `${process.env.REACT_APP_API_URL}/account`,
+        headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}` },
+      })
+        .then((response) => {
+          store.dispatch(saveUserInfos(response.data));
         })
-          .then((response) => {
-            store.dispatch(saveUserInfos(response.data));
-          });
-      }
+        .catch(() => {
+          store.dispatch(logOut());
+        });
+      next(action);
       break;
     }
 

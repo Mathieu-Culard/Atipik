@@ -382,6 +382,7 @@ const AddAccomodationPage = ({
     </main>
   );
 };
+
 AddAccomodationPage.propTypes = {
   picturesURL: PropTypes.arrayOf(PropTypes.string).isRequired,
   submitAdd: PropTypes.func.isRequired,

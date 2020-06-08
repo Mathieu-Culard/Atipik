@@ -1,10 +1,21 @@
-
-import { TOGGLE_OPEN, SET_LOGIN_PANEL, SET_BREADCRUMBS, SET_CONTACT_OWNER_PANEL, SET_MANAGE_ACCOMODATION_PANEL  } from 'src/actions/utils';
-
+import {
+  TOGGLE_OPEN,
+  OPEN_MODAL,
+  CLOSE_MODAL,
+  // SET_LOST_PASSWORD_PANEL,
+  SET_BREADCRUMBS,
+  SET_CONTACT_OWNER_PANEL,
+  SET_MANAGE_ACCOMODATION_PANEL,
+} from 'src/actions/utils';
 
 const initialState = {
   open: false,
+  menu: false,
+  modal: false,
+  modalComponent: '',
+  modalTitle: '',
   loginPanel: false,
+  lostPasswordPanel: false,
   isContactOwnerPanelOpen: false,
   breadcrumbs: [{ label: 'Accueil', route: '/' }],
   isManageAccomodationPanelOpen: false,
@@ -18,11 +29,28 @@ const utilsReducer = (state = initialState, action = {}) => {
         open: !state.open,
       };
 
-    case SET_LOGIN_PANEL:
+    case OPEN_MODAL:
       return {
         ...state,
-        loginPanel: action.newValue,
+        modal: true,
+        modalComponent: action.component,
+        modalTitle: action.title,
       };
+
+    case CLOSE_MODAL:
+      return {
+        ...state,
+        modal: false,
+        modalComponent: '',
+        modalTitle: '',
+      };
+
+      // case SET_LOST_PASSWORD_PANEL:
+      //   return {
+      //     ...state,
+      //     lostPasswordPanel: action.newValue,
+      //   };
+
     case SET_CONTACT_OWNER_PANEL:
       return {
         ...state,

@@ -1,5 +1,17 @@
-import { LOG_IN, loginChanged, LOG_OUT } from 'src/actions/connection';
+import {
+  LOG_IN,
+  loginChanged,
+  LOGIN_CHANGED,
+  LOG_OUT,
+  REMOVE_TOKEN,
+  removeToken,
+} from 'src/actions/connection';
 import axios from 'axios';
+import { push } from 'connected-react-router';
+
+import { fetchUserInfos, clearUserInfos } from 'src/actions/user';
+import { resetMyAccomodationInfos } from 'src/actions/manageAccomodation';
+import { closeModal } from 'src/actions/utils';
 
 const connectionMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -9,6 +21,7 @@ const connectionMiddleware = (store) => (next) => (action) => {
         username: email,
         password,
       }).then((response) => {
+        store.dispatch(closeModal());
         localStorage.setItem('jwt', response.data.token);
         store.dispatch(loginChanged());
       });
@@ -16,10 +29,26 @@ const connectionMiddleware = (store) => (next) => (action) => {
       break;
     }
 
+    case LOGIN_CHANGED: {
+      next(action);
+      if (store.getState().connection.isLogged) {
+        store.dispatch(fetchUserInfos());
+      }
+      break;
+    }
+
     case LOG_OUT: {
-      localStorage.removeItem('jwt');
-      // TODO Redirect to home-page
+      store.dispatch(removeToken());
+      store.dispatch(clearUserInfos());
+      store.dispatch(resetMyAccomodationInfos());
       store.dispatch(loginChanged());
+      next(action);
+      store.dispatch(push('/'));
+      break;
+    }
+
+    case REMOVE_TOKEN: {
+      localStorage.removeItem('jwt');
       next(action);
       break;
     }

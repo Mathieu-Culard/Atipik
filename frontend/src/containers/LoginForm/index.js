@@ -1,25 +1,25 @@
 import { connect } from 'react-redux';
 
-import LoginPanel from 'src/components/LoginPanel';
+import LoginForm from 'src/components/LoginForm';
 
-import { setLoginPanel } from 'src/actions/utils';
-import { changeConnectionField, logIn } from 'src/actions/connection';
+import { changeConnectionField, logIn, clearConnectionForm } from 'src/actions/connection';
+import { openModal } from 'src/actions/utils';
 
 const mapStateToProps = (state) => ({
-  loginPanel: state.utils.loginPanel,
   email: state.connection.email,
   password: state.connection.password,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setLoginPanel: (newValue) => dispatch(setLoginPanel(newValue)),
   changeField: (identifier, newValue) => {
     dispatch(changeConnectionField(identifier, newValue));
   },
   logIn: () => dispatch(logIn()),
+  openModal: (title, component) => dispatch(openModal(title, component)),
+  clearConnectionForm: () => dispatch(clearConnectionForm()),
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(LoginPanel);
+)(LoginForm);
