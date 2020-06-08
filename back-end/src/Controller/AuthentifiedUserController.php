@@ -80,7 +80,7 @@ class AuthentifiedUserController extends AbstractController
 
             // If a new avatar has been transmitted
             if (isset($request->files->all()['avatar'])) {
-
+                
                 //We store the file in a variable $newAvatar
                 $newAvatar = $request->files->all()['avatar'];
 

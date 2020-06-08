@@ -11,6 +11,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=AccomodationRepository::class)
+ * @ORM\HasLifecycleCallbacks
  */
 class Accomodation
 {
@@ -165,20 +166,16 @@ class Accomodation
         $this->service = new ArrayCollection();
         $this->picture = new ArrayCollection();
         $this->createdAt = new \DateTime();
- 
     }
 
-    public function __toString() : ?string
+    public function __toString()
     {
-        $this->picture; 
+        $this->picture;
         $this->type;
         $this->user;
         $this->extra;
     }
 
- /*    public function __toString() {
-        return implode(',', $this->extras);
-    } */
 
     /**
      * @Groups({"search_result","accomodation_detail","authentified_user_account"})
@@ -552,7 +549,7 @@ class Accomodation
 
         return $this;
     }
-    public function setServices(ArrayCollection $services) : self
+    public function setServices(ArrayCollection $services): self
     {
         $this->service = $services;
         return $this;
@@ -627,5 +624,13 @@ class Accomodation
         $this->slugger = $slugger;
 
         return $this;
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function onPreUpdate()
+    {
+        $this->updatedAt = new \DateTime();
     }
 }

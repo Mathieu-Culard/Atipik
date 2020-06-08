@@ -19,12 +19,9 @@
 /public/assets/type/*.jpg
 /public/assets/type/*.jpeg
 
-
-
 /public/assets/icon/*.jpg
 /public/assets/icon/*.jpeg
 /public/assets/icon/*.png
-
 
 ###> lexik/jwt-authentication-bundle ###
 /config/jwt/*.pem
