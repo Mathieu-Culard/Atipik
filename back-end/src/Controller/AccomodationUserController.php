@@ -33,10 +33,13 @@ class AccomodationUserController extends AbstractController
         //dump($request);
         // on stocke les données reçues dans $data
         $data = $request->request->all();
+        //return $this->json($request->request->all()['pictures']);
 
         if (isset($request->files->all()['pictures'])) {
             // on stocke l'ensemble des fichiers images dans $pictures
             $pictures = $request->files->all()['pictures'];
+            //return $this->json(dump($request));
+
         }
 
         // si au moins un service a bien été soumis
@@ -67,6 +70,8 @@ class AccomodationUserController extends AbstractController
 
         // on soumet le formulaire
         $form->submit($data, false);
+        //dd($form->getErrors());
+        //return $this->json(dump($form));
         if ($form->isValid()) {
 
             $sluggerTitle = $slugger->slug($form->get('title')->getData());
@@ -100,35 +105,43 @@ class AccomodationUserController extends AbstractController
                 }
             }
 
+            //return $this->json($request);
             if (isset($request->files->all()['pictures'])) {
+
                 // Pour chacune des images
                 $count = 0;
                 foreach ($pictures as $currentPicture) {
+
                     // We retrieve the extension of the transmitted image file
                     $extension = $currentPicture->getClientOriginalExtension();
 
                     // We rename the image file so that it follows a standard
                     $pictureName = $sluggerTitle . $count++ . '.' . $extension;
 
-                    $pictureName0 = $sluggerTitle . '0.' . $extension;
+                    $mainPicture = $sluggerTitle . '0.' . $extension;
 
                     $picture = new Picture();
 
-                    if ( $pictureName === $pictureName0) {
-                        $accomodation->addPicture($picture->setName($pictureName), $picture->setMain(true));
-                        
+                    // on attribue a la photo son nouveau nom
+                    $picture->setName($pictureName);
+
+                    // si le nom de l'image est le meme que celui de l'image principale
+                    if ($pictureName === $mainPicture) {
+                        // alors on met la propriété correspondant a l'image principale a true
+                        $picture->setMain(true);
                     } else {
-                        $accomodation->addPicture($picture->setName($pictureName), $picture->setMain(false));
+                        // sinon on la met a false
+                        $picture->setMain(false);
                     }
+                    // on ajoute l'objet en lien avec le logement
+                    $accomodation->addPicture($picture);
 
                     $em->persist($picture);
 
                     // The image is stored in a special folder and given the new name defined above.
                     $currentPicture->move($this->getParameter('accomodation_directory'), $pictureName);
                 }
-
             }
-
             // on met a jour la base de données
             $em->persist($accomodation);
 
@@ -157,6 +170,11 @@ class AccomodationUserController extends AbstractController
             // on stocke les données reçues dans $data
             $data = $request->request->all();
 
+            if (isset($request->files->all()['pictures'])) {
+                // on stocke l'ensemble des fichiers images dans $pictures
+                $pictures = $request->files->all()['pictures'];
+            }
+
             // si au moins un service a bien été soumis
             if (isset($data['services'])) {
                 // on decompose la chaine de caractere recue pour en faire un tableau et on la stocke dans une variable
@@ -184,8 +202,8 @@ class AccomodationUserController extends AbstractController
             }
 
             $form->submit($data, false);
-            //dd($form, $data);
-
+            //dd($data);
+            //dd($form->isValid());
             if ($form->isValid()) {
                 $sluggerTitle = $slugger->slug($form->get('title')->getData());
                 $accomodation->setSlugger($sluggerTitle);
@@ -225,6 +243,53 @@ class AccomodationUserController extends AbstractController
                         }
                     }
                 }
+
+
+
+                if (isset($request->files->all()['pictures'])) {
+                    // Pour chacune des images
+                    $count = 0;
+
+                    foreach ($accomodation->getPicture() as $existingPicture) {
+                        $accomodation->removePicture($existingPicture);
+                        //dump($accomodation);
+                    }
+                    //die();
+
+                    foreach ($pictures as $currentPicture) {
+
+                        // We retrieve the extension of the transmitted image file
+                        $extension = $currentPicture->getClientOriginalExtension();
+
+                        // We rename the image file so that it follows a standard
+                        $pictureName = $sluggerTitle . $count++ . '.' . $extension;
+
+                        $mainPicture = $sluggerTitle . $data['main_picture'] . '.' . $extension;
+                        //dd($mainPicture);
+                        $picture = new Picture();
+
+                        // on attribue a la photo son nouveau nom
+                        $picture->setName($pictureName);
+
+                        // si le nom de l'image est le meme que celui de l'image principale
+                        if ($pictureName === $mainPicture) {
+                            // alors on met la propriété correspondant a l'image principale a true
+                            $picture->setMain(true);
+                        } else {
+                            // sinon on la met a false
+                            $picture->setMain(false);
+                        }
+                        // on ajoute l'objet en lien avec le logement
+                        $accomodation->addPicture($picture);
+
+                        $em->persist($picture);
+
+                        // The image is stored in a special folder and given the new name defined above.
+                        $currentPicture->move($this->getParameter('accomodation_directory'), $pictureName);
+                    }
+                }
+
+
                 $em->flush();
 
                 return $this->json($accomodation->getId(), 201);
@@ -252,4 +317,3 @@ class AccomodationUserController extends AbstractController
         return $this->json('', 403);
     }
 }
-

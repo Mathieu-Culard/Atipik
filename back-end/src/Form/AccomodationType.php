@@ -46,11 +46,13 @@ class AccomodationType extends AbstractType
              ->add('type')
              ->add('extra')
              ->add('service')
-             ->add('picture', FileType::class, [
+             ->add('pictures', FileType::class, [
                 'data_class' => null,
                 'mapped' => false,
-                'required' => false,
-                
+                'required' => false,  
+            ])
+            ->add('main_picture', null, [
+                'mapped' => false
             ])
         ;
 
