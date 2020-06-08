@@ -5,7 +5,6 @@ import {
   resetContactMessage,
   RESET_PASSWORD,
 } from 'src/actions/contact';
-import { setLostPasswordPanel } from 'src/actions/utils';
 
 const contactMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -37,7 +36,6 @@ const contactMiddleware = (store) => (next) => (action) => {
           email,
         },
       }).then(() => {
-        store.dispatch(setLostPasswordPanel(false));
         store.dispatch(resetContactMessage());
         // TODO modale de confirmation
       });

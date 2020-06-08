@@ -10,6 +10,7 @@ const mapStateToProps = (state) => ({
   email: state.inscription.email,
   password: state.inscription.password,
   confirmPassword: state.inscription.confirmPassword,
+  regexEmail: state.utils.regexEmail,
 });
 
 const mapDispatchToProps = (dispatch) => ({

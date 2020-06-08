@@ -8,6 +8,7 @@ import { openModal } from 'src/actions/utils';
 const mapStateToProps = (state) => ({
   email: state.connection.email,
   password: state.connection.password,
+  regexEmail: state.utils.regexEmail,
 });
 
 const mapDispatchToProps = (dispatch) => ({

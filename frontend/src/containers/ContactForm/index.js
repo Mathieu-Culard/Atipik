@@ -6,6 +6,7 @@ const mapStateToProps = (state) => ({
   emailValue: state.contact.email,
   objectValue: state.contact.object,
   messageValue: state.contact.message,
+  regexEmail: state.utils.regexEmail,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -10,10 +10,17 @@ const LoginForm = ({
   logIn,
   openModal,
   clearConnectionForm,
+  regexEmail,
 }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     logIn();
+  };
+
+  const isValid = () => {
+    if (email === '' || !regexEmail.test(email)) return false;
+    if (password === '') return false;
+    return true;
   };
 
   useEffect(() => (clearConnectionForm), []);
@@ -26,6 +33,7 @@ const LoginForm = ({
           label="Email"
           value={email}
           onChange={(e) => changeField('email', e.target.value)}
+          error={email !== '' && !regexEmail.test(email)}
         />
         <TextField
           id="login-panel-password"
@@ -34,7 +42,13 @@ const LoginForm = ({
           value={password}
           onChange={(e) => changeField('password', e.target.value)}
         />
-        <Button type="submit" variant="text">Se connecter</Button>
+        <Button
+          type="submit"
+          variant="text"
+          disabled={!isValid()}
+        >
+          Se connecter
+        </Button>
       </form>
       <Button onClick={() => openModal('Récupération du mot de passe', 'LostPasswordForm')}>Mot de passe oublié ?</Button>
     </>
@@ -48,6 +62,7 @@ LoginForm.propTypes = {
   logIn: PropTypes.func.isRequired,
   openModal: PropTypes.func.isRequired,
   clearConnectionForm: PropTypes.func.isRequired,
+  regexEmail: PropTypes.instanceOf(RegExp).isRequired,
 };
 
 export default LoginForm;

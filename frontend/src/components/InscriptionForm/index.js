@@ -29,12 +29,23 @@ const InscriptionForm = ({
   changeField,
   submitInscription,
   clearInscriptionForm,
+  regexEmail,
 }) => {
   const classes = useStyles();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     submitInscription();
+  };
+
+  const isValid = () => {
+    if (firstname === '') return false;
+    if (lastname === '') return false;
+    if (pseudo === '') return false;
+    if (email === '' || !regexEmail.test(email)) return false;
+    if (password === '') return false;
+    if (confirmPassword !== password) return false;
+    return true;
   };
 
   useEffect(() => (clearInscriptionForm), []);
@@ -45,11 +56,34 @@ const InscriptionForm = ({
         <TextField label="Prénom" onChange={(e) => changeField(e.target.value, 'firstname')} value={firstname} />
         <TextField label="Nom" onChange={(e) => changeField(e.target.value, 'lastname')} value={lastname} />
         <TextField label="Pseudonyme" onChange={(e) => changeField(e.target.value, 'pseudo')} value={pseudo} />
-        <TextField label="Email" type="email" onChange={(e) => changeField(e.target.value, 'email')} value={email} />
-        <TextField label="Mot de passe" type="password" onChange={(e) => changeField(e.target.value, 'password')} value={password} />
-        <TextField label="Confirmez le mot de passe" type="password" onChange={(e) => changeField(e.target.value, 'confirmPassword')} value={confirmPassword} />
+        <TextField
+          label="Email"
+          type="email"
+          onChange={(e) => changeField(e.target.value, 'email')}
+          value={email}
+          error={email !== '' && !regexEmail.test(email)}
+        />
+        <TextField
+          label="Mot de passe"
+          type="password"
+          onChange={(e) => changeField(e.target.value, 'password')}
+          value={password}
+        />
+        <TextField
+          label="Confirmez le mot de passe"
+          type="password"
+          onChange={(e) => changeField(e.target.value, 'confirmPassword')}
+          value={confirmPassword}
+          error={confirmPassword !== '' && confirmPassword !== password}
+        />
       </div>
-      <Button type="submit" className={classes.submitButton}>Valider l'inscription</Button>
+      <Button
+        type="submit"
+        className={classes.submitButton}
+        disabled={!isValid()}
+      >
+        Valider l'inscription
+      </Button>
     </form>
   );
 };
@@ -64,6 +98,7 @@ InscriptionForm.propTypes = {
   changeField: PropTypes.func.isRequired,
   submitInscription: PropTypes.func.isRequired,
   clearInscriptionForm: PropTypes.func.isRequired,
+  regexEmail: PropTypes.instanceOf(RegExp).isRequired,
 };
 
 export default InscriptionForm;
