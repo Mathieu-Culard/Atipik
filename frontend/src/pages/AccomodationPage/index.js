@@ -6,9 +6,10 @@ import { useParams } from 'react-router-dom';
 import { Facebook, Instagram } from 'react-feather';
 import { getServices, getExtras } from 'src/utils';
 import DatePicker from 'src/components/DatePicker';
+import Loader from 'src/components/Loader';
+
 import './accomodationPage.scss';
 import ContactOwnerPanel from '../../containers/ContactOwnerPanel';
-import Loader from 'src/components/Loader';
 
 const useStyles = makeStyles(() => ({
   pictures: {
@@ -65,11 +66,27 @@ const AccomodationPage = ({
   sendReservation,
   accomodationId,
   owner,
+  setBreadcrumbs,
 }) => {
   const { id } = useParams();
   useEffect(() => {
     console.log(id);
     fetchAccomodation(id);
+    const breadcrumbs = [
+      {
+        label: 'Accueil',
+        route: '/',
+      },
+      {
+        label: 'Recherche',
+        route: '/recherche',
+      },
+      {
+        label: 'Hébergement',
+        route: '#',
+      },
+    ];
+    setBreadcrumbs(breadcrumbs);
   }, []);
   const classes = useStyles();
   const carouselSettings = {
@@ -157,7 +174,7 @@ const AccomodationPage = ({
             <div className="accomodation__owner-card">
               <h2 className="accomodation__owner-card__title">Proposé par</h2>
               <div className="accomodation__owner-card__card">
-                <img src={`${process.env.REACT_APP_BACKEND_URL}/assets/type/picture/${owner.avatar}`} alt="owner-avatar" className="accomodation__owner-card__card__avatar" />
+                <img src={`${process.env.REACT_APP_BACKEND_URL}/assets/avatar/${owner.avatar}`} alt="owner-avatar" className="accomodation__owner-card__card__avatar" />
                 <p className="accomodation__owner-card__card__pseudo">
                   {owner.pseudo}
                 </p>

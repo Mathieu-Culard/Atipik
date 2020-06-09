@@ -113,10 +113,10 @@ export const createDataForSearch = (state) => {
   return data;
 };
 /**
- * 
+ *
  * @param {Array} servicesList array of object that represent all possible services
  * @param {Array} accomodationServices array of number which are the ids of the services of the current accomodation
- * 
+ *
  * return an array of object that represent all the services of the current accomodation
  */
 export const getServices = (servicesList, accomodationServices) => {
@@ -157,8 +157,22 @@ export const getCurrentAccomodation = (myAccomodations, id) => {
 export const getMyAccomodationPicturesURL = (statePicturesURL, picturesToAdd) => {
   const result = [...statePicturesURL];
   for (let i = 0; i < picturesToAdd.length; i += 1) {
-    result.push(URL.createObjectURL(picturesToAdd[i]));
+    const elem = {
+      name: picturesToAdd[i].name,
+      file: URL.createObjectURL(picturesToAdd[i]),
+    };
+    result.push(elem);
   }
   console.log(result);
   return result;
-}
+};
+
+export const getTypeById = (typeList, typeId) => {
+  for (let i = 0; i < typeList.length; i += 1) {
+    for (let j = 0; j < typeList[i].types.length; j += 1) {
+      if (typeList[i].types[j].id === typeId) {
+        return typeList[i].types[j];
+      }
+    }
+  }
+};

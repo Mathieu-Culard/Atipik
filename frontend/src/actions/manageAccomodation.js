@@ -11,6 +11,24 @@ export const SUBMIT_EDIT_MY_ACCOMODATION_FORM = 'SUBMIT_EDIT_MY_ACCOMODATION_FOR
 export const DELETE_MY_ACCOMODATION = 'DELETE_MY_ACCOMODATION';
 export const REMOVE_MY_ACCOMODATION = 'REMOVE_MY_ACCOMODATION';
 export const CHANGE_MY_ACCOMODATION_PICTURES = 'CHANGE_MY_ACCOMODATION_PICTURES';
+export const FETCH_MY_ACCOMODATION_PICTURES = 'FETCH_MY_ACCOMODATION_PICTURES';
+export const DELETE_MY_ACCOMODATION_PICTURE = 'DELETE_MY_ACCOMODATION_PICTURE';
+export const DELETE_MY_ACCOMODATION_PICTURE_EDIT = 'DELETE_MY_ACCOMODATION_PICTURE_EDIT';
+
+export const deleteMyAccomodationPictureEdit = (picture) => ({
+  type: DELETE_MY_ACCOMODATION_PICTURE_EDIT,
+  picture,
+});
+
+export const deleteMyAccomodationPicture = (picture) => ({
+  type: DELETE_MY_ACCOMODATION_PICTURE,
+  picture,
+});
+
+export const fetchMyAccomodationPictures = (picture) => ({
+  type: FETCH_MY_ACCOMODATION_PICTURES,
+  picture,
+});
 
 export const changeMyAccomodationPictures = (pictures) => ({
   type: CHANGE_MY_ACCOMODATION_PICTURES,

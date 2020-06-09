@@ -27,11 +27,12 @@ const Home = ({
   accomodationTypesValue,
   changeTextfield,
   changePriceScale,
-  changeNbNights,
-  changeNbPerson,
+  // changeNbNights,
+  // changeNbPerson,
   changeAccomodationTypes,
   handleSearch,
   setBreadcrumbs,
+  commitMaxPriceChange,
 }) => {
   const classes = useStyles();
 
@@ -69,17 +70,37 @@ const Home = ({
           </div>
           <div className="row">
             <div className="row__item">
-              <Dropdown
+              {/* <Dropdown
                 value={nbPersonValue}
                 changeValue={changeNbPerson}
                 label="Nombre de personnes"
+              /> */}
+              <TextField
+                // variant="outlined"
+                id="capacity"
+                label="Capacité"
+                type="number"
+                className={classes.textField}
+                // className={classes.textField}
+                value={(nbPersonValue === 0) ? '' : nbPersonValue}
+                onChange={handleChange}
               />
             </div>
             <div className="row__item">
-              <Dropdown
+              {/* <Dropdown
                 value={nbNightsValue}
                 changeValue={changeNbNights}
                 label="Nombre de nuitées"
+              /> */}
+              <TextField
+                // variant="outlined"
+                id="nbNights"
+                label="nb de nuitées"
+                type="number"
+                className={classes.textField}
+                // className={classes.textField}
+                value={(nbNightsValue === 0) ? '' : nbNightsValue}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -91,6 +112,7 @@ const Home = ({
                 step={10}
                 max={300}
                 label="Prix"
+                commitChange={commitMaxPriceChange}
               />
             </div>
             <div className="row__item">
@@ -121,8 +143,8 @@ Home.propTypes = {
   priceScaleValue: PropTypes.number.isRequired,
   accomodationTypesValue: PropTypes.array.isRequired,
   changeTextfield: PropTypes.func.isRequired,
-  changeNbNights: PropTypes.func.isRequired,
-  changeNbPerson: PropTypes.func.isRequired,
+  // changeNbNights: PropTypes.func.isRequired,
+  // changeNbPerson: PropTypes.func.isRequired,
   changePriceScale: PropTypes.func.isRequired,
   changeAccomodationTypes: PropTypes.func.isRequired,
   setBreadcrumbs: PropTypes.func.isRequired,

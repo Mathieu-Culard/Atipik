@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import AccomodationPage from 'src/pages/AccomodationPage';
 import { fetchAccomodation, changeDate, sendReservation } from 'src/actions/accomodation';
-import { setContactOwnerPanel, openModal } from 'src/actions/utils';
+import { setContactOwnerPanel, openModal, setBreadcrumbs } from 'src/actions/utils';
 
 
 const mapStateToProps = (state) => ({
@@ -19,6 +19,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  setBreadcrumbs: (newValue) => dispatch(setBreadcrumbs(newValue)),
+
   sendReservation: (dateTo, dateFrom, accomodationId) => {
     dispatch(sendReservation(dateTo, dateFrom, accomodationId));
   },

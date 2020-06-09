@@ -43,6 +43,7 @@ const CustomSlider = ({
   step,
   max,
   label,
+  commitChange,
 }) => {
   const classes = useStyles();
 
@@ -60,6 +61,7 @@ const CustomSlider = ({
           <MUISlider
             value={value}
             onChange={handleChangeValue}
+            onChangeCommitted={() => (commitChange())}
             aria-labelledby="discrete-slider"
             valueLabelDisplay="on"
             step={step}
@@ -78,6 +80,7 @@ CustomSlider.propTypes = {
   step: PropTypes.number.isRequired,
   max: PropTypes.number.isRequired,
   label: PropTypes.string.isRequired,
+  commitChange: PropTypes.func.isRequired,
 };
 
 export default CustomSlider;

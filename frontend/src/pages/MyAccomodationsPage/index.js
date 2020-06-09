@@ -36,18 +36,32 @@ import './myAccomodationsPage.scss';
 // };
 
 // ================fake data
-const MyAccomodationsPage = ({ fetchMyAccomodations, myAccomodationIds, myAccomodations, deleteMyAccomodation }) => {
+const MyAccomodationsPage = ({
+  fetchMyAccomodations,
+  myAccomodationIds,
+  myAccomodations,
+  deleteMyAccomodation,
+  setBreadcrumbs,
+  typeList,
+}) => {
   useEffect(() => {
-    // eslint-disable-next-line array-callback-return
-    myAccomodationIds.map((id) => {
-      fetchMyAccomodations(id);
-    });
+    const breadcrumbs = [
+      {
+        label: 'Accueil',
+        route: '/',
+      },
+      {
+        label: 'Gérer mes hébergements',
+        route: '/gerer-mes-hebergements',
+      },
+    ];
+    setBreadcrumbs(breadcrumbs);
   }, []);
   return (
     <main className="my-accomodations">
 
       {myAccomodations.map((acc) => (
-        <MyAccomodationCard {...acc} key={acc.id} deleteMyAccomodation={deleteMyAccomodation} />
+        <MyAccomodationCard {...acc} key={acc.id} deleteMyAccomodation={deleteMyAccomodation} typeList={typeList} />
       ))}
       <Link className="my-accomodations__new-accomodation" to="/gerer-mes-hebergements/nouvel-hebergement">
         <button type="button">Ajouter un hébergement</button>
@@ -57,8 +71,8 @@ const MyAccomodationsPage = ({ fetchMyAccomodations, myAccomodationIds, myAccomo
 };
 
 MyAccomodationsPage.propTypes = {
-  fetchMyAccomodations: PropTypes.func.isRequired,
-  myAccomodationIds: PropTypes.arrayOf(PropTypes.number).isRequired,
+  // fetchMyAccomodations: PropTypes.func.isRequired,
+  // myAccomodationIds: PropTypes.arrayOf(PropTypes.number).isRequired,
   myAccomodations: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,

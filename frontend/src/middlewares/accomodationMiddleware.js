@@ -44,7 +44,7 @@ const accomodationMiddleware = (store) => (next) => (action) => {
     case FETCH_OWNER_INFO:
       axios({
         method: 'get',
-        url: `${process.env.REACT_APP_BACKEND_URL}/user/${action.id}`,
+        url: `${process.env.REACT_APP_BACKEND_URL}/accomodation/${action.id}/owner`,
       })
         .then((response) => {
           store.dispatch(saveOwnerInfo(response.data));
@@ -60,7 +60,7 @@ const accomodationMiddleware = (store) => (next) => (action) => {
         url: `${process.env.REACT_APP_BACKEND_URL}/accomodation/${action.id}`,
       })
         .then((response) => {
-          store.dispatch(fetchOwnerInfo(response.data.user));
+          store.dispatch(fetchOwnerInfo(action.id));
           store.dispatch(saveAccomodation(response.data));
         })
         .catch((error) => {

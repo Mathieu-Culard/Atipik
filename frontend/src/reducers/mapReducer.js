@@ -8,13 +8,13 @@ import {
   CHANGE_TEXTFIELD,
   CLEAR_FILTERS,
 } from 'src/actions/search';
-
+import { getTypeById } from 'src/utils';
 
 const initialState = {
   markerPositions: [],
   center: { lat: 0, lng: 0 },
   loading: true,
-  city: 'Océan Atlantique',
+  city: '',
   country: '',
   zoom: 13,
 
@@ -29,9 +29,22 @@ const mapReducer = (state = initialState, action = {}) => {
       };
     case SAVE_MARKER_POSITIONS: {
       const { lat, lng } = action.data;
+      const {
+        title, city, country, type, pictures, id,
+      } = action.accomodation;
       return {
         ...state,
-        markerPositions: [...state.markerPositions, { lat, lng }],
+        markerPositions: [...state.markerPositions, {
+          lat,
+          lng,
+          title,
+          city,
+          country,
+          pictures,
+          id,
+          type: getTypeById(action.typeList, type),
+          // type:  action.typeList.map((thematic) => thematic.types.filter((accomodationType) => accomodationType.id === type)),
+        }],
       };
     }
     case CHANGE_TEXTFIELD:
@@ -41,15 +54,12 @@ const mapReducer = (state = initialState, action = {}) => {
       };
     case SAVE_CENTER_POSITION: {
       const { lat, lng } = action.data;
-      let zoom = 13;
-      if (state.city === 'Océan Atlantique') {
-        zoom = 0;
-      }
+
       return {
         ...state,
         center: { lat, lng },
+        zoom: action.zoom,
         loading: false,
-        zoom,
       };
     }
     case RESET_MARKER_POSITIONS:
@@ -60,7 +70,7 @@ const mapReducer = (state = initialState, action = {}) => {
     case CLEAR_FILTERS:
       return {
         ...state,
-        city: 'Océan Atlantique',
+        city: '',
         country: '',
       };
     default: return state;

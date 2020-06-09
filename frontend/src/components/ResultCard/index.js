@@ -46,12 +46,12 @@ const useStyles = makeStyles(() => ({
 }));
 
 const ResultCard = ({
-  slugger,
   title,
   pictures,
   description,
   country,
   city,
+  id,
 }) => {
   const classes = useStyles();
   const carouselSettings = {
@@ -63,7 +63,7 @@ const ResultCard = ({
   };
 
   return (
-    <Link to={`/hebergement/${slugger}`}>
+    <Link to={`/hebergement/${id}`}>
       <Card className={classes.root}>
         <Slider {...carouselSettings} className={classes.pictures}>
           {pictures.map((picture) => (<div key={picture}><img src={`${process.env.REACT_APP_BACKEND_URL}/assets/accomodation/${picture}`} alt="" width="150" /></div>))}
@@ -86,6 +86,7 @@ const ResultCard = ({
 };
 
 ResultCard.propTypes = {
+  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   pictures: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   description: PropTypes.string.isRequired,

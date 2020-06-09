@@ -43,7 +43,6 @@ const accomodationReducer = (state = initialState, action = {}) => {
         ...state,
         currentAccomodation: action.data,
         id: action.data.id,
-        isLoading: false,
       };
     case SAVE_SERVICES:
       return {
@@ -72,6 +71,7 @@ const accomodationReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         owner: action.data,
+        isLoading: false,
       };
     default: return state;
   }
