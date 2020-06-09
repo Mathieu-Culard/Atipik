@@ -74,10 +74,16 @@ class User implements UserInterface
      */
     private $pseudo;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Booking::class, mappedBy="user_id")
+     */
+    private $bookings;
+
     public function __construct()
     {
         $this->accomodations = new ArrayCollection();
         $this->createdAt = new \DateTime();
+        $this->bookings = new ArrayCollection();
     }
 
     public function __toString()
@@ -292,6 +298,37 @@ class User implements UserInterface
     public function onPreUpdate()
     {
         $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * @return Collection|Booking[]
+     */
+    public function getBookings(): Collection
+    {
+        return $this->bookings;
+    }
+
+    public function addBooking(Booking $booking): self
+    {
+        if (!$this->bookings->contains($booking)) {
+            $this->bookings[] = $booking;
+            $booking->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBooking(Booking $booking): self
+    {
+        if ($this->bookings->contains($booking)) {
+            $this->bookings->removeElement($booking);
+            // set the owning side to null (unless already changed)
+            if ($booking->getUserId() === $this) {
+                $booking->setUserId(null);
+            }
+        }
+
+        return $this;
     }
 
 

@@ -3,12 +3,19 @@
 namespace App\Controller;
 
 use App\Entity\Accomodation;
+use App\Entity\Booking;
+use App\Repository\BookingRepository;
 use App\Entity\User;
 use App\Repository\AccomodationRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\ORM\EntityManagerInterface;
+use Swift_Mailer;
+use Swift_Message;
 
 /**
  * @Route(name="accomodation_")
@@ -71,7 +78,7 @@ class AccomodationController extends AbstractController
             // We create a new variable that will be an array and that will contain the name of all the pictures of the accomodation
             $pictures[] = $currentPicture['name'];
 
-            if($currentPicture['main']) {
+            if ($currentPicture['main']) {
                 $accomodationData['main_picture'] = $currentPicture['name'];
             }
         }
@@ -81,7 +88,125 @@ class AccomodationController extends AbstractController
         // We delete the $extra property
         unset($accomodationData['picture']);
 
-        return $this->json($accomodationData,201);
+        return $this->json($accomodationData, 201);
+    }
+
+
+    /**
+    * @Route("/api/accomodation/{id}/reservation", name="accomodationReservation", methods={"POST"})
+    */
+    public function bookingAccomodation(Request $request, Accomodation $accomodation, AccomodationRepository $accomodationRepository, SerializerInterface $serializer, UserInterface $user, UserRepository $userRepository, \Swift_Mailer $mailer, $id, EntityManagerInterface $em, BookingRepository $bookingRepository)
+    {
+        // We create a new booking
+        
+        $newBooking = new Booking();
+
+        //We recover json's data
+        $jsonData = json_decode($request->getContent());
+        //dd($jsonData);
+        
+        //We recover json's entry date
+        $entryDate = $jsonData->from;
+        //We recover json's departure date
+        $departureDate = $jsonData->to;
+        //We recover json's user id
+        $tenantId = $jsonData->user;
+
+        $dateFrom = new \DateTime($entryDate);
+        $dateFrom = ($dateFrom->format('d-m-Y'));
+        //dd($dateFrom);
+
+        $dateTo = new \DateTime($departureDate);
+        $dateTo = ($dateTo->format('d-m-Y'));
+        //dd($dateTo);
+       
+        //We recover a user which booking an accomodation
+        $tenant = $userRepository->findById($tenantId);
+        //dd($tenant);
+        $tenantEmail = $tenant->getEmail();
+        $tenantFirstName = $tenant->getFirstName();
+        $tenantLastName = $tenant->getLastName();
+        //dd($tenantEmail);
+        //dump($tenantFirstName);
+        //dd($tenantLastName);
+
+
+        // Propriétaire du logement
+        $ownerAccomodation = $accomodationRepository->find($id);
+        // dump($ownerAccomodation);
+        $ownerEmail = $ownerAccomodation->getUser()->getEmail();
+        $accomodationName = $ownerAccomodation->getTitle();
+        // dd($owner);
+  
+        //    $book = $bookingRepository->findAll();
+        //   // dd($book);
+      
+
+        //    //We recover all informations about the accomodation with a specific id
+        //    $accomodationBooked = $accomodationRepository->find($id);
+        //     //dd($accomodationBooked);
+        //     //Récupérer la date d'entrée d'un hébergement
+        //     //$bookingEntrance = $accomodationBooked->getEntrance();
+        //     //dd($bookingEntrance);
+         
+        //     //Recover the booking with method of query builder.
+        //   $reservations = $bookingRepository->findByAccomodations($id);
+        //   dd($reservations);
+      
+        //     // Entry date
+        //   $bookEntrance = $bookingRepository->findByAccomodations($id)->getEntrance();
+
+        //   // Departure date
+        //   $bookDeparture = $bookingRepository->findByAccomodations($id)->getDeparture();
+     
+        
+
+        // foreach ($reservations as $reservation) {
+        //     echo $reservation;
+
+        //     /*if ($dateFrom >= $bookEntrance) {
+        //         echo'tu peux pas réserver';
+        //     } else {
+        //         echo'tu peux reserver';
+        //     }*/
+        // }
+
+        //if the new booking is correctly booked
+        if ($newBooking) {
+            //Modify dates, accomodation and user
+            $newBooking->setEntrance($dateFrom);
+            $newBooking->setDeparture($dateTo);
+            $newBooking->setAccomodation($ownerAccomodation);
+            $newBooking->setUser($tenant);
+            // dd($newBooking);
+            // And now, save datas in DB
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($newBooking);
+            $em->flush();
+
+
+            //Send a message from the tenant to the owner
+            $message = (new \Swift_Message('Réservation de votre logement'))
+        ->setFrom([$tenantEmail => $tenantEmail])
+        ->setTo(array($ownerEmail => $ownerEmail))
+        ->setBody('Bonjour, votre logement a été réservé du ' . $entryDate . ' au ' . $departureDate . ' par ' . $tenantFirstName . ' ' . $tenantLastName . ". Cordialement, l'équipe AtipiK ");
+
+            // dd($mailer->send($message));
+            $mailer->send($message);
+
+            //Send a confirm message from the owner to the tenant
+            $confirmMessage = (new \Swift_Message('Confirmation de votre réservation'))
+        ->setFrom([$ownerEmail => $ownerEmail])
+        ->setTo(array($tenantEmail => $tenantEmail))
+        ->setBody('Bonjour, votre logement est bien réservé pour la période du ' . $entryDate . ' au ' . $departureDate . '. Passez un bon séjour chez ' . $accomodationName . ' Cordialement, l\'équipe AtipiK ');
+
+            // dd($mailer->send($message));
+            $mailer->send($message);
+            $mailer->send($confirmMessage);
+            return $this->json('', 201);
+ 
+        }
+        return $this->json('', 404);
     }
 
 

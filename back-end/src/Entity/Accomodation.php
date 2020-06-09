@@ -159,12 +159,19 @@ class Accomodation
      */
     private $slugger;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Booking::class, mappedBy="accomodation_id")
+     */
+    private $bookings;
+
     public function __construct()
     {
 
         $this->extra = new ArrayCollection();
         $this->service = new ArrayCollection();
         $this->picture = new ArrayCollection();
+        $this->bookings = new ArrayCollection();
+ 
         $this->createdAt = new \DateTime();
     }
 
@@ -627,6 +634,36 @@ class Accomodation
     }
 
     /**
+     * @return Collection|Booking[]
+     */
+    public function getBookings(): Collection
+    {
+        return $this->bookings;
+    }
+
+    public function addBooking(Booking $booking): self
+    {
+        if (!$this->bookings->contains($booking)) {
+            $this->bookings[] = $booking;
+            $booking->setAccomodationId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBooking(Booking $booking): self
+    {
+        if ($this->bookings->contains($booking)) {
+            $this->bookings->removeElement($booking);
+            // set the owning side to null (unless already changed)
+            if ($booking->getAccomodationId() === $this) {
+                $booking->setAccomodationId(null);
+            }
+        }
+
+        return $this;
+    }
+     /*
      * @ORM\PreUpdate
      */
     public function onPreUpdate()
@@ -634,3 +671,4 @@ class Accomodation
         $this->updatedAt = new \DateTime();
     }
 }
+
