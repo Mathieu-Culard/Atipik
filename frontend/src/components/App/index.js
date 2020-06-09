@@ -14,6 +14,7 @@ import ProfilePage from 'src/containers/ProfilePage';
 import AccomodationTypesPage from 'src/containers/AccomodationTypesPage';
 import MyAccomodationsPage from 'src/containers/MyAccomodationsPage';
 import AddAccomodationPage from 'src/containers/AddAccomodationPage';
+import ReservationsPage from 'src/containers/ReservationsPage';
 import ModalPanel from 'src/containers/ModalPanel';
 
 import './app.scss';
@@ -44,6 +45,9 @@ const App = ({
         </Route>
         <Route path="/profil">
           <ProfilePage />
+        </Route>
+        <Route path="/reservations">
+          <ReservationsPage />
         </Route>
         <Route path="/types">
           <AccomodationTypesPage />

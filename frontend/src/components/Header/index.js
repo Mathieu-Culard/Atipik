@@ -53,6 +53,7 @@ const Header = ({
             {isLogged && (
               <>
                 <Link className="header__link" to="/profil"> Mon Profil </Link>
+                <Link className="header__link" to="/reservations"> Mes Réservations </Link>
                 {userAccomodations.length === 0 && <Link className="header__link" to="/gerer-mes-hebergements/nouvel-hebergement"> Ajouter un hébergement </Link>}
                 {userAccomodations.length > 0 && <Link className="header__link" to="/gerer-mes-hebergements">Gerer mes hebergements</Link>}
                 <a className="header__link" href="#" onClick={disconnect}>Déconnexion</a>
