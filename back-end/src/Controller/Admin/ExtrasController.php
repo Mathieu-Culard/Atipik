@@ -72,7 +72,7 @@ class ExtrasController extends AbstractController
             // dd($form);
 
             // If we get an icon 
-            if ($iconFile){
+            if (isset($iconFile)){
                 // we do a slugger with the type name
                 $sluggerName = $slugger->slug($form->get('name')->getData());
                 // we retrieve the extension 
@@ -82,6 +82,7 @@ class ExtrasController extends AbstractController
                 // We move the file to the folder
                 $iconFile->move($this->getParameter('icon_directory'), $newName);
 
+                $extra->setIcon($newName);
               //  dd($iconFile); 
 
             }

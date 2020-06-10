@@ -23,10 +23,12 @@ class FormType extends AbstractType
                 'constraints' => new Assert\NotBlank()
             ])
             ->add('picture', FileType::class, [
+                'data_class'=>null,
                 'required' => false,
                 'mapped' => false, 
             ])
             ->add('icon', FileType::class, [
+                 'data_class' => null,
                  'required' => false,
                  'mapped' => false, 
             ])

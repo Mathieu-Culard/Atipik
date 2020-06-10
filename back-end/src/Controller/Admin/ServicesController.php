@@ -65,7 +65,7 @@ class ServicesController extends AbstractController
               // dd($form);
   
               // If we get an icon 
-              if ($iconFile){
+              if (isset($iconFile)){
                   // we do a slugger with the type name
                   $sluggerName = $slugger->slug($form->get('name')->getData());
                   // we retrieve the extension 
@@ -76,9 +76,9 @@ class ServicesController extends AbstractController
                   $iconFile->move($this->getParameter('icon_directory'), $newName);
   
                 //  dd($iconFile); 
-  
+                $service->setIcon($newName);
               }
-              $service->setIcon($newName);
+              
               //We update the DB
               $em = $this->getDoctrine()->getManager();
               $em->persist($service);
