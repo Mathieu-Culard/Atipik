@@ -11,6 +11,7 @@ import connectionMiddleware from 'src/middlewares/connectionMiddleware';
 import inscriptionMiddleware from 'src/middlewares/inscriptionMiddleware';
 import dataMiddleware from 'src/middlewares/dataMiddleware';
 import manageAccomodationMiddleware from 'src/middlewares/manageAccomodationMiddleware';
+import reservationMiddleware from 'src/middlewares/reservationMiddleware';
 import reducer from 'src/reducers';
 
 export const history = createBrowserHistory();
@@ -27,6 +28,7 @@ const enhancer = composeWithDevTools(
     inscriptionMiddleware,
     dataMiddleware,
     manageAccomodationMiddleware,
+    reservationMiddleware,
   ),
 );
 
