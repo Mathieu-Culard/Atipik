@@ -19,6 +19,27 @@ class PictureRepository extends ServiceEntityRepository
         parent::__construct($registry, Picture::class);
     }
 
+    public function findByAccomodation($id)
+    {
+        $qb = $this->createQueryBuilder('p');
+        $qb->where('p.accomodation = :id')
+            ->setParameter('id' , $id);
+        
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findByAccomodationDes($id)
+    {
+        $qb = $this->createQueryBuilder('p');
+        $qb->where('p.accomodation = :id')
+            ->orderBy('p.id','DESC')
+            ->setParameter('id' , $id);
+        
+        return $qb->getQuery()->getResult();
+    }
+
+    
+
     // /**
     //  * @return Picture[] Returns an array of Picture objects
     //  */
