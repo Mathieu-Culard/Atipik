@@ -157,11 +157,17 @@ class Accomodation
      */
     private $slugger;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Booking::class, mappedBy="accomodation", orphanRemoval=true)
+     */
+    private $bookings;
+
     public function __construct()
     {
         $this->extra = new ArrayCollection();
         $this->service = new ArrayCollection();
         $this->picture = new ArrayCollection();
+        $this->bookings = new ArrayCollection();
  
     }
 
@@ -613,6 +619,37 @@ class Accomodation
     public function setSlugger(string $slugger): self
     {
         $this->slugger = $slugger;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Booking[]
+     */
+    public function getBookings(): Collection
+    {
+        return $this->bookings;
+    }
+
+    public function addBooking(Booking $booking): self
+    {
+        if (!$this->bookings->contains($booking)) {
+            $this->bookings[] = $booking;
+            $booking->setAccomodation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBooking(Booking $booking): self
+    {
+        if ($this->bookings->contains($booking)) {
+            $this->bookings->removeElement($booking);
+            // set the owning side to null (unless already changed)
+            if ($booking->getAccomodation() === $this) {
+                $booking->setAccomodation(null);
+            }
+        }
 
         return $this;
     }
