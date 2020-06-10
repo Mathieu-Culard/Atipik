@@ -16,6 +16,7 @@ import MyAccomodationsPage from 'src/containers/MyAccomodationsPage';
 import AddAccomodationPage from 'src/containers/AddAccomodationPage';
 import ReservationsPage from 'src/containers/ReservationsPage';
 import ModalPanel from 'src/containers/ModalPanel';
+import Loader from 'src/components/Loader';
 
 import './app.scss';
 
@@ -36,6 +37,7 @@ const App = ({
   return (
     <div className="app">
       <Header />
+      <Loader />
       <Switch>
         <Route path="/recherche">
           <SearchPage />

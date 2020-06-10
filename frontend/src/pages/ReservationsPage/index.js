@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-// import MyReservations from 'src/containers/MyReservations';
+import MyReservations from 'src/containers/MyReservations';
 // import MyAccomodationsReservations from 'src/containers/MyAccomodationsReservations';
 
-const InscriptionPage = ({ setBreadcrumbs }) => {
+const InscriptionPage = ({ setBreadcrumbs, fetchReservations }) => {
   useEffect(() => {
     const breadcrumbs = [
       {
@@ -17,12 +17,12 @@ const InscriptionPage = ({ setBreadcrumbs }) => {
       },
     ];
     setBreadcrumbs(breadcrumbs);
+    // fetchReservations();
   }, []);
 
   return (
     <>
-      <p>Coucou</p>
-      {/* <MyReservations /> */}
+      <MyReservations />
       {/* <MyAccomodationsReservations /> */}
     </>
   );
@@ -30,6 +30,7 @@ const InscriptionPage = ({ setBreadcrumbs }) => {
 
 InscriptionPage.propTypes = {
   setBreadcrumbs: PropTypes.func.isRequired,
+  fetchReservations: PropTypes.func.isRequired,
 };
 
 export default InscriptionPage;
