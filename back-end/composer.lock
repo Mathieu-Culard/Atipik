@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4a85df8ffe425b7a1ed013902a4ef144",
+    "content-hash": "66cc5d2f57b0b9c4538d911e86dc034a",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -5088,7 +5088,11 @@
             ],
             "description": "Symfony Security Component - CSRF Library",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
+            "time": "2020-03-27T16:56:45+00:00"
+=======
             "time": "2020-05-20T17:38:26+00:00"
+>>>>>>> 77810aede05b50056d0f75814576f24a13c87a22
         },
         {
             "name": "symfony/security-guard",

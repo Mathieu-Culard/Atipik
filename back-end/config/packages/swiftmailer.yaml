@@ -1,3 +1,5 @@
 swiftmailer:
+    default_mailer: default # utiliser default pour revenir a la configuration initiale
+    
     url: '%env(MAILER_URL)%'
     spool: { type: 'memory' }

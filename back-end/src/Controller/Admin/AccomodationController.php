@@ -65,6 +65,6 @@ class AccomodationController extends AbstractController
         //We redirect to the list page
         return $this->redirectToRoute('admin_accomodations_browse');
     }
-    return $this->render('admin/accomodations/browse.html.twig');
+    return $this->render('admin/emails/accomodationContact.html.twig');
 }
 }
