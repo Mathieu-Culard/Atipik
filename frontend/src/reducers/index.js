@@ -11,6 +11,7 @@ import contact from './contactReducer';
 import user from './userReducer';
 import data from './dataReducer';
 import manageAccomodation from './manageAccomodationReducer';
+import reservations from './reservationsReducer';
 
 const rootReducer = (history) => combineReducers({
   router: connectRouter(history),
@@ -24,6 +25,7 @@ const rootReducer = (history) => combineReducers({
   user,
   data,
   manageAccomodation,
+  reservations,
 });
 
 export default rootReducer;

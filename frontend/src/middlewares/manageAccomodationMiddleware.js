@@ -17,7 +17,8 @@ const manageAccomodationMiddleware = (store) => (next) => (action) => {
     case DELETE_MY_ACCOMODATION:
       axios({
         method: 'delete',
-        url: `${process.env.REACT_APP_BACKEND_URL}/delete/accomodation/${action.id}`,
+        url: `${process.env.REACT_APP_API_URL}/delete/accomodation/${action.id}`,
+        headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}` },
       })
         .then((response) => {
           store.dispatch(removeMyAccomodation(action.id));
@@ -159,7 +160,7 @@ const manageAccomodationMiddleware = (store) => (next) => (action) => {
       for (let i = 0; i < pictures.length; i += 1) {
         formData.append('pictures[]', pictures[i]);
       }
-      formData.append('databasePics', editPicturesURL);
+      formData.append('databasePic', editPicturesURL);
       formData.append('title', title);
       formData.append('capacity', capacity);
       formData.append('description', description);

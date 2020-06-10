@@ -20,6 +20,7 @@ const ContactForm = ({
   changeFields,
   sendMessage,
   resetContactMessage,
+  regexEmail,
 }) => {
   const classes = useStyles();
 
@@ -34,9 +35,23 @@ const ContactForm = ({
     sendMessage();
   };
 
+  const isValid = () => {
+    if (emailValue === '' || !regexEmail.test(emailValue)) return false;
+    if (objectValue === '') return false;
+    if (messageValue === '') return false;
+    return true;
+  };
+
   return (
     <form className="contact-page__form" onSubmit={handleSubmit}>
-      <TextField id="email" label="Email" className={classes.textField} value={emailValue} onChange={handleChange} />
+      <TextField
+        id="email"
+        label="Email"
+        className={classes.textField}
+        value={emailValue}
+        onChange={handleChange}
+        error={emailValue !== '' && !regexEmail.test(emailValue)}
+      />
       <TextField id="object" label="Objet" className={classes.textField} value={objectValue} onChange={handleChange} />
       <label className="contact-owner-form__label" htmlFor="message">
         Votre message
@@ -49,7 +64,7 @@ const ContactForm = ({
           onChange={handleChange}
         />
       </label>
-      <button type="submit" className="contact-page__form__submit">Envoyer</button>
+      <button type="submit" className="contact-page__form__submit" disabled={!isValid()}>Envoyer</button>
     </form>
   );
 };
@@ -61,5 +76,6 @@ ContactForm.propTypes = {
   changeFields: PropTypes.func.isRequired,
   sendMessage: PropTypes.func.isRequired,
   resetContactMessage: PropTypes.func.isRequired,
+  regexEmail: PropTypes.instanceOf(RegExp).isRequired,
 };
 export default ContactForm;

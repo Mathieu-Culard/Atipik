@@ -7,6 +7,7 @@ const LostPasswordForm = ({
   changeEmail,
   resetPassword,
   resetContactMessage,
+  regexEmail,
 }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,6 +22,7 @@ const LostPasswordForm = ({
         label="Email"
         value={email}
         onChange={(e) => changeEmail(e.target.value)}
+        error={email !== '' && !regexEmail.test(email)}
       />
     </form>
   );
@@ -31,6 +33,7 @@ LostPasswordForm.propTypes = {
   changeEmail: PropTypes.func.isRequired,
   resetPassword: PropTypes.func.isRequired,
   resetContactMessage: PropTypes.func.isRequired,
+  regexEmail: PropTypes.instanceOf(RegExp).isRequired,
 };
 
 export default LostPasswordForm;

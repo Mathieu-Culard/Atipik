@@ -149,6 +149,7 @@ const manageAccomodationReducer = (state = initialState, action = {}) => {
         pictures,
       } = currentAccomodation;
       return {
+        pictures: [],
         ...state,
         editPicturesURL: pictures,
         title,

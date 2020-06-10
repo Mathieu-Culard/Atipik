@@ -7,6 +7,7 @@ import { changeContactFields, resetPassword, resetContactMessage } from 'src/act
 const mapStateToProps = (state) => ({
   email: state.contact.email,
   lostPasswordPanel: state.utils.lostPasswordPanel,
+  regexEmail: state.utils.regexEmail,
 });
 
 const mapDispatchToProps = (dispatch) => ({

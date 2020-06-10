@@ -1,16 +1,18 @@
 import { connect } from 'react-redux';
-import InscriptionPage from 'src/pages/InscriptionPage';
+import ReservationsPage from 'src/pages/ReservationsPage';
 
 import { setBreadcrumbs } from 'src/actions/utils';
+import { fetchReservations } from 'src/actions/reservations';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = () => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
   setBreadcrumbs: (newValue) => dispatch(setBreadcrumbs(newValue)),
+  fetchReservations: () => dispatch(fetchReservations()),
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(InscriptionPage);
+)(ReservationsPage);
