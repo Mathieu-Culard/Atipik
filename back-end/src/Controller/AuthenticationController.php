@@ -11,6 +11,7 @@ use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
+
 class AuthenticationController extends AbstractController
 {
     /**
@@ -32,7 +33,7 @@ class AuthenticationController extends AbstractController
             $user->setFirstname($jsonData->firstname);
             $user->setLastname($jsonData->lastname);
             $user->setPseudo($jsonData->pseudo);
-            $user->setAvatar('avatar.jpg');
+            $user->setAvatar('avatar.png');
             $user->setRoles($user->getRoles());
     
             // The password is encrypted before being assigned to the user.
@@ -58,6 +59,17 @@ class AuthenticationController extends AbstractController
                 throw $this->createNotFoundException('Merci de saisir votre pseudo');
             }  
         }
+    }
+
+    /**
+     * @Route("/reset-password", name="reset_password", methods={"POST"})
+     */
+    public function resetPassword(Request $request) 
+    {
+        // We create a new object from the received JSON
+        $jsonData = json_decode($request->getContent());
+
+        return $this->json('',201);
     }
 
 

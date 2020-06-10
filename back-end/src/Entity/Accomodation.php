@@ -8,8 +8,10 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
+
 /**
  * @ORM\Entity(repositoryClass=AccomodationRepository::class)
+ * @ORM\HasLifecycleCallbacks
  */
 class Accomodation
 {
@@ -164,23 +166,26 @@ class Accomodation
 
     public function __construct()
     {
+
         $this->extra = new ArrayCollection();
         $this->service = new ArrayCollection();
         $this->picture = new ArrayCollection();
         $this->bookings = new ArrayCollection();
  
+        $this->createdAt = new \DateTime();
     }
 
-    public function __toString() : ?string
+    public function __toString()
     {
-        return $this->picture; 
-        return $this->type;
-        return $this->user;
-     
+        $this->picture;
+        $this->type;
+        $this->user;
+        $this->extra;
     }
+
 
     /**
-     * @Groups({"search_result","accomodation_detail","authentified_user_account"})
+     * @Groups({"search_result","accomodation_detail","authentified_user_account", "booking_accomodation"})
      */
     public function getId(): ?int
     {
@@ -551,6 +556,11 @@ class Accomodation
 
         return $this;
     }
+    public function setServices(ArrayCollection $services): self
+    {
+        $this->service = $services;
+        return $this;
+    }
 
     public function removeService(Service $service): self
     {
@@ -594,7 +604,7 @@ class Accomodation
     }
 
     /**
-     * @Groups({"accomodation_detail"})
+     * @Groups({"accomodation_detail", "booking_accomodation"})
      */
     public function getUser(): ?User
     {
@@ -624,6 +634,7 @@ class Accomodation
     }
 
     /**
+     * @Groups({"booking_accomodation"})
      * @return Collection|Booking[]
      */
     public function getBookings(): Collection
@@ -653,4 +664,13 @@ class Accomodation
 
         return $this;
     }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function onPreUpdate()
+    {
+        $this->updatedAt = new \DateTime();
+    }
 }
+

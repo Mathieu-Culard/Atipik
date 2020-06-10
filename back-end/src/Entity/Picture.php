@@ -39,15 +39,20 @@ class Picture
     private $updatedAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Accomodation::class, inversedBy="picture")
+     * @ORM\ManyToOne(targetEntity=Accomodation::class, inversedBy="picture", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $accomodation;
 
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
+
     public function __toString()
     {
-        return $this->name;
-        return $this->main;
+        $this->name;
+        $this->main;
     }
 
     public function getId(): ?int

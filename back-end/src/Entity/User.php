@@ -89,11 +89,10 @@ class User implements UserInterface
     public function __toString()
     {
         return $this->roles;
-        
     }
 
     /**
-     * @Groups({"accomodation_detail","authentified_user_account"})
+     * @Groups({"accomodation_detail","authentified_user_account","accomodation_owner", "booking_accomodation"})
      */
     public function getId(): ?int
     {
@@ -208,7 +207,7 @@ class User implements UserInterface
     }
 
     /**
-     * @Groups({"authentified_user_account"})
+     * @Groups({"authentified_user_account","accomodation_owner"})
      */
     public function getAvatar(): ?string
     {
@@ -247,7 +246,7 @@ class User implements UserInterface
     }
 
     /**
-     * @Groups({"authentified_user_account"})
+     * @Groups({"authentified_user_account", "booking_accomodation"})
      * @return Collection|Accomodation[]
      */
     public function getAccomodations(): Collection
@@ -279,7 +278,7 @@ class User implements UserInterface
     }
 
     /**
-     * @Groups({"authentified_user_account"})
+     * @Groups({"authentified_user_account","accomodation_owner"})
      */
     public function getPseudo(): ?string
     {
@@ -302,6 +301,7 @@ class User implements UserInterface
     }
 
     /**
+     * @Groups({"booking_accomodation"})
      * @return Collection|Booking[]
      */
     public function getBookings(): Collection

@@ -15,7 +15,7 @@
 
 <div class="validateBody">
 
-		<h3 class="validateUser">{{currentAccomodation.user.avatar}}{{currentAccomodation.user.pseudo}}
+		<h3 class="validateUser"><img style="width:75px"src="{{asset('assets/avatar/'~ currentAccomodation.user.avatar)}}" alt="">{{currentAccomodation.user.pseudo}}
 			<a href="{{currentAccomodation.facebookLink}}">
 				<i class="fa fa-facebook-official" aria-hidden="true"></i>
 			</a>
@@ -27,7 +27,7 @@
 		{% if currentAccomodation.picture is not null %}
 			{% for currentPicture in currentAccomodation.picture %}
 				<img
-				src="{{asset('assets/accomodation/'~ currentPicture.name)}}" alt="">
+				src="{{asset('assets/accomodation/'~ currentPicture.name)}}" style="width:300px" alt="">
 			{% endfor %}
 		{% endif %}
 

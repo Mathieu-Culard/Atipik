@@ -3,10 +3,19 @@
 namespace App\Controller;
 
 use App\Entity\Accomodation;
+use App\Entity\Booking;
+use App\Repository\BookingRepository;
+use App\Entity\User;
 use App\Repository\AccomodationRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\ORM\EntityManagerInterface;
+use Swift_Mailer;
+use Swift_Message;
 
 /**
  * @Route(name="accomodation_")
@@ -14,9 +23,9 @@ use Symfony\Component\Serializer\SerializerInterface;
 class AccomodationController extends AbstractController
 {
     /**
-     * @Route("/accomodation/{slugger}", name="detail", methods={"GET"})
+     * @Route("/accomodation/{id}", name="detail", requirements={"id": "\d+"}, methods={"GET"})
      */
-    public function accomodationDetail(Accomodation $accomodation, AccomodationRepository $accomodationRepository, SerializerInterface $serializer)
+    public function displayAccomodation(Accomodation $accomodation, AccomodationRepository $accomodationRepository, SerializerInterface $serializer)
     {
         // We recover the object Accomodation desired
         $currentAccomodation = $accomodationRepository->find($accomodation->getId());
@@ -69,7 +78,7 @@ class AccomodationController extends AbstractController
             // We create a new variable that will be an array and that will contain the name of all the pictures of the accomodation
             $pictures[] = $currentPicture['name'];
 
-            if($currentPicture['main']) {
+            if ($currentPicture['main']) {
                 $accomodationData['main_picture'] = $currentPicture['name'];
             }
         }
@@ -79,6 +88,210 @@ class AccomodationController extends AbstractController
         // We delete the $extra property
         unset($accomodationData['picture']);
 
-        return $this->json($accomodationData,201);
+        return $this->json($accomodationData, 201);
     }
+
+
+    /**
+    * @Route("/api/accomodation/{id}/reservation", name="accomodationReservation", methods={"POST"})
+    */
+    public function bookingAccomodation(Request $request, Accomodation $accomodation, AccomodationRepository $accomodationRepository, SerializerInterface $serializer, UserInterface $user, UserRepository $userRepository, \Swift_Mailer $mailer, $id, EntityManagerInterface $em, BookingRepository $bookingRepository)
+    {
+        // We create a new booking
+        
+        $newBooking = new Booking();
+
+        //We recover json's data
+        $jsonData = json_decode($request->getContent());
+        //dd($jsonData);
+        
+        //We recover json's entry date
+        $entryDate = $jsonData->from;
+        //We recover json's departure date
+        $departureDate = $jsonData->to;
+        //We recover json's user id
+        $tenantId = $jsonData->user;
+
+        $dateFrom = new \DateTime($entryDate);
+        $dateFrom = ($dateFrom->format('d-m-Y'));
+        //dd($dateFrom);
+
+        $dateTo = new \DateTime($departureDate);
+        $dateTo = ($dateTo->format('d-m-Y'));
+        //dd($dateTo);
+       
+        //We recover a user which booking an accomodation
+        $tenant = $userRepository->findById($tenantId);
+        //dd($tenant);
+        $tenantEmail = $tenant->getEmail();
+        $tenantFirstName = $tenant->getFirstName();
+        $tenantLastName = $tenant->getLastName();
+        //dd($tenantEmail);
+        //dump($tenantFirstName);
+        //dd($tenantLastName);
+
+
+        // Propriétaire du logement
+        $ownerAccomodation = $accomodationRepository->find($id);
+        // dump($ownerAccomodation);
+        $ownerEmail = $ownerAccomodation->getUser()->getEmail();
+        $accomodationName = $ownerAccomodation->getTitle();
+        // dd($owner);
+  
+        //    $book = $bookingRepository->findAll();
+        //   // dd($book);
+      
+
+        //    //We recover all informations about the accomodation with a specific id
+        //    $accomodationBooked = $accomodationRepository->find($id);
+        //     //dd($accomodationBooked);
+        //     //Récupérer la date d'entrée d'un hébergement
+        //     //$bookingEntrance = $accomodationBooked->getEntrance();
+        //     //dd($bookingEntrance);
+         
+        //     //Recover the booking with method of query builder.
+        //   $reservations = $bookingRepository->findByAccomodations($id);
+        //   dd($reservations);
+      
+        //     // Entry date
+        //   $bookEntrance = $bookingRepository->findByAccomodations($id)->getEntrance();
+
+        //   // Departure date
+        //   $bookDeparture = $bookingRepository->findByAccomodations($id)->getDeparture();
+     
+        
+
+        // foreach ($reservations as $reservation) {
+        //     echo $reservation;
+
+        //     /*if ($dateFrom >= $bookEntrance) {
+        //         echo'tu peux pas réserver';
+        //     } else {
+        //         echo'tu peux reserver';
+        //     }*/
+        // }
+
+        //if the new booking is correctly booked
+        if ($newBooking) {
+            //Modify dates, accomodation and user
+            $newBooking->setEntrance($dateFrom);
+            $newBooking->setDeparture($dateTo);
+            $newBooking->setAccomodation($ownerAccomodation);
+            $newBooking->setUser($tenant);
+            // dd($newBooking);
+            // And now, save datas in DB
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($newBooking);
+            $em->flush();
+
+
+            //Send a message from the tenant to the owner
+            $message = (new \Swift_Message('Réservation de votre logement'))
+        ->setFrom([$tenantEmail => $tenantEmail])
+        ->setTo(array($ownerEmail => $ownerEmail))
+        ->setBody('Bonjour, votre logement a été réservé du ' . $entryDate . ' au ' . $departureDate . ' par ' . $tenantFirstName . ' ' . $tenantLastName . ". Cordialement, l'équipe AtipiK ");
+
+            // dd($mailer->send($message));
+            $mailer->send($message);
+
+            //Send a confirm message from the owner to the tenant
+            $confirmMessage = (new \Swift_Message('Confirmation de votre réservation'))
+        ->setFrom([$ownerEmail => $ownerEmail])
+        ->setTo(array($tenantEmail => $tenantEmail))
+        ->setBody('Bonjour, votre logement est bien réservé pour la période du ' . $entryDate . ' au ' . $departureDate . '. Passez un bon séjour chez ' . $accomodationName . ' Cordialement, l\'équipe AtipiK ');
+
+            // dd($mailer->send($message));
+            $mailer->send($message);
+            $mailer->send($confirmMessage);
+            return $this->json('', 201);
+ 
+        }
+        return $this->json('', 404);
+    }
+
+
+    /**
+     * @Route("/accomodation/{id}/owner", name="owner", methods={"GET"})
+     */
+    public function displayOwner(Accomodation $accomodation, AccomodationRepository $accomodationRepository, SerializerInterface $serializer)
+    {
+        // We recover the object Accomodation desired
+        $currentAccomodation = $accomodationRepository->findOwnerOfAccomodation($accomodation->getId());
+
+        //From the id we retrieve the information from the hosting provider
+        $owner = $currentAccomodation->getUser();
+
+        // We serialize our filtered data and normalize it to avoid circular references.
+        $ownerDetail = $serializer->normalize($owner, 'json', ['groups' => 'accomodation_owner']);
+
+        return $this->json($ownerDetail,201);
+    }
+
+    /**
+     * @Route("/api/reservations", name="reservations", methods={"GET"})
+     */
+    public function reservation(BookingRepository $bookingRepository, SerializerInterface $serializer, UserInterface $userInterface, UserRepository $userRepository, AccomodationRepository $accomodationRepository){
+
+        // We retrieve the user
+        $user = $userRepository->find($userInterface->getId());
+             //dd($user->getAccomodations());
+        // We retrieve all the booking for one user
+        $booking = $bookingRepository->findAllByUser($user->getId());
+            //dd($booking); 
+        
+            //We declare an array
+            $myReservations=[];
+            //We loop on $booking
+            foreach ($booking as $currentBooking){
+                //We retrieve the current booking
+               $reservation = $bookingRepository->find($currentBooking); 
+               //We recover our array, with properties we want to send
+               $reservationInfo=[
+                    "id"=>$reservation->getId(), 
+                    "accomodation"=>$reservation->getAccomodation()->getId(), 
+                    "startAt"=>$reservation->getEntrance(), 
+                    "endAt"=>$reservation->getDeparture()
+                ];  
+                //We associate our arrays
+                $myReservations[]=$reservationInfo;   
+            }
+            //dd($myReservations); 
+
+        //We recover all accomodations dependings of the id
+        $userAccomodations = $accomodationRepository->findAllByUser($user->getId());
+        // dd($userAccomodations);
+
+        //We recover all accomodations's bookings 
+        $bookingAccomodation = $bookingRepository->findAllByAccomodations($userAccomodations);
+        //dd($bookingAccomodation);
+
+        // We declare an empty array
+        $myAccomodations=[];
+        
+        // We loop on each booking 
+        foreach($bookingAccomodation as $current){
+            // We retrieve all the booking for an accomodation
+            $accomodation= $bookingRepository->find($current);
+            // We retrieve all the informations we need
+            $accomodationInfo=[
+                "id"=>$accomodation->getId(),
+                "accomodation"=>$accomodation->getAccomodation()->getId(),
+                "startAt"=>$accomodation->getEntrance(),
+                "endAt"=>$accomodation->getDeparture(), 
+                "user"=>$accomodation->getUser()->getId(),
+            ];
+            // We push it to an array
+            $myAccomodations[]=$accomodationInfo;
+        }
+        //dd($myAccomodations);
+
+        // We push all the result into an array
+         $result = array("myReservations"=>$myReservations, "myAccomodations"=>$myAccomodations);
+        //dd($result);
+            
+        // We encode it in json
+        return $this->json($result,201, [], ['groups' =>'booking_accomodation']);
+    
+    }
+ 
 }
