@@ -80,6 +80,13 @@ class AccomodationUserController extends AbstractController
             $accomodation->setIsValidated('0');
             $user = $userRepository->find($userInterface->getId());
             $accomodation->setUser($user);
+
+            $data['electricity'] === "true" ? $accomodation->setElectricity(1) : $accomodation->setElectricity(0);
+            $data['pipedWater'] === "true" ? $accomodation->setPipedWater(1) : $accomodation->setPipedWater(0);
+            $data['animals'] === "true" ? $accomodation->setAnimals(1) : $accomodation->setAnimals(0);
+            $data['accessibility'] === "true" ? $accomodation->setAccessibility(1) : $accomodation->setAccessibility(0);
+            $data['smokers'] === "true" ? $accomodation->setSmokers(1) : $accomodation->setSmokers(0);
+            //dd($accomodation);
             // should be replace by a data transformer
 
             // si le tableau $services n'est pas null
@@ -375,6 +382,13 @@ class AccomodationUserController extends AbstractController
 
                 $accomodation->setIsValidated('0');
 
+                $data['electricity'] === "true" ? $accomodation->setElectricity(1) : $accomodation->setElectricity(0);
+                $data['pipedWater'] === "true" ? $accomodation->setPipedWater(1) : $accomodation->setPipedWater(0);
+                $data['animals'] === "true" ? $accomodation->setAnimals(1) : $accomodation->setAnimals(0);
+                $data['accessibility'] === "true" ? $accomodation->setAccessibility(1) : $accomodation->setAccessibility(0);
+                $data['smokers'] === "true" ? $accomodation->setSmokers(1) : $accomodation->setSmokers(0);
+
+                //dd($accomodation);
                 // On recupere les services existants en base de données et pour chacun d'entre eux
                 foreach ($accomodation->getService() as $existingService) {
                     // on supprime l'objet existant
@@ -422,13 +436,13 @@ class AccomodationUserController extends AbstractController
                     // on recupere le nom de l'entité la plus récente
                     $countName = $lastPic[0]->getName();
                     //dd($countName);
-                    $position = strpos($countName, ".")-1;
+                    $position = strpos($countName, ".") - 1;
                     //dd($position);
                     // on stocke '.' comme etant le caractere permettant la dissociation du texte et de l'extension
                     $point = strrpos($countName, ".");
                     //dd($position, $point);
                     // on decoupe notre chaine de caractere pour récuperer ce qu'on trouve apres le dernier point
-                    $count = (substr($countName, $point-1, $point-$position)) ;
+                    $count = (substr($countName, $point - 1, $point - $position));
                     //dd($count);
                     // on decoupe encore notre chaine de caractere pour récuperer le titre qui sera attribué aux nouvelles photos pour rester coherents
                     $title = substr($countName, 0, $point - 1);
@@ -452,8 +466,8 @@ class AccomodationUserController extends AbstractController
                         }
                     }
                     //dd($accomodation->getPicture());
-                    
-                    
+
+
                     if (isset($request->files->all()['pictures'])) {
                         // Pour chacune des images
                         foreach ($pictures as $currentPicture) {
@@ -480,7 +494,7 @@ class AccomodationUserController extends AbstractController
                     if (isset($request->files->all()['pictures'])) {
                         // Pour chacune des images
                         foreach ($pictures as $newPicture) {
-                            
+
                             // We retrieve the extension of the transmitted image file
                             $extension = $newPicture->getClientOriginalExtension();
                             // We rename the image file so that it follows a standard
