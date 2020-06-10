@@ -56,6 +56,16 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     */
 
     
+    public function findByEmail($email): ?User
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.email = :email')
+            ->setParameter('email', $email)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
     public function findById($id): ?User
     {
         return $this->createQueryBuilder('u')
@@ -66,5 +76,18 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         ;
     }
 
+    // $animals = $filters->animals;
+    // $qb->andWhere('a.animals = :animals')
+    //     ->setParameter('animals',$animals);
+        
+    // public function findByValidateStatus()
+    // {
+    //     return $this->createQueryBuilder('a')
+    //                 ->orderBy('a.createdAt','ASC')
+    //                 ->where('a.isValidated = 0')
+    //                 ->getQuery()
+    //                 ->getResult();
+
+    // }
     
 }

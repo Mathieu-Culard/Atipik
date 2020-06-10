@@ -89,6 +89,11 @@ class User implements UserInterface
     public function __toString()
     {
         return $this->roles;
+<<<<<<< HEAD
+        return $this->password;
+        
+=======
+>>>>>>> 8618ae9774d124ce169030a42f2304b7d331c35f
     }
 
     /**
