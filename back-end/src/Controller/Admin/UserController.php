@@ -72,34 +72,6 @@ class UserController extends AbstractController
         return $this->redirectToRoute('admin_users_browse');
     }
 
-    /**
-     * @Route ("/edit/{id}", name="edit", methods={"GET","POST"}, requirements={"id": "\d+"})
-     */
-    //Edit Method to modify one user
-    // public function edit(User $user, Request $request): Response
-    // {
-    //     //We retrieve the form "UserType"
-    //     $form = $this->createForm(UserType::class, $user);
-
-    //     //We retrieve form's data
-    //     $form->handleRequest($request);
-
-    //     //Form submit, if the form is correctly submitted and is valid, 
-    //     //so, we can retrieve the entity Manager and send new data to the DB
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         $this->getDoctrine()->getManager()->flush();
-            
-    //         //And, we are redirected to the list page
-    //         return $this->redirectToRoute('admin_users_browse');
-    //     }
-
-    //     //Otherwise, we are redirected to the edit page
-    //     return $this->render('admin/users/edit.html.twig', [
-    //         'user' => $user,
-    //         'form' => $form->createView(),
-    //     ]);
-
-    // }
 
     /**
      * @Route ("/add", name="add", methods={"GET","POST"})
@@ -111,17 +83,22 @@ class UserController extends AbstractController
         $user = new User(); 
         // We retrieve the form "UserType"
         $form = $this->createForm(UserType::class, $user);
+        
         // We retrieve the data
         $form->handleRequest($request); 
-
+        
         // If the form is correctly submitted and valid
         if ($form->isSubmitted() && $form->isValid()){
+            //dd('ok');
             // We retrieve the password
             $password = $form->get('password')->getData();
-            if ($password !== null) {
+            if (isset($password)) {
+                //dd('ok');
                 // If the data is not null we encore the password to the database
                 $user->setPassword($passwordEncoder->encodePassword($user, $password));
             }
+            $user->setRoles(["ROLE_ADMIN"]);
+            $user->setAvatar('avatar.png');
             // We retrieve EntityManager
             $entityManager = $this->getDoctrine()->getManager();
             // We persist $user, it's a new User

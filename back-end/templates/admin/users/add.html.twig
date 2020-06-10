@@ -6,21 +6,21 @@
 
 	{{form_start(form)}}
 
-	{{ form_widget(form.lastname, {
-  'attr': {'placeholder': 'Nom'}
-       }) }}
 	{{ form_widget(form.firstname, {
   'attr': {'placeholder': 'Prénom'}
+       }) }}
+	{{ form_widget(form.lastname, {
+  'attr': {'placeholder': 'Nom'}
        }) }}
 	{{ form_widget(form.email, {
   'attr': {'placeholder': 'Email'}
        }) }}
-	{{ form_widget(form.username, {
+	{{ form_widget(form.pseudo, {
   'attr': {'placeholder': 'Pseudo'}
        }) }}
 	{{ form_widget(form.password)}}
-	{{ form_widget(form.roles) }}
-  	{{ form_widget(form.avatar) }}
+	{# {{ form_widget(form.roles) }}
+  	{{ form_widget(form.avatar) }} #}
 
 	
 

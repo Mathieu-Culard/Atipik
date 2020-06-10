@@ -34,7 +34,7 @@
         {% for user in users %}
         <tr>
             <th scope="row">{{user.id}}</th>
-            <td>{{user.avatar}}</td>
+            <td><img src="{{asset('assets/avatar/'~ user.avatar)}}" style="width:60px" alt="avatar de {{user.pseudo}}"></td>
             <td>{{user.pseudo}}</td>
             <td>{{user.lastname}}</td>
             <td>{{user.firstname}}</td>
@@ -48,7 +48,7 @@
 						{% if (user.roles == ["ROLE_ADMIN"]) %}
                             <a href="{{ path('admin_users_submit', {'id' : user.id}) }}"><button type="submit" class="btn btn-secondary">Utilisateur</button></a>
 						
-                        {% elseif (user.roles == ["ROLE_USER"]) %}
+                        {% else %}
 							 <a href="{{ path('admin_users_submit', {'id' : user.id}) }}"><button type="submit" class="btn btn-success">Administrateur</button></a>
 
 						{% endif %}

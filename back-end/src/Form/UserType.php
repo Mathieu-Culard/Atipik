@@ -26,13 +26,13 @@ class UserType extends AbstractType
                     new Email()
                 ]
             ])
-            ->add('roles', ChoiceType::class,[
+/*             ->add('roles', ChoiceType::class,[
                 'multiple' => false,
                 'choices' => [ 
                      'Administrateur' => 'ROLE_ADMIN',
                      ]
                 
-            ] )
+            ] ) */
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'required' => true,
@@ -42,14 +42,10 @@ class UserType extends AbstractType
                     new NotBlank([
                         'normalizer' => 'trim',
                     ]),
-                    new Length ([
-                        'min' => 8,
-                        'minMessage' => 'Le mot de passe doit comporter au minimum 8 caractères', 
-                    ])
                 ]
 
             ])
-            ->add('username', null, [
+            ->add('pseudo', null, [
                 'label' => 'Pseudo',
             ])
             ->add('firstname', null, [
@@ -58,13 +54,13 @@ class UserType extends AbstractType
             ->add('lastname', null, [
                 'label' => 'Nom',
             ])
-            ->add('avatar', FileType::class, [
+ /*            ->add('avatar', FileType::class, [
                 'required' => false,
               ])
-           
+            */
         ;
         //roles field data transformer
-        $builder->get('roles')
+/*         $builder->get('roles')
             ->addModelTransformer(new CallbackTransformer(
         function ($rolesArray) {
          // transform the array to a string
@@ -74,7 +70,7 @@ class UserType extends AbstractType
          // transform the string back to an array
          return [$rolesString];
          }
-        ));
+        )); */
     }
 
     public function configureOptions(OptionsResolver $resolver)
