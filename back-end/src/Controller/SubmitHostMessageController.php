@@ -54,7 +54,6 @@ class SubmitHostMessageController extends AbstractController
            
              
             //dd($message);
-        // dd($mailer->send($message));
         $mailer->send($message);
 
         return $this->render('emails/accomodationContact.html.twig');

@@ -5088,11 +5088,8 @@
             ],
             "description": "Symfony Security Component - CSRF Library",
             "homepage": "https://symfony.com",
-<<<<<<< HEAD
             "time": "2020-03-27T16:56:45+00:00"
-=======
-            "time": "2020-05-20T17:38:26+00:00"
->>>>>>> 77810aede05b50056d0f75814576f24a13c87a22
+
         },
         {
             "name": "symfony/security-guard",
