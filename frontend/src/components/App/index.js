@@ -37,7 +37,6 @@ const App = ({
   return (
     <div className="app">
       <Header />
-      <Loader />
       <Switch>
         <Route path="/recherche">
           <SearchPage />
