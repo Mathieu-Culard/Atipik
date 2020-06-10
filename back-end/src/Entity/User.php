@@ -125,6 +125,9 @@ class User implements UserInterface
     }
 
     /**
+     * 
+     * @Groups({"authentified_user_account"})
+     *
      * @see UserInterface
      */
     public function getRoles(): array

@@ -28,7 +28,7 @@ class AuthentifiedUserController extends AbstractController
     {
         // We create a new object from the received JSON
         $userData = $serializer->normalize($user, 'json', ['groups' => 'authentified_user_account']);
-
+       // dd($userData);
         // We create a variable that will be used to store each of the accommodations.
         $houses = [];
 
@@ -40,6 +40,15 @@ class AuthentifiedUserController extends AbstractController
         }
         // we store in the "accomodations" property of $ currentData the $ houses data table initialized previously
         $userData['accomodations'] = $houses;
+
+        //We loop on the roles property of user, in order to convert an array to string
+        foreach ($userData['roles'] as $role) {
+            // We retrive the user's role
+            $roleUser = $role;
+            //dd($roleUser);
+        }
+        //we add to our array, $roleUser which is a string now
+        $userData['roles'] = $roleUser;
 
         return $this->json($userData, 200);
     }
