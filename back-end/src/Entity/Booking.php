@@ -3,8 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\BookingRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
@@ -31,24 +31,25 @@ class Booking
     private $departure;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="bookings")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $user;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Accomodation::class, inversedBy="bookings")
      * @ORM\JoinColumn(nullable=false)
      */
     private $accomodation;
 
     /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="bookings")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
+     /**
      * @Groups({"booking_accomodation"})
      * */
     public function getId(): ?int
     {
         return $this->id;
     }
+
    /**
      * @Groups({"booking_accomodation"})
      * */
@@ -56,13 +57,14 @@ class Booking
     {
         return $this->entrance;
     }
-  
+    
     public function setEntrance(string $entrance): self
     {
         $this->entrance = $entrance;
 
         return $this;
     }
+    
    /**
      * @Groups({"booking_accomodation"})
      * */
@@ -77,22 +79,8 @@ class Booking
 
         return $this;
     }
-   /**
-     * @Groups({"booking_accomodation"})
-     * */
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
 
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-   /**
+    /**
      * @Groups({"booking_accomodation"})
      * */
     public function getAccomodation(): ?Accomodation
@@ -108,10 +96,17 @@ class Booking
     }
 
     /**
-     * @ORM\PreUpdate
-     */
-    public function onPreUpdate()
+     * @Groups({"booking_accomodation"})
+     * */
+    public function getUser(): ?User
     {
-        $this->updatedAt = new \DateTime();
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
     }
 }

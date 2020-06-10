@@ -160,7 +160,7 @@ class Accomodation
     private $slugger;
 
     /**
-     * @ORM\OneToMany(targetEntity=Booking::class, mappedBy="accomodation_id")
+     * @ORM\OneToMany(targetEntity=Booking::class, mappedBy="accomodation", orphanRemoval=true)
      */
     private $bookings;
 
@@ -646,7 +646,7 @@ class Accomodation
     {
         if (!$this->bookings->contains($booking)) {
             $this->bookings[] = $booking;
-            $booking->setAccomodationId($this);
+            $booking->setAccomodation($this);
         }
 
         return $this;
@@ -657,8 +657,8 @@ class Accomodation
         if ($this->bookings->contains($booking)) {
             $this->bookings->removeElement($booking);
             // set the owning side to null (unless already changed)
-            if ($booking->getAccomodationId() === $this) {
-                $booking->setAccomodationId(null);
+            if ($booking->getAccomodation() === $this) {
+                $booking->setAccomodation(null);
             }
         }
 

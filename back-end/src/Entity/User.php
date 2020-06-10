@@ -75,7 +75,7 @@ class User implements UserInterface
     private $pseudo;
 
     /**
-     * @ORM\OneToMany(targetEntity=Booking::class, mappedBy="user_id")
+     * @ORM\OneToMany(targetEntity=Booking::class, mappedBy="user", orphanRemoval=true)
      */
     private $bookings;
 
@@ -301,9 +301,7 @@ class User implements UserInterface
     }
 
     /**
-     *   
      * @Groups({"booking_accomodation"})
-     * 
      * @return Collection|Booking[]
      */
     public function getBookings(): Collection
@@ -315,7 +313,7 @@ class User implements UserInterface
     {
         if (!$this->bookings->contains($booking)) {
             $this->bookings[] = $booking;
-            $booking->setUserId($this);
+            $booking->setUser($this);
         }
 
         return $this;
@@ -326,8 +324,8 @@ class User implements UserInterface
         if ($this->bookings->contains($booking)) {
             $this->bookings->removeElement($booking);
             // set the owning side to null (unless already changed)
-            if ($booking->getUserId() === $this) {
-                $booking->setUserId(null);
+            if ($booking->getUser() === $this) {
+                $booking->setUser(null);
             }
         }
 

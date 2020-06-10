@@ -36,6 +36,17 @@ class BookingRepository extends ServiceEntityRepository
     }
     */
 
+    /*
+    public function findOneBySomeField($value): ?Booking
+    {
+        return $this->createQueryBuilder('b')
+            ->andWhere('b.exampleField = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+    */
       public function findByAccomodations($id): ?Booking
     {
         $qb = $this->createQueryBuilder('b');
