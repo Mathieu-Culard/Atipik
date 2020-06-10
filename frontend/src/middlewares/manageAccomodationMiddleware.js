@@ -8,6 +8,7 @@ import {
   FETCH_MY_ACCOMODATION_PICTURES,
   fetchMyAccomodationPictures,
   removeMyAccomodation,
+  fetchMyAccomodations,
   SET_EDIT_MY_ACCOMODATION_INFOS,
 } from 'src/actions/manageAccomodation';
 
@@ -32,9 +33,10 @@ const manageAccomodationMiddleware = (store) => (next) => (action) => {
         url: `${process.env.REACT_APP_BACKEND_URL}/accomodation/${action.id}`,
       })
         .then((response) => {
-          for (let i = 0; i < response.data.pictures.length; i += 1) {
-            store.dispatch(fetchMyAccomodationPictures(response.data.pictures[i]));
-          }
+          // for (let i = 0; i < response.data.pictures.length; i += 1) {
+          //   store.dispatch(fetchMyAccomodationPictures(response.data.pictures[i]));
+          // }
+          console.log(response.data);
           store.dispatch(saveMyAccomodations(response.data));
         })
         .catch((error) => {
@@ -43,20 +45,20 @@ const manageAccomodationMiddleware = (store) => (next) => (action) => {
       next(action);
       break;
     }
-    case FETCH_MY_ACCOMODATION_PICTURES: {
-      console.log('yepyepyep');
-      axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/assets/accomodation/${action.picture}`,
-      )
-        .then(() => {
-          console.log('oui');
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-      next(action);
-      break;
-    }
+    // case FETCH_MY_ACCOMODATION_PICTURES: {
+    //   console.log('yepyepyep');
+    //   axios.get(
+    //     `${process.env.REACT_APP_BACKEND_URL}/assets/accomodation/${action.picture}`,
+    //   )
+    //     .then(() => {
+    //       console.log('oui');
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //     });
+    //   next(action);
+    //   break;
+    // }
     case SET_EDIT_MY_ACCOMODATION_INFOS: {
       next(action);
       const { picturesURL } = store.getState();
@@ -121,6 +123,7 @@ const manageAccomodationMiddleware = (store) => (next) => (action) => {
         },
       ).then((response) => {
         console.log(response);
+        store.dispatch(fetchMyAccomodations(response.data));
       })
         .catch((error) => {
           console.warn(error);

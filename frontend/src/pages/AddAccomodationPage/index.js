@@ -146,7 +146,7 @@ const AddAccomodationPage = ({
       submitAdd();
     }
   };
-  l
+  
   const handleAddPicture = (evt) => {
     changePictures(evt.target.files);
   };

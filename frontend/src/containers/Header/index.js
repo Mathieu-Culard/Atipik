@@ -9,6 +9,7 @@ const mapStateToProps = (state) => ({
   isLogged: state.connection.isLogged,
   breadcrumbs: state.utils.breadcrumbs,
   userAccomodations: state.user.accomodations,
+  isAdmin: state.user.isAdmin,
 });
 
 const mapDispatchToProps = (dispatch) => ({

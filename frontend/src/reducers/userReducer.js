@@ -12,6 +12,7 @@ const initialState = {
   accomodations: [],
   avatar: {},
   avatarUrl: '',
+  isAdmin: true,
 };
 
 const userReducer = (state = initialState, action = {}) => {
@@ -33,6 +34,7 @@ const userReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         ...action.data,
+        isAdmin: action.data.roles === 'admin',
         avatar: {},
         avatarUrl: `${process.env.REACT_APP_BACKEND_URL}/assets/avatar/${action.data.avatar}`,
       };
