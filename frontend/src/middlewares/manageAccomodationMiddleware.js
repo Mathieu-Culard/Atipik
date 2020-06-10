@@ -11,6 +11,7 @@ import {
   fetchMyAccomodations,
   SET_EDIT_MY_ACCOMODATION_INFOS,
 } from 'src/actions/manageAccomodation';
+import { push } from 'connected-react-router';
 
 const manageAccomodationMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -125,11 +126,13 @@ const manageAccomodationMiddleware = (store) => (next) => (action) => {
       ).then((response) => {
         console.log(response);
         store.dispatch(fetchMyAccomodations(response.data));
+        store.dispatch(push('/gerer-mes-hebergements'));
       })
         .catch((error) => {
           console.warn(error);
         });
       next(action);
+
       break;
     }
     case SUBMIT_EDIT_MY_ACCOMODATION_FORM: {
@@ -190,6 +193,9 @@ const manageAccomodationMiddleware = (store) => (next) => (action) => {
           },
         },
       ).then((response) => {
+        store.dispatch(removeMyAccomodation(response.data));
+        store.dispatch(fetchMyAccomodations(response.data));
+        store.dispatch(push('/gerer-mes-hebergements'));
         console.log(response);
       })
         .catch((error) => {

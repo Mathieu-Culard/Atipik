@@ -53,7 +53,7 @@ const Header = ({
             )}
             {isLogged && (
               <>
-                {isAdmin && <a className="header__link" href="#">Panneau d'administration</a>}
+                {isAdmin && <a className="header__link" href="http://ec2-54-210-189-246.compute-1.amazonaws.com/login">Panneau d'administration</a>}
                 <Link className="header__link" to="/profil"> Mon Profil </Link>
                 <Link className="header__link" to="/reservations"> Mes Réservations </Link>
                 {userAccomodations.length === 0 && <Link className="header__link" to="/gerer-mes-hebergements/nouvel-hebergement"> Ajouter un hébergement </Link>}

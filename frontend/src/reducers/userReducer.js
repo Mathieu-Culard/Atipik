@@ -34,7 +34,7 @@ const userReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         ...action.data,
-        isAdmin: action.data.roles === 'admin',
+        isAdmin: action.data.roles === 'ROLE_ADMIN',
         avatar: {},
         avatarUrl: `${process.env.REACT_APP_BACKEND_URL}/assets/avatar/${action.data.avatar}`,
       };

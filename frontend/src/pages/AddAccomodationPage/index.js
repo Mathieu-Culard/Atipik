@@ -146,7 +146,7 @@ const AddAccomodationPage = ({
       submitAdd();
     }
   };
-  
+
   const handleAddPicture = (evt) => {
     changePictures(evt.target.files);
   };
@@ -409,7 +409,7 @@ const AddAccomodationPage = ({
           </div>
           <button type="submit" className="manage-accomodation__form__submit">Enregistrer</button>
         </form>
-      )}l
+      )}
       <ManageAccomodationPanel />
     </main>
   );
