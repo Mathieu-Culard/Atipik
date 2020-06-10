@@ -68,60 +68,52 @@ class TypeController extends AbstractController
         // We make sure the form is submitted correctly and is valid
         if ($form->isSubmitted() && $form->isValid()){
 
-            // // We get the data for properties picture and icon
-            // $pictureFile = $form->get('picture')->getData();
-            // $iconFile = $form->get('icon')->getData();
+            // We get the data for properties picture and icon
+            $pictureFile = $form->get('picture')->getData();
+            $iconFile = $form->get('icon')->getData();
 
-            // // If we get a picture and an icon 
-            // if ($pictureFile && $iconFile) {
-            //     // we do a slugger with the type name
-            //     $sluggerPictureName = $slugger->slug($form->get('name')->getData());
-            //     // we retrieve the extension 
-            //     $extension = $pictureFile->getClientOriginalExtension();
-            //     // We rename the file 
-            //     $newPictureName = $sluggerPictureName . '.' . $extension;
+            // If we get a picture and an icon 
+            if (isset($pictureFile)) {
+                // we do a slugger with the type name
+                $sluggerPictureName = $slugger->slug($form->get('name')->getData());
+                // we retrieve the extension 
+                $extension = $pictureFile->getClientOriginalExtension();
+                // We rename the file 
+                $newPictureName = $sluggerPictureName . '.' . $extension;
 
-            //     // We move the file to the folder
-            //     $pictureFile->move($this->getParameter('type_pictures_directory'), $newPictureName);
+                // We move the file to the folder
+                $pictureFile->move($this->getParameter('type_pictures_directory'), $newPictureName);
+                $type->setPicture($newPictureName);
+            }
+           
 
-            //     // we do a slugger with the type name
-            //     $sluggerIconName = $slugger->slug($form->get('name')->getData());
-            //      // we retrieve the extension 
-            //     $extension = $iconFile->getClientOriginalExtension();
-            //     // We rename the file 
-            //     $newIconName = $sluggerIconName . '.' . $extension;
-            //     // We move the file to the folder
-            //     $iconFile->move($this->getParameter('icons_directory'), $newIconName);
-            // }
+            if (isset($iconFile)) {
+                // we do a slugger with the type name
+                $sluggerIconName = $slugger->slug($form->get('name')->getData());
+                // we retrieve the extension
+                $extension = $iconFile->getClientOriginalExtension();
+                // We rename the file
+                $newIconName = $sluggerIconName . '.' . $extension;
+                // We move the file to the folder
+                $iconFile->move($this->getParameter('icon_directory'), $newIconName);
+            
+            $type->setIcon($newIconName);
+            }
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($type);
+            // We flush 
+            $em->flush();
 
-            // // We flush 
-            // $em->flush();
-
-              //We use a service in order to move the picture
-              $newFileName = $fileUploader->saveFile($form['picture'], 'assets/type');
-              $newIcon = $fileUploader->saveFile($form['icon'], 'assets/icon');
-          
-              //We associate this new file to our type
-              $type->setPicture($newFileName);
-              $type->setIcon($newIcon);
-  
-              // We update the database
-              $em = $this->getDoctrine()->getManager();
-              $em->persist($type);
-              $em->flush();
-  
-              // We redirect to the list page
-              return $this->redirectToRoute('admin_type_browse');
+            // We redirect to the list page
+            return $this->redirectToRoute('admin_type_browse');
             // We redirect to the list page
             return $this->redirectToRoute('admin_type_browse');
 
-    }
+        }
          // We create a form to delete the type
          $formDelete = $this->createForm(FormTypeDelete::class, null, [
             'action' => $this->generateUrl('admin_type_delete', ['id' => $type->getId() ])
          ]);
-
-
 
         // We send it to the edit page
         return $this->render('admin/type/edit.html.twig', [
@@ -147,45 +139,35 @@ class TypeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-           //Doesn't work with slugger
-            // $pictureFile = $form->get('picture')->getData();
-            // $iconFile = $form->get('icon')->getData();
 
-        
-            // if ($pictureFile && $iconFile) {
-       
-            //     $sluggerPictureName = $slugger->slug($form->get('name')->getData());
-       
-            //     $extension = $pictureFile->getClientOriginalExtension();
-       
-            //     $newPictureName = $sluggerPictureName . '.' . $extension;
+            $pictureFile = $form->get('picture')->getData();
+            $iconFile = $form->get('icon')->getData();
 
-          
-            //     $pictureFile->move($this->getParameter('type_pictures_directory'), $newPictureName);
+        // If we get a picture
+            if ($pictureFile) {
+                  // we do a slugger with the type name
+                $sluggerPictureName = $slugger->slug($form->get('name')->getData());
+                 // we retrieve the extension 
+                $extension = $pictureFile->getClientOriginalExtension();
+                 //We rename the file
+                $newPictureName = $sluggerPictureName . '.' . $extension;
+                // We move the file to the folder
+                $pictureFile->move($this->getParameter('type_pictures_directory'), $newPictureName);
+                $type->setPicture($newPictureName);
+            }
 
-
-            //     $sluggerIconName = $slugger->slug($form->get('name')->getData());
-          
-            //     $extension = $iconFile->getClientOriginalExtension();
-            
-            //     $newIconName = $sluggerIconName . '.' . $extension;
-
-            //     $iconFile->move($this->getParameter('type_icons_directory'), $newIconName);
-            // }
-
-            // if ($type->getPicture() !== null && $type->getIcon() !== null){
-            //     $type->setPicture($newPictureName); 
-            //     $type->setIcon($newIconName); 
-            // }
-       
-       
-            //We use a service in order to move the picture
-            $newFileName = $fileUploader->saveFile($form['picture'], 'assets/type');
-            $newIcon = $fileUploader->saveFile($form['icon'], 'assets/icon');
-        
-            //We associate this new file to our type
-            $type->setPicture($newFileName);
-            $type->setIcon($newIcon);
+             // If we get an icon 
+            if ($iconFile) {
+                // we do a slugger with the type name
+                $sluggerIconName = $slugger->slug($form->get('name')->getData());
+                // we retrieve the extension 
+                $extension = $iconFile->getClientOriginalExtension();
+                 //We rename the file
+                $newIconName = $sluggerIconName . '.' . $extension;
+                // We move the file to the folder
+                $iconFile->move($this->getParameter('icon_directory'), $newIconName);
+                $type->setIcon($newIconName);
+            }
 
             // We update the database
             $em = $this->getDoctrine()->getManager();
