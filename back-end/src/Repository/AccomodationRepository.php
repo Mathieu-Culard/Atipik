@@ -136,7 +136,15 @@ class AccomodationRepository extends ServiceEntityRepository
               return $qb->getQuery()->getOneOrNullResult();
     }
 
-
+    public function findAllByUser($userId): ?array
+    {
+        $qb = $this->createQueryBuilder('a');
+           $qb->where('a.user = :userId')
+            ->setParameter('userId', $userId);
+            return $qb->getQuery()->getResult();
+           
+        ;
+    }
     // /**
     //  * @return Accomodation[] Returns an array of Accomodation objects
     //  */

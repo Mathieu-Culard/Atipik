@@ -185,7 +185,7 @@ class Accomodation
 
 
     /**
-     * @Groups({"search_result","accomodation_detail","authentified_user_account"})
+     * @Groups({"search_result","accomodation_detail","authentified_user_account", "booking_accomodation"})
      */
     public function getId(): ?int
     {
@@ -604,7 +604,7 @@ class Accomodation
     }
 
     /**
-     * @Groups({"accomodation_detail"})
+     * @Groups({"accomodation_detail", "booking_accomodation"})
      */
     public function getUser(): ?User
     {
@@ -634,6 +634,7 @@ class Accomodation
     }
 
     /**
+     * @Groups({"booking_accomodation"})
      * @return Collection|Booking[]
      */
     public function getBookings(): Collection
@@ -663,7 +664,8 @@ class Accomodation
 
         return $this;
     }
-     /*
+
+    /**
      * @ORM\PreUpdate
      */
     public function onPreUpdate()

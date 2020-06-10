@@ -47,6 +47,26 @@ class BookingRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findAllByUser($userId): ?array
+    {
+        $qb = $this->createQueryBuilder('b');
+           $qb->where('b.user = :userId')
+            ->setParameter('userId', $userId);
+            return $qb->getQuery()->getResult();
+            // ->getQuery()
+            // ->getResult()
+        ;
+    }
+
+    public function findAllByAccomodations($id): ?array
+    {
+        $qb = $this->createQueryBuilder('b');
+         $qb->where('b.accomodation = :accomodation')
+            ->setParameter('accomodation', $id);
+           return $qb->getQuery()->getResult();
+        ;
+    }
+
     
     // public function findByEntranceDate($entranceDate): ?Booking
     // {

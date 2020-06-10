@@ -5,9 +5,11 @@ namespace App\Entity;
 use App\Repository\BookingRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=BookingRepository::class)
+ * @ORM\HasLifecycleCallbacks
  */
 class Booking
 {
@@ -40,24 +42,30 @@ class Booking
      */
     private $accomodation;
 
-   
+    /**
+     * @Groups({"booking_accomodation"})
+     * */
     public function getId(): ?int
     {
         return $this->id;
     }
-
+   /**
+     * @Groups({"booking_accomodation"})
+     * */
     public function getEntrance(): ?string
     {
         return $this->entrance;
     }
-
+  
     public function setEntrance(string $entrance): self
     {
         $this->entrance = $entrance;
 
         return $this;
     }
-
+   /**
+     * @Groups({"booking_accomodation"})
+     * */
     public function getDeparture(): ?string
     {
         return $this->departure;
@@ -69,7 +77,9 @@ class Booking
 
         return $this;
     }
-
+   /**
+     * @Groups({"booking_accomodation"})
+     * */
     public function getUser(): ?User
     {
         return $this->user;
@@ -82,6 +92,9 @@ class Booking
         return $this;
     }
 
+   /**
+     * @Groups({"booking_accomodation"})
+     * */
     public function getAccomodation(): ?Accomodation
     {
         return $this->accomodation;
@@ -92,5 +105,13 @@ class Booking
         $this->accomodation = $accomodation;
 
         return $this;
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function onPreUpdate()
+    {
+        $this->updatedAt = new \DateTime();
     }
 }

@@ -226,4 +226,72 @@ class AccomodationController extends AbstractController
 
         return $this->json($ownerDetail,201);
     }
+
+    /**
+     * @Route("/api/reservations", name="reservations", methods={"GET"})
+     */
+    public function reservation(BookingRepository $bookingRepository, SerializerInterface $serializer, UserInterface $userInterface, UserRepository $userRepository, AccomodationRepository $accomodationRepository){
+
+        // We retrieve the user
+        $user = $userRepository->find($userInterface->getId());
+             //dd($user->getAccomodations());
+        // We retrieve all the booking for one user
+        $booking = $bookingRepository->findAllByUser($user->getId());
+            //dd($booking); 
+        
+            //We declare an array
+            $myReservations=[];
+            //We loop on $booking
+            foreach ($booking as $currentBooking){
+                //We retrieve the current booking
+               $reservation = $bookingRepository->find($currentBooking); 
+               //We recover our array, with properties we want to send
+               $reservationInfo=[
+                    "id"=>$reservation->getId(), 
+                    "accomodation"=>$reservation->getAccomodation()->getId(), 
+                    "startAt"=>$reservation->getEntrance(), 
+                    "endAt"=>$reservation->getDeparture()
+                ];  
+                //We associate our arrays
+                $myReservations[]=$reservationInfo;   
+            }
+            //dd($myReservations); 
+
+        //We recover all accomodations dependings of the id
+        $userAccomodations = $accomodationRepository->findAllByUser($user->getId());
+        // dd($userAccomodations);
+
+        //We recover all accomodations's bookings 
+        $bookingAccomodation = $bookingRepository->findAllByAccomodations($userAccomodations);
+        //dd($bookingAccomodation);
+
+        // We declare an empty array
+        $myAccomodations=[];
+        
+        // We loop on each booking 
+        foreach($bookingAccomodation as $current){
+            // We retrieve all the booking for an accomodation
+            $accomodation= $bookingRepository->find($current);
+            // We retrieve all the informations we need
+            $accomodationInfo=[
+                "id"=>$accomodation->getId(),
+                "accomodation"=>$accomodation->getAccomodation()->getId(),
+                "startAt"=>$accomodation->getEntrance(),
+                "endAt"=>$accomodation->getDeparture(), 
+                "user"=>$accomodation->getUser()->getId(),
+            ];
+            // We push it to an array
+            $myAccomodations[]=$accomodationInfo;
+        }
+        //dd($myAccomodations);
+
+        // We push all the result into an array
+         $result = array("myReservations"=>$myReservations, "myAccomodations"=>$myAccomodations);
+        //dd($result);
+            
+        // We encode it in json
+        return $this->json($result,201, [], ['groups' =>'booking_accomodation']);
+    
+    }
+ 
 }
