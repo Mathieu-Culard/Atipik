@@ -3,7 +3,6 @@ import MyAccomodationsPage from 'src/pages/MyAccomodationsPage';
 
 import { fetchMyAccomodations, deleteMyAccomodation } from 'src/actions/manageAccomodation';
 
-
 const mapStateToProps = (state) => ({
   myAccomodationIds: state.user.accomodations,
   myAccomodations: state.manageAccomodation.myAccomodations,

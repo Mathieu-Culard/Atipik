@@ -8,6 +8,8 @@ import {
   changeAccomodationTypes,
   changeMinSurface,
   changeFilterSwitch,
+  commitMaxPriceChange,
+  commitMinSurfaceChange,
 } from 'src/actions/search';
 
 const mapStateToProps = (state) => ({
@@ -27,6 +29,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   changeCapacity: (newValue) => dispatch(changeCapacity(newValue)),
   changeNbNights: (newValue) => dispatch(changeNbNights(newValue)),
+  commitMaxPriceChange: () => dispatch(commitMaxPriceChange()),
+  commitMinSurfaceChange: () => dispatch(commitMinSurfaceChange()),
   changeMaxPrice: (newValue) => dispatch(changeMaxPrice(newValue)),
   changeAccomodationTypes: (v, checked) => dispatch(changeAccomodationTypes(v, checked)),
   changeMinSurface: (newValue) => dispatch(changeMinSurface(newValue)),

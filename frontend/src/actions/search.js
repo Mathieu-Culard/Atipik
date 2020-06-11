@@ -9,10 +9,12 @@ export const CHANGE_ACCOMODATION_TYPES = 'CHANGE_ACCOMODATION_TYPES';
 export const CHANGE_MULTIPLE_ACCOMODATION_TYPES = 'CHANGE_MULTIPLE_ACCOMODATION_TYPES';
 export const CHANGE_FILTER_SWITCH = 'CHANGE_FILTER_SWITCH';
 export const CHANGE_MIN_SURFACE = 'CHANGE_MIN_SURFACE';
+export const COMMIT_MIN_SURFACE_CHANGE = 'COMMIT_MIN_SURFACE_CHANGE';
 export const CLEAR_FILTERS = 'CLEAR_FILTERS';
 
 // ========= page related actions
 export const SELECT_ALL = 'SELECT_ALL';
+export const UNSELECT_ALL = 'UNSELECT_ALL';
 
 // =========  API related actions
 export const SEARCH = 'SEARCH';
@@ -37,15 +39,18 @@ export const commitMaxPriceChange = () => ({
   type: COMMIT_MAX_PRICE_CHANGE,
 });
 
-export const changeAccomodationTypes = (newValue, checked) => ({
+export const changeAccomodationTypes = (newValue, checked, typeList) => ({
   type: CHANGE_ACCOMODATION_TYPES,
   value: newValue,
   checked,
+  typeList,
 });
-export const changeMultipleAccomodationTypes = (ids, checked) => ({
+
+export const changeMultipleAccomodationTypes = (ids, checked, thematicId) => ({
   type: CHANGE_MULTIPLE_ACCOMODATION_TYPES,
   value: ids,
   checked,
+  thematicId,
 });
 export const changeTextfield = (newValue, identifier) => ({
   type: CHANGE_TEXTFIELD,
@@ -56,6 +61,10 @@ export const changeTextfield = (newValue, identifier) => ({
 export const changeMinSurface = (newValue) => ({
   type: CHANGE_MIN_SURFACE,
   value: newValue,
+});
+
+export const commitMinSurfaceChange = () => ({
+  type: COMMIT_MIN_SURFACE_CHANGE,
 });
 
 export const changeFilterSwitch = (identifier) => ({
@@ -70,6 +79,12 @@ export const clearFilters = () => ({ type: CLEAR_FILTERS });
 export const selectAll = (thematicId) => ({
   type: SELECT_ALL,
   id: thematicId,
+});
+
+export const unselectAll = (thematicId, types) => ({
+  type: UNSELECT_ALL,
+  id: thematicId,
+  types,
 });
 
 // ========= API

@@ -11,6 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import AccomodationTypesDropdown from 'src/containers/AccomodationTypesDropdown';
 import CustomSlider from 'src/components/CustomSlider';
 
+
 const useStyles = makeStyles(() => ({
   root: {
     backgroundColor: '#fff',
@@ -69,10 +70,12 @@ const FilterPanel = ({
   changeAccomodationTypes,
   changeMinSurface,
   changeFilterSwitch,
+  commitMinSurfaceChange,
+  commitMaxPriceChange,
 }) => {
   const classes = useStyles();
 
-  const onlyTypes = () => (allTypes.reduce((accumulator, currentValue) => [ ...accumulator, ...currentValue.types ], []));
+  const onlyTypes = () => (allTypes.reduce((accumulator, currentValue) => [...accumulator, ...currentValue.types], []));
 
   return (
     <form className={classes.root} noValidate autoComplete="off">
@@ -97,6 +100,7 @@ const FilterPanel = ({
           max={200}
           value={maxPrice}
           changeValue={changeMaxPrice}
+          commitChange={commitMaxPriceChange}
           label="Prix"
         />
       </div>
@@ -137,7 +141,7 @@ const FilterPanel = ({
         />
       </div>
       <div component="ul" className={`${classes.chips} ${classes.gridElement}`}>
-        { types.map((id) => {
+        {types.map((id) => {
           const currentType = onlyTypes().find((t) => t.id === id);
           return (
             <li key={`type-${id}`}>
@@ -168,6 +172,7 @@ const FilterPanel = ({
           max={200}
           value={minSurface}
           changeValue={changeMinSurface}
+          commitChange={commitMinSurfaceChange}
           label="Surface"
         />
       </div>

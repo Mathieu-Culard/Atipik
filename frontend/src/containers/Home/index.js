@@ -22,9 +22,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  commitMaxPriceChange: () => {
-    dispatch(commitMaxPriceChange());
-  },
+
   changeTextfield: (newValue, identifier) => {
     dispatch(changeTextfield(newValue, identifier));
   },
@@ -33,6 +31,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   changeNbNights: (newValue) => {
     dispatch(changeNbNights(newValue));
+  },
+  commitMaxPriceChange: () => {
+    dispatch(commitMaxPriceChange());
   },
   changePriceScale: (newValue) => {
     dispatch(changeMaxPrice(newValue));

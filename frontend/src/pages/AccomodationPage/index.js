@@ -66,7 +66,6 @@ const AccomodationPage = ({
   sendReservation,
   accomodationId,
   owner,
-
 }) => {
   const { id } = useParams();
   useEffect(() => {

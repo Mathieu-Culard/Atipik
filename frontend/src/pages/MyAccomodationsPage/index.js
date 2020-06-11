@@ -42,20 +42,17 @@ const MyAccomodationsPage = ({
   myAccomodations,
   deleteMyAccomodation,
   typeList,
-}) => {
+}) => (
+  <main className="my-accomodations">
 
-  return (
-    <main className="my-accomodations">
-
-      {myAccomodations.map((acc) => (
-        <MyAccomodationCard {...acc} key={acc.id} deleteMyAccomodation={deleteMyAccomodation} typeList={typeList} />
-      ))}
-      <Link className="my-accomodations__new-accomodation" to="/gerer-mes-hebergements/nouvel-hebergement">
-        <button type="button">Ajouter un hébergement</button>
-      </Link>
-    </main>
-  );
-};
+    {myAccomodations.map((acc) => (
+      <MyAccomodationCard {...acc} key={acc.id} deleteMyAccomodation={deleteMyAccomodation} typeList={typeList} />
+    ))}
+    <Link className="my-accomodations__new-accomodation" to="/gerer-mes-hebergements/nouvel-hebergement">
+      <button type="button">Ajouter un hébergement</button>
+    </Link>
+  </main>
+);
 
 MyAccomodationsPage.propTypes = {
   // fetchMyAccomodations: PropTypes.func.isRequired,

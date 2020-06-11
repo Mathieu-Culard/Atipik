@@ -10,7 +10,7 @@ import {
   CHANGE_NB_NIGHTS,
   CHANGE_ACCOMODATION_TYPES,
   CHANGE_MULTIPLE_ACCOMODATION_TYPES,
-  CHANGE_MIN_SURFACE,
+  COMMIT_MIN_SURFACE_CHANGE,
   COMMIT_MAX_PRICE_CHANGE,
   SELECT_ALL,
 } from '../actions/search';
@@ -23,7 +23,7 @@ const searchMiddleware = (store) => (next) => (action) => {
     case CHANGE_NB_NIGHTS:
     case CHANGE_ACCOMODATION_TYPES:
     case CHANGE_MULTIPLE_ACCOMODATION_TYPES:
-    case CHANGE_MIN_SURFACE: {
+    case COMMIT_MIN_SURFACE_CHANGE: {
       next(action);
       store.dispatch(search());
       break;
@@ -31,7 +31,7 @@ const searchMiddleware = (store) => (next) => (action) => {
     case SELECT_ALL: {
       const thematic = store.getState().data.accomodationTypes.find((t) => t.id === action.id);
       const typesToAdd = thematic.types.map((t) => t.id);
-      store.dispatch(changeMultipleAccomodationTypes(typesToAdd, true));
+      store.dispatch(changeMultipleAccomodationTypes(typesToAdd, true, action.id));
       next(action);
       break;
     }
