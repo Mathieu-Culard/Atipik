@@ -41,22 +41,9 @@ const MyAccomodationsPage = ({
   myAccomodationIds,
   myAccomodations,
   deleteMyAccomodation,
-  setBreadcrumbs,
   typeList,
 }) => {
-  useEffect(() => {
-    const breadcrumbs = [
-      {
-        label: 'Accueil',
-        route: '/',
-      },
-      {
-        label: 'Gérer mes hébergements',
-        route: '/gerer-mes-hebergements',
-      },
-    ];
-    setBreadcrumbs(breadcrumbs);
-  }, []);
+
   return (
     <main className="my-accomodations">
 

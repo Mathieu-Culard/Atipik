@@ -11,7 +11,7 @@ import { push } from 'connected-react-router';
 
 import { fetchUserInfos, clearUserInfos } from 'src/actions/user';
 import { resetMyAccomodationInfos } from 'src/actions/manageAccomodation';
-import { closeModal } from 'src/actions/utils';
+import { closeModal, openSuccessSnackbar, setErrorMessage } from 'src/actions/utils';
 
 const connectionMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -23,7 +23,10 @@ const connectionMiddleware = (store) => (next) => (action) => {
       }).then((response) => {
         store.dispatch(closeModal());
         localStorage.setItem('jwt', response.data.token);
+        store.dispatch(openSuccessSnackbar('Authentification réussie'));
         store.dispatch(loginChanged());
+      }).catch(() => {
+        store.dispatch(setErrorMessage('Identifiants invalides'));
       });
       next(action);
       break;

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import AddAccomodationPage from 'src/pages/AddAccomodationPage';
-import { setManageAccomodationPanel, setBreadcrumbs } from 'src/actions/utils';
+import { setManageAccomodationPanel} from 'src/actions/utils';
 import {
   changeMyAccomodationFields,
   changeMyAccomodationSwitchs,
@@ -45,7 +45,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setBreadcrumbs: (newValue) => dispatch(setBreadcrumbs(newValue)),
   deletePictureEdit: (picture) => {
     dispatch(deleteMyAccomodationPictureEdit(picture));
   },

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
@@ -11,6 +11,7 @@ import './home.scss';
 import AccomodationTypesDropdown from 'src/containers/AccomodationTypesDropdown';
 import Dropdown from 'src/components/Dropdown';
 import CustomSlider from 'src/components/CustomSlider';
+import AccomodationTypes from 'src/containers/AccomodationTypes';
 
 const useStyles = makeStyles({
   textField: {
@@ -31,7 +32,6 @@ const Home = ({
   // changeNbPerson,
   changeAccomodationTypes,
   handleSearch,
-  setBreadcrumbs,
   commitMaxPriceChange,
 }) => {
   const classes = useStyles();
@@ -44,16 +44,6 @@ const Home = ({
     // evt.preventDefault();
     handleSearch();
   };
-
-  useEffect(() => {
-    const breadcrumbs = [
-      {
-        label: 'Accueil',
-        route: '/',
-      },
-    ];
-    setBreadcrumbs(breadcrumbs);
-  }, []);
 
   return (
     <main className="home">
@@ -129,6 +119,9 @@ const Home = ({
           </div>
         </form>
       </section>
+      <section>
+        <AccomodationTypes />
+      </section>
     </main>
   );
 };
@@ -147,7 +140,6 @@ Home.propTypes = {
   // changeNbPerson: PropTypes.func.isRequired,
   changePriceScale: PropTypes.func.isRequired,
   changeAccomodationTypes: PropTypes.func.isRequired,
-  setBreadcrumbs: PropTypes.func.isRequired,
 };
 
 export default Home;

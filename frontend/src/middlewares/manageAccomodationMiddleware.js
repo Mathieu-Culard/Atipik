@@ -11,6 +11,7 @@ import {
   fetchMyAccomodations,
   SET_EDIT_MY_ACCOMODATION_INFOS,
 } from 'src/actions/manageAccomodation';
+import { openSuccessSnackbar } from 'src/actions/utils';
 import { push } from 'connected-react-router';
 
 const manageAccomodationMiddleware = (store) => (next) => (action) => {
@@ -127,6 +128,7 @@ const manageAccomodationMiddleware = (store) => (next) => (action) => {
         console.log(response);
         store.dispatch(fetchMyAccomodations(response.data));
         store.dispatch(push('/gerer-mes-hebergements'));
+        store.dispatch(openSuccessSnackbar('Hébergement ajouté avec succès'));
       })
         .catch((error) => {
           console.warn(error);
@@ -195,8 +197,8 @@ const manageAccomodationMiddleware = (store) => (next) => (action) => {
       ).then((response) => {
         store.dispatch(removeMyAccomodation(response.data));
         store.dispatch(fetchMyAccomodations(response.data));
+        store.dispatch(openSuccessSnackbar('Hébergement modifié avec succès'));
         store.dispatch(push('/gerer-mes-hebergements'));
-        console.log(response);
       })
         .catch((error) => {
           console.warn(error);

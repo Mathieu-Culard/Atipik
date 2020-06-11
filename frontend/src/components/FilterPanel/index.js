@@ -1,16 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Slider from '@material-ui/core/Slider';
 import Typography from '@material-ui/core/Typography';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import Chip from '@material-ui/core/Chip';
-import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 
 import AccomodationTypesDropdown from 'src/containers/AccomodationTypesDropdown';
+import CustomSlider from 'src/components/CustomSlider';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -20,19 +19,26 @@ const useStyles = makeStyles(() => ({
     gridColumn: '1 / span 2',
     boxShadow: '0 3px 3px #ccc',
     zIndex: 1,
-    display: 'flex',
-    justifyContent: 'space-around',
+    display: 'grid',
+    gridTemplateColumns: '25% 15% 15% 15% 15% 15%',
+    padding: '0 5rem',
   },
-  formControl: {
-    minWidth: '100px',
+  gridElement: {
+    margin: '.3rem 1rem',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
   },
   chips: {
     display: 'flex',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    flexWrap: 'nowrap',
     listStyle: 'none',
-    margin: 0,
-    padding: '.2rem',
+    overflowX: 'auto',
+    padding: 0,
+    margin: '.3rem 1rem',
   },
   chip: {
     margin: '.1rem',
@@ -41,7 +47,7 @@ const useStyles = makeStyles(() => ({
     margin: '0 .5rem',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
 }));
 
@@ -70,64 +76,31 @@ const FilterPanel = ({
 
   return (
     <form className={classes.root} noValidate autoComplete="off">
-      <div className={classes.column}>
+      <div className={classes.gridElement}>
         <AccomodationTypesDropdown />
-        <Paper component="ul" className={classes.chips}>
-          { types.map((id) => {
-            const currentType = onlyTypes().find((t) => t.id === id);
-            return (
-              <li key={`type-${id}`}>
-                <Chip
-                  label={currentType.name}
-                  className={classes.chip}
-                  onDelete={() => changeAccomodationTypes(id, false)}
-                />
-              </li>
-            );
-          })}
-        </Paper>
       </div>
-      <div className={classes.column}>
-        <TextField
-          id="nb-person"
-          label="Personnes"
-          InputLabelProps={{ shrink: true }}
-          type="number"
-          value={capacity}
-          onChange={(e) => changeCapacity(e.target.value)}
-        />
+      <div className={classes.gridElement}>
         <TextField
           id="nb-night"
           label="Nuits"
-          InputLabelProps={{ shrink: true }}
           type="number"
-          value={nbNights}
+          value={(nbNights === 0) ? '' : nbNights}
           onChange={(e) => changeNbNights(e.target.value)}
+          variant="outlined"
         />
       </div>
-      <div className={classes.column}>
-        <Typography>Prix</Typography>
-        <Slider
+      <div className={classes.gridElement}>
+        <CustomSlider
           defaultValue={0}
           valueLabelDisplay="on"
           step={10}
-          min={0}
           max={200}
           value={maxPrice}
-          onChange={(e, newValue) => changeMaxPrice(newValue)}
-        />
-        <Typography>Surface</Typography>
-        <Slider
-          defaultValue={0}
-          valueLabelDisplay="on"
-          step={10}
-          min={0}
-          max={200}
-          value={minSurface}
-          onChange={(e, newValue) => changeMinSurface(newValue)}
+          changeValue={changeMaxPrice}
+          label="Prix"
         />
       </div>
-      <div className={classes.column}>
+      <div className={classes.gridElement}>
         <FormControlLabel
           control={(
             <Switch
@@ -138,6 +111,8 @@ const FilterPanel = ({
           )}
           label="Eau courante"
         />
+      </div>
+      <div className={classes.gridElement}>
         <FormControlLabel
           control={(
             <Switch
@@ -149,7 +124,7 @@ const FilterPanel = ({
           label="Electricité"
         />
       </div>
-      <div className={classes.column}>
+      <div className={classes.gridElement}>
         <FormControlLabel
           control={(
             <Switch
@@ -160,6 +135,43 @@ const FilterPanel = ({
           )}
           label="Animaux"
         />
+      </div>
+      <div component="ul" className={`${classes.chips} ${classes.gridElement}`}>
+        { types.map((id) => {
+          const currentType = onlyTypes().find((t) => t.id === id);
+          return (
+            <li key={`type-${id}`}>
+              <Chip
+                label={currentType.name}
+                className={classes.chip}
+                onDelete={() => changeAccomodationTypes(id, false)}
+              />
+            </li>
+          );
+        })}
+      </div>
+      <div className={classes.gridElement}>
+        <TextField
+          id="nb-person"
+          label="Personnes"
+          type="number"
+          value={(capacity === 0) ? '' : capacity}
+          onChange={(e) => changeCapacity(e.target.value)}
+          variant="outlined"
+        />
+      </div>
+      <div className={classes.gridElement}>
+        <CustomSlider
+          defaultValue={0}
+          valueLabelDisplay="on"
+          step={10}
+          max={200}
+          value={minSurface}
+          changeValue={changeMinSurface}
+          label="Surface"
+        />
+      </div>
+      <div className={classes.gridElement}>
         <FormControlLabel
           control={(
             <Switch
@@ -171,7 +183,7 @@ const FilterPanel = ({
           label="Fumeurs"
         />
       </div>
-      <div className={classes.column}>
+      <div className={classes.gridElement}>
         <FormControlLabel
           control={(
             <Switch

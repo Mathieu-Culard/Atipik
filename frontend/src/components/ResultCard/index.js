@@ -16,6 +16,9 @@ import './resultCard.scss';
 
 const useStyles = makeStyles(() => ({
   root: {
+    width: '100%',
+  },
+  card: {
     display: 'flex',
     width: '100%',
     transition: 'transform .2s ease',
@@ -78,7 +81,6 @@ const ResultCard = ({
           <Typography variant="body2" component="p" className={classes.description}>
             {truncateDescription(description)}
           </Typography>
-          <Button size="small" color="primary" variant="outlined">En savoir plus</Button>
         </CardContent>
       </Card>
     </Link>

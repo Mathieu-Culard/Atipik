@@ -66,28 +66,14 @@ const AccomodationPage = ({
   sendReservation,
   accomodationId,
   owner,
-  setBreadcrumbs,
+
 }) => {
   const { id } = useParams();
   useEffect(() => {
     console.log(id);
     fetchAccomodation(id);
-    const breadcrumbs = [
-      {
-        label: 'Accueil',
-        route: '/',
-      },
-      {
-        label: 'Recherche',
-        route: '/recherche',
-      },
-      {
-        label: 'Hébergement',
-        route: '#',
-      },
-    ];
-    setBreadcrumbs(breadcrumbs);
   }, []);
+  
   const classes = useStyles();
   const carouselSettings = {
     infinite: true,

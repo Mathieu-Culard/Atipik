@@ -25,7 +25,6 @@ const useStyles = makeStyles({
   },
 });
 
-
 const AddAccomodationPage = ({
   submitAdd,
   submitEdit,
@@ -60,7 +59,6 @@ const AddAccomodationPage = ({
   picturesURL,
   changePictures,
   deletePicture,
-  setBreadcrumbs,
   editPicturesURL,
   deletePictureEdit,
   isLoading,
@@ -75,41 +73,6 @@ const AddAccomodationPage = ({
       resetInfo();
     }
   }, [isLoading]);
-
-
-  useEffect(() => {
-    let breadcrumbs = [
-      {
-        label: 'Accueil',
-        route: '/',
-      },
-      {
-        label: 'Gérer mes hébergements',
-        route: '/gerer-mes-hebergements',
-      },
-      {
-        label: 'Nouvel hébergement',
-        route: '/gerer-mes-hebergements/nouvel-hebergement',
-      },
-    ];
-    if (id) {
-      breadcrumbs = [
-        {
-          label: 'Accueil',
-          route: '/',
-        },
-        {
-          label: 'Gérer mes hébergements',
-          route: '/gerer-mes-hebergements',
-        },
-        {
-          label: 'Modifier un hébergement',
-          route: '/gerer-mes-hebergements/modifier-un-hebergement',
-        },
-      ];
-    }
-    setBreadcrumbs(breadcrumbs);
-  }, []);
 
   const handleClick = (evt) => {
     console.log(servicesList);
@@ -473,7 +436,6 @@ AddAccomodationPage.propTypes = {
   allTypes: PropTypes.array.isRequired,
   changePictures: PropTypes.func.isRequired,
   deletePicture: PropTypes.func.isRequired,
-  setBreadcrumbs: PropTypes.func.isRequired,
   editPicturesURL: PropTypes.arrayOf(PropTypes.string).isRequired,
   deletePictureEdit: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,

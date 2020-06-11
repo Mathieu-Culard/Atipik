@@ -26,6 +26,7 @@ const Map = ({
         {
           markerPositions.map((element) => (
             <Marker
+              key={`${element.lat}-${element.lng}`}
               lat={element.lat}
               lng={element.lng}
               {...element}

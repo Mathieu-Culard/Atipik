@@ -6,8 +6,6 @@ import classNames from 'classnames';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 import './header.scss';
 import logo from '../../assets/logo.png';
@@ -31,20 +29,26 @@ const Header = ({
   openModal,
   isLogged,
   disconnect,
-  breadcrumbs,
   userAccomodations,
+  openSuccessSnackbar,
   isAdmin,
 }) => {
   const classes = useStyles();
   const mobileMenuLinksClass = classNames('header__links--mobile', { 'header__links--mobile--hide': !open });
 
+  const handleDisconnection = () => {
+    disconnect();
+    openSuccessSnackbar('Vous avez été déconnecté avec succès');
+  };
+
   return (
     <header className="header">
       <nav className="header__nav">
         <section className="header__top-bar">
-          <img className="header__logo" src={logo} alt="Logo" />
+          <Link to="/">
+            <img className="header__logo" src={logo} alt="Logo" />
+          </Link>
           <div className="header__links">
-            <Link className="header__link" to="/types"> Nos hébergements </Link>
             {!isLogged && (
               <>
                 <a className="header__link" href="#" onClick={() => openModal('Inscription', 'InscriptionForm')}> Inscription </a>
@@ -58,7 +62,7 @@ const Header = ({
                 <Link className="header__link" to="/reservations"> Mes Réservations </Link>
                 {userAccomodations.length === 0 && <Link className="header__link" to="/gerer-mes-hebergements/nouvel-hebergement"> Ajouter un hébergement </Link>}
                 {userAccomodations.length > 0 && <Link className="header__link" to="/gerer-mes-hebergements">Gerer mes hebergements</Link>}
-                <a className="header__link" href="#" onClick={disconnect}>Déconnexion</a>
+                <a className="header__link" href="#" onClick={handleDisconnection}>Déconnexion</a>
               </>
             )}
           </div>
@@ -69,13 +73,6 @@ const Header = ({
             <span />
             <span />
           </label>
-        </section>
-        <section className="header__breadcrumb">
-          <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
-            {breadcrumbs.map((link) => (
-              <Link to={link.route} key={link.route}>{link.label}</Link>
-            ))}
-          </Breadcrumbs>
         </section>
         <List className={`${classes.root} ${mobileMenuLinksClass}`}>
           <Link to="#"> Nos hébergements </Link>
@@ -94,13 +91,8 @@ Header.propTypes = {
   openModal: PropTypes.func.isRequired,
   isLogged: PropTypes.bool.isRequired,
   disconnect: PropTypes.func.isRequired,
-  breadcrumbs: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      route: PropTypes.string.isRequired,
-    }).isRequired,
-  ).isRequired,
   userAccomodations: PropTypes.array.isRequired,
+  openSuccessSnackbar: PropTypes.func.isRequired,
   isAdmin: PropTypes.bool.isRequired,
 };
 
