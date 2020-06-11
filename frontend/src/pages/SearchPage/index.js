@@ -15,12 +15,13 @@ const SearchPage = ({
   resetMarkerPositions,
   setBreadcrumbs,
   clearFilters,
+  typeList,
 }) => {
   // resets and remakes a markerPosition list each time our results list changes
   useEffect(() => {
     resetMarkerPositions();
     accomodations.map((accomodation) => {
-      fetchMarkerPositions(`${accomodation.adress} ${accomodation.city} ${accomodation.country}`, 'markerPositions');
+      fetchMarkerPositions(`${accomodation.adress} ${accomodation.city} ${accomodation.country}`, 'markerPositions', accomodation, typeList);
     });
   }, [accomodations]);
 
@@ -74,6 +75,7 @@ SearchPage.propTypes = {
     }).isRequired,
   ).isRequired,
   setBreadcrumbs: PropTypes.func.isRequired,
+  clearFilters: PropTypes.func.isRequired,
 };
 
 export default SearchPage;

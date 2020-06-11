@@ -20,6 +20,7 @@ import Loader from 'src/components/Loader';
 
 import './app.scss';
 
+
 const App = ({
   modal,
   fetchAccomodationTypes,

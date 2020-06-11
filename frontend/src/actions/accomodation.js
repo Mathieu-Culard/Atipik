@@ -9,6 +9,18 @@ export const CHANGE_CONTACT_OWNER_PANEL_FIELDS = 'CHANGE_CONTACT_OWNER_PANEL_FIE
 export const RESET_MESSAGE = 'RESET_MESSAGE';
 export const CHANGE_DATE = 'CHANGE_DATE';
 export const SEND_RESERVATION = 'SEND_RESERVATION';
+export const FETCH_OWNER_INFO = 'FETCH_OWNER_INFO';
+export const SAVE_OWNER_INFO = 'SAVE_OWNER_INFO';
+
+export const saveOwnerInfo = (data) => ({
+  type: SAVE_OWNER_INFO,
+  data,
+});
+
+export const fetchOwnerInfo = (id) => ({
+  type: FETCH_OWNER_INFO,
+  id,
+});
 
 export const sendReservation = (dateTo, dateFrom, accomodationId) => ({
   type: SEND_RESERVATION,

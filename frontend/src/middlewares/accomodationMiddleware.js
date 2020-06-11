@@ -5,10 +5,13 @@ import {
   FETCH_SERVICES,
   FETCH_EXTRAS,
   SEND_RESERVATION,
+  FETCH_OWNER_INFO,
   saveServices,
   saveExtras,
   saveAccomodation,
   resetMessage,
+  fetchOwnerInfo,
+  saveOwnerInfo,
 } from 'src/actions/accomodation';
 
 
@@ -38,12 +41,26 @@ const accomodationMiddleware = (store) => (next) => (action) => {
       next(action);
       break;
     }
+    case FETCH_OWNER_INFO:
+      axios({
+        method: 'get',
+        url: `${process.env.REACT_APP_BACKEND_URL}/accomodation/${action.id}/owner`,
+      })
+        .then((response) => {
+          store.dispatch(saveOwnerInfo(response.data));
+        })
+        .catch((error) => {
+          console.warn(`${error}`);
+        });
+      next(action);
+      break;
     case FETCH_ACCOMODATION:
       axios({
         method: 'get',
         url: `${process.env.REACT_APP_BACKEND_URL}/accomodation/${action.id}`,
       })
         .then((response) => {
+          store.dispatch(fetchOwnerInfo(action.id));
           store.dispatch(saveAccomodation(response.data));
         })
         .catch((error) => {

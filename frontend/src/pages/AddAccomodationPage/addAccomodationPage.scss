@@ -7,11 +7,17 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
+
     &__images {
       order: 1;
       width: 45%;
       height: 500px;
       background-color: #ccc;
+    }
+
+    &__image {
+      width: 100px;
+      height:100px;
     }
 
     &__info {
@@ -41,19 +47,21 @@
     &__bottom {
       justify-content: space-between;
       display: flex;
-      flex-flow:row wrap;
+      flex-flow: row wrap;
       margin-top: 2rem;
       width: 100%;
       order: 5;
     }
-    &__services-extras{
+
+    &__services-extras {
       min-height: 200px;
       position: relative;
       margin-top: 1rem;
       padding: 1rem;
       width: 49%;
       border: 1px solid #ccc;
-      &__add{
+
+      &__add {
         position: absolute;
         right: 5px;
         bottom: 5px;

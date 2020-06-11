@@ -28,6 +28,7 @@ const Map = ({
             <Marker
               lat={element.lat}
               lng={element.lng}
+              {...element}
             />
           ))
         }

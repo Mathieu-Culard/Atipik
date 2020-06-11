@@ -62,7 +62,6 @@ const utilsReducer = (state = initialState, action = {}) => {
         ...state,
         isManageAccomodationPanelOpen: !state.isManageAccomodationPanelOpen,
       };
-
     default: return state;
   }
 };

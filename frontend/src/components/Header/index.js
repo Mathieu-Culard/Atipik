@@ -33,6 +33,7 @@ const Header = ({
   disconnect,
   breadcrumbs,
   userAccomodations,
+  isAdmin,
 }) => {
   const classes = useStyles();
   const mobileMenuLinksClass = classNames('header__links--mobile', { 'header__links--mobile--hide': !open });
@@ -52,6 +53,7 @@ const Header = ({
             )}
             {isLogged && (
               <>
+                {isAdmin && <a className="header__link" href="http://ec2-54-210-189-246.compute-1.amazonaws.com/login">Panneau d'administration</a>}
                 <Link className="header__link" to="/profil"> Mon Profil </Link>
                 <Link className="header__link" to="/reservations"> Mes Réservations </Link>
                 {userAccomodations.length === 0 && <Link className="header__link" to="/gerer-mes-hebergements/nouvel-hebergement"> Ajouter un hébergement </Link>}
@@ -82,7 +84,7 @@ const Header = ({
           <Link to="#"> Connexion </Link>
         </List>
       </nav>
-    </header>
+    </header >
   );
 };
 
@@ -99,6 +101,7 @@ Header.propTypes = {
     }).isRequired,
   ).isRequired,
   userAccomodations: PropTypes.array.isRequired,
+  isAdmin: PropTypes.bool.isRequired,
 };
 
 export default Header;

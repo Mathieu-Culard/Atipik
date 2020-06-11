@@ -8,13 +8,14 @@ import { clearFilters } from 'src/actions/search';
 
 const mapStateToProps = (state) => ({
   accomodations: state.search.searchResult,
+  typeList: state.data.accomodationTypes,
   mapCenter: `${state.map.city} ${state.map.country}`,
   loading: state.map.loading,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchMarkerPositions: (adress, identifier) => {
-    dispatch(fetchMarkerPositions(adress, identifier));
+  fetchMarkerPositions: (adress, identifier, accomodation, typeList) => {
+    dispatch(fetchMarkerPositions(adress, identifier, accomodation, typeList));
   },
   resetMarkerPositions: () => {
     dispatch(resetMarkerPositions());
