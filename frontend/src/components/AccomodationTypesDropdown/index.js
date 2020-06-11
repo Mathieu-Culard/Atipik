@@ -15,7 +15,6 @@ import Thematic from './Thematic';
 const useStyles = makeStyles({
   formControl: {
     zIndex: 0,
-    margin: '0.6rem 0',
     minWidth: 220,
     width: '100%',
   },

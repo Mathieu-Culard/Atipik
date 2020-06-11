@@ -11,12 +11,10 @@ import HomePage from 'src/containers/Home';
 import SearchPage from 'src/containers/SearchPage';
 import AccomodationPage from 'src/containers/AccomodationPage';
 import ProfilePage from 'src/containers/ProfilePage';
-import AccomodationTypesPage from 'src/containers/AccomodationTypesPage';
 import MyAccomodationsPage from 'src/containers/MyAccomodationsPage';
 import AddAccomodationPage from 'src/containers/AddAccomodationPage';
 import ReservationsPage from 'src/containers/ReservationsPage';
 import ModalPanel from 'src/containers/ModalPanel';
-import Loader from 'src/components/Loader';
 
 import './app.scss';
 
@@ -50,9 +48,6 @@ const App = ({
         </Route>
         <Route path="/reservations">
           <ReservationsPage />
-        </Route>
-        <Route path="/types">
-          <AccomodationTypesPage />
         </Route>
         <Route path="/gerer-mes-hebergements/modifier-un-hebergement/:id">
           <AddAccomodationPage />

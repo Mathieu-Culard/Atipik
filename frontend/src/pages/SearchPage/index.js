@@ -13,7 +13,6 @@ const SearchPage = ({
   fetchMarkerPositions,
   loading,
   resetMarkerPositions,
-  setBreadcrumbs,
   clearFilters,
   typeList,
 }) => {
@@ -26,22 +25,9 @@ const SearchPage = ({
   }, [accomodations]);
 
   // set the map center for the first rendering
+  // clear all filters when leaving the page
   useEffect(() => {
     fetchMarkerPositions(mapCenter, 'center');
-  }, []);
-
-  useEffect(() => {
-    const breadcrumbs = [
-      {
-        label: 'Accueil',
-        route: '/',
-      },
-      {
-        label: 'Recherche',
-        route: '#',
-      },
-    ];
-    setBreadcrumbs(breadcrumbs);
     return clearFilters;
   }, []);
 
@@ -74,7 +60,7 @@ SearchPage.propTypes = {
       pictures: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     }).isRequired,
   ).isRequired,
-  setBreadcrumbs: PropTypes.func.isRequired,
+
   clearFilters: PropTypes.func.isRequired,
 };
 

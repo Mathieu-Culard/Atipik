@@ -25,7 +25,6 @@ const useStyles = makeStyles({
   },
 });
 
-
 const AddAccomodationPage = ({
   submitAdd,
   submitEdit,

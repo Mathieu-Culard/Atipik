@@ -1,13 +1,10 @@
 import { connect } from 'react-redux';
 import ProfilePage from 'src/pages/ProfilePage';
 
-import { setBreadcrumbs } from 'src/actions/utils';
-
-const mapStateToProps = (state) => ({
+const mapStateToProps = () => ({
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  setBreadcrumbs: (newValue) => dispatch(setBreadcrumbs(newValue)),
+const mapDispatchToProps = () => ({
 });
 
 export default connect(

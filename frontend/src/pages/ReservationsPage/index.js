@@ -4,19 +4,8 @@ import PropTypes from 'prop-types';
 import MyReservations from 'src/containers/MyReservations';
 // import MyAccomodationsReservations from 'src/containers/MyAccomodationsReservations';
 
-const InscriptionPage = ({ setBreadcrumbs, fetchReservations }) => {
+const InscriptionPage = ({ fetchReservations }) => {
   useEffect(() => {
-    const breadcrumbs = [
-      {
-        label: 'Accueil',
-        route: '/',
-      },
-      {
-        label: 'Mes Réservations',
-        route: '/reservations',
-      },
-    ];
-    setBreadcrumbs(breadcrumbs);
     // fetchReservations();
   }, []);
 
@@ -29,7 +18,6 @@ const InscriptionPage = ({ setBreadcrumbs, fetchReservations }) => {
 };
 
 InscriptionPage.propTypes = {
-  setBreadcrumbs: PropTypes.func.isRequired,
   fetchReservations: PropTypes.func.isRequired,
 };
 
