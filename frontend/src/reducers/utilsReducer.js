@@ -2,18 +2,21 @@ import {
   TOGGLE_OPEN,
   OPEN_MODAL,
   CLOSE_MODAL,
+  OPEN_SUCCESS_SNACKBAR,
+  CLOSE_SUCCESS_SNACKBAR,
+  SET_ERROR_MESSAGE,
   SET_CONTACT_OWNER_PANEL,
   SET_MANAGE_ACCOMODATION_PANEL,
 } from 'src/actions/utils';
 
 const initialState = {
   open: false,
-  menu: false,
   modal: false,
   modalComponent: '',
   modalTitle: '',
-  loginPanel: false,
-  lostPasswordPanel: false,
+  success: false,
+  successMessage: '',
+  errorMessage: '',
   isContactOwnerPanelOpen: false,
   isManageAccomodationPanelOpen: false,
   regexEmail: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
@@ -41,6 +44,27 @@ const utilsReducer = (state = initialState, action = {}) => {
         modal: false,
         modalComponent: '',
         modalTitle: '',
+        errorMessage: '',
+      };
+
+    case SET_ERROR_MESSAGE:
+      return {
+        ...state,
+        errorMessage: action.message,
+      };
+
+    case OPEN_SUCCESS_SNACKBAR:
+      return {
+        ...state,
+        success: true,
+        successMessage: action.message,
+      };
+
+    case CLOSE_SUCCESS_SNACKBAR:
+      return {
+        ...state,
+        success: false,
+        successMessage: '',
       };
 
     case SET_CONTACT_OWNER_PANEL:

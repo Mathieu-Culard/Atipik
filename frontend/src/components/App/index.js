@@ -15,6 +15,7 @@ import MyAccomodationsPage from 'src/containers/MyAccomodationsPage';
 import AddAccomodationPage from 'src/containers/AddAccomodationPage';
 import ReservationsPage from 'src/containers/ReservationsPage';
 import ModalPanel from 'src/containers/ModalPanel';
+import SuccessSnackbar from 'src/containers/SuccessSnackbar';
 
 import './app.scss';
 
@@ -63,7 +64,8 @@ const App = ({
         </Route>
       </Switch>
       <Footer />
-      {modal && <ModalPanel />}
+      <ModalPanel />
+      <SuccessSnackbar />
     </div>
   );
 };

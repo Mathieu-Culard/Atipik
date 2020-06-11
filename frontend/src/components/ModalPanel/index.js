@@ -27,6 +27,7 @@ const ModalPanel = ({
   modal,
   closeModal,
   title,
+  errorMessage,
 }) => {
   const classes = useStyles();
   return (
@@ -36,6 +37,7 @@ const ModalPanel = ({
     >
       <Paper className={classes.box}>
         <h2>{title}</h2>
+        {errorMessage !== '' && <p>{errorMessage}</p>}
         {
           {
             LoginForm: <LoginForm />,
@@ -54,6 +56,7 @@ ModalPanel.propTypes = {
   modal: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
+  errorMessage: PropTypes.string.isRequired,
 };
 
 export default ModalPanel;

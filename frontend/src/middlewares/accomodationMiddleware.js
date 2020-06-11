@@ -13,6 +13,7 @@ import {
   fetchOwnerInfo,
   saveOwnerInfo,
 } from 'src/actions/accomodation';
+import { openSuccessSnackbar } from 'src/actions/utils';
 
 
 const accomodationMiddleware = (store) => (next) => (action) => {
@@ -34,6 +35,7 @@ const accomodationMiddleware = (store) => (next) => (action) => {
       })
         .then((response) => {
           store.dispatch(resetMessage());
+          store.dispatch(openSuccessSnackbar('Votre réservation a bien été prise en compte'));
         })
         .catch((error) => {
           console.warn(`${error}`);
@@ -110,6 +112,7 @@ const accomodationMiddleware = (store) => (next) => (action) => {
       })
         .then((response) => {
           store.dispatch(resetMessage());
+          store.dispatch(openSuccessSnackbar('Votre message a été transmis au propriétaire de cet hébergement'));
         })
         .catch((error) => {
           console.warn(`${error}`);

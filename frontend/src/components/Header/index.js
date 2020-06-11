@@ -30,10 +30,16 @@ const Header = ({
   isLogged,
   disconnect,
   userAccomodations,
+  openSuccessSnackbar,
   isAdmin,
 }) => {
   const classes = useStyles();
   const mobileMenuLinksClass = classNames('header__links--mobile', { 'header__links--mobile--hide': !open });
+
+  const handleDisconnection = () => {
+    disconnect();
+    openSuccessSnackbar('Vous avez été déconnecté avec succès');
+  };
 
   return (
     <header className="header">
@@ -56,7 +62,7 @@ const Header = ({
                 <Link className="header__link" to="/reservations"> Mes Réservations </Link>
                 {userAccomodations.length === 0 && <Link className="header__link" to="/gerer-mes-hebergements/nouvel-hebergement"> Ajouter un hébergement </Link>}
                 {userAccomodations.length > 0 && <Link className="header__link" to="/gerer-mes-hebergements">Gerer mes hebergements</Link>}
-                <a className="header__link" href="#" onClick={disconnect}>Déconnexion</a>
+                <a className="header__link" href="#" onClick={handleDisconnection}>Déconnexion</a>
               </>
             )}
           </div>
@@ -86,6 +92,7 @@ Header.propTypes = {
   isLogged: PropTypes.bool.isRequired,
   disconnect: PropTypes.func.isRequired,
   userAccomodations: PropTypes.array.isRequired,
+  openSuccessSnackbar: PropTypes.func.isRequired,
   isAdmin: PropTypes.bool.isRequired,
 };
 
