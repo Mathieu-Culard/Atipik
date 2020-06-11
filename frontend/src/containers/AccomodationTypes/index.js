@@ -8,7 +8,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  changeAccomodationTypes: (id, checked) => dispatch(changeAccomodationTypes(id, checked)),
+  changeAccomodationTypes: (id, checked, typeList) => dispatch(changeAccomodationTypes(id, checked, typeList)),
 });
 
 export default connect(

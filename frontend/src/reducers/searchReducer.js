@@ -16,7 +16,6 @@ import { getCheckedAccomodationTypes, unselectAccomodationTypesByThematic, check
 
 
 const initialState = {
-  accomodationTypes: [],
   city: '',
   country: '',
   capacity: 0,

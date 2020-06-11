@@ -10,7 +10,7 @@ import './accomodationTypes.scss';
 
 const AccomodationTypes = ({ types, changeAccomodationTypes }) => {
   const presetSearch = (id) => {
-    changeAccomodationTypes(id, true);
+    changeAccomodationTypes(id, true, types);
   };
 
   return (
