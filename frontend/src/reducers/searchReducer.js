@@ -9,9 +9,11 @@ import {
   CHANGE_FILTER_SWITCH,
   CHANGE_MIN_SURFACE,
   CLEAR_FILTERS,
+  UNSELECT_ALL,
 } from 'src/actions/search';
 
-import { getCheckedAccomodationTypes } from 'src/utils';
+import { getCheckedAccomodationTypes, unselectAccomodationTypesByThematic, checkThematicSelected } from 'src/utils';
+
 
 const initialState = {
   accomodationTypes: [],
@@ -28,10 +30,17 @@ const initialState = {
   smokers: false,
   apmr: false,
   searchResult: [],
+  selectedThematics: [],
 };
 
 const searchReducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case UNSELECT_ALL:
+      return {
+        ...state,
+        types: unselectAccomodationTypesByThematic(action.id, state.types, action.types),
+        selectedThematics: state.selectedThematics.filter((thematic) => (thematic !== action.id)),
+      };
     case CHANGE_MIN_SURFACE:
       return {
         ...state,
@@ -68,12 +77,14 @@ const searchReducer = (state = initialState, action = {}) => {
         maxPrice: action.value,
       };
 
-    case CHANGE_ACCOMODATION_TYPES:
+    case CHANGE_ACCOMODATION_TYPES: {
+      const selectedTypes = getCheckedAccomodationTypes(state.types, action.value, action.checked);
       return {
         ...state,
-        types: getCheckedAccomodationTypes(state.types, action.value, action.checked),
+        types: selectedTypes,
+        selectedThematics: checkThematicSelected(action.typeList, selectedTypes),
       };
-
+    }
     case CHANGE_MULTIPLE_ACCOMODATION_TYPES: {
       let newTypes = [...state.types];
       for (let i = 0; i < action.value.length; i += 1) {
@@ -82,6 +93,7 @@ const searchReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         types: newTypes,
+        selectedThematics: [...state.selectedThematics, action.thematicId],
       };
     }
 

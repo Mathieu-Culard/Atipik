@@ -71,21 +71,6 @@ const AccomodationPage = ({
   useEffect(() => {
     console.log(id);
     fetchAccomodation(id);
-    const breadcrumbs = [
-      {
-        label: 'Accueil',
-        route: '/',
-      },
-      {
-        label: 'Recherche',
-        route: '/recherche',
-      },
-      {
-        label: 'Hébergement',
-        route: '#',
-      },
-    ];
-    setBreadcrumbs(breadcrumbs);
   }, []);
   
   const classes = useStyles();

@@ -3,14 +3,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-const Type = ({ type, accomodationTypesValue, changeAccomodationTypes }) => {
+const Type = ({ type, accomodationTypesValue, changeAccomodationTypes, accomodationTypes }) => {
   // contain 'checked' if the id of this item is present in the state's accomodationTypesValue field
   const checked = accomodationTypesValue.some((id) => (
     id === type.id
   ));
 
   const handleChange = () => {
-    changeAccomodationTypes(type.id, !checked);
+    changeAccomodationTypes(type.id, !checked, accomodationTypes);
   };
 
   return (

@@ -19,12 +19,16 @@ export const getAnchorPosition = () => {
  * add or remove the selected id of the accomodationTypesValue of the state.
  */
 export const getCheckedAccomodationTypes = (checkedItems, id, checked) => {
-  if (checked) {
-    return (Object.values({ ...checkedItems, id }));
-  }
-  return checkedItems.filter((item) => (
+  let result = checkedItems.filter((item) => (
     item !== id
   ));
+  if (checked) {
+    result = (Object.values({ ...checkedItems, id }));
+  }
+  const removeDuplicate = result.filter((v, i, a) => (
+    a.indexOf(v) === i
+  ));
+  return removeDuplicate;
 };
 
 export const getCheckedItemsForServicesAndExtras = (checkedItems, item, checked) => {
@@ -175,4 +179,40 @@ export const getTypeById = (typeList, typeId) => {
       }
     }
   }
+};
+
+export const unselectAccomodationTypesByThematic = (id, selectedTypes, typeList) => {
+  const thematicToUnselect = typeList.find((thematic) => thematic.id === id);
+  const newSelectedTypes = [...selectedTypes];
+  for (let i = 0; i < thematicToUnselect.types.length; i += 1) {
+    const index = newSelectedTypes.indexOf(thematicToUnselect.types[i].id);
+    if (index !== -1) {
+      newSelectedTypes.splice(index, 1);
+    }
+  }
+  return newSelectedTypes;
+};
+
+export const checkThematicSelected = (typeList, selectedTypes) => {
+  const selectedThematics = [];
+  let isSelected;
+  for (let i = 0; i < typeList.length; i += 1) { // iterate over thematics
+    for (let j = 0; j < typeList[i].types.length; j += 1) { // iterate over types
+      isSelected = selectedTypes.includes(typeList[i].types[j].id);
+      // if current type isn't in selectedtypes array, that means that all of the types of current thematic aren't selected
+      // so we break the iteration over current thematic types to keep isSelected to false so we do not add current thematic
+      // in selectedThematics
+      if (!isSelected) {
+        break;
+      }
+    }
+    // on the other hand if the iteration hasn't been breaked that means that isSelected has stayed to true during the iteration
+    // which means that all of the types of the current thematics are selected so we add the id of the current thematic to selectedThematics
+    if (isSelected) {
+      selectedThematics.push(typeList[i].id);
+    }
+  }
+  console.log('checkThematicsSelected');
+  console.log(selectedThematics);
+  return selectedThematics;
 };

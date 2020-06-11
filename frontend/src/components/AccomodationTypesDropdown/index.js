@@ -29,6 +29,8 @@ const AccomodationTypesDropdown = ({
   accomodationTypesValue,
   changeAccomodationTypes,
   selectAll,
+  unselectAll,
+  selectedThematics,
 }) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -69,15 +71,22 @@ const AccomodationTypesDropdown = ({
       >
         <Box className={classes.root}>
           <h2 className="dropdown-title">Types d'hébergements</h2>
-          {accomodationTypes.map((thematic) => (
-            <Thematic
-              key={thematic.id}
-              thematic={thematic}
-              selectAll={selectAll}
-              changeAccomodationTypes={changeAccomodationTypes}
-              accomodationTypesValue={accomodationTypesValue}
-            />
-          ))}
+          {accomodationTypes.map((thematic) => {
+            const isSelected = selectedThematics.some((SelectedId) => (SelectedId === thematic.id));
+            console.log('ta grosse mere');
+            return (
+              <Thematic
+                accomodationTypes={accomodationTypes}
+                key={thematic.id}
+                thematic={thematic}
+                selectAll={selectAll}
+                isSelected={isSelected}
+                unselectAll={unselectAll}
+                changeAccomodationTypes={changeAccomodationTypes}
+                accomodationTypesValue={accomodationTypesValue}
+              />
+            );
+          })}
         </Box>
       </Popover>
     </div>
@@ -103,6 +112,8 @@ AccomodationTypesDropdown.propTypes = {
       ).isRequired,
     }).isRequired,
   ).isRequired,
+  unselectAll: PropTypes.func.isRequired,
+  selectedThematics: PropTypes.arrayOf(PropTypes.number).isRequired,
 };
 
 export default AccomodationTypesDropdown;
