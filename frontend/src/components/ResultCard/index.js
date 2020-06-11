@@ -66,7 +66,6 @@ const ResultCard = ({
   };
 
   return (
-
     <Link to={`/hebergement/${id}`}>
       <Card className={classes.root}>
         <Slider {...carouselSettings} className={classes.pictures}>

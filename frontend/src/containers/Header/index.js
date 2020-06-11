@@ -7,7 +7,6 @@ import { openModal, toggleOpen, openSuccessSnackbar } from 'src/actions/utils';
 const mapStateToProps = (state) => ({
   open: state.utils.open,
   isLogged: state.connection.isLogged,
-  breadcrumbs: state.utils.breadcrumbs,
   userAccomodations: state.user.accomodations,
   isAdmin: state.user.isAdmin,
 });

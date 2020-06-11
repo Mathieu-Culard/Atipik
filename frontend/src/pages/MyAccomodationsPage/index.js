@@ -41,34 +41,18 @@ const MyAccomodationsPage = ({
   myAccomodationIds,
   myAccomodations,
   deleteMyAccomodation,
-  setBreadcrumbs,
   typeList,
-}) => {
-  useEffect(() => {
-    const breadcrumbs = [
-      {
-        label: 'Accueil',
-        route: '/',
-      },
-      {
-        label: 'Gérer mes hébergements',
-        route: '/gerer-mes-hebergements',
-      },
-    ];
-    setBreadcrumbs(breadcrumbs);
-  }, []);
-  return (
-    <main className="my-accomodations">
+}) => (
+  <main className="my-accomodations">
 
-      {myAccomodations.map((acc) => (
-        <MyAccomodationCard {...acc} key={acc.id} deleteMyAccomodation={deleteMyAccomodation} typeList={typeList} />
-      ))}
-      <Link className="my-accomodations__new-accomodation" to="/gerer-mes-hebergements/nouvel-hebergement">
-        <button type="button">Ajouter un hébergement</button>
-      </Link>
-    </main>
-  );
-};
+    {myAccomodations.map((acc) => (
+      <MyAccomodationCard {...acc} key={acc.id} deleteMyAccomodation={deleteMyAccomodation} typeList={typeList} />
+    ))}
+    <Link className="my-accomodations__new-accomodation" to="/gerer-mes-hebergements/nouvel-hebergement">
+      <button type="button">Ajouter un hébergement</button>
+    </Link>
+  </main>
+);
 
 MyAccomodationsPage.propTypes = {
   // fetchMyAccomodations: PropTypes.func.isRequired,

@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import MyAccomodationsPage from 'src/pages/MyAccomodationsPage';
 
 import { fetchMyAccomodations, deleteMyAccomodation } from 'src/actions/manageAccomodation';
-import { setBreadcrumbs } from 'src/actions/utils';
 
 const mapStateToProps = (state) => ({
   myAccomodationIds: state.user.accomodations,
@@ -11,7 +10,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setBreadcrumbs: (newValue) => dispatch(setBreadcrumbs(newValue)),
 
   fetchMyAccomodations: (id) => {
     dispatch(fetchMyAccomodations(id));
