@@ -7,9 +7,9 @@ import {
   changeNbNights,
   changeMaxPrice,
   changeAccomodationTypes,
+  commitMaxPriceChange,
   search,
 } from 'src/actions/search';
-import { setBreadcrumbs } from 'src/actions/utils';
 
 
 const mapStateToProps = (state) => ({
@@ -22,6 +22,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  commitMaxPriceChange: () => {
+    dispatch(commitMaxPriceChange());
+  },
   changeTextfield: (newValue, identifier) => {
     dispatch(changeTextfield(newValue, identifier));
   },
@@ -40,7 +43,6 @@ const mapDispatchToProps = (dispatch) => ({
   handleSearch: () => {
     dispatch(search());
   },
-  setBreadcrumbs: (newValue) => dispatch(setBreadcrumbs(newValue)),
 });
 
 export default connect(

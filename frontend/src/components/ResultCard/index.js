@@ -16,6 +16,9 @@ import './resultCard.scss';
 
 const useStyles = makeStyles(() => ({
   root: {
+    width: '100%',
+  },
+  card: {
     display: 'flex',
     width: '100%',
     transition: 'transform .2s ease',
@@ -46,12 +49,12 @@ const useStyles = makeStyles(() => ({
 }));
 
 const ResultCard = ({
-  slugger,
   title,
   pictures,
   description,
   country,
   city,
+  id,
 }) => {
   const classes = useStyles();
   const carouselSettings = {
@@ -63,10 +66,11 @@ const ResultCard = ({
   };
 
   return (
-    <Link to={`/hebergement/${slugger}`}>
+
+    <Link to={`/hebergement/${id}`}>
       <Card className={classes.root}>
         <Slider {...carouselSettings} className={classes.pictures}>
-          {pictures.map((picture) => (<div key={picture}><img src={`${process.env.REACT_APP_BACKEND_URL}/assets/type/picture/${picture}`} alt="" width="150" /></div>))}
+          {pictures.map((picture) => (<div key={picture}><img src={`${process.env.REACT_APP_BACKEND_URL}/assets/accomodation/${picture}`} alt="" width="150" /></div>))}
         </Slider>
         <CardContent className={classes.content}>
           <Typography variant="h6" component="h3">
@@ -78,7 +82,6 @@ const ResultCard = ({
           <Typography variant="body2" component="p" className={classes.description}>
             {truncateDescription(description)}
           </Typography>
-          <Button size="small" color="primary" variant="outlined">En savoir plus</Button>
         </CardContent>
       </Card>
     </Link>
@@ -86,6 +89,7 @@ const ResultCard = ({
 };
 
 ResultCard.propTypes = {
+  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   pictures: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   description: PropTypes.string.isRequired,

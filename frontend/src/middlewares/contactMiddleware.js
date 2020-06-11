@@ -6,6 +6,8 @@ import {
   RESET_PASSWORD,
 } from 'src/actions/contact';
 
+import { openSuccessSnackbar, setErrorMessage } from 'src/actions/utils';
+
 const contactMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case SEND_MESSAGE_TO_ADMIN: {
@@ -20,8 +22,9 @@ const contactMiddleware = (store) => (next) => (action) => {
         },
       }).then(() => {
         store.dispatch(resetContactMessage());
-      }).catch((error) => {
-        console.warn(`${error}`);
+        store.dispatch(openSuccessSnackbar('Votre message a bien été envoyé'));
+      }).catch(() => {
+        store.dispatch(setErrorMessage('Erreur lors de l\'envoi du message'));
       });
       next(action);
       break;
@@ -37,7 +40,9 @@ const contactMiddleware = (store) => (next) => (action) => {
         },
       }).then(() => {
         store.dispatch(resetContactMessage());
-        // TODO modale de confirmation
+        store.dispatch(openSuccessSnackbar('Un email vous a été envoyé avec votre nouveau mot de passe'));
+      }).catch(() => {
+        store.dispatch(setErrorMessage('Impossible de trouver l\'email fourni, veuillez réessayer'));
       });
       next(action);
       break;

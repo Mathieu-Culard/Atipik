@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
@@ -11,6 +11,7 @@ import './home.scss';
 import AccomodationTypesDropdown from 'src/containers/AccomodationTypesDropdown';
 import Dropdown from 'src/components/Dropdown';
 import CustomSlider from 'src/components/CustomSlider';
+import AccomodationTypes from 'src/containers/AccomodationTypes';
 
 const useStyles = makeStyles({
   textField: {
@@ -27,11 +28,11 @@ const Home = ({
   accomodationTypesValue,
   changeTextfield,
   changePriceScale,
-  changeNbNights,
-  changeNbPerson,
+  // changeNbNights,
+  // changeNbPerson,
   changeAccomodationTypes,
   handleSearch,
-  setBreadcrumbs,
+  commitMaxPriceChange,
 }) => {
   const classes = useStyles();
 
@@ -43,16 +44,6 @@ const Home = ({
     // evt.preventDefault();
     handleSearch();
   };
-
-  useEffect(() => {
-    const breadcrumbs = [
-      {
-        label: 'Accueil',
-        route: '/',
-      },
-    ];
-    setBreadcrumbs(breadcrumbs);
-  }, []);
 
   return (
     <main className="home">
@@ -69,17 +60,37 @@ const Home = ({
           </div>
           <div className="row">
             <div className="row__item">
-              <Dropdown
+              {/* <Dropdown
                 value={nbPersonValue}
                 changeValue={changeNbPerson}
                 label="Nombre de personnes"
+              /> */}
+              <TextField
+                // variant="outlined"
+                id="capacity"
+                label="Capacité"
+                type="number"
+                className={classes.textField}
+                // className={classes.textField}
+                value={(nbPersonValue === 0) ? '' : nbPersonValue}
+                onChange={handleChange}
               />
             </div>
             <div className="row__item">
-              <Dropdown
+              {/* <Dropdown
                 value={nbNightsValue}
                 changeValue={changeNbNights}
                 label="Nombre de nuitées"
+              /> */}
+              <TextField
+                // variant="outlined"
+                id="nbNights"
+                label="nb de nuitées"
+                type="number"
+                className={classes.textField}
+                // className={classes.textField}
+                value={(nbNightsValue === 0) ? '' : nbNightsValue}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -91,6 +102,7 @@ const Home = ({
                 step={10}
                 max={300}
                 label="Prix"
+                commitChange={commitMaxPriceChange}
               />
             </div>
             <div className="row__item">
@@ -107,6 +119,9 @@ const Home = ({
           </div>
         </form>
       </section>
+      <section>
+        <AccomodationTypes />
+      </section>
     </main>
   );
 };
@@ -121,11 +136,10 @@ Home.propTypes = {
   priceScaleValue: PropTypes.number.isRequired,
   accomodationTypesValue: PropTypes.array.isRequired,
   changeTextfield: PropTypes.func.isRequired,
-  changeNbNights: PropTypes.func.isRequired,
-  changeNbPerson: PropTypes.func.isRequired,
+  // changeNbNights: PropTypes.func.isRequired,
+  // changeNbPerson: PropTypes.func.isRequired,
   changePriceScale: PropTypes.func.isRequired,
   changeAccomodationTypes: PropTypes.func.isRequired,
-  setBreadcrumbs: PropTypes.func.isRequired,
 };
 
 export default Home;

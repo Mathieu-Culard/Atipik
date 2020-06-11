@@ -1,15 +1,19 @@
 import { connect } from 'react-redux';
 import AddAccomodationPage from 'src/pages/AddAccomodationPage';
-import { setManageAccomodationPanel } from 'src/actions/utils';
+import { setManageAccomodationPanel, setBreadcrumbs } from 'src/actions/utils';
 import {
   changeMyAccomodationFields,
   changeMyAccomodationSwitchs,
   changeMyAccomodationType,
+  changeMyAccomodationPictures,
   submitAddAccomodationForm,
   setEditMyAccomodationInfos,
   resetMyAccomodationInfos,
   submitEditMyAccomodationForm,
+  deleteMyAccomodationPicture,
+  deleteMyAccomodationPictureEdit,
 } from 'src/actions/manageAccomodation';
+
 
 const mapStateToProps = (state) => ({
   typeValue: state.manageAccomodation.type,
@@ -34,9 +38,25 @@ const mapStateToProps = (state) => ({
   extrasList: state.accomodation.extras,
   servicesValue: state.manageAccomodation.services,
   extrasValue: state.manageAccomodation.extras,
+  picturesURL: state.manageAccomodation.picturesURL,
+  editPicturesURL: state.manageAccomodation.editPicturesURL,
+  pictures: state.manageAccomodation.pictures,
+  isLoading: state.manageAccomodation.isLoading,
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  setBreadcrumbs: (newValue) => dispatch(setBreadcrumbs(newValue)),
+  deletePictureEdit: (picture) => {
+    dispatch(deleteMyAccomodationPictureEdit(picture));
+  },
+
+  deletePicture: (picture) => {
+    dispatch(deleteMyAccomodationPicture(picture));
+  },
+
+  changePictures: (pictures) => {
+    dispatch(changeMyAccomodationPictures(pictures));
+  },
   submitAdd: () => {
     dispatch(submitAddAccomodationForm());
   },

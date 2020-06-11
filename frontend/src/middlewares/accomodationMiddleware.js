@@ -5,11 +5,15 @@ import {
   FETCH_SERVICES,
   FETCH_EXTRAS,
   SEND_RESERVATION,
+  FETCH_OWNER_INFO,
   saveServices,
   saveExtras,
   saveAccomodation,
   resetMessage,
+  fetchOwnerInfo,
+  saveOwnerInfo,
 } from 'src/actions/accomodation';
+import { openSuccessSnackbar } from 'src/actions/utils';
 
 
 const accomodationMiddleware = (store) => (next) => (action) => {
@@ -31,6 +35,7 @@ const accomodationMiddleware = (store) => (next) => (action) => {
       })
         .then((response) => {
           store.dispatch(resetMessage());
+          store.dispatch(openSuccessSnackbar('Votre réservation a bien été prise en compte'));
         })
         .catch((error) => {
           console.warn(`${error}`);
@@ -38,12 +43,26 @@ const accomodationMiddleware = (store) => (next) => (action) => {
       next(action);
       break;
     }
+    case FETCH_OWNER_INFO:
+      axios({
+        method: 'get',
+        url: `${process.env.REACT_APP_BACKEND_URL}/accomodation/${action.id}/owner`,
+      })
+        .then((response) => {
+          store.dispatch(saveOwnerInfo(response.data));
+        })
+        .catch((error) => {
+          console.warn(`${error}`);
+        });
+      next(action);
+      break;
     case FETCH_ACCOMODATION:
       axios({
         method: 'get',
         url: `${process.env.REACT_APP_BACKEND_URL}/accomodation/${action.id}`,
       })
         .then((response) => {
+          store.dispatch(fetchOwnerInfo(action.id));
           store.dispatch(saveAccomodation(response.data));
         })
         .catch((error) => {
@@ -93,6 +112,7 @@ const accomodationMiddleware = (store) => (next) => (action) => {
       })
         .then((response) => {
           store.dispatch(resetMessage());
+          store.dispatch(openSuccessSnackbar('Votre message a été transmis au propriétaire de cet hébergement'));
         })
         .catch((error) => {
           console.warn(`${error}`);

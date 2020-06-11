@@ -11,7 +11,7 @@ import {
   CHANGE_ACCOMODATION_TYPES,
   CHANGE_MULTIPLE_ACCOMODATION_TYPES,
   CHANGE_MIN_SURFACE,
-  CHANGE_MAX_PRICE,
+  COMMIT_MAX_PRICE_CHANGE,
   SELECT_ALL,
 } from '../actions/search';
 
@@ -19,7 +19,7 @@ const searchMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case CHANGE_FILTER_SWITCH:
     case CHANGE_CAPACITY:
-    case CHANGE_MAX_PRICE:
+    case COMMIT_MAX_PRICE_CHANGE:
     case CHANGE_NB_NIGHTS:
     case CHANGE_ACCOMODATION_TYPES:
     case CHANGE_MULTIPLE_ACCOMODATION_TYPES:

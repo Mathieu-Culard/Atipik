@@ -11,16 +11,16 @@ import HomePage from 'src/containers/Home';
 import SearchPage from 'src/containers/SearchPage';
 import AccomodationPage from 'src/containers/AccomodationPage';
 import ProfilePage from 'src/containers/ProfilePage';
-import AccomodationTypesPage from 'src/containers/AccomodationTypesPage';
 import MyAccomodationsPage from 'src/containers/MyAccomodationsPage';
 import AddAccomodationPage from 'src/containers/AddAccomodationPage';
 import ReservationsPage from 'src/containers/ReservationsPage';
 import ModalPanel from 'src/containers/ModalPanel';
+import SuccessSnackbar from 'src/containers/SuccessSnackbar';
 
 import './app.scss';
 
+
 const App = ({
-  modal,
   fetchAccomodationTypes,
   fetchServices,
   fetchExtras,
@@ -49,9 +49,6 @@ const App = ({
         <Route path="/reservations">
           <ReservationsPage />
         </Route>
-        <Route path="/types">
-          <AccomodationTypesPage />
-        </Route>
         <Route path="/gerer-mes-hebergements/modifier-un-hebergement/:id">
           <AddAccomodationPage />
         </Route>
@@ -66,13 +63,13 @@ const App = ({
         </Route>
       </Switch>
       <Footer />
-      {modal && <ModalPanel />}
+      <ModalPanel />
+      <SuccessSnackbar />
     </div>
   );
 };
 
 App.propTypes = {
-  modal: PropTypes.bool.isRequired,
   fetchAccomodationTypes: PropTypes.func.isRequired,
   fetchServices: PropTypes.func.isRequired,
   fetchExtras: PropTypes.func.isRequired,

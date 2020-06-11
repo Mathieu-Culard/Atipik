@@ -5,82 +5,23 @@ import {
   SAVE_ACCOMODATION,
   RESET_MESSAGE,
   CHANGE_DATE,
+  FETCH_ACCOMODATION,
+  SAVE_OWNER_INFO,
 } from '../actions/accomodation';
 
 const initialState = {
   id: -1,
-  currentAccomodation: [],
-  dateFrom: null,
-  dateTo: null,
+  currentAccomodation: {},
+  dateFrom: '',
+  dateTo: '',
   dateToFormated: '',
   dateFromFormated: '',
   userMessage: '',
   userMessageObject: '',
-  owner: [],
-  services: [
-    // {
-    //   id: 0,
-    //   name: 'service0',
-    //   icon: 'RY2Kef5s.png',
-    // },
-    // {
-    //   id: 1,
-    //   name: 'service1',
-    //   icon: 'RY2Kef5s.png',
-    // },
-    // {
-    //   id: 2,
-    //   name: 'service2',
-    //   icon: 'RY2Kef5s.png',
-    // },
-    // {
-    //   id: 3,
-    //   name: 'service3',
-    //   icon: 'RY2Kef5s.png',
-    // },
-    // {
-    //   id: 4,
-    //   name: 'service4',
-    //   icon: 'RY2Kef5s.png',
-    // },
-    // {
-    //   id: 5,
-    //   name: 'service5',
-    //   icon: 'RY2Kef5s.png',
-    // },
-  ],
-  extras: [
-    // {
-    //   id: 0,
-    //   name: 'extra0',
-    //   icon: 'RY2Kef5s.png',
-    // },
-    // {
-    //   id: 1,
-    //   name: 'extra1',
-    //   icon: 'RY2Kef5s.png',
-    // },
-    // {
-    //   id: 2,
-    //   name: 'extra2',
-    //   icon: 'RY2Kef5s.png',
-    // },
-    // {
-    //   id: 3,
-    //   name: 'extra3',
-    //   icon: 'RY2Kef5s.png',
-    // },
-    // {
-    //   id: 4,
-    //   name: 'extra4',
-    //   icon: 'RY2Kef5s.png',
-    // },
-    // {
-    //   id: 5,
-    //   name: 'extra5',
-    //   icon: 'RY2Kef5s.png',
-    // },
-  ],
+  owner: {},
+  isLoading: true,
+  services: [],
+  extras: [],
 };
 
 const accomodationReducer = (state = initialState, action = {}) => {
@@ -91,6 +32,12 @@ const accomodationReducer = (state = initialState, action = {}) => {
         userMessage: '',
         userMessageObject: '',
       };
+    case FETCH_ACCOMODATION: {
+      return {
+        ...state,
+        isLoading: true,
+      };
+    }
     case SAVE_ACCOMODATION:
       return {
         ...state,
@@ -120,6 +67,12 @@ const accomodationReducer = (state = initialState, action = {}) => {
         [`${action.identifier}Formated`]: action.formatedDate,
       };
     }
+    case SAVE_OWNER_INFO:
+      return {
+        ...state,
+        owner: action.data,
+        isLoading: false,
+      };
     default: return state;
   }
 };

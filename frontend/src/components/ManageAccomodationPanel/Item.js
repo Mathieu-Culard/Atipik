@@ -25,7 +25,11 @@ const Item = ({
 
 Item.propTypes = {
   checkedValues: PropTypes.array.isRequired,
-  item: PropTypes.object.isRequired,
+  item: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    icon: PropTypes.string.isRequired,
+  }).isRequired,
   changeExtrasOrServices: PropTypes.func.isRequired,
 };
 

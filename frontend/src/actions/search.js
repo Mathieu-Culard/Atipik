@@ -4,6 +4,7 @@ export const CHANGE_TEXTFIELD = 'CHANGE_TEXTFIELD';
 export const CHANGE_CAPACITY = 'CHANGE_NB_PERSON';
 export const CHANGE_NB_NIGHTS = 'CHANGE_NB_NIGHTS';
 export const CHANGE_MAX_PRICE = 'CHANGE_MAX_PRICE';
+export const COMMIT_MAX_PRICE_CHANGE = 'COMMIT_MAX_PRICE_CHANGE';
 export const CHANGE_ACCOMODATION_TYPES = 'CHANGE_ACCOMODATION_TYPES';
 export const CHANGE_MULTIPLE_ACCOMODATION_TYPES = 'CHANGE_MULTIPLE_ACCOMODATION_TYPES';
 export const CHANGE_FILTER_SWITCH = 'CHANGE_FILTER_SWITCH';
@@ -31,6 +32,11 @@ export const changeMaxPrice = (newValue) => ({
   type: CHANGE_MAX_PRICE,
   value: newValue,
 });
+
+export const commitMaxPriceChange = () => ({
+  type: COMMIT_MAX_PRICE_CHANGE,
+});
+
 export const changeAccomodationTypes = (newValue, checked) => ({
   type: CHANGE_ACCOMODATION_TYPES,
   value: newValue,

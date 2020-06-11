@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { openSuccessSnackbar } from 'src/actions/utils';
 import {
   SUBMIT_USER_MODIFICATION,
   saveUserInfos,
@@ -35,8 +36,7 @@ const userMiddleware = (store) => (next) => (action) => {
         },
       })
         .then(() => {
-          // TODO Display confirm message
-          console.log('modification du compte ok');
+          store.dispatch(openSuccessSnackbar('Vos informations ont été modifiées avec succès'));
         });
       next(action);
       break;
@@ -74,6 +74,7 @@ const userMiddleware = (store) => (next) => (action) => {
       })
         .then(() => {
           store.dispatch(logOut());
+          store.dispatch(openSuccessSnackbar('Votre compte a bien été supprimé'));
         });
       next(action);
       break;

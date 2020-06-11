@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { SUBMIT_INSCRIPTION } from '../actions/inscription';
-import { closeModal } from '../actions/utils';
+import { closeModal, openSuccessSnackbar, setErrorMessage } from '../actions/utils';
 
 const inscriptionMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -20,6 +20,9 @@ const inscriptionMiddleware = (store) => (next) => (action) => {
         pseudo,
       }).then(() => {
         store.dispatch(closeModal());
+        store.dispatch(openSuccessSnackbar('Inscription réussie'));
+      }).catch(() => {
+        store.dispatch(setErrorMessage('L\'inscription a échoué'));
       });
       next(action);
       break;

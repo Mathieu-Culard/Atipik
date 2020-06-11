@@ -8,6 +8,7 @@ const mapStateToProps = (state) => ({
   componentName: state.utils.modalComponent,
   modal: state.utils.modal,
   title: state.utils.modalTitle,
+  errorMessage: state.utils.errorMessage,
 });
 
 const mapDispatchToProps = (dispatch) => ({
