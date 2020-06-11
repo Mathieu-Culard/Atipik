@@ -4,9 +4,6 @@
   padding: 2rem;
 
   &__title {
-    text-align: center;
-    font-size: 1.2rem;
-    
   }
 
   &__formular {
@@ -44,13 +41,12 @@
 @media(min-width: 650px) {
   .search {
     text-align: center;
-    width: 90%;
+    width: 60%;
     margin: auto;
     &__formular {
-      
-      margin-top: 2rem;
+      margin-top: 1rem;
       border: 1px solid #ccc;
-      padding: 2rem;
+      padding: 1rem;
       border-radius: 20px;
     }
     &__title{
@@ -58,21 +54,24 @@
     }
 
     .row {
-      margin-top: 2rem;
+      margin-bottom: 1rem;
       flex-direction: row !important;
       justify-content: space-around;
+      &:last-of-type {
+        margin-bottom: 0;
+      }
       &__item{
-        width: 30vw;
+        width: 20vw;
+        margin: 0;
       }
     }
 
     &__submit{
       text-align: center;
       font-size: 1rem;
-      min-width: 200px;
-      width: 18vw;
-      padding:1rem;
-      font-size: 1.5rem;
+      width: 13vw;
+      padding: .8rem;
+      font-size: 1.2rem;
     }
   }
 

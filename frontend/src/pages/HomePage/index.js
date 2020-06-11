@@ -9,7 +9,6 @@ import './home.scss';
 
 
 import AccomodationTypesDropdown from 'src/containers/AccomodationTypesDropdown';
-import Dropdown from 'src/components/Dropdown';
 import CustomSlider from 'src/components/CustomSlider';
 import AccomodationTypes from 'src/containers/AccomodationTypes';
 
