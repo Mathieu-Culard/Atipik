@@ -64,8 +64,8 @@ class ContactAdminController extends AbstractController
         //We send the confirm message with swiftmailer
         //which contains differents informations
         $mailer->send($confirmMessage);
-        //We send to the view, the template that contains the message
-        return $this->render('emails/confirmMessage.html.twig');
+       
+        return $this->json('',201);
     }
 
 }

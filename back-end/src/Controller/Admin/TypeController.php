@@ -59,9 +59,8 @@ class TypeController extends AbstractController
       * @Route("/edit/{id}", name="edit", methods={"GET", "POST"}, requirements={"id": "\d+"})
       */
     //Method to edit a type 
-     public function edit(Type $type, Request $request, SluggerInterface $slugger, EntityManagerInterface $em, FileUploader $fileUploader ) : Response
+     public function edit(Type $type, Request $request, SluggerInterface $slugger, EntityManagerInterface $em) : Response
       {
-        // We create a form to edit the type
         $form = $this->createForm(FormType::class, $type);
         $form->handleRequest($request);
 
@@ -106,20 +105,14 @@ class TypeController extends AbstractController
 
             // We redirect to the list page
             return $this->redirectToRoute('admin_type_browse');
-            // We redirect to the list page
-            return $this->redirectToRoute('admin_type_browse');
+           
 
         }
-         // We create a form to delete the type
-         $formDelete = $this->createForm(FormTypeDelete::class, null, [
-            'action' => $this->generateUrl('admin_type_delete', ['id' => $type->getId() ])
-         ]);
-
         // We send it to the edit page
         return $this->render('admin/type/edit.html.twig', [
         'form' => $form->createView(),
       
-        'formDelete' => $formDelete->createView(),
+       
     ]); 
       }
 

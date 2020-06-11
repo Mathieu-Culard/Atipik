@@ -23,6 +23,10 @@
 /public/assets/icon/*.jpeg
 /public/assets/icon/*.png
 
+/public/assets/avatar/*.jpg
+/public/assets/avatar/*.jpeg
+/public/assets/avatar/*.png
+
 ###> lexik/jwt-authentication-bundle ###
 /config/jwt/*.pem
 ###< lexik/jwt-authentication-bundle ###

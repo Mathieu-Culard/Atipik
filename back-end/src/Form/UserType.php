@@ -41,9 +41,8 @@ class UserType extends AbstractType
                 'constraints' => [
                     new NotBlank([
                         'normalizer' => 'trim',
-                    ]),
+                    ])
                 ]
-
             ])
             ->add('pseudo', null, [
                 'label' => 'Pseudo',

@@ -104,14 +104,14 @@ class AuthenticationController extends AbstractController
         $message = (new \Swift_Message('Réinitialisation de votre mot de passe'))
             ->setFrom(array('contact.atypik.site@gmail.com' => 'AtipiK'))
             ->setTo(array($email => $email))
-            ->setBody('Bonjour, voici votre nouveau mot de passe : ' . $passwordReset . '. Bonne journée. AtipiK');
+            ->setBody('Bonjour, <br><br> Voici votre nouveau mot de passe : ' . $passwordReset . '. <br><br> Bonne journée. <br><br>L\'équipe AtipiK', 'text/html');
     
             //dd($message);
         $mailer->send($message);
         //dd($mailer->send($message));
 
-        // If the email is sent, we return a status code "202"
-        return $this->json(202);
+        // If the email is sent, we return a status code "201"
+        return $this->json('', 201);
     }
         // Else we return a status code "404"
         return $this->json(404);

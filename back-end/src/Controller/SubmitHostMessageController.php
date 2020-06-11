@@ -17,7 +17,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class SubmitHostMessageController extends AbstractController
 {
     /**
-     * @Route("/api/accomodation/{slugger}/contact"), methods={"POST"})
+     * @Route("/api/accomodation/{id}/contact"), methods={"POST"})
      */
     public function sendMessage(Request $request, \Swift_Mailer $mailer, UserRepository $userRepository, AccomodationRepository $accomodationRepository, UserInterface $user)
     {
@@ -28,16 +28,16 @@ class SubmitHostMessageController extends AbstractController
         $content = $jsonData->message;
         $accomodationId = $jsonData->id;
         $userId = $jsonData->user;
-        //dd($userId); 
+        //dump($userId); 
 
-        $userData = $userRepository->find($user->getId());
-        //dd($userData);
+        $userData = $userRepository->find($userId);
+        //dump($userData);
        
         $userEmail = $userData->getEmail(); 
-        //dd($userEmail); 
+        //dump($userEmail); 
        
         $accomodation = $accomodationRepository->find($accomodationId);
-       // dd($accomodation); 
+       // dump($accomodation); 
         $accomodationEmail = $accomodation->getUser($accomodationId)->getEmail();
        //dd($accomodationEmail);
 
@@ -56,7 +56,7 @@ class SubmitHostMessageController extends AbstractController
             //dd($message);
         $mailer->send($message);
 
-        return $this->render('emails/accomodationContact.html.twig');
+        return $this->json('',201);
     }
     
 }

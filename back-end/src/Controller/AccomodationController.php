@@ -98,7 +98,6 @@ class AccomodationController extends AbstractController
     public function bookingAccomodation(Request $request, Accomodation $accomodation, AccomodationRepository $accomodationRepository, SerializerInterface $serializer, UserInterface $user, UserRepository $userRepository, \Swift_Mailer $mailer, $id, EntityManagerInterface $em, BookingRepository $bookingRepository)
     {
         // We create a new booking
-        
         $newBooking = new Booking();
 
         //We recover json's data
@@ -137,39 +136,6 @@ class AccomodationController extends AbstractController
         $ownerEmail = $ownerAccomodation->getUser()->getEmail();
         $accomodationName = $ownerAccomodation->getTitle();
         // dd($owner);
-  
-        //    $book = $bookingRepository->findAll();
-        //   // dd($book);
-      
-
-        //    //We recover all informations about the accomodation with a specific id
-        //    $accomodationBooked = $accomodationRepository->find($id);
-        //     //dd($accomodationBooked);
-        //     //Récupérer la date d'entrée d'un hébergement
-        //     //$bookingEntrance = $accomodationBooked->getEntrance();
-        //     //dd($bookingEntrance);
-         
-        //     //Recover the booking with method of query builder.
-        //   $reservations = $bookingRepository->findByAccomodations($id);
-        //   dd($reservations);
-      
-        //     // Entry date
-        //   $bookEntrance = $bookingRepository->findByAccomodations($id)->getEntrance();
-
-        //   // Departure date
-        //   $bookDeparture = $bookingRepository->findByAccomodations($id)->getDeparture();
-     
-        
-
-        // foreach ($reservations as $reservation) {
-        //     echo $reservation;
-
-        //     /*if ($dateFrom >= $bookEntrance) {
-        //         echo'tu peux pas réserver';
-        //     } else {
-        //         echo'tu peux reserver';
-        //     }*/
-        // }
 
         //if the new booking is correctly booked
         if ($newBooking) {
@@ -187,18 +153,18 @@ class AccomodationController extends AbstractController
 
             //Send a message from the tenant to the owner
             $message = (new \Swift_Message('Réservation de votre logement'))
-        ->setFrom([$tenantEmail => $tenantEmail])
-        ->setTo(array($ownerEmail => $ownerEmail))
-        ->setBody('Bonjour, votre logement a été réservé du ' . $entryDate . ' au ' . $departureDate . ' par ' . $tenantFirstName . ' ' . $tenantLastName . ". Cordialement, l'équipe AtipiK ");
+                ->setFrom([$tenantEmail => $tenantEmail])
+                ->setTo(array($ownerEmail => $ownerEmail))
+                ->setBody('Bonjour,<br><br> Votre logement a été réservé du ' . $entryDate . ' au ' . $departureDate . ' par ' . $tenantFirstName . ' ' . $tenantLastName . ".<br><br> Cordialement, <br><br> L'équipe AtipiK ", 'text/html');
 
             // dd($mailer->send($message));
             $mailer->send($message);
 
             //Send a confirm message from the owner to the tenant
             $confirmMessage = (new \Swift_Message('Confirmation de votre réservation'))
-        ->setFrom([$ownerEmail => $ownerEmail])
-        ->setTo(array($tenantEmail => $tenantEmail))
-        ->setBody('Bonjour, votre logement est bien réservé pour la période du ' . $entryDate . ' au ' . $departureDate . '. Passez un bon séjour chez ' . $accomodationName . ' Cordialement, l\'équipe AtipiK ');
+                ->setFrom([$ownerEmail => $ownerEmail])
+                ->setTo(array($tenantEmail => $tenantEmail))
+                ->setBody('Bonjour, <br><br> Votre logement est bien réservé pour la période du ' . $entryDate . ' au ' . $departureDate . '. <br> Passez un bon séjour chez ' . $accomodationName . '. <br><br> Cordialement, <br><br> L\'équipe AtipiK ', 'text/html');
 
             // dd($mailer->send($message));
             $mailer->send($message);
