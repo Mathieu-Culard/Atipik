@@ -60,7 +60,6 @@ SearchPage.propTypes = {
       pictures: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     }).isRequired,
   ).isRequired,
-
   clearFilters: PropTypes.func.isRequired,
 };
 

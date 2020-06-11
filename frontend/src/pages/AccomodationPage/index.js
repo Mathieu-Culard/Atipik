@@ -66,7 +66,6 @@ const AccomodationPage = ({
   sendReservation,
   accomodationId,
   owner,
-  setBreadcrumbs,
 }) => {
   const { id } = useParams();
   useEffect(() => {
@@ -88,6 +87,7 @@ const AccomodationPage = ({
     ];
     setBreadcrumbs(breadcrumbs);
   }, []);
+  
   const classes = useStyles();
   const carouselSettings = {
     infinite: true,

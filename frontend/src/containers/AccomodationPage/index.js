@@ -19,7 +19,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setBreadcrumbs: (newValue) => dispatch(setBreadcrumbs(newValue)),
 
   sendReservation: (dateTo, dateFrom, accomodationId) => {
     dispatch(sendReservation(dateTo, dateFrom, accomodationId));
