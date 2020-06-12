@@ -8,7 +8,7 @@ import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 
 import './header.scss';
-import logo from '../../assets/logo.png';
+import logo from '../../assets/logo.svg';
 
 const useStyles = makeStyles(() => ({
   list: {
