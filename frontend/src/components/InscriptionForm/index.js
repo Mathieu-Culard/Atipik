@@ -7,15 +7,15 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(() => ({
   root: {
     width: '100%',
-    padding: '2rem',
   },
   fields: {
     display: 'grid',
+    gridGap: '1rem',
     gridTemplateColumns: '50% 50%',
   },
   submitButton: {
     display: 'block',
-    margin: '2rem  auto',
+    margin: '2rem  auto 0 auto',
   },
 }));
 
@@ -57,7 +57,7 @@ const InscriptionForm = ({
   return (
     <form action="" noValidate className={classes.root} onSubmit={handleSubmit}>
       <div className={classes.fields}>
-        <TextField label="Prénom" onChange={(e) => changeField(e.target.value, 'firstname')} value={firstname} />
+        <TextField label="Prénom" onChange={(e) => changeField(e.target.value, 'firstname')} value={firstname} autoFocus />
         <TextField label="Nom" onChange={(e) => changeField(e.target.value, 'lastname')} value={lastname} />
         <TextField label="Pseudonyme" onChange={(e) => changeField(e.target.value, 'pseudo')} value={pseudo} />
         <TextField
