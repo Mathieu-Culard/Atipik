@@ -6,9 +6,10 @@
   top: 0;
   left: 0;
   right: 0;
-  box-shadow: $box-shadow;
+  background-color: transparent;
   &__top-bar {
-    padding: .5rem 1rem;
+    padding: .5rem 0;
+    width: 80%;
     display: flex;
     justify-content: space-between;
     align-items: center;
