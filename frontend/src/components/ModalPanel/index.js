@@ -19,6 +19,11 @@ const useStyles = makeStyles(() => ({
     top: '50%',
     left: '50%',
     transform: 'translate(-50%,-50%)',
+    padding: '2rem',
+    borderRadius: '5px',
+  },
+  title: {
+    marginBottom: '1rem',
   },
 }));
 
@@ -36,7 +41,7 @@ const ModalPanel = ({
       onClose={() => closeModal()}
     >
       <Paper className={classes.box}>
-        <h2>{title}</h2>
+        <h2 className={classes.title}>{title}</h2>
         {errorMessage !== '' && <p>{errorMessage}</p>}
         {
           {

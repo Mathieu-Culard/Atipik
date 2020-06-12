@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 import { TextareaAutosize } from '@material-ui/core';
 
 import './contactForm.scss';
@@ -64,7 +65,7 @@ const ContactForm = ({
           onChange={handleChange}
         />
       </label>
-      <button type="submit" className="contact-page__form__submit" disabled={!isValid()}>Envoyer</button>
+      <Button type="submit" className="contact-page__form__submit" disabled={!isValid()}>Envoyer</Button>
     </form>
   );
 };
