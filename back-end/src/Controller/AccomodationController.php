@@ -111,12 +111,18 @@ class AccomodationController extends AbstractController
         //We recover json's user id
         $tenantId = $jsonData->user;
 
-        $dateFrom = new \DateTime($entryDate);
-        $dateFrom = ($dateFrom->format('d-m-Y'));
-        //dd($dateFrom);
+       
+       
 
-        $dateTo = new \DateTime($departureDate);
+        $dateFrom = date_create_from_format('d/m/Y', $entryDate);
+        //dd($dateFrom);
+        $dateFrom = ($dateFrom->format('d-m-Y'));
+
+        $dateTo = date_create_from_format('d/m/Y', $departureDate);
         $dateTo = ($dateTo->format('d-m-Y'));
+
+       
+        //dd($dateTo);
         //dd($dateTo);
        
         //We recover a user which booking an accomodation
