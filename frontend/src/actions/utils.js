@@ -27,9 +27,10 @@ export const closeModal = () => ({
   type: CLOSE_MODAL,
 });
 
-export const openSuccessSnackbar = (message) => ({
+export const openSuccessSnackbar = (message, messageSeverity) => ({
   type: OPEN_SUCCESS_SNACKBAR,
   message,
+  messageSeverity,
 });
 
 export const closeSuccessSnackbar = () => ({

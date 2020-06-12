@@ -22,7 +22,7 @@ const contactMiddleware = (store) => (next) => (action) => {
         },
       }).then(() => {
         store.dispatch(resetContactMessage());
-        store.dispatch(openSuccessSnackbar('Votre message a bien été envoyé'));
+        store.dispatch(openSuccessSnackbar('Votre message a bien été envoyé', 'success'));
       }).catch(() => {
         store.dispatch(setErrorMessage('Erreur lors de l\'envoi du message'));
       });
@@ -40,7 +40,7 @@ const contactMiddleware = (store) => (next) => (action) => {
         },
       }).then(() => {
         store.dispatch(resetContactMessage());
-        store.dispatch(openSuccessSnackbar('Un email vous a été envoyé avec votre nouveau mot de passe'));
+        store.dispatch(openSuccessSnackbar('Un email vous a été envoyé avec votre nouveau mot de passe', 'success'));
       }).catch(() => {
         store.dispatch(setErrorMessage('Impossible de trouver l\'email fourni, veuillez réessayer'));
       });

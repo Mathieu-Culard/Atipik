@@ -1,3 +1,4 @@
+
 // used to display accomodationTypeDropdown correctly
 export const getAnchorPosition = () => {
   const top = window.screen.height / 3;
@@ -212,7 +213,56 @@ export const checkThematicSelected = (typeList, selectedTypes) => {
       selectedThematics.push(typeList[i].id);
     }
   }
-  console.log('checkThematicsSelected');
-  console.log(selectedThematics);
   return selectedThematics;
+};
+
+export const checkAddAndEditData = (
+  title,
+  capacity,
+  nbNights,
+  surface,
+  price,
+  type,
+  city,
+  country,
+  adress,
+  description,
+  pictures,
+  editPicturesURL,
+) => {
+  let errorMessage = '';
+  if (title.trim() === '') {
+    errorMessage = 'Veuillez indiquer un titre pour votre hébergement';
+  }
+  else if (capacity <= 0) {
+    errorMessage = 'Veuillez renseigner la capacité de votre hébergement';
+  }
+  else if (nbNights <= 0) {
+    errorMessage = 'Veuillez indiquer la durée minimale d\'un sejour dans votre hébergement';
+  }
+  else if (surface <= 0) {
+    errorMessage = 'Veuillez renseigner la surface de votre hébergement';
+  }
+  else if (price <= 0) {
+    errorMessage = 'Veuillez indiquer le prix de votre hébergement';
+  }
+  else if (type.length === 0) {
+    errorMessage = 'Veuillez indiquer le type de votre hébergement';
+  }
+  else if (city.trim() === '') {
+    errorMessage = 'Veuillez indiquer la ville dans laquelle se trouve votre hébergement';
+  }
+  else if (country.trim() === '') {
+    errorMessage = 'Veuillez indiquer le pays dans lequel se trouve votre hébergement';
+  }
+  else if (adress.trim() === '') {
+    errorMessage = 'Veuillez renseigner l\'adresse de votre hébergement';
+  }
+  else if (description.trim() === '') {
+    errorMessage = 'Veuillez décrire votre logement';
+  }
+  else if (pictures.length === 0 && editPicturesURL.length === 0) {
+    errorMessage = 'Veuillez ajouter des photos de votre hébergement';
+  }
+  return errorMessage;
 };

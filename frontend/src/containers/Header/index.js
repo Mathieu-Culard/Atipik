@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch) => ({
   openModal: (title, component) => dispatch(openModal(title, component)),
   toggleOpen: () => dispatch(toggleOpen()),
   disconnect: () => dispatch(logOut()),
-  openSuccessSnackbar: (message) => dispatch(openSuccessSnackbar(message)),
+  openSuccessSnackbar: (message, messageSeverity) => dispatch(openSuccessSnackbar(message, messageSeverity)),
 });
 
 export default connect(

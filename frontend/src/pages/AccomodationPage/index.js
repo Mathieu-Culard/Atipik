@@ -260,7 +260,7 @@ AccomodationPage.propTypes = {
     }).isRequired,
   ).isRequired,
   setContactOwnerPanel: PropTypes.func.isRequired,
-  setLoginPanel: PropTypes.func.isRequired,
+  // setLoginPanel: PropTypes.func.isRequired,
   isLogged: PropTypes.bool.isRequired,
   sendReservation: PropTypes.func.isRequired,
   accomodationId: PropTypes.number.isRequired,

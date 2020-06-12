@@ -36,7 +36,7 @@ const userMiddleware = (store) => (next) => (action) => {
         },
       })
         .then(() => {
-          store.dispatch(openSuccessSnackbar('Vos informations ont été modifiées avec succès'));
+          store.dispatch(openSuccessSnackbar('Vos informations ont été modifiées avec succès', 'success'));
         });
       next(action);
       break;
@@ -74,7 +74,7 @@ const userMiddleware = (store) => (next) => (action) => {
       })
         .then(() => {
           store.dispatch(logOut());
-          store.dispatch(openSuccessSnackbar('Votre compte a bien été supprimé'));
+          store.dispatch(openSuccessSnackbar('Votre compte a bien été supprimé', 'success'));
         });
       next(action);
       break;

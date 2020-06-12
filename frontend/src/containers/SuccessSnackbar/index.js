@@ -6,6 +6,7 @@ import { closeSuccessSnackbar } from 'src/actions/utils';
 const mapStateToProps = (state) => ({
   success: state.utils.success,
   successMessage: state.utils.successMessage,
+  messageSeverity: state.utils.messageSeverity,
 });
 
 const mapDispatchToProps = (dispatch) => ({

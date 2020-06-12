@@ -35,7 +35,11 @@ const InscriptionForm = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    submitInscription();
+    if (password.length >= 8) {
+      submitInscription();
+    } else {
+      // TODO afficher message d'erreur
+    }
   };
 
   const isValid = () => {

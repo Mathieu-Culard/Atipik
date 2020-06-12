@@ -73,7 +73,6 @@ const AccomodationTypesDropdown = ({
           <h2 className="dropdown-title">Types d'hébergements</h2>
           {accomodationTypes.map((thematic) => {
             const isSelected = selectedThematics.some((SelectedId) => (SelectedId === thematic.id));
-            console.log('ta grosse mere');
             return (
               <Thematic
                 accomodationTypes={accomodationTypes}
