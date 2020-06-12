@@ -11,7 +11,7 @@ import './header.scss';
 import logo from '../../assets/logo.png';
 
 const useStyles = makeStyles(() => ({
-  root: {
+  list: {
     width: '100%',
     position: 'fixed',
     top: '4rem',
@@ -74,7 +74,7 @@ const Header = ({
             <span />
           </label>
         </section>
-        <List className={`${classes.root} ${mobileMenuLinksClass}`}>
+        <List className={`${classes.list} ${mobileMenuLinksClass}`}>
           <Link to="#"> Nos hébergements </Link>
           <Divider className="header__divider" />
           <Link to="#"> Inscription </Link>

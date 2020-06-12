@@ -148,7 +148,7 @@ const FilterPanel = ({
               <Chip
                 label={currentType.name}
                 className={classes.chip}
-                onDelete={() => changeAccomodationTypes(id, false)}
+                onDelete={() => changeAccomodationTypes(id, false, allTypes)}
               />
             </li>
           );

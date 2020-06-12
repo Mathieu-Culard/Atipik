@@ -32,7 +32,7 @@ const mapDispatchToProps = (dispatch) => ({
   commitMaxPriceChange: () => dispatch(commitMaxPriceChange()),
   commitMinSurfaceChange: () => dispatch(commitMinSurfaceChange()),
   changeMaxPrice: (newValue) => dispatch(changeMaxPrice(newValue)),
-  changeAccomodationTypes: (v, checked) => dispatch(changeAccomodationTypes(v, checked)),
+  changeAccomodationTypes: (v, checked, typeList) => dispatch(changeAccomodationTypes(v, checked, typeList)),
   changeMinSurface: (newValue) => dispatch(changeMinSurface(newValue)),
   changeFilterSwitch: (identifier) => dispatch(changeFilterSwitch(identifier)),
 });
