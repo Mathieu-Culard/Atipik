@@ -9,8 +9,6 @@ import ResultCard from 'src/components/ResultCard';
 const useStyles = makeStyles(() => ({
   root: {
     overflowY: 'auto',
-    width: '30%',
-    minWidth: '600px',
   },
 }));
 
@@ -19,6 +17,7 @@ const ResultList = ({ elements }) => {
 
   return (
     <List className={classes.root}>
+      {elements.length === 0 && <p>Aucun résultat à afficher</p>}
       {elements.map((e) => (
         <ListItem alignItems="flex-start" key={e.id}>
           <ResultCard {...e} />

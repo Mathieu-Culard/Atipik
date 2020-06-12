@@ -1,9 +1,11 @@
 @import 'src/styles/vars';
 
 .slick-slider {
-  height: 200px;
+  height: 150px;
+  box-shadow: 3px 0 3px #000;
   .slick-slide img {
-    border-radius: .5rem;
+    height: 150px;
+    object-fit: cover;
   }
   .slick-dots {
     bottom: 0;
