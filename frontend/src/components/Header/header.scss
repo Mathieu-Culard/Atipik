@@ -105,6 +105,9 @@
     }
     &__link {
       margin: 0 1rem;
+      &:last-child {
+        margin-right: 0;
+      }
       &::after {
         content: '';
         display: block;

@@ -5,7 +5,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import Slider from 'react-slick';
 import { Link } from 'react-router-dom';
 
@@ -15,28 +14,27 @@ import 'slick-carousel/slick/slick-theme.css';
 import './resultCard.scss';
 
 const useStyles = makeStyles(() => ({
-  root: {
-    width: '100%',
-  },
   card: {
     display: 'flex',
+    alignItems: 'stretch',
     width: '100%',
+    height: '150px',
+    borderRadius: '20px',
     transition: 'transform .2s ease',
     '&:hover': {
       transform: 'translateX(10px)',
     },
   },
   pictures: {
-    width: 150,
-    height: 150,
+    width: '150px',
     flex: '0 0 auto',
-    margin: 'auto .5rem',
-    borderRadius: '.5rem',
   },
   content: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
+    padding: '1rem 1.5rem !important',
+    overflow: 'hidden',
   },
   description: {
     flex: 1,
@@ -67,7 +65,7 @@ const ResultCard = ({
 
   return (
     <Link to={`/hebergement/${id}`}>
-      <Card className={classes.root}>
+      <Card className={classes.card}>
         <Slider {...carouselSettings} className={classes.pictures}>
           {pictures.map((picture) => (<div key={picture}><img src={`${process.env.REACT_APP_BACKEND_URL}/assets/accomodation/${picture}`} alt="" width="150" /></div>))}
         </Slider>
