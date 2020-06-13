@@ -1,0 +1,13 @@
+.profileForm {
+  &__avatarContainer:hover {
+    .profileForm__avatarOverlay {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  &__avatarOverlay {
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform .2s, opacity .3s;
+  }
+}

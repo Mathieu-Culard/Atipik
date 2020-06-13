@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Typography from '@material-ui/core/Typography';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import Chip from '@material-ui/core/Chip';
@@ -14,11 +13,11 @@ import CustomSlider from 'src/components/CustomSlider';
 
 const useStyles = makeStyles(() => ({
   root: {
-    backgroundColor: '#fff',
-    width: '100%',
+    backgroundColor: 'rgba(255, 255, 255, .5)',
+    margin: 'auto',
+    borderRadius: '20px',
     height: '150px',
     gridColumn: '1 / span 2',
-    boxShadow: '0 3px 3px #ccc',
     zIndex: 1,
     display: 'grid',
     gridTemplateColumns: '25% 15% 15% 15% 15% 15%',

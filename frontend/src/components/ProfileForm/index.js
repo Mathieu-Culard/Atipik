@@ -4,24 +4,62 @@ import PropTypes from 'prop-types';
 import {
   TextField,
   Button,
+  Avatar,
 } from '@material-ui/core';
+import PublishIcon from '@material-ui/icons/Publish';
 import { makeStyles } from '@material-ui/core/styles';
+import './profileForm.scss';
 
 const useStyles = makeStyles(() => ({
   root: {
     width: '100%',
+    borderRadius: '20px',
+    border: '1px solid #ccc',
     padding: '2rem',
+  },
+  avatarContainer: {
+    width: '15vw',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    margin: 'auto',
+    marginBottom: '1rem',
+    position: 'relative',
+    borderRadius: '50%',
+    overflow: 'hidden',
+  },
+  avatar: {
+    width: '15vw',
+    height: '15vw',
+    position: 'relative',
+  },
+  avatarOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, .5)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: '50%',
+  },
+  avatarIcon: {
+    color: 'white',
+    fontSize: 60,
   },
   fields: {
     display: 'grid',
-    gridTemplateColumns: '50% 50%',
+    gridGap: '1rem',
+    gridTemplateColumns: '1fr 1fr',
   },
   submitButton: {
     display: 'block',
-    margin: '2rem auto',
+    margin: '2rem auto 0 auto',
   },
   deleteButton: {
-    color: 'red',
+    color: '#aaa',
   },
 }));
 
@@ -49,10 +87,13 @@ const ProfileForm = ({
   };
 
   return (
-    <>
+    <section>
       <form action="" noValidate className={classes.root} onSubmit={handleSubmit}>
-        <img src={avatarUrl} alt="avatar" />
-        <label htmlFor="upload-avatar">
+        <label htmlFor="upload-avatar" className={`${classes.avatarContainer} profileForm__avatarContainer`}>
+          <Avatar src={avatarUrl} alt="avatar" className={classes.avatar} />
+          <div className={`${classes.avatarOverlay} profileForm__avatarOverlay`}>
+            <PublishIcon className={classes.avatarIcon} />
+          </div>
           <input
             type="file"
             id="upload-avatar"
@@ -60,7 +101,6 @@ const ProfileForm = ({
             onChange={handleAvatarChange}
             style={{ display: 'none' }}
           />
-          Upload
         </label>
         <div className={classes.fields}>
           <TextField label="Prénom" onChange={(e) => changeField(e.target.value, 'firstname')} value={firstname} />
@@ -75,9 +115,9 @@ const ProfileForm = ({
         onClick={deleteAccount}
         className={`${classes.deleteButton} ${classes.submitButton}`}
       >
-        Delete my account
+        Supprimer mon compte
       </Button>
-    </>
+    </section>
   );
 };
 
