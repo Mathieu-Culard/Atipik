@@ -3,7 +3,7 @@ import {
   FETCH_MARKER_POSITIONS,
   saveMarkerPositions,
   saveCenterPosition,
-  fetchMarkerPositions
+  fetchMarkerPositions,
 } from '../actions/map';
 
 const mapMiddleware = (store) => (next) => (action) => {
@@ -19,23 +19,19 @@ const mapMiddleware = (store) => (next) => (action) => {
       }
       Geocode.setApiKey(localStorage.getItem('apiKey'));
       Geocode.fromAddress(location)
-        .then(
-          (response) => {
-            if (identifier === 'center') {
-              store.dispatch(saveCenterPosition(response.results[0].geometry.location, zoom));
-            }
-            else {
-              store.dispatch(saveMarkerPositions(response.results[0].geometry.location, action.accomodation, action.typeList));
-            }
-          },
-          (error) => {
-            if (identifier === 'center') {
-              store.dispatch(fetchMarkerPositions('', 'center'));
-            }
-            console.error(error);
-          },
-        );
-
+        .then((response) => {
+          if (identifier === 'center') {
+            store.dispatch(saveCenterPosition(response.results[0].geometry.location, zoom));
+          }
+          else {
+            store.dispatch(saveMarkerPositions(response.results[0].geometry.location, action.accomodation, action.typeList));
+          }
+        })
+        .catch(() => {
+          if (identifier === 'center') {
+            store.dispatch(fetchMarkerPositions('', 'center'));
+          }
+        });
       break;
     }
     default:

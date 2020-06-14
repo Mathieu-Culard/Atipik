@@ -24,18 +24,20 @@ const accomodationMiddleware = (store) => (next) => (action) => {
         dateFrom,
         accomodationId,
       } = action;
+      const { id } = store.getState().user;
       axios({
         method: 'post',
         url: `${process.env.REACT_APP_API_URL}/accomodation/${accomodationId}/reservation`,
         data: {
-          dateTo,
-          dateFrom,
+          to: dateTo,
+          from: dateFrom,
+          user: id,
         },
         headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}` },
       })
         .then((response) => {
           store.dispatch(resetMessage());
-          store.dispatch(openSuccessSnackbar('Votre réservation a bien été prise en compte'));
+          store.dispatch(openSuccessSnackbar('Votre réservation a bien été prise en compte', 'success'));
         })
         .catch((error) => {
           console.warn(`${error}`);
@@ -112,7 +114,7 @@ const accomodationMiddleware = (store) => (next) => (action) => {
       })
         .then((response) => {
           store.dispatch(resetMessage());
-          store.dispatch(openSuccessSnackbar('Votre message a été transmis au propriétaire de cet hébergement'));
+          store.dispatch(openSuccessSnackbar('Votre message a été transmis au propriétaire de cet hébergement', 'success'));
         })
         .catch((error) => {
           console.warn(`${error}`);

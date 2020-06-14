@@ -23,7 +23,7 @@ const connectionMiddleware = (store) => (next) => (action) => {
       }).then((response) => {
         store.dispatch(closeModal());
         localStorage.setItem('jwt', response.data.token);
-        store.dispatch(openSuccessSnackbar('Authentification réussie'));
+        store.dispatch(openSuccessSnackbar('Authentification réussie', 'success'));
         store.dispatch(loginChanged());
       }).catch(() => {
         store.dispatch(setErrorMessage('Identifiants invalides'));

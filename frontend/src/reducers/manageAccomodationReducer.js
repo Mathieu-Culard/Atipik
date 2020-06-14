@@ -10,7 +10,10 @@ import {
   CHANGE_MY_ACCOMODATION_PICTURES,
   DELETE_MY_ACCOMODATION_PICTURE,
   DELETE_MY_ACCOMODATION_PICTURE_EDIT,
+  END_LOADING,
 } from 'src/actions/manageAccomodation';
+
+import { CLEAR_USER_INFOS } from 'src/actions/user';
 import { SAVE_SERVICES, SAVE_EXTRAS } from 'src/actions/accomodation';
 import { SET_MANAGE_ACCOMODATION_PANEL } from 'src/actions/utils';
 import {
@@ -54,6 +57,11 @@ const initialState = {
 
 const manageAccomodationReducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case CLEAR_USER_INFOS:
+      return {
+        ...state,
+        myAccomodations: [],
+      };
     case CHANGE_MY_ACCOMODATION_PICTURES: {
       return {
         ...state,
@@ -117,6 +125,10 @@ const manageAccomodationReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         myAccomodations: [...state.myAccomodations, { ...action.data }],
+      };
+    case END_LOADING:
+      return {
+        ...state,
         isLoading: false,
       };
     case DELETE_MY_ACCOMODATION_PICTURE_EDIT:
@@ -149,8 +161,9 @@ const manageAccomodationReducer = (state = initialState, action = {}) => {
         pictures,
       } = currentAccomodation;
       return {
-        pictures: [],
         ...state,
+        pictures: [],
+        picturesURL: [],
         editPicturesURL: pictures,
         title,
         type,
@@ -198,6 +211,7 @@ const manageAccomodationReducer = (state = initialState, action = {}) => {
         pictures: [],
         picturesURL: [],
         editPicturesURL: [],
+        isLoading: false,
       };
     default: return state;
   }

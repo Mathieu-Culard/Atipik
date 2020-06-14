@@ -20,7 +20,7 @@ const inscriptionMiddleware = (store) => (next) => (action) => {
         pseudo,
       }).then(() => {
         store.dispatch(closeModal());
-        store.dispatch(openSuccessSnackbar('Inscription réussie'));
+        store.dispatch(openSuccessSnackbar('Inscription réussie', 'success'));
       }).catch(() => {
         store.dispatch(setErrorMessage('L\'inscription a échoué'));
       });

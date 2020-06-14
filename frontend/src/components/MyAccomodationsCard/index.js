@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { getTypeById } from 'src/utils';
 
 // ================fake data
-const MyAccomodationsPage = ({
+const MyAccomodationsCard = ({
   pictures, id, price, title, country, city, capacity, type, deleteMyAccomodation, typeList,
 }) => {
   return (
@@ -32,7 +32,7 @@ const MyAccomodationsPage = ({
           </div>
           <div className="my-accomodations__card__content__info">
             {/* <img src={`${process.env.REACT_APP_BACKEND_URL}/assets/type/picture/`} alt="localisation de l'hébergement" /> */}
-            <p>{`localistation: ${city}, ${country}`}</p>
+            <p>{`Localisation: ${city}, ${country}`}</p>
           </div>
           <div className="my-accomodations__card__content__info">
             {/* <img src={`${process.env.REACT_APP_BACKEND_URL}/assets/type/picture/`} alt="prix de l'hébergement" /> */}
@@ -43,7 +43,7 @@ const MyAccomodationsPage = ({
     </div>
   );
 };
-MyAccomodationsPage.propTypes = {
+MyAccomodationsCard.propTypes = {
   pictures: PropTypes.arrayOf(PropTypes.string).isRequired,
   id: PropTypes.number.isRequired,
   price: PropTypes.number.isRequired,
@@ -55,4 +55,4 @@ MyAccomodationsPage.propTypes = {
   deleteMyAccomodation: PropTypes.func.isRequired,
 };
 
-export default MyAccomodationsPage;
+export default MyAccomodationsCard;

@@ -38,7 +38,7 @@ const Header = ({
 
   const handleDisconnection = () => {
     disconnect();
-    openSuccessSnackbar('Vous avez été déconnecté avec succès');
+    openSuccessSnackbar('Vous avez été déconnecté avec succès', 'success');
   };
 
   return (

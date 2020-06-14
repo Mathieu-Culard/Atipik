@@ -26,8 +26,8 @@ const mapDispatchToProps = (dispatch) => ({
   changeDate: (identifier, date, formatedDate) => {
     dispatch(changeDate(identifier, date, formatedDate));
   },
-  openModal: (component) => {
-    dispatch(openModal(component));
+  openModal: (title, component) => {
+    dispatch(openModal(title, component));
   },
   fetchAccomodation: (id) => {
     dispatch(fetchAccomodation(id));

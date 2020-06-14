@@ -102,6 +102,7 @@ const AddAccomodationPage = ({
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
+
     if (id) {
       submitEdit(id);
     }
@@ -127,17 +128,17 @@ const AddAccomodationPage = ({
         <form className="manage-accomodation__form" onSubmit={handleSubmit}>
           <div className="manage-accomodation__form__images">
             {isEdit && editPicturesURL.map((picture) => (
-              <>
+              <React.Fragment key={picture.name}>
                 <img src={`${process.env.REACT_APP_BACKEND_URL}/assets/accomodation/${picture}`} alt="accomodation" className="manage-accomodation__form__image" />
                 <button type="button" data-id={picture} onClick={() => (deletePictureEdit(picture))}> <Trash color="red" /> </button>
-              </>
+              </React.Fragment>
             ))}
             {
               picturesURL.map((picture) => (
-                <>
+                <React.Fragment key={picture.name}>
                   <img src={picture.file} alt="accomodation" className="manage-accomodation__form__image" />
                   <button type="button" data-id={picture} onClick={() => (deletePicture(picture))}> <Trash color="red" /> </button>
-                </>
+                </React.Fragment>
               ))
             }
 

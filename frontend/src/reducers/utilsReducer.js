@@ -10,6 +10,7 @@ import {
 } from 'src/actions/utils';
 
 const initialState = {
+  messageSeverity: '',
   open: false,
   modal: false,
   modalComponent: '',
@@ -58,6 +59,7 @@ const utilsReducer = (state = initialState, action = {}) => {
         ...state,
         success: true,
         successMessage: action.message,
+        messageSeverity: action.messageSeverity,
       };
 
     case CLOSE_SUCCESS_SNACKBAR:
