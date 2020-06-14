@@ -51,6 +51,15 @@
         background-position: 100% 0%;
       }
     }
+    .MuiFormLabel-root.Mui-focused {
+      color: $color-logo-1 !important;
+    }
+    .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+      border-color: $color-logo-1 !important;
+    }
+    .MuiInput-underline::after {
+      border-bottom: 2px solid $color-logo-1 !important;
+    }
   }
 
 
