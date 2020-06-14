@@ -6,7 +6,7 @@ import {
   RESET_PASSWORD,
 } from 'src/actions/contact';
 
-import { openSuccessSnackbar, setErrorMessage } from 'src/actions/utils';
+import { openSuccessSnackbar, setErrorMessage, closeModal } from 'src/actions/utils';
 
 const contactMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -23,6 +23,7 @@ const contactMiddleware = (store) => (next) => (action) => {
       }).then(() => {
         store.dispatch(resetContactMessage());
         store.dispatch(openSuccessSnackbar('Votre message a bien été envoyé', 'success'));
+        store.dispatch(closeModal());
       }).catch(() => {
         store.dispatch(setErrorMessage('Erreur lors de l\'envoi du message'));
       });

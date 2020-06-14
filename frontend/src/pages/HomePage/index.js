@@ -7,16 +7,48 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import './home.scss';
 
-
 import AccomodationTypesDropdown from 'src/containers/AccomodationTypesDropdown';
 import CustomSlider from 'src/components/CustomSlider';
 import AccomodationTypes from 'src/containers/AccomodationTypes';
 
-const useStyles = makeStyles({
-  textField: {
-    width: '100%',
-  },
-});
+import background from '../../assets/backgrounds/homeBackground2.png';
+
+const style = (theme) => (
+  {
+    textField: {
+      width: '100%',
+      color: 'white',
+    },
+    cssLabel: {
+      color: 'white',
+    },
+
+    cssInput: {
+      color: 'white',
+      borderColor: 'white',
+    },
+
+    cssFocused: {
+      '&$cssLabel': {
+        color: '#fe922d !important',
+      },
+      color: 'white !important',
+      '&$cssFocused': {
+        '&::after': {
+          borderBottomColor: '#e64750 !important',
+        },
+      },
+    },
+    underline: {
+      '&::before': {
+        borderWidth: '1px',
+        borderBottomColor: 'white !important',
+      },
+    },
+  }
+);
+
+const useStyles = makeStyles(style);
 
 const Home = ({
   cityValue,
@@ -46,15 +78,57 @@ const Home = ({
 
   return (
     <main className="home">
+      <img src={background} alt="background" className="background" />
       <section className="search">
         <h2 className="search__title">Où veux-tu aller?</h2>
         <form className="search__formular" onSubmit={handleSubmit}>
           <div className="row">
             <div className="row__item">
-              <TextField id="country" label="Pays" className={classes.textField} size="small" value={countryValue} onChange={handleChange} />
+              <TextField
+                id="country"
+                variant="standard"
+                disableUnderline={false}
+                label="Pays"
+                className={classes.textField}
+                size="small"
+                value={countryValue}
+                onChange={handleChange}
+                InputLabelProps={{
+                  classes: {
+                    root: classes.cssLabel,
+                    focused: classes.cssFocused,
+                  },
+                }}
+                InputProps={{
+                  classes: {
+                    root: classes.cssInput,
+                    focused: classes.cssFocused,
+                    underline: classes.underline,
+                  },
+                }}
+              />
             </div>
             <div className="row__item">
-              <TextField id="city" label="Ville" className={classes.textField} value={cityValue} onChange={handleChange} />
+              <TextField
+                id="city"
+                label="Ville"
+                className={classes.textField}
+                value={cityValue}
+                onChange={handleChange}
+                InputLabelProps={{
+                  classes: {
+                    root: classes.cssLabel,
+                    focused: classes.cssFocused,
+                  },
+                }}
+                InputProps={{
+                  classes: {
+                    root: classes.cssInput,
+                    focused: classes.cssFocused,
+                    underline: classes.underline,
+                  },
+                }}
+              />
             </div>
           </div>
           <div className="row">
@@ -73,6 +147,19 @@ const Home = ({
                 // className={classes.textField}
                 value={(nbPersonValue === 0) ? '' : nbPersonValue}
                 onChange={handleChange}
+                InputLabelProps={{
+                  classes: {
+                    root: classes.cssLabel,
+                    focused: classes.cssFocused,
+                  },
+                }}
+                InputProps={{
+                  classes: {
+                    root: classes.cssInput,
+                    focused: classes.cssFocused,
+                    underline: classes.underline,
+                  },
+                }}
               />
             </div>
             <div className="row__item">
@@ -90,6 +177,20 @@ const Home = ({
                 // className={classes.textField}
                 value={(nbNightsValue === 0) ? '' : nbNightsValue}
                 onChange={handleChange}
+                InputLabelProps={{
+                  classes: {
+                    root: classes.cssLabel,
+                    focused: classes.cssFocused,
+                  },
+                }}
+                InputProps={{
+                  classes: {
+                    root: classes.cssInput,
+                    focused: classes.cssFocused,
+                    underline: classes.underline,
+                  },
+                }}
+
               />
             </div>
           </div>
@@ -118,7 +219,7 @@ const Home = ({
           </div>
         </form>
       </section>
-      <section>
+      <section className="accomodation-types">
         <AccomodationTypes />
       </section>
     </main>

@@ -1,5 +1,7 @@
-.search-page{
-  padding: 0;
+@import 'src/styles/vars';
+
+.search-page {
+  padding: $headerGutter 0 0 0;
   margin: auto;
   height: 100vh;
   display: grid;

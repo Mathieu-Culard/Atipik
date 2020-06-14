@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 
+
 const DatePicker = ({
   changeDate, dateValue, label, identifier,
 }) => {
@@ -14,8 +15,11 @@ const DatePicker = ({
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <KeyboardDatePicker
+        className="date-picker"
+        size="small"
         disableToolbar
         variant="inline"
+        inputVariant="filled"
         format="dd/MM/yyyy"
         margin="normal"
         label={label}

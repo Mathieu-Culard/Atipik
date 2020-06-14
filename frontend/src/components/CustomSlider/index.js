@@ -12,22 +12,41 @@ const MUISlider = withStyles({
     color: '#8dd7dfl',
   },
   thumb: {
-    border: '2px solid currentColor',
-    backgroundColor: '#fff',
+    // border: '2px solid #fe922d',
+    backgroundColor: '#fe922d',
     background: '#fff',
     marginTop: -15,
     marginLeft: -15,
     height: 30,
     width: 30,
+    '&:hover': {
+      boxShadow: '0 0 0 7px rgba(230,71,80,0.3)',
+    },
+    '&$active': {
+      boxShadow: '0 0 0 14px rgba(230,71,80,0.3)',
+    },
+    // '&::after': {
+    //   backgroundColor: '#e64750',
+    // },
+  },
+  active: {
+    // boxShadow: '0 0 0 14px rgba(230,71,80,1)',
+  },
+  rail: {
+    backgroundColor: 'white',
+  },
+  track: {
+    backgroundColor: '#fe922d',
   },
   valueLabel: {
     zIndex: 0,
-    left: 'calc(-50% + 10px)',
-    top: 8,
+    left: 'calc(-50% + 13px)',
+    top: 9,
     '& *': {
       background: 'transparent',
-      color: '#000',
+      color: '#fff',
     },
+
   },
 })(Slider);
 
