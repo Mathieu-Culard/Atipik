@@ -12,7 +12,7 @@ const initialState = {
   email: '',
   firstname: '',
   lastname: '',
-  isLogged: !!localStorage.getItem('jwt'),
+  isLogged: false,
 };
 
 const userReducer = (state = initialState, action = {}) => {
@@ -44,7 +44,6 @@ const userReducer = (state = initialState, action = {}) => {
     case LOG_OUT:
       return {
         ...initialState,
-        isLogged: false,
       };
 
     default: return state;
