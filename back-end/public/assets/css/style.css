@@ -1,15 +1,4 @@
 /*  Sidebar  */
-
-
-
-
-
-
-
-.rightSide {
-   display: flex;
-}
-  
 .left-side {
     font-family: 'Montserrat', sans-serif;
     display: grid; 
@@ -21,6 +10,7 @@
     padding-right: 1.6em;
     font-size:15px;
     height: 100vh;
+    position : fixed ;
 }
 
 .aside {
@@ -67,7 +57,7 @@
 
   .button-site{
       background-color:white;
-      margin-top:7em;
+      margin-top:1em;
       margin-bottom: 3em;
       border-radius:10px;
       padding:0.4em;
@@ -81,7 +71,7 @@
 
  
   .navigation-item-validate{
-      margin-top:8em;
+      margin-top:3em;
       color : white;
       padding:2em;
       text-transform:uppercase;
@@ -107,7 +97,7 @@
   .navigation-titre{
       font-size:1.5em;
       line-height:0.7em;
-      padding-top:3.5em;
+      padding-top:3em;
       font-weight: bold;
       line-height:1.2em;
       padding-bottom:1.3em;
@@ -132,8 +122,9 @@
 
 .right-side {
    display: flex; 
-   margin-left : 2em;
+   margin-left :22%;
    background-color:white;
+  
 }
 
 .array{
@@ -278,7 +269,7 @@ h3 {
  }
 
 
-/* Formulaire d'edition */
+/* Formulaire d'edition + ajout */
 
 .edit {
     color:white;
@@ -318,7 +309,7 @@ h3 {
     box-shadow: 10px 8px 8px grey;
     border-radius: 1em;
     width:60em;
-    height:30em;
+    height:38em;
     margin-left: 25%;
     margin-top: 3em;
 
@@ -342,6 +333,12 @@ h3 {
     width: 20em;
 }
 
+.input-description-type-edit {
+    margin-left:13em;
+    width: 30em;
+}
+
+
 .validate-button-type{
     padding-top:3em;
     text-align:center;
@@ -354,7 +351,7 @@ h3 {
 }
 
 .main-input{
-    padding-top:3em;
+    padding-top:1.5em;
     width: 20em;
 }
 
@@ -389,7 +386,7 @@ h3 {
     box-shadow: 10px 8px 8px grey;
     border-radius: 1em;
     width:60em;
-    height:45em;
+    height:50em;
     margin-left: 25%;
     margin-top: 3em;
 
@@ -411,7 +408,8 @@ h3 {
     color:black;
     font-size:1.8em;
     margin-left : 20em;
- 
+    padding-top:2em;
+
 }
 
 .add-user {
@@ -587,13 +585,18 @@ i:hover {
 .validate-accomodation-type {
     font-weight : bold;
     padding-top: 1em;
+ 
+}
+
+.validate-accomodation {
+    margin-bottom: 3em;
 }
 
 .accomodation-description {
     padding-right : 10em ; 
 }
 
-.accomodation-price, .accomodation-surface {
+.accomodation-price, .accomodation-surface, .accomodation-night {
     font-weight: bold;
 }
 
@@ -646,7 +649,7 @@ height:auto;
 
 
 .input-thematic,
-.input-name
+.input-name 
 {
     width:18em;
 }
@@ -754,6 +757,8 @@ height:auto;
 }
     
 
-
- 
-   
+.form-error-message {
+    font-size: 13px;
+    text-align: center;
+    padding-top: 1em;
+}

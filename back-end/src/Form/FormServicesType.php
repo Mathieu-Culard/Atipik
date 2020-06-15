@@ -24,9 +24,9 @@ class FormServicesType extends AbstractType
             ->add('icon', FileType::class, [
                 'required' => false,
                 'mapped' => false, 
-            //     'constraints' => new Assert\NotBlank([
-            //         'message'=>'L\'icone est obligatoire',
-            //    ])
+                'constraints' => new Assert\NotBlank([
+                    'message'=>'L\'icone est obligatoire',
+               ])
            ])
            
         ;

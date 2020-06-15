@@ -44,8 +44,7 @@ class UserController extends AbstractController
         //We send to the view, the complete user's list
         return $this->render('admin/users/browse.html.twig', [
           'users' => $users,
-          'forms' => $forms, 
-           
+          'forms' => $forms,   
         ]);
     }
 
@@ -58,17 +57,20 @@ class UserController extends AbstractController
         //Recover datas from one user
         $user = $userRepository->find($id);
         //Comparison between roles (switch between both of them)
+        // If the user's role is ROLE_USER
         if ($user->getRoles() === ["ROLE_USER"]) {
-    
+            // We set it to ROLE_ADMIN
             $user->setRoles(["ROLE_ADMIN"]);
         } else {
-          
+          // Else, if the user is an Admin we set it to ROLE_USER
            $user->setRoles(['ROLE_USER']);
         }
+        // We update the database
         $em = $this->getDoctrine()->getManager();
         $em->persist($user);
         $em->flush();
         
+        // We return to the browse page
         return $this->redirectToRoute('admin_users_browse');
     }
 
@@ -97,7 +99,9 @@ class UserController extends AbstractController
                 // If the data is not null we encore the password to the database
                 $user->setPassword($passwordEncoder->encodePassword($user, $password));
             }
+            // We set the user role to ROLE_ADMIN
             $user->setRoles(["ROLE_ADMIN"]);
+            // We set a default avatar
             $user->setAvatar('avatar.png');
             // We retrieve EntityManager
             $entityManager = $this->getDoctrine()->getManager();
@@ -134,11 +138,5 @@ class UserController extends AbstractController
             // We are redirected to the browse page
         return $this->redirectToRoute('admin_users_browse');
         }
-     
     }
-
-
-    
-
-    
-    }
+}

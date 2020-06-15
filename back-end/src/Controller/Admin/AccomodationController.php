@@ -41,6 +41,7 @@ class AccomodationController extends AbstractController
         
         }
           
+            //We send to the view our variables
             return $this->render('admin/accomodation/browse.html.twig', [
             'accomodations' => $accomodations,
             'forms' => $forms
@@ -53,7 +54,7 @@ class AccomodationController extends AbstractController
      */
     public function delete(Accomodation $accomodation, Request $request, EntityManagerInterface $em)
     {
-    // We create a form to add the extra
+    // We create a form to delete the accomadation
     $formDeleteAccomodation = $this->createForm(AccomodationDeleteType::class);
     $formDeleteAccomodation->handleRequest($request);
 
@@ -67,6 +68,7 @@ class AccomodationController extends AbstractController
         //We redirect to the list page
         return $this->redirectToRoute('admin_accomodations_browse');
     }
+
     return $this->render('admin/emails/accomodationContact.html.twig');
 }
 }

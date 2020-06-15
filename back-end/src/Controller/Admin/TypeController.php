@@ -4,8 +4,8 @@ namespace App\Controller\Admin;
 
 use App\Entity\Type;
 use App\Form\FormTypeDelete;
-use App\Form\FormTypeDeleteOnEdit;
 use App\Form\FormType;
+use App\Form\FormTypeEdit;
 use App\Services\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Repository\TypeRepository;
@@ -46,7 +46,7 @@ class TypeController extends AbstractController
              $forms[] = $this->createForm(FormTypeDelete::class,$type,$formOptions)->createView();
         }
      
-        
+        // We send it to the browse page
         return $this->render('admin/type/browse.html.twig', [
             'types' => $types,
             'forms' => $forms
@@ -61,7 +61,8 @@ class TypeController extends AbstractController
     //Method to edit a type 
      public function edit(Type $type, Request $request, SluggerInterface $slugger, EntityManagerInterface $em) : Response
       {
-        $form = $this->createForm(FormType::class, $type);
+        //We create a form to edit the type
+        $form = $this->createForm(FormTypeEdit::class, $type);
         $form->handleRequest($request);
 
         // We make sure the form is submitted correctly and is valid
@@ -110,10 +111,8 @@ class TypeController extends AbstractController
         }
         // We send it to the edit page
         return $this->render('admin/type/edit.html.twig', [
-        'form' => $form->createView(),
-      
-       
-    ]); 
+        'form' => $form->createView(),    
+        ]); 
       }
 
     /**
@@ -125,18 +124,17 @@ class TypeController extends AbstractController
     {   
         // We create a new type
         $type = new Type();
-
+        //We create a form to add a type
         $form = $this->createForm(FormType::class, $type);
-
         $form->handleRequest($request);
 
+        // We make sure the form is submitted correctly and is valid
         if ($form->isSubmitted() && $form->isValid()) {
-
-
+            // We get the data for properties picture and icon
             $pictureFile = $form->get('picture')->getData();
             $iconFile = $form->get('icon')->getData();
 
-        // If we get a picture
+            // If we get a picture
             if ($pictureFile) {
                   // we do a slugger with the type name
                 $sluggerPictureName = $slugger->slug($form->get('name')->getData());
@@ -184,24 +182,24 @@ class TypeController extends AbstractController
     //
     public function delete(Request $request, EntityManagerInterface $em, Type $type)
     {
+        // We create a form to delete a type
         $formDelete = $this->createForm(FormTypeDelete::class, $type);
 
         $formDelete->handleRequest($request);
 
         //dd($formDelete->getData());
 
+        // We make sure the form is submitted correctly and is valid
         if ($formDelete->isSubmitted() && $formDelete->isValid()) {
            
             // we delete the data
             $em->remove($type);
-         
+    
             $em->flush();
 
-            return $this->redirectToRoute('admin_type_browse');
-           
+            //We redirect to the list page
+            return $this->redirectToRoute('admin_type_browse');  
         }
         return $this->redirectToRoute('admin_type_browse');
     }
-
-    
-    }
+}

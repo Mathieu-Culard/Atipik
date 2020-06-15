@@ -8,15 +8,20 @@
 <div class="container-edit">
 {{form_start(form)}}
 
+     {% if form_errors(form.name) %}
+  <p style="color:red">{{ form_errors(form.name) }}</p>
+{% endif %}
+
      <div class="main-input">
           <div class="input-name-edit">
-          {{form_widget(form.name, {'attr': {'placeholder': 'Nom'}}) }}
-          </div>
-     </div>     
+    {{form_widget(form.name, {'attr': {'placeholder': 'Nom'}}) }}
+    </div>
+    </div>
 
-{% if form_errors(form.icon) %}
-  <p style="color:red">L'icon est obligatoire.</p>
-{% endif %}
+          
+          {% if form_errors(form.icon) %}
+          <p style="color:red">{{ form_errors(form.icon) }}</p>
+          {% endif %}
 
      <div class="image-form">
           <div class="current-icon-form">

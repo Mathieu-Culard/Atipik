@@ -38,12 +38,12 @@ class ContactAdminController extends AbstractController
         // We create a new message to send to the admin 
         $message = (new \Swift_Message($object))
         // The message is sent from the user email
-        ->setFrom(array($email => $email))
-        ->setReplyTo($email)
+            ->setFrom(array($email => $email))
+            ->setReplyTo($email)
         // To the admin email
-        ->setTo("contact.atypik.site@gmail.com")
+            ->setTo("contact.atypik.site@gmail.com")
         // We set the content of the message send by the user
-        ->setBody($content);
+            ->setBody($content);
         
         // The email is sent to the admin 
         $mailer->send($message);
@@ -51,11 +51,11 @@ class ContactAdminController extends AbstractController
         // We create a new message to send a reply to the user
         $confirmMessage = (new \Swift_Message("Réponse à votre demande d'information"))
         // The email is send from the admin email
-        ->setFrom(["contact.atypik.site@gmail.com" => "Admin Atipik"])
+            ->setFrom(["contact.atypik.site@gmail.com" => "Admin Atipik"])
         // To the user email
-        ->setTo(array($email => $email))
+            ->setTo(array($email => $email))
         // We set the content of the message in a template
-         ->setBody( $this->renderView(
+            ->setBody( $this->renderView(
              'emails/confirmMessage.html.twig'
          ),
   

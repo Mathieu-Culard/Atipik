@@ -9,6 +9,8 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class FormType extends AbstractType
@@ -17,23 +19,17 @@ class FormType extends AbstractType
     {
         $builder
             ->add('name', null, [
-                'required' => false,
-                'constraints' => [
-                    new Assert\NotBlank([
-                        'message' => 'Le nom du type ne peut pas être vide',
-                    ]),
-                    new Assert\Regex([
-                        'pattern' => "/^[-'a-zA-ZÀ-ÖØ-öø-ÿ\s]+$/",
-                        'message' => "Votre adresse ne doit pas contenir de caractère spéciaux"
-                    ]),
-                ] 
+                'required'=>false,
+                'constraints' => new Assert\NotBlank([
+                'message'=>'Le nom du type ne peut pas être vide',
+                 ])
             ])
             ->add('description', null, [
-                'required' => false,
+                'required'=>false,
                 'constraints' => new Assert\NotBlank([
-                    'message' => 'La description du type ne peut pas être vide',
-                ])
-            ])
+                    'message'=>'La description du type ne peut pas être vide',
+                     ])
+               ])
             ->add('picture', FileType::class, [
                 'data_class' => null,
                 'required' => false,

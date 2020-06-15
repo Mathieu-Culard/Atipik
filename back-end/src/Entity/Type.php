@@ -25,11 +25,16 @@ class Type
     /**
      * @ORM\Column(type="string", length=255)
      * @ORM\OrderBy({"name" = "ASC"})
+     * @Assert\Regex(
+     *pattern="(^[a-zA-Z-éèà]+$)",
+     *message="Le nom du type ne peut contenir ni de caractères spéciaux, ni de chiffres"
+     *)
      */
     private $name;
 
     /**
      * @ORM\Column(type="text")
+     *
      */
     private $description;
 

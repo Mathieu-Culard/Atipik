@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Service;
 use App\Form\FormServiceDelete;
 use App\Form\FormServicesType;
+use App\Form\ServiceEditType;
 use App\Services\FileUploader;
 use App\Repository\ServiceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -42,7 +43,7 @@ class ServicesController extends AbstractController
               $forms[] = $this->createForm(FormServiceDelete::class,$service,$formOptions)->createView();
          }
       
-      
+        //We send to the view
         return $this->render('admin/services/browse.html.twig', [
              'services' => $services,
              'forms' => $forms
@@ -54,9 +55,11 @@ class ServicesController extends AbstractController
     */
     public function edit(Service $service, Request $request,EntityManagerInterface $em, SluggerInterface $slugger, FileUploader $fileUploader) : Response
     {
-        $form = $this->createForm(FormServicesType::class, $service);
+        //We create a form to edit services
+        $form = $this->createForm(ServiceEditType::class, $service);
         $form->handleRequest($request); 
 
+        // We make sure the form is submitted correctly and is valid
         if ($form->isSubmitted() && $form->isValid()){
 
               // We get the data for property icon
@@ -84,10 +87,11 @@ class ServicesController extends AbstractController
               $em->persist($service);
               $em->flush(); 
 
-
-                 return $this->redirectToRoute('admin_services_browse');
+            //redirect to the page 'admin-services-browse'
+            return $this->redirectToRoute('admin_services_browse');
         }
 
+        //else if redirect to the edit page
         return $this->render('admin/services/edit.html.twig', [
             'form' => $form->createView(),
         ]);
@@ -105,12 +109,14 @@ class ServicesController extends AbstractController
         // We create a new service
         $service = new Service();
 
+        //We create a form to edit services
         $form = $this->createForm(FormServicesType::class, $service);
-
         $form->handleRequest($request);
 
+        // We make sure the form is submitted correctly and is valid
         if ($form->isSubmitted() && $form->isValid()) {
     
+            // We get the data for property icon
             $iconFile = $form->get('icon')->getData();
 
             // dd($form);
@@ -128,7 +134,7 @@ class ServicesController extends AbstractController
 
                 //dd($iconFile); 
             }
-            //dd($iconFile); 
+             
             $service->setIcon($newName);
      
 
@@ -137,7 +143,7 @@ class ServicesController extends AbstractController
             $em->persist($service);
             $em->flush(); 
 
-          
+
 
             // We redirect to the list page
             return $this->redirectToRoute('admin_services_browse');
@@ -146,18 +152,20 @@ class ServicesController extends AbstractController
         // We send it to the add page
         return $this->render('admin/services/add.html.twig', [
         'form' => $form->createView(),
-    ]);
+        ]);
     }
 
-      /**
-     * @Route("/delete/{id}", name="delete", methods={"DELETE"})
-     */
+        /**
+        * @Route("/delete/{id}", name="delete", methods={"DELETE"})
+        */
         public function delete(Service $service, Request $request, EntityManagerInterface $em)
         {
+        // We create a form to delete a service
         $formDelete = $this->createForm(FormServiceDelete::class);
 
         $formDelete->handleRequest($request);
 
+        // We make sure the form is submitted correctly and is valid
         if ($formDelete->isSubmitted() && $formDelete->isValid()) {
             // we delete the data
             $em->remove($service);

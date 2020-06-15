@@ -2,37 +2,59 @@
 
 {% block body %}
 
-	<div class="edit-title">
-		<h3>Ajouter un nouveau type d'hebergement</h3>
-	</div>
+<div class="edit-title">
+  <h3>Ajouter un nouveau type d'hebergement</h3>
+</div>
 
-	<div class="container-edit-type">
-		{{form_start(form)}}
-
-		{% if form_errors(form.picture) %}
-			<p style="color:red">{{ form_errors(form.picture) }}</p>
-		{% endif %}
-
-		<div class="image-form-type">
-			<div class="current-picture-form">
-				{{form_widget(form.picture, {'attr': {'placeholder': 'Photo'}}) }}
-			</div>
-
-			<div class="current-icon-form">
-				{% if form_errors(form.icon) %}
-					<p style="color:red">{{ form_errors(form.icon) }}</p>
-				{% endif %}
-				{{form_widget(form.icon, {'attr': {'placeholder': 'Icon'}}) }}
-			</div>
-
-		</div>
+<div class="container-edit-type">
+{{form_start(form)}}
 
 
-		<div class="main-input-type">
-			
-			<div class="input-name">{{form_widget(form.name, {'attr': {'placeholder': 'Nom'}}) }}</div>
-			<div class="input-thematic">{{form_widget(form.thematic)}}</div>
-		</div>
+
+    <div class="image-form-type">
+    
+    <div class="current-picture-form">
+{% if form_errors(form.picture) %}
+    <p style="color:red">{{ form_errors(form.picture) }}</p>
+{% endif %}
+
+
+    {{form_widget(form.picture, {'attr': {'placeholder': 'Photo'}}) }}
+    </div>
+
+  <div class="current-icon-form">
+{% if form_errors(form.icon) %}
+  <p style="color:red">{{ form_errors(form.icon) }}</p>
+{% endif %}
+    {{form_widget(form.icon, {'attr': {'placeholder': 'Icon'}}) }}
+    </div>
+
+</div>
+
+
+<div class="main-input-type">
+{% if form_errors(form.name) %}
+  <p style="color:red">{{ form_errors(form.name) }}</p>
+{% endif %}
+   <div class="input-name">{{form_widget(form.name, {'attr': {'placeholder': 'Nom'}}) }}</div>
+   <div class="input-thematic">{{form_widget(form.thematic)}}</div>
+</div>
+
+
+<div class="input-description-type">
+{% if form_errors(form.description) %}
+  <p style="color:red">{{ form_errors(form.description) }}</p>
+{% endif %}
+ {{form_widget(form.description, {'attr': {'placeholder': 'Description'}}) }}</div> 
+
+  
+  
+<div class="validate-button-type">
+  <button type="submit" class="validate">Valider</button>
+    <div class="back-button">
+      <a href="{{path('admin_type_browse')}}" class="link-back"> Retour à la liste</a>
+     </div>
+</div>
 
 		<div class="input-description-type">{{form_widget(form.description, {'attr': {'placeholder': 'Description'}}) }}</div>
 

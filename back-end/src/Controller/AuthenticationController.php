@@ -65,8 +65,8 @@ class AuthenticationController extends AbstractController
     }
 
     /**
-     * @Route("/reset-password", name="reset-password", methods={"POST"})
-     */
+    * @Route("/reset-password", name="reset-password", methods={"POST"})
+    */
     public function resetPassword(Request $request, UserRepository $userRepository, ResetPassword $newPassword, \Swift_Mailer $mailer, UserPasswordEncoderInterface $passwordEncoder)
     {
 
@@ -109,11 +109,10 @@ class AuthenticationController extends AbstractController
             $mailer->send($message);
             //dd($mailer->send($message));
 
-            // If the email is sent, we return a status code "200"
-            return $this->json($passwordReset, 200);
-        }
-
-        // sinon c'est que l'adresse mail n'existe pas en base de données
-        return $this->json('Cet email n\'est pas associé à l\'un de nos compte utilisateur', 400);
+        // If the email is sent, we return a status code "201"
+        return $this->json('', 201);
+    }
+        // Else we return a status code "404"
+        return $this->json(404);
     }
 }

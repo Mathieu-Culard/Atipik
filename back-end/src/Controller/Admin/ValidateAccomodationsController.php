@@ -33,10 +33,8 @@ class ValidateAccomodationsController extends AbstractController
  
       //We send to the view $accomodations
         return $this->render('admin/validate_accomodations/browse.html.twig', [
-          
           'accomodations' => $accomodations
         ]);
-
     }
 
     /**
@@ -75,20 +73,24 @@ class ValidateAccomodationsController extends AbstractController
      */
     public function edit(Accomodation $accomodation, Request $request, EntityManagerInterface $em)
     {
+        // We create a form to edit the accomodation
         $form = $this->createForm(FormAccomodationType::class, $accomodation);
         $form->handleRequest($request);
+        // If the form is submitted and valid
         if ($form->isSubmitted() && $form->isValid()) {
+            // We save it and flush into the database
             $em = $this->getDoctrine()->getManager();
             $em->persist($accomodation);
             $em->flush();
 
+            // We retrun the accomodation read page
             return $this->redirectToRoute('admin_validate_accomodations_read', ['id' => $accomodation->getId()]);
         }
     
+        // We send the form to the view
         return $this->render('admin/validate_accomodations/edit.html.twig', [
             'form' => $form->createView(),
-            
-            ]);
+        ]);
     }
 
     /**
@@ -108,6 +110,7 @@ class ValidateAccomodationsController extends AbstractController
         $em->persist($accomodation);
         $em->flush();
 
+        // We return to the browse list 
         return $this->redirectToRoute('admin_validate_accomodations_browse');
     }
 
@@ -131,14 +134,12 @@ class ValidateAccomodationsController extends AbstractController
             //We are redirected oto the browse page
             return $this->redirectToRoute('admin_validate_accomodations_browse');
         }
-      
     }
 
      /**
      * @Route("/banish/{id}", name="banish", methods={"DELETE"})
      */
     public function banish(Request $request, EntityManagerInterface $em, User $user)
-
     {  
         //We retrieve the form "UserBanish"
         $formBanish = $this->createForm(UserBanish::class);
@@ -154,8 +155,6 @@ class ValidateAccomodationsController extends AbstractController
             $em->flush();
             // We are redirected to the browse page
             return $this->redirectToRoute('admin_validate_accomodations_browse');
-        }
-      
+        } 
     }
-
 }

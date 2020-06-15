@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Extra;
 use App\Form\ExtraType;
+use App\Form\ExtraEditType;
 use App\Form\FormExtraDeleteType;
 use App\Repository\ExtraRepository;
 use App\Services\FileUploader;
@@ -60,7 +61,7 @@ class ExtrasController extends AbstractController
     public function edit(Extra $extra, Request $request, EntityManagerInterface $em, SluggerInterface $slugger)
     {
         // We create a form to edit the extra
-        $form = $this->createForm(ExtraType::class, $extra);
+        $form = $this->createForm(ExtraEditType::class, $extra);
         $form->handleRequest($request);
 
         // We make sure the form is submitted correctly and is valid
@@ -86,12 +87,16 @@ class ExtrasController extends AbstractController
               //  dd($iconFile); 
 
             }
+
+            //We update the DB
             $em->persist($extra);
             $em->flush(); 
 
+            //redirect to the page 'admin-extras-browse'
             return $this->redirectToRoute('admin_extras_browse');
         }
 
+        //else if redirect to the edit page
         return $this->render('admin/extras/edit.html.twig', [
             'form' => $form->createView(),
         ]);
@@ -109,7 +114,6 @@ class ExtrasController extends AbstractController
 
         // We create a form to add the extra
         $form = $this->createForm(ExtraType::class, $extra);
-     
         $form->handleRequest($request);
 
         // We make sure the form is submitted correctly and is valid
@@ -152,12 +156,12 @@ class ExtrasController extends AbstractController
     ]);
     }
 
- /**
+    /**
      * @Route("/delete/{id}", name="delete", methods={"DELETE"})
      */
     public function delete(Extra $extra, Request $request, EntityManagerInterface $em)
     {
-    // We create a form to add the extra
+    // We create a form to delete the extra
     $formDelete = $this->createForm(FormExtraDeleteType::class);
     $formDelete->handleRequest($request);
 
@@ -172,6 +176,6 @@ class ExtrasController extends AbstractController
         return $this->redirectToRoute('admin_extras_browse');
     }
     return $this->render('admin/extras/browse.html.twig');
-}
+    }
 
 }

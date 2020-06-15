@@ -10,13 +10,13 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class ExtraType extends AbstractType
+class ExtraEditType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('name', null, [
-                'required' => false,
+                'required' => true,
                 'constraints' => new Assert\NotBlank([
                  'message'=>'Le nom de l\'extra ne peut pas être vide',
             ])
@@ -24,9 +24,6 @@ class ExtraType extends AbstractType
             ->add('icon', FileType::class, [
                 'required' => false,
                 'mapped' => false, 
-                'constraints' => new Assert\NotBlank([
-                    'message'=>'L\'icone est obligatoire',
-               ])
            ])
               
         ;
