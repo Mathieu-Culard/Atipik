@@ -15,6 +15,16 @@ use Symfony\Component\Serializer\SerializerInterface;
  */
 class MainController extends AbstractController
 {
+
+     /**
+     * @Route("/", name="homepage", methods={"GET"})
+     */
+    public function homePage()
+    {
+       return $this->redirectToRoute('app_login');
+    }
+
+
     /**
      * @Route("/types", name="type", methods={"GET"})
      */
