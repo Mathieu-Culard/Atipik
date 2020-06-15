@@ -8,9 +8,13 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
+<<<<<<< HEAD
+use Symfony\Component\Validator\Constraints as Assert;
+=======
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
+>>>>>>> ec44aa8341ad3e67f48df89eb682296acd5b014a
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -62,10 +66,15 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ec44aa8341ad3e67f48df89eb682296acd5b014a
      *@Assert\Regex(
      *pattern="(^[a-zA-Z]+$)",
      *message="Le prénom ne peut contenir ni de caractères spéciaux, ni de chiffres"
      *)
+<<<<<<< HEAD
+=======
 =======
 <<<<<<< HEAD
      *@Assert\Regex(
@@ -82,16 +91,22 @@ class User implements UserInterface
      * )
 >>>>>>> 50d3e6c63afafac8e677b30e356ba4aac022f13b
 >>>>>>> 89f5e4f5b47ef91fb1f64d39120f87bb316bdace
+>>>>>>> ec44aa8341ad3e67f48df89eb682296acd5b014a
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ec44aa8341ad3e67f48df89eb682296acd5b014a
       *@Assert\Regex(
      *pattern="(^[a-zA-Z]+$)",
      *message="Le nom ne peut contenir ni de caractères spéciaux, ni de chiffres"
      *)
+<<<<<<< HEAD
+=======
 =======
 <<<<<<< HEAD
       *@Assert\Regex(
@@ -108,6 +123,7 @@ class User implements UserInterface
      * )
 >>>>>>> 50d3e6c63afafac8e677b30e356ba4aac022f13b
 >>>>>>> 89f5e4f5b47ef91fb1f64d39120f87bb316bdace
+>>>>>>> ec44aa8341ad3e67f48df89eb682296acd5b014a
      */
     private $lastname;
 
@@ -136,11 +152,16 @@ class User implements UserInterface
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> 89f5e4f5b47ef91fb1f64d39120f87bb316bdace
+>>>>>>> ec44aa8341ad3e67f48df89eb682296acd5b014a
      *@Assert\Regex(
      *pattern="(^[a-z0-9A-Z]+$)",
      *message="Le pseudo ne peut pas contenir de caractères spéciaux"
      *)
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
 =======
 =======
@@ -153,6 +174,7 @@ class User implements UserInterface
      * )
 >>>>>>> 50d3e6c63afafac8e677b30e356ba4aac022f13b
 >>>>>>> 89f5e4f5b47ef91fb1f64d39120f87bb316bdace
+>>>>>>> ec44aa8341ad3e67f48df89eb682296acd5b014a
      */
     private $pseudo;
 
