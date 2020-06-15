@@ -63,6 +63,12 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255)
 <<<<<<< HEAD
      *@Assert\Regex(
+     *pattern="(^[a-zA-Z]+$)",
+     *message="Le prénom ne peut contenir ni de caractères spéciaux, ni de chiffres"
+     *)
+=======
+<<<<<<< HEAD
+     *@Assert\Regex(
      *pattern="(^[a-zA-Z-éèà]+$)",
      *message="Le prénom ne peut contenir ni de caractères spéciaux, ni de chiffres"
      *)
@@ -75,11 +81,18 @@ class User implements UserInterface
      *     message="Votre prénom ne doit comporter que des lettres"
      * )
 >>>>>>> 50d3e6c63afafac8e677b30e356ba4aac022f13b
+>>>>>>> 89f5e4f5b47ef91fb1f64d39120f87bb316bdace
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
+<<<<<<< HEAD
+      *@Assert\Regex(
+     *pattern="(^[a-zA-Z]+$)",
+     *message="Le nom ne peut contenir ni de caractères spéciaux, ni de chiffres"
+     *)
+=======
 <<<<<<< HEAD
       *@Assert\Regex(
      *pattern="(^[a-zA-Z-éèà]+$)",
@@ -94,6 +107,7 @@ class User implements UserInterface
      *     message="Votre nom ne doit comporter que des lettres"
      * )
 >>>>>>> 50d3e6c63afafac8e677b30e356ba4aac022f13b
+>>>>>>> 89f5e4f5b47ef91fb1f64d39120f87bb316bdace
      */
     private $lastname;
 
@@ -120,10 +134,15 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 89f5e4f5b47ef91fb1f64d39120f87bb316bdace
      *@Assert\Regex(
      *pattern="(^[a-z0-9A-Z]+$)",
      *message="Le pseudo ne peut pas contenir de caractères spéciaux"
      *)
+<<<<<<< HEAD
+=======
 =======
      * @Assert\NotBlank(
      *      message = "Merci de renseigner votre nom d'utilisateur",
@@ -133,6 +152,7 @@ class User implements UserInterface
      *     message="Votre pseudo ne doit pas contenir de caractères spéciaux"
      * )
 >>>>>>> 50d3e6c63afafac8e677b30e356ba4aac022f13b
+>>>>>>> 89f5e4f5b47ef91fb1f64d39120f87bb316bdace
      */
     private $pseudo;
 
