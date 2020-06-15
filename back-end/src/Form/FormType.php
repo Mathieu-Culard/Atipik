@@ -17,29 +17,48 @@ class FormType extends AbstractType
     {
         $builder
             ->add('name', null, [
-                'constraints' => new Assert\NotBlank()
+                'required' => false,
+                'constraints' => [
+                    new Assert\NotBlank([
+                        'message' => 'Le nom du type ne peut pas être vide',
+                    ]),
+                    new Assert\Regex([
+                        'pattern' => "/^[-'a-zA-ZÀ-ÖØ-öø-ÿ\s]+$/",
+                        'message' => "Votre adresse ne doit pas contenir de caractère spéciaux"
+                    ]),
+                ] 
             ])
             ->add('description', null, [
-                'constraints' => new Assert\NotBlank()
+                'required' => false,
+                'constraints' => new Assert\NotBlank([
+                    'message' => 'La description du type ne peut pas être vide',
+                ])
             ])
             ->add('picture', FileType::class, [
-                'data_class'=>null,
+                'data_class' => null,
                 'required' => false,
-                'mapped' => false, 
+                'mapped' => false,
+                // 'constraints' => new Assert\NotBlank([
+                //     'message'=>'L\'image ne peut pas être vide',
+                //      ])
+
             ])
             ->add('icon', FileType::class, [
-                 'data_class' => null,
-                 'required' => false,
-                 'mapped' => false, 
+                'data_class' => null,
+                'required' => false,
+                'mapped' => false,
+                //  'constraints' => new Assert\NotBlank([
+                //     'message'=>'L\'icone ne peut pas être vide',
+                //      ])
+
             ])
-            ->add('thematic')
-        ;
+            ->add('thematic');
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Type::class, 
+            'data_class' => Type::class,
         ]);
     }
 }

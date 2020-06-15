@@ -17,7 +17,7 @@ class UserBanish extends AbstractType
             ->add('deleteButton', SubmitType::class, [
                 'label' => 'Bannir',
                 'attr' => [
-                    'class' => 'banishButtonUser',
+                    'class' => 'banish-button-user',
                 ]
             ])
         ;

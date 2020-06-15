@@ -17,7 +17,7 @@ class FormTypeDelete extends AbstractType
             ->add('deleteButton', SubmitType::class, [
                 'label' => 'Supprimer', 
                 'attr' => [
-                    'class' => 'deleteButtonType',
+                    'class' => 'deleteButton',
                 ]
             ])
         ;

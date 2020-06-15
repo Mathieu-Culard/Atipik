@@ -4,46 +4,57 @@
 
 {% block body %}
 
+<div class="body">
+
 {{parent()}}
 
-<div class="rightSide">
+<div class="right-side">
+    <main>
+        <div class="title">
+            <h3>Hébergements</h3>
+        </div>
 
-<main>
-    <div class="title">
-        <h1 class="typeTitleList" id="titleList">Hébergements</h1>
-    </div>
+        <div class="array">
+            <table class="table">
+                <thead>
+			        <tr class="table-dark">
+				    <th scope="col">ID</th>
+				    <th scope="col">Photo</th>
+				    <th scope="col">Nom</th>
+                    <th scope="col">Type</th>  
+                    <th scope="col">Ville</th>
+		            <th scope="col">Pays</th>
+				    <th scope="col">Supprimer</th>
+			        </tr>
+		        </thead>
+		        <tbody>	
+                    <tr>
+                        {% for accomodation in accomodations %}
 
-    
-<table class="table table-hover">
-		<thead>
-			<tr class="table-primary">
-				<th scope="col">ID</th>
-				<th scope="col">Photo</th>
-				<th scope="col">Nom</th>
-                <th scope="col">Type</th>
-		        <th scope="col">Pays</th>
-                <th scope="col">Ville</th>
-				<th scope="col">Supprimer</th>
-			</tr>
-		</thead>
-		<tbody>	
-        <tr>
-            {% for accomodation in accomodations %}
+                        <th class="align-middle" scope="row">{{accomodation.id}}</th>
+                        <td class="align-middle">
 
-            <th scope="row">{{accomodation.id}}</th>
-            <td>{% for currentPicture in accomodation.picture %}
-				<img
-				src="{{asset('assets/accomodation/'~ currentPicture.main)}}" alt="">
-			{% endfor %}</td>
-            <td>{{accomodation.title}}</th>
-            <td>{{accomodation.type.name}}</th>
-            <td>{{accomodation.country}}</th>
-            <td>{{accomodation.city}}</th>
-            <td>{{ form(forms[loop.index0]) }}</td>
-        </tr>
-			{% endfor %}
-
-        
+                    {% for currentPicture in accomodation.picture %}
+                   
+                    {% if currentPicture.main == true %}
+				        <img
+				        src="{{asset('assets/accomodation/'~ currentPicture.name)}}" class="img-back" alt="">
+                        {% endif %}
+                    {% endfor %}
+                        </td>
+                        <td class="align-middle">{{accomodation.title}}</th>
+                        <td class="align-middle">{{accomodation.type.name}}</th>
+                        <td class="align-middle">{{accomodation.city}}</th>
+                        <td class="align-middle">{{accomodation.country}}</th>
+                        <td class="align-middle">{{ form(forms[loop.index0]) }}</td>
+                    </tr>
+			            {% endfor %}
+                </tbody>
+			</table>
+		</div>
+	</main>
+</div>
+</div>
 		
 
 {% endblock %}

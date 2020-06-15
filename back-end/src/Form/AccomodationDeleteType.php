@@ -16,7 +16,7 @@ class AccomodationDeleteType extends AbstractType
         ->add('deleteButton', SubmitType::class, [
             'label' => 'Supprimer', 
             'attr' => [
-                'class' => 'deleteButtonAccomodation',
+                'class' => 'deleteButton',
             ]
         ])
         ;

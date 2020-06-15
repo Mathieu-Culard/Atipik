@@ -153,12 +153,14 @@ class AccomodationUserController extends AbstractController
             // on met a jour la base de données
             $em->persist($accomodation);
 
+            dd('Stop');
             $em->flush();
-
             return $this->json($accomodation->getId(), 201);
         }
 
-        return $this->json('', 400);
+        $formError = $form->getErrors(true);
+
+        return $this->json($formError, 400);
     }
 
     /*     /**
@@ -319,6 +321,7 @@ class AccomodationUserController extends AbstractController
         //$titleInDb = $currentAccomodation->getTitle();
 
 
+
         $connectedUser = $user->getId();
         $owner = $currentAccomodation->getUser()->getId();
 
@@ -425,6 +428,8 @@ class AccomodationUserController extends AbstractController
                     }
                 }
 
+                
+
 
 
                 // si il y a des photos en base de données associée a cet hébergement
@@ -442,8 +447,8 @@ class AccomodationUserController extends AbstractController
                     $point = strrpos($countName, ".");
                     //dd($position, $point);
                     // on decoupe notre chaine de caractere pour récuperer ce qu'on trouve apres le dernier point
-                    $count = (substr($countName, $point - 1, $point - $position));
-                    //dd($count);
+                    $count = (substr($countName, $point - 1, $point - $position)) + 1;
+
                     // on decoupe encore notre chaine de caractere pour récuperer le titre qui sera attribué aux nouvelles photos pour rester coherents
                     $title = substr($countName, 0, $point - 1);
                     // pour chacune des photos
@@ -526,38 +531,18 @@ class AccomodationUserController extends AbstractController
                     }
                 }
 
-
-
-                /*                 if ($titleInDb !== $accomodation->getTitle()) {
-                    // on met a jour le titre
-                    $accomodation->setSlugger($sluggerTitle);
-                    //dd($picsInDb);
-                    $count = 0;
-                    if (isset($picsInDb) && $picsInDb !== []) {
-                        //dd('ok');
-                        foreach ($picsInDb as $currentPicInDb) {
-                            // on stocke le nom de notre image dans une variable
-                            $picName = $currentPicInDb->getName();
-                            // on stocke '.' comme etant le caractere permettant la dissociation du texte
-                            $start = strrpos($picName, ".");
-                            // on decoupe notre chaine de caractere pour récuperer ce qu'on trouve apres le dernier point
-                            $extension = substr($picName, $start, 255);
-                            // on crée un nouveau nom de fichier
-                            $newName = $sluggerTitle . $count++ . $extension;
-                            // on met a jour le nom de la photo
-                            $currentPicInDb->setName($newName);
-                        }
-                    }
-                } */
-
+                dd($accomodation);
                 $em->flush();
 
                 return $this->json($accomodation->getId(), 201);
             }
-            return $this->json('', 400);
+
+            $formError = $form->getErrors(true);
+
+            return $this->json($formError, 400);
         }
 
-        return $this->json('', 403);
+        return $this->json('Vous n\'avez pas les droits nécessaires pour accéder à cette page', 403);
     }
 
     /**

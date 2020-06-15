@@ -17,7 +17,7 @@ class DeleteValidationType extends AbstractType
         ->add('deleteButton', SubmitType::class, [
             'label' => 'Rejeter', 
             'attr' => [
-                'class' => 'deleteButtonAccomodation',
+                'class' => 'delete-button-validate',
             ]
         ])
     ;

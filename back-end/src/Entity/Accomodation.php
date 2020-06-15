@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -24,41 +25,85 @@ class Accomodation
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *      message = "Merci de saisir un titre pour votre hébergement",
+     * )
+     * @Assert\NotNull(
+     *      message = "Ce champs ne peux pas $etre vide",
+     * )
+     * 
      */
     private $title;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(
+     *      message = "Merci de renseigner la capacité maximale de votre hébergement",
+     * )
+     * @Assert\Positive(
+     *      message = "La capacité maximale est de minimum 1 personne"
+     * )
      */
     private $capacity;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(
+     *      message = "Merci de renseigner une description pour votre hébergement",
+     * )
      */
     private $description;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Positive(
+     *      message = "Merci de renseigner une valeur supérieure à 0"
+     * )
+     * @Assert\NotBlank(
+     *      message = "Merci de renseigner le prix pour une nuit dans votre hébergement",
+     * )
      */
     private $price;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *      message = "Merci de saisir l'adresse de votre hébergement",
+     * )
+     * @Assert\Regex(
+     *     pattern="/^[-'a-zA-ZÀ-ÖØ-öø-ÿ0-9\s]+$/",
+     *     message="Votre adresse ne doit pas contenir de caractère spéciaux"
+     * )
      */
     private $adress;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *      message = "Merci de saisir la ville dans laquelle se situe votre hébergement",
+     * )
+     * @Assert\Regex(
+     *     pattern="/^[a-zA-Z\s]*$/",
+     *     message="Ce champ ne doit pas contenir de caractère alphanumérique"
+     * )
      */
     private $city;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *      message = "Merci de saisir le pays dans lequel se situe votre hébergement",
+     * )
+     * @Assert\Regex(
+     *     pattern="/^[a-zA-Z\s]*$/",
+     *     message="Ce champ ne doit pas contenir de caractère alphanumérique"
+     * )
      */
     private $country;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * 
      */
     private $latitude;
 
@@ -69,11 +114,23 @@ class Accomodation
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Positive(
+     *      message = "Merci de renseigner une valeur supérieure à 0"
+     * )
+     * @Assert\NotBlank(
+     *      message = "Merci de renseigner la surface de votre hébergement",
+     * )
      */
     private $surface;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Positive(
+     *      message = "Merci de renseigner une valeur supérieure à 0"
+     * )
+     * @Assert\NotBlank(
+     *      message = "Merci de renseigner le nombre minimum de nuits que vous souhaitez dans le cadre d'une réservation",
+     * )
      */
     private $nbNight;
 
@@ -104,6 +161,7 @@ class Accomodation
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
      */
     private $facebookLink;
 
@@ -200,7 +258,7 @@ class Accomodation
         return $this->title;
     }
 
-    public function setTitle(string $title): self
+    public function setTitle(?string $title): self
     {
         $this->title = $title;
 
@@ -215,7 +273,7 @@ class Accomodation
         return $this->capacity;
     }
 
-    public function setCapacity(int $capacity): self
+    public function setCapacity(?int $capacity): self
     {
         $this->capacity = $capacity;
 
@@ -230,7 +288,7 @@ class Accomodation
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
@@ -245,7 +303,7 @@ class Accomodation
         return $this->price;
     }
 
-    public function setPrice(int $price): self
+    public function setPrice(?int $price): self
     {
         $this->price = $price;
 
@@ -260,7 +318,7 @@ class Accomodation
         return $this->adress;
     }
 
-    public function setAdress(string $adress): self
+    public function setAdress(?string $adress): self
     {
         $this->adress = $adress;
 
@@ -275,7 +333,7 @@ class Accomodation
         return $this->city;
     }
 
-    public function setCity(string $city): self
+    public function setCity(?string $city): self
     {
         $this->city = $city;
 
@@ -290,7 +348,7 @@ class Accomodation
         return $this->country;
     }
 
-    public function setCountry(string $country): self
+    public function setCountry(?string $country): self
     {
         $this->country = $country;
 
@@ -344,7 +402,7 @@ class Accomodation
         return $this->nbNight;
     }
 
-    public function setNbNight(int $nbNight): self
+    public function setNbNight(?int $nbNight): self
     {
         $this->nbNight = $nbNight;
 

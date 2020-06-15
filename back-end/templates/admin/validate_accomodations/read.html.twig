@@ -1,126 +1,143 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 
-	<main>
+	<main class="validate-accomodation">
 		<div class="title">
-			<h1 class="typeTitleList" id="titleList">Validation de l'hébergement</h1>
-		
-
-
-			<a href="{{path('admin_validate_accomodations_browse') }}" class="back-list-validate">Retour à la liste</a>
-
+			<h3>Validation de l'hébergement</h3>
+			<a href="{{path('admin_validate_accomodations_browse') }}" class="validate-link-back">Retour à la liste</a>
 		</div>
 
-	<hr class="my-4">
+		<hr class="my-4">
+		<div class="validate-body">
+			<h3 class="validate-user-username">
+			<img style="width:75px"src="{{asset('assets/avatar/'~ currentAccomodation.user.avatar)}}" alt="">{{currentAccomodation.user.pseudo}}
 
-<div class="validateBody">
-
-		<h3 class="validateUser"><img style="width:75px"src="{{asset('assets/avatar/'~ currentAccomodation.user.avatar)}}" alt="">{{currentAccomodation.user.pseudo}}
-			<a href="{{currentAccomodation.facebookLink}}">
+				{% if currentAccomodation.facebookLink is not null %}
+				<a href="{{currentAccomodation.facebookLink}}">
 				<i class="fa fa-facebook-official" aria-hidden="true"></i>
-			</a>
-			<a href="{{currentAccomodation.InstagramLink}}">
+				</a>
+				{% endif %}
+
+
+				{% if currentAccomodation.InstagramLink is not null %}
+				<a href="{{currentAccomodation.InstagramLink}}">
 				<i class="fa fa-instagram" aria-hidden="true"></i>
-			</a>
-		</h3>
+				</a>
+				{% endif %}
+			</h3>
 
-		{% if currentAccomodation.picture is not null %}
-			{% for currentPicture in currentAccomodation.picture %}
-				<img
-				src="{{asset('assets/accomodation/'~ currentPicture.name)}}" style="width:300px" alt="">
-			{% endfor %}
-		{% endif %}
+			<div class="validate-pictures">
+			{% if currentAccomodation.picture is not null %}
+				{% for currentPicture in currentAccomodation.picture %}
+					<img class="accomodation-picture"
+					src="{{asset('assets/accomodation/'~ currentPicture.name)}}" style="width:200px; height:150px" alt="">
+				{% endfor %}
+			{% endif %}
+			</div>
 
 
-		<p>{{currentAccomodation.title}}</p>
-		<p>{{currentAccomodation.adress}}</p>
-		<p>{{currentAccomodation.city}},
+			<h4 class="accomodation-title">{{currentAccomodation.title}}</h4>
+
+			<p class="accomodation-adress">{{currentAccomodation.adress}}</p>
+			<p class="accomodation-adress">{{currentAccomodation.city}}, 
 			{{currentAccomodation.country}}</p>
 
-		<p>{{currentAccomodation.type.name}}</p>
+			<p class="validate-accomodation-type">{{currentAccomodation.type.name}}</p>
 
-		<p>Description :
+			<p class="accomodation-description">
 			{{currentAccomodation.description}}</p>
 
-		<p>Prix :
+			<p class="accomodation-price">Prix :
 			{{currentAccomodation.price}} € /nuit</p>
 
-		{% if currentAccomodation.pipedWater == true %}
-			<img src="{{asset('assets/icon/water.png')}}" alt="">
 		
-		{% endif %}
-
-
-		{% if currentAccomodation.electricity == true %}
-			<img src="{{asset('assets/icon/thunder.png')}}" alt="">
-		
-		{% endif %}
-			
-		
-		{% if currentAccomodation.animals == true %}
-			<img src="{{asset('assets/icon/dogok.png')}}" alt="">
-		
-		{% endif %}
-
-		{% if currentAccomodation.smokers == true %}
-			<img src="{{asset('assets/icon/smoke.png')}}" alt="">
-		
-		{% endif %}
-	
-		{% if currentAccomodation.accessibility == true %}
-			<img src="{{asset('assets/icon/apmr.png')}}" alt="">
-		
-		{% endif %}
-		
-		{% if currentAccomodation.nbNight == true %} 
-			<p><img src="{{asset('assets/icon/lit.png')}}" alt="">{{currentAccomodation.nbNight}}</p>
-		{% endif %}
-		
-	
-		<p>Surface :
+			<p class="accomodation-surface">Surface :
 			{{currentAccomodation.surface}} m²</p>
 
-		<div class="row" id="validateExtrasServices">
-			<div class ="accomodationServices">
-			<h4>Services</h4>
-			<hr class="my-4">
-         <div>
-         {% for service in currentAccomodation.service %}
-			<div>
-			<p>{{service.name}}
-			<img src="{{asset('assets/icon/'~ service.icon)}}" alt=""></p>
-			{% endfor %}
+
+				<div class ="accomodation-icons"> 
+					{% if currentAccomodation.pipedWater == true %}
+					<img style="width:50px" src="{{asset('assets/icon/water.png')}}" alt="">
+					{% endif %}
+	
+					{% if currentAccomodation.electricity == true %}
+					<img style="width:50px" src="{{asset('assets/icon/thunder.png')}}" alt="">
+					{% endif %}
+				</div>
+
+				<div class ="accomodation-icons"> 
+					{% if currentAccomodation.animals == true %}
+					<img style="width:50px" src="{{asset('assets/icon/dogok.png')}}" alt="">
+					
+					{% endif %}
+
+					{% if currentAccomodation.smokers == true %}
+					<img style="width:50px" src="{{asset('assets/icon/smoke.png')}}" alt="">
+					
+					{% endif %}
+	
+					{% if currentAccomodation.accessibility == true %}
+					<img style="width:50px" src="{{asset('assets/icon/apmr.png')}}" alt="">
+					{% endif %}
+
+					{% if currentAccomodation.nbNight == true %} 
+					<p><img style="width:50px" src="{{asset('assets/icon/lit.png')}}" alt="">{{currentAccomodation.nbNight}}</p>
+					{% endif %}
+				</div>
+	
+
+	<div class="validate-extras-services">
+								
+		<div class ="accomodation-services">
+			<h5 class="title-service-extras">Services</h5>
+				
+				<div class="img-text-services">
+         			{% for service in currentAccomodation.service %}
+					 <img class="validate-icon" style="width:30px" src="{{asset('assets/icon/'~ service.icon)}}" alt="">
+					<p class="validate-name">{{service.name}}</p>
+					{% endfor %}
+				</div>
 		</div>
-         </div>
+         		
 
-     
-         	<div> <h4>Extras</h4>    
-			 <hr class="my-4">
-         
-         <div class="accomodationExtras">
-         {% for extra in currentAccomodation.extra %}
-			<div><p>{{extra.name}}<img src="{{asset('assets/icon/'~ extra.icon)}}" alt=""></p>
-			{% endfor %}
-		</div>
-         </div>
-
-
-         </div>
+    	<div class="accomodation-extras">
+         	<h5 class="title-service-extras">Extras</h5>    
+			 	
+				<div class="img-text-extras">
+         			{% for extra in currentAccomodation.extra %}
+					 <img class="validate-icon" style="width:30px" src="{{asset('assets/icon/'~ extra.icon)}}" alt="">
+						<p class="validate-name">{{extra.name}}</p>
+					{% endfor %}
+				</div>
 		</div>
 	</div>
+			
+
+<div class="button-validate">
+	<div class="button-on-line">
+ 		<a href="{{ path('admin_validate_accomodations_validate', {'id' : currentAccomodation.id}) }}">
+		<button type="submit" class="on-line">Mettre en ligne</button></a>
+	</div>
+
+	<div class="button-delete-admin">
+	{{ form_start(deleteValidationType) }}
+	{{ form_widget(deleteValidationType) }}
+	{{ form_end(deleteValidationType) }} 
+	</div>
+
+	<div class="button-banish-admin">
+	{{ form_start(userBanish) }}
+	{{ form_widget(userBanish) }}
+	{{ form_end(userBanish) }}  
+	</div>
+
+	<div class="button-accomodation-edit">
+	<a href="{{path('admin_validate_accomodations_edit', {'id' : currentAccomodation.id })}}">
+	<button type="edit" class="accomodation-button-edit">Modifier</button></a>
+	</div>
 </div>
+		</div>
+	</div>
+</main>
 
- <a href="{{ path('admin_validate_accomodations_validate', {'id' : currentAccomodation.id}) }}"><button type="submit" class="btn btn-success">Mettre en ligne</button></a>
-
-{{ form_start(deleteValidationType) }}
-{{ form_widget(deleteValidationType) }}
-{{ form_end(deleteValidationType) }}  
-
-{{ form_start(userBanish) }}
-{{ form_widget(userBanish) }}
-{{ form_end(userBanish) }}  
-
-<a href="{{path('admin_validate_accomodations_edit', {'id' : currentAccomodation.id })}}">
-<button type="edit" class="accomodation-button-edit">Modifier</button></a>
-
-	{% endblock %}
+{% endblock %}

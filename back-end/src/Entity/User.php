@@ -8,10 +8,17 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\HasLifecycleCallbacks
+ * @UniqueEntity(
+ *     fields={"email"},
+ *     message="Cet email est déjà associé à l'un de nos comptes utilisateur"
+ * )
  */
 class User implements UserInterface
 {
@@ -24,6 +31,12 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\Email(
+     *     message = "Merci de renseigner un email valide"
+     * )
+     * @Assert\NotBlank(
+     *      message = "Merci de saisir votre email",
+     * )
      */
     private $email;
 
@@ -35,17 +48,38 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\NotBlank(
+     *      message = "Votre mot de passe ne peut pas être vide",
+     * )
+     * @Assert\Length(
+     *      min = 8, 
+     *      minMessage = "Veuillez saisir un mot de passe comprenant au minimum 8 caractères"
+     * )
      */
     private $password;
 
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *      message = "Merci de renseigner votre prénom",
+     * )
+     * @Assert\Regex(
+     *     pattern="/^[-'a-zA-ZÀ-ÖØ-öø-ÿ]+$/",
+     *     message="Votre prénom ne doit comporter que des lettres"
+     * )
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *      message = "Merci de renseigner votre nom",
+     * )
+     * @Assert\Regex(
+     *     pattern="/^[-'a-zA-ZÀ-ÖØ-öø-ÿ]+$/",
+     *     message="Votre nom ne doit comporter que des lettres"
+     * )
      */
     private $lastname;
 
@@ -53,7 +87,7 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $avatar;
-
+    
     /**
      * @ORM\Column(type="datetime")
      */
@@ -71,11 +105,19 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *      message = "Merci de renseigner votre nom d'utilisateur",
+     * )
+     * @Assert\Regex(
+     *     pattern="/^[-'a-zA-ZÀ-ÖØ-öø-ÿ0-9\s]+$/",
+     *     message="Votre pseudo ne doit pas contenir de caractères spéciaux"
+     * )
      */
     private $pseudo;
 
     /**
      * @ORM\OneToMany(targetEntity=Booking::class, mappedBy="user", orphanRemoval=true)
+
      */
     private $bookings;
 
@@ -88,8 +130,8 @@ class User implements UserInterface
 
     public function __toString()
     {
-        return $this->roles;
-        return $this->password;
+         $this->roles;
+         $this->password;
         
     }
 
@@ -157,7 +199,7 @@ class User implements UserInterface
         return (string) $this->password;
     }
 
-    public function setPassword(string $password): self
+    public function setPassword(?string $password): self
     {
         $this->password = $password;
 
@@ -189,7 +231,7 @@ class User implements UserInterface
         return $this->firstname;
     }
 
-    public function setFirstname(string $firstname): self
+    public function setFirstname(?string $firstname): self
     {
         $this->firstname = $firstname;
 
@@ -204,7 +246,7 @@ class User implements UserInterface
         return $this->lastname;
     }
 
-    public function setLastname(string $lastname): self
+    public function setLastname(?string $lastname): self
     {
         $this->lastname = $lastname;
 
@@ -290,7 +332,7 @@ class User implements UserInterface
         return $this->pseudo;
     }
 
-    public function setPseudo(string $pseudo): self
+    public function setPseudo(?string $pseudo): self
     {
         $this->pseudo = $pseudo;
 
@@ -336,6 +378,4 @@ class User implements UserInterface
 
         return $this;
     }
-
-
 }

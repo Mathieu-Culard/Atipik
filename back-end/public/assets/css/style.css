@@ -1,20 +1,634 @@
+/*  Sidebar  */
+
+
+
+
+
+
 
 .rightSide {
    display: flex;
-   
- 
 }
+  
+.left-side {
+    font-family: 'Montserrat', sans-serif;
+    display: grid; 
+    grid-template-columns: 25em 1fr ;
+    background-color:#111110;
+    color:white;
+    float:left;
+    padding-top:1em;
+    padding-right: 1.6em;
+    font-size:15px;
+    height: 100vh;
+}
+
+.aside {
+    width: 19%;
+    position: fixed;
+ }
+ 
+ .navigation-list {
+    display: grid;
+    gap: .5rem;
+    list-style-type:none;
+    text-align:center;    
+}
+
+.navigation-link{
+      color:white;
+      font-size:1.3em;
+    
+}
+
+.navigation-link:hover{ 
+    color:white;
+    text-decoration: none;
+    
+}
+
+  .navigation-item
+  { 
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 12px ;
+    background-color : #111110;
+    color:white;
+    margin:0.8em;
+    border-radius:0.4em;
+    border :white 0.1em solid;
+    padding:0.8em;
+  }
+
+  .navigation-item:hover{
+      text-decoration: none;
+      border-color:#fe922d;
+   
+  }
+
+  .button-site{
+      background-color:white;
+      margin-top:7em;
+      margin-bottom: 3em;
+      border-radius:10px;
+      padding:0.4em;
+      font-size:20px;
+  }
+
+  .button-site:hover{
+    background-color: #b8b8b0;
+   
+}
+
+ 
+  .navigation-item-validate{
+      margin-top:8em;
+      color : white;
+      padding:2em;
+      text-transform:uppercase;
+      border-radius: 10px;
+      background:linear-gradient(to bottom left, #fe922d, #e64750);
+      font-weight:bold;
+      border : 0px;
+      
+  }
+
+  .navigation-link-validate{
+      background-color:#fe922d;
+      font-size:1.3em;
+      color:black;
+  }
+
+  .navigation-item-validate:hover{
+    font-weight:bold;
+    color:black;
+  }
+
+  
+  .navigation-titre{
+      font-size:1.5em;
+      line-height:0.7em;
+      padding-top:3.5em;
+      font-weight: bold;
+      line-height:1.2em;
+      padding-bottom:1.3em;
+  }
+
+.logo{
+    height:auto;
+    width:7em;
+    margin-bottom:-4em;
+    margin-top:2em;
+    margin-left: 10em;
+  
+}
+
+
+
+/* Partie de droite => Liste des éléments */
+
+.body{
+    background-color:white;
+}
+
+.right-side {
+   display: flex; 
+   margin-left : 2em;
+   background-color:white;
+}
+
+.array{
+
+    box-shadow: 10px 8px 8px grey;
+    border-radius:10px;
+    background-color: #f3f3f2;
+}
+
+tr{
+    color: black;  
+}
+
+.table-dark, .table-dark>th, .table-dark>td {
+    background-color: #30302f;
+    padding-top:20px;
+    padding-bottom:40px;
+    border-bottom: 1px solid black;
+    font-weight: lighter;
+}
+
+th, td{
+    text-align: center;
+}
+
+thead{
+    border-radius:10px 10px 0 0;
+}
+
 main {
- min-width: 85%;
- margin-left : 3em; 
+    min-width: 85%;
+    margin-left : 3em; 
+    font-family: 'Montserrat', sans-serif;
+}
+
+.title{
+   
+    display: flex;
+    color:black;
+    font-family: 'Montserrat', sans-serif; 
+    padding-top:2.5em;
+    padding-bottom:1em; 
+ }
+
+h3 {
+    font-weight: bold;
+}
+
+.type-add{
+    display:block;
+    float:right;
+    margin-top:1em;
+    color:black;
+    padding-left:55em;
+    
+}
+
+.service-add{
+    display:block;
+    float:right;
+    margin-top:1em;
+    color:black;
+    padding-left:70em;
+}
+
+.user-add{
+    display:block;
+    float:right;
+    margin-top:1em;
+    color:black;
+    padding-left:55em;
+}
+.extra-add{
+    display:block;
+    float:right;
+    margin-top:1em;
+    color:black;
+    padding-left:70em;
+}
+
+.user-add:hover{
+    text-decoration:none;
+    color:black;
+    font-weight:bold;
+}
+
+.service-add:hover{
+    text-decoration:none;
+    color:black;
+    font-weight:bold;
+}
+
+.type-add:hover{
+    text-decoration:none;
+    color:black;
+    font-weight:bold;
+}
+
+.extra-add:hover{
+    text-decoration:none;
+    color:black;
+    font-weight:bold;
+}
+
+.submit-user{
+    color:white;
+    background-color : rgb(238, 111, 27);
+    font-weight:bold;
+    border-style:none;
+    padding-top : 0.6em;
+    padding-bottom : 0.6em;
+    padding-left : 1.8em;
+    padding-right : 1.8em;
+    border-radius:10px;
+}
+
+.submit-admin {
+    color:white;
+    background-color :rgb(241, 171, 40);
+    font-weight:bold;
+    border-style:none;
+    padding : 0.6em;
+    border-radius:10px;
+}
+
+.deleteButton  {
+    color:white;
+    background-color:#e64750;
+    padding:0.7em 1.5em;
+    font-weight:bold;
+    border-style:none;
+    border-width:2.5px;
+    border-radius:10px;
+    display:inline-block;
+    font-size :1em;
+    margin-top: 20px;
+ }
+
+ .deleteButton:hover{
+     background-color:#e46a70;
+     color:white;
+ }
+
+
+/* Formulaire d'edition */
+
+.edit {
+    color:white;
+    background-color:#fe922d;
+    border-radius:10px;
+    padding:0.7em 1.5em;
+    font-weight:bold;
+    font-size:1em;
+    border-style:none;
+}
+
+.edit:hover{
+    background-color:#e7a541;
+}
+
+.container-edit{
+    display:flex; 
+    flex-direction: column;
+    border: 1px solid #A9A9A9 ;
+    border-radius: 1em;
+    background-color:#f3f3f2;
+    box-shadow: 10px 8px 8px grey;
+    border-radius: 1em;
+    align-items: center;
+    width:33em;
+    height:27em;
+    margin-left: 35%;
+    margin-top: 3em;
 
 }
+
+.container-edit-type{
+    display:flex; 
+    border: 1px solid #A9A9A9 ;
+    border-radius: 1em;
+    background-color:#f3f3f2;
+    box-shadow: 10px 8px 8px grey;
+    border-radius: 1em;
+    width:60em;
+    height:30em;
+    margin-left: 25%;
+    margin-top: 3em;
+
+}
+.image-form-type{
+    margin-left:10em;
+    padding-top:3em;
+    width: 20em;
+    float:left
+}
+
+.main-input-type{
+   margin-top:3em;
+  
+    float:right;
+    width: 20em;
+}
+
+.input-description-type{
+    margin-left:13em;
+    width: 20em;
+}
+
+.validate-button-type{
+    padding-top:3em;
+    text-align:center;
+    margin-left:13em;
+}
+
+.image-form{
+    padding-top:3em;
+    width: 20em;
+}
+
+.main-input{
+    padding-top:3em;
+    width: 20em;
+}
+
+.img-back{
+    max-width: 10em;
+    height:auto;
+ }
+
+.input-name-edit {
+    justify-content: center;
+}
+
+.validate-edit {
+    margin-right:2em;
+    background-color:#fe922d;
+    font-weight:bold;
+    border-radius:10px;
+    padding:0.7em 5em;
+    font-weight:bold;
+    font-size:1.3em;
+    color:white;
+    border-style:none;
+}
+
+/*Formulaire d'ajout user*/
+.container-edit-user{
+    display:flex; 
+    /* flex-direction:row; */
+    border: 1px solid #A9A9A9 ;
+    border-radius: 1em;
+    background-color:#f3f3f2;
+    box-shadow: 10px 8px 8px grey;
+    border-radius: 1em;
+    width:60em;
+    height:45em;
+    margin-left: 25%;
+    margin-top: 3em;
+
+}
+
+.validate-button-user{
+    padding-top:3em;
+    margin-left: 60%;
+}
+
+.back-button-user{
+    font-size:10px;
+    text-align: center;
+    padding-top: 5em;
+    /* margin-left: 60%; */
+}
+
+.link-back-user{
+    color:black;
+    font-size:1.8em;
+    margin-left : 20em;
+ 
+}
+
+.add-user {
+    padding-top:1.5em;
+    width: 20em;
+    margin-left: 60%;
+}
+
+
+/* Validation d'un hébergement*/
+.on-line {
+    color:white;
+    background-color:#f37227;
+    border-radius:10px;
+    padding:0.7em 1.5em;
+    font-weight:bold;
+    font-size:1em;
+    border-style:none;
+}
+
+.on-line:hover{
+    background-color:#f38546;
+}
+
+.banish-button-user{
+    color:white;
+    background-color:#e64750;
+    border-radius:10px;
+    padding:0.7em 1.5em;
+    font-weight:bold;
+    font-size:1em;
+    border-style:none;
+   
+}
+
+.banish-button-user:hover{
+    color:white;
+    background-color:#e46a70;
+}
+
+.delete-button-validate{
+    color:white;
+    background-color:#e64750;
+    border-radius:10px;
+    padding:0.7em 1.5em;
+    font-weight:bold;
+    font-size:1em;
+    border-style:none;
+}
+
+.delete-button-validate:hover{
+    color:white;
+    background-color:#e46a70;
+}
+
+.accomodation-button-edit{
+    color:white;
+    background-color:#fe922d;
+    border-radius:10px;
+    padding:0.7em 1.5em;
+    font-weight:bold;
+    font-size:1em;
+    border-style:none;
+   
+}
+
+.accomodation-button-edit:hover{
+    background-color:#e7a541;
+}
+
+
+
+.validate-link-back {
+    color:black;
+    font-size:1em;
+    float : right;
+    margin-left : 60%;
+}
+
+.validate-link-back:hover {
+    font-weight: bold;
+    text-decoration: none;
+    color:black;
+}
+
+.button-validate{
+    padding:1em;
+    height:25em;
+    margin-top:1em;
+    margin-right:2em;
+    display:flex;
+    margin-top:4em;
+    margin-left:-1em;
+}
+
+.button-on-line,
+.button-delete-admin,
+.button-banish-admin, 
+.button-accomodation-edit{
+    margin:1.2em;
+    
+}
+
+
+.img-text-services{
+   flex-direction:column;
+   margin-top: 1em;
+   
+}
+
+.img-text-extras{
+    flex-direction:column;
+    margin-top: 1em;  
+ }
+ 
+
+.validate-icon{
+    float : left;
+    padding-right :-3em;
+}
+
+.validate-name{
+   padding-left: 3em;
+   padding-top:0.9em;
+}
+
+.accomodation-services{
+    float :left;  
+    width: 50%
+}
+
+.accomodation-extras{
+    float:right; 
+    width: 50%
+}
+
+.validate-body {
+    border : 1px solid #DFDEDE;
+    border-radius: 20px;
+    width : 50em;
+    height : 110em;
+    margin-left: 25%;
+    box-shadow: 10px 10px 10px #DFDEDE;
+    padding-left : 5em ; 
+    padding-top : 5em ; 
+}
+
+.validate-user-username {
+    font-size : 30px;
+    color : black;
+    padding : 0.5em;
+    margin-left:-0.7em;
+}
+
+i {
+    color:black;
+    padding : 0.2em;
+}
+
+i:hover {
+    text-decoration: none;
+}
+
+.accomodation-title {
+    font-weight : bold;
+    padding-bottom: 1em;
+    padding-top: 0.8em;
+}
+
+.accomodation-adress  {
+    line-height: 0.5em;
+}
+.validate-accomodation-type {
+    font-weight : bold;
+    padding-top: 1em;
+}
+
+.accomodation-description {
+    padding-right : 10em ; 
+}
+
+.accomodation-price, .accomodation-surface {
+    font-weight: bold;
+}
+
+.accomodation-icons{
+   padding-right : 0.6em;
+}
+
+.accomodation-picture{
+ border-radius: 20px;
+ padding-bottom : 1em;
+}
+
+.validate-pictures{
+ width : 50em;
+}
+
+.title-service-extras{
+   font-weight:bold;
+   height:1em;
+   text-decoration: underline;
+   margin-bottom:1.5em;
+}
+
+
+.validate-extras-services{
+    display:flex;
+}
+
+
 
 #titleList {
     padding-left: 0.3em;
     font-size: 3em;
-
 }
+
 .imgTypesList{
 max-width: 10em;
 height:auto;
@@ -26,63 +640,81 @@ height:auto;
     justify-content: center;
     border: 1px solid #CACFD3 ;
     border-radius: 1em;
-    margin-top: 5em; 
+    margin-top: 5.5em; 
     padding-top:2em;
 }
 
-.nameType, 
-.descriptionType,
-.thematicType 
+
+.input-thematic,
+.input-name
 {
-    padding:1em 3em;
-    max-width:20em;
-    flex-wrap:wrap;
-   
+    width:18em;
 }
 
-
-#form_services_name{
-  font-size:1.5em; 
-  margin-top:1em; 
-  margin-left:0.04em;
-}
-
-.pictureTypeAdmin,
-.iconTypeAdmin
- {
-    padding:1em 1em 8em 0em;
-   
-}
-
-
-.pictureIcon{
-    float:left;
-}
-
-.nameDescThemType{
-    float:right;
-}
-
-.btn-primary{
+.validate{
     margin-right:3em;
-    background-color:rgb(26, 122, 85);
+    background-color:#fe922d;
     font-weight:bold;
     border-radius:10px;
-    
+    border-radius:10px;
+    padding:0.7em 5em;
+    font-weight:bold;
+    font-size:1.3em;
+    color:white;
+    border-style:none;
 }
-.buttonType{ 
-   padding-top:18em;
+
+.validate:hover{
+    background-color:#e7a541;
+}
+
+.validate-button{ 
+   padding-top:3em;
    text-align:center;
-
 }
 
-.title{
-   display: flex;
-   background-color:rgb(37, 126, 92);
-    color:rgb(241, 232, 232);
-    font-family: 'Tenali Ramakrishna', sans-serif; 
-
+.link-back{
+    color:black;
+    font-size:1.8em;
 }
+
+.back-button{
+    padding-top:2em;
+    padding-right:3em;
+    font-size:0.7em;   
+}
+
+
+.link-back-user{
+    padding-top:2em;
+    padding-right:3em;
+    font-size:1.8em;     
+    color:black;
+}
+
+.link-back-user:hover{
+    text-decoration:none;
+    color:black;
+    font-weight:bold;
+}
+
+.link-back:hover{
+    text-decoration:none;
+    color:#464642;  
+}
+
+.edit-title{
+    padding-left:14.2em;
+    padding-top:5em;
+}
+
+
+.container{
+    background-color:#f3f3f2;
+    margin-top:1.6em;
+    border-color:#99998d;
+}
+
 
 #titleButton{
     margin-top: 1.7em ;
@@ -91,246 +723,37 @@ height:auto;
     font-size: large;
     color: white;
 }
+
 #titleButton:hover{
     background-color: #1E2B37;
     color:white;
 }
- .addTitle,
- .typeTitleList,
- .typeTitleEdit
- {
-    height:2em;
-    background-color:rgb(37, 126, 92);
-    color:rgb(241, 232, 232);
-    font-family: 'Tenali Ramakrishna', sans-serif; 
-    padding-top:0.5em;
-    padding-left: 2em;
-}
-
-.linkBack{
-    font-size:1.8em;
-}
-
-.deleteButtonType, 
-.deleteButtonUser,
-.deleteButtonType,
-.deleteButtonService,
-.banishButtonUser,
-.deleteButtonAccomodation{
-    color:white;
-    background-color:red;
-    padding:0.3em 0.5em;
-    font-weight:bold;
-    border-style:solid 1px black;
-    border-width:2.5px;
-    border-radius:10px;
-    display:inline-block;
- }
-
-.accomodation-button-edit{
-    background-color:rgb(37, 126, 92);
-    font-size: 0.9375rem;
-}
-
-.deleteButtonType:hover{
-    background-color: #1E2B37;
-    color:white;
-}
-
-.aside {
-   width: 20%;
-   position: fixed;
-}
-
-.sidebar {
-    font-family: 'Tenali Ramakrishna', sans-serif; 
-    display: grid; 
-    grid-template-columns: 21em 1fr ;
-    background-color:rgb(37, 126, 92);
-    float:left;
-    margin-right: -7em;
-    border : 1px solid #0F7864;
-    margin: 0em 1em;
-    padding-top:1em;
-    padding-right: 1.6em;
-    font-size:20px;
-    height: 100vh;
     
-   
+.container{
+    display:flex;  
+    box-shadow: 10px 8px 8px grey;
+}
+    
+.input-name, 
+.input-description,
+.input-thematic {
+    padding:1em 3em;
+    max-width:20em;
+    flex-wrap:wrap;
+}
+    
+.current-picture-form,
+.current-icon-form{
+    padding:1em 1em 1em 0em;
 }
 
-.navigation-list {
-    display: grid;
-    gap: .5rem;
-    list-style-type:none;
-    text-align:center;  
-}
-
-.navigation-link{
-      color:white;
-      font-size:1.3em;
-}
-
-  .navigation-item:active .navigation-link:active{
-    color:white;
-    font-size:1.3em;
-    background-color: #f0f;
-}
-
-  
-  .navigation-link:hover{
-    color:rgb(12, 238, 151);
-}
-
-  .navigation-item
-  { 
-    font-family: 'Tenali Ramakrishna', sans-serif; 
-    padding:0em 6em;
-    background-color:rgb(168, 68, 10);
-    color:white;
-    margin:0.2em;
-  }
-
-  .button-site{
-      background-color:white;
-      margin-top:7em;
-      margin-bottom: 3em;
-      border-radius:10px;
-  }
-
-  .button-site:hover{
-    background-color: #1E2B37;
-    color:white;
-}
- 
-  .navigation-item-validate{
-      margin-top:8em;
-      background-color:rgb(27, 221, 147);
-      padding:2em;
-      
-  }
-
-  .navigation-link-validate{
-      background-color:rgb(27, 221, 147);
-      font-size:1.3em;
-      color:black;
-  }
-
-  .navigation-item-validate:hover{
-    background-color: #1E2B37;
-    color:white;
-  }
-
-  
-  .navigation-titre{
-      font-size:1.5em;
-      text-transform:uppercase;
-      line-height:0.7em;
-      padding-top:0.7em;
-  }
-  
-.deleteButtonOnEdit{
-    background-color: red;
-    color: white;
-    padding:0.3em 0.5em;
-    font-weight:bold;
-    border-style:solid 1px black;
-    border-width:2.5px;
-    border-radius:10px;
-    display:inline-block;
-    font-size: 0.9375rem;
-}
-.imgTypesList{
-    max-width: 10em;
+#form_description{
+    width:35em;
+    margin-left:-3em;
     height:auto;
-    }
+}
     
-    
-    .container{
-        display:flex;  
-    }
-    
-    .nameType, 
-    .descriptionType,
-    .thematicType 
-    {
-        padding:1em 3em;
-        max-width:20em;
-        flex-wrap:wrap;
-    }
-    
-    
-    #form_services_name{
-      font-size:1.5em; 
-      margin-top:1em; 
-      margin-left:0.04em;
-    }
-    
-    .pictureTypeAdmin,
-    .iconTypeAdmin
-     {
-        padding:1em 1em 8em 0em;
-    }
-    
-    
-    .pictureIcon{
-        float:left;
-    }
-    
-    .nameDescThemType{
-        float:right;
-    }
-    
-    .buttonType { 
-       padding-top:18em;
-       text-align:center;
-    }
-    
-    .btn-primary{
-        margin-right:3em;
-        background-color:rgb(26, 122, 85);
-        font-weight:bold;
-    }
-    
-     .addTitle,
-     .typeTitleList,
-     .typeTitleEdit{
-        height:2em;
-        background-color:rgb(24, 189, 126);
-        color:rgb(241, 232, 232);
-        font-family: 'Tenali Ramakrishna', sans-serif; 
-        padding-top:0.5em;
-    }
 
-    .back-list-validate{
-        font-size:2em;
-    }
-
-    .back-list-validate:hover{
-        color:white;
-    }
-    
-    .deleteButtonType,
-    .deleteButtonService, 
-    .deleteButtonExtra,
-    .deleteButtonAccomodation
-    {
-        color:white;
-        background-color : red;
-        font-weight:bold;
-        border-style:solid;
-        border-width:2.5px;
-        border-radius:10px;
-     
-    
-    } 
-    
-    #extra_icon, 
-    #extra_name, 
-    #extra_price {
-        font-size:1.5em; 
-        margin-top:1em; 
-        margin-left:0.04em;
-    }
 
  
+   

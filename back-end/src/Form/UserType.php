@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Email;
@@ -22,18 +23,14 @@ class UserType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-                'constraints' => [
-                    new Email()
-                ]
+                'required'=>false,
+                'constraints' => new Email([
+                    'message' => 'L\'adresse email est invalide'
+                    ]),
             ])
-/*             ->add('roles', ChoiceType::class,[
-                'multiple' => false,
-                'choices' => [ 
-                     'Administrateur' => 'ROLE_ADMIN',
-                     ]
-                
-            ] ) */
+
             ->add('password', RepeatedType::class, [
+                'invalid_message' => 'Le mot de passe doit être identique',
                 'type' => PasswordType::class,
                 'required' => true,
                 'first_options' => ['label' => ' ','attr' => ['placeholder' => 'Veuillez saisir le mot de passe']],
@@ -41,22 +38,55 @@ class UserType extends AbstractType
                 'constraints' => [
                     new NotBlank([
                         'normalizer' => 'trim',
-                    ])
+                        'message' =>'Le mot de passe ne peut pas être vide'
+                        
+                    ]),
+                    new Length([ 
+                        'min' => 8,
+                        'minMessage' => "Le mot de passe doit contenir 8 caractères minimum"
+
+                       ])
                 ]
             ])
             ->add('pseudo', null, [
+              
                 'label' => 'Pseudo',
+                'required' => false,
+                'constraints' => [
+                    new NotBlank([
+                        'normalizer' => 'trim',
+                        'message' =>'Le pseudo ne peut pas être vide'
+                        
+                    ])
+                    ]
+                
             ])
             ->add('firstname', null, [
+                'required'=>false,
                 'label' => 'Prénom',
+                'invalid_message' => "Le prénom ne peut contenir ni de caractères speciaux, ni de chiffres", 
+                'constraints' => [
+                    new NotBlank([
+                        'normalizer' => 'trim',
+                        'message' =>'Le prénom ne peut pas être vide'
+                        
+                    ])
+                    ]
+                
             ])
             ->add('lastname', null, [
+                'required'=>false,
                 'label' => 'Nom',
+                'invalid_message' => "Le nom ne peut contenir ni de caractères speciaux, ni de chiffres", 
+                'constraints' => [
+                    new NotBlank([
+                        'normalizer' => 'trim',
+                        'message' =>'Le nom ne peut pas être vide'
+                        
+                    ])
+                    ]
             ])
- /*            ->add('avatar', FileType::class, [
-                'required' => false,
-              ])
-            */
+            
         ;
         //roles field data transformer
 /*         $builder->get('roles')

@@ -37,7 +37,6 @@ class PictureRepository extends ServiceEntityRepository
         
         return $qb->getQuery()->getResult();
     }
-
     
 
     // /**

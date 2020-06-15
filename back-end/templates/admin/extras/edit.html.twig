@@ -1,28 +1,37 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 
-<h1 class="typeTitleEdit">Modifier le service</h1>
+<div class="edit-title">
+     <h3>Modifier l'extra</h3>
+</div>
 
-<div class="container">
+<div class="container-edit">
 {{form_start(form)}}
 
-     <div class="extra">
-          <div class="extra-name">{{form_widget(form.name, {'attr': {'placeholder': 'Nom'}}) }}
+     <div class="main-input">
+          <div class="input-name-edit">
+          {{form_widget(form.name, {'attr': {'placeholder': 'Nom'}}) }}
           </div>
+     </div>     
 
-          <div class="extra-icon">{{form_widget(form.icon, {'attr': {'placeholder': 'Icon'}}) }}
+{% if form_errors(form.icon) %}
+  <p style="color:red">L'icon est obligatoire.</p>
+{% endif %}
+
+     <div class="image-form">
+          <div class="current-icon-form">
+          {{form_widget(form.icon, {'attr': {'placeholder': 'Icône'}}) }}
           </div>
-
      </div>
 
-     <div class="buttonExtra">
-          <button type="submit" class="btn btn-primary">Valider</button>
-          <a href="{{path('admin_extras_browse')}}" class="linkBack"> Retour a la liste</a>
-     </div>
 
+   <div class="validate-button">
+                    <button type="submit" class="validate-edit">Valider</button>
+               <div class="back-button">
+                    <a href="{{path('admin_extras_browse')}}" class="link-back"> Retour à la liste</a>
+               </div>
+          </div>
 {{form_end(form)}}
-
-
 </div>
 
 

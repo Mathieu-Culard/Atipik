@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Accomodation;
 use App\Repository\AccomodationRepository;
+use App\Repository\PictureRepository;
 use App\Form\AccomodationDeleteType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
@@ -22,6 +23,7 @@ class AccomodationController extends AbstractController
     {
         //We recover the list's extras
         $accomodations = $accomodationRepository->findByValidation();
+        //dd($accomodations);
 
         //Declare an empty array
         $forms =[];
@@ -36,9 +38,9 @@ class AccomodationController extends AbstractController
 
             //We associate to $extras, an array which contain, a delete button for each extra
             $forms[]= $this->createForm(accomodationDeleteType::class, $accomodations, $formOptions)->createView();
+        
         }
-
-
+          
             return $this->render('admin/accomodation/browse.html.twig', [
             'accomodations' => $accomodations,
             'forms' => $forms

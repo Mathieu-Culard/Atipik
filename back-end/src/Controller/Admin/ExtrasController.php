@@ -131,10 +131,10 @@ class ExtrasController extends AbstractController
                 $iconFile->move($this->getParameter('icon_directory'), $newName);
 
                 //dd($iconFile); 
-            }
+            
             //dd($iconFile); 
             $extra->setIcon($newName);
-     
+     }
 
             //We update the DB
             $em = $this->getDoctrine()->getManager();

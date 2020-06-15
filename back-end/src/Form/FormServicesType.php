@@ -16,11 +16,17 @@ class FormServicesType extends AbstractType
     {
         $builder
             ->add('name', null, [
-                'constraints' => new Assert\NotBlank()
+                'required'=>false,
+                'constraints' => new Assert\NotBlank([
+                    'message'=>'Le nom du service est obligatoire',
+               ])
             ])
             ->add('icon', FileType::class, [
                 'required' => false,
                 'mapped' => false, 
+            //     'constraints' => new Assert\NotBlank([
+            //         'message'=>'L\'icone est obligatoire',
+            //    ])
            ])
            
         ;

@@ -47,6 +47,7 @@ class AuthentifiedUserController extends AbstractController
             $roleUser = $role;
             //dd($roleUser);
         }
+        
         //we add to our array, $roleUser which is a string now
         $userData['roles'] = $roleUser;
 
@@ -108,11 +109,13 @@ class AuthentifiedUserController extends AbstractController
 
             // The database is being updated
             $em->flush();
-
+            //dd($connectedUser);
             return $this->json('', 201);
         }
 
-        return $this->json('', 403);
+        $formError = $form->getErrors(true);
+
+        return $this->json($formError, 400);
     }
 
     /**

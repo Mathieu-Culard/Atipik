@@ -16,7 +16,7 @@ class UserDeleteType extends AbstractType
             ->add('deleteButton', SubmitType::class, [
                 'label' => 'Supprimer',
                 'attr' => [
-                    'class' => 'deleteButtonUser',
+                    'class' => 'deleteButton',
                 ]
             ])
         ;

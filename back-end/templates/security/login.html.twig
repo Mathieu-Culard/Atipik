@@ -3,42 +3,47 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-<div class="container" id="containerLogin">
+<div class="body-login">
+
+   
+<img src="{{ asset('assets/css/' ~ 'Atipik-orange.png') }}" class="logo-admin">
+   
+<div class="container-login">
 <form method="post">
-    {% if error %}
-        <div class="alert alert-danger" id="error">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
 
     {% if app.user %}
         <div class="mb-3" id="logout">
-            Bonjour {{ app.user.username }}, <a href="{{ path('app_logout') }}">Se deconnecter</a>
+            Bonjour {{ app.user.username }}, <a href="{{ path('app_logout') }}" class="link-logout-admin">
+            <br>Se déconnecter</a>
         </div>
     {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal" id="connexion">Veuillez vous connecter</h1>
-    <label for="inputEmail" id="labelLogin">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputLogin" class="form-control" required autofocus>
-    <label for="inputPassword">Mot de passe</label>
-    <input type="password" name="password" id="inputLogin" class="form-control" required>
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+    <h2 class="title-admin">Connexion</h2>
+    <!--<h3 class="login">Veuillez vous connecter</h3>-->
+    <div class="input">
+        <label for="input-email" id="label-login">Email</label>
+        <input type="email" value="{{ last_username }}" name="email" id="input-login" class="form-control" required autofocus>
+        <label for="input-password" id="label-login">Mot de passe</label>
+        <input type="password" name="password" id="input-login" class="form-control" required>
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+    </div>
 
-    {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
+    {% if error %}
+        <div class="alert alert-danger" id="error">Identifiants invalides</div>
+    {% endif %}
+{# {{ error.messageKey|trans(error.messageData, 'security') }} #}
 
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
-        </div>
-    #}
 
-    <button class="btn btn-lg btn-primary" type="submit">
+    <button class="submit-authentification" type="submit">
         Se connecter
     </button>
 </form>
+</div>
+
+<div class="loader">
+{{ source('/security/loader.svg') }}
+</div>
+
 </div>
 {% endblock %}

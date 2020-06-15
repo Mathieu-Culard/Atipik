@@ -2,34 +2,71 @@
 
 {% block body %}
 
-	<h1>Ajouter un utilisateur</h1>
+<div class="edit-title">
+	<h3>Ajouter un utilisateur</h3>
+</div>
 
+<div class="container-edit-user">
 	{{form_start(form)}}
 
+
+<div class="add-user"> 
+{% if form_errors(form.firstname) %}
+  <p style="color:red">{{ form_errors(form.firstname) }}</p>
+{% endif %}
 	{{ form_widget(form.firstname, {
   'attr': {'placeholder': 'Prénom'}
        }) }}
+</div>
+
+<div class="add-user">
+{% if form_errors(form.lastname) %}
+  <p style="color:red">{{ form_errors(form.lastname) }}</p>
+{% endif %}
 	{{ form_widget(form.lastname, {
   'attr': {'placeholder': 'Nom'}
-       }) }}
+       }) }} 
+</div>
+
+
+<div class="add-user"> 
+{% if form_errors(form.email) %}
+  <p style="color:red">{{ form_errors(form.email) }}</p>
+{% endif %}
 	{{ form_widget(form.email, {
   'attr': {'placeholder': 'Email'}
        }) }}
+</div>
+
+
+<div class="add-user">
+{% if form_errors(form.pseudo) %}
+  <p style="color:red">{{ form_errors(form.pseudo) }}</p>
+{% endif %}
 	{{ form_widget(form.pseudo, {
   'attr': {'placeholder': 'Pseudo'}
        }) }}
+</div>
+
+
+<div class="add-user">
+{% if form_errors(form.password) %}
+  <p style="color:red">{{ form_errors(form.password) }}</p>
+{% endif %}
 	{{ form_widget(form.password)}}
-	{# {{ form_widget(form.roles) }}
-  	{{ form_widget(form.avatar) }} #}
+</div>
 
-	
 
-	
-
-  <button type="submit" class="btn btn-primary">Ajouter</button>
-  <a href="{{path('admin_users_browse')}}">Retour à la liste</a>
-
+<div class="validate-button-user">
+  <button type="submit" class="validate">Ajouter</button>
+   
+</div>
+ <div class="back-button-user">
+      <a href="{{path('admin_users_browse')}}" class="link-back-user"> Retour à la liste</a>
+    </div>
 
 {{form_end(form)}}
+
+</div>
 
 {% endblock %}

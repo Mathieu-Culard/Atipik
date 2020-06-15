@@ -143,42 +143,56 @@ class AccomodationController extends AbstractController
         $accomodationName = $ownerAccomodation->getTitle();
         // dd($owner);
 
+        $dateTime = new \DateTime("NOW");
+        $dateTime = ($dateTime->format('d-m-Y'));
+        //dd($dateTime);
+        
+        
         //if the new booking is correctly booked
         if ($newBooking) {
-            //Modify dates, accomodation and user
-            $newBooking->setEntrance($dateFrom);
-            $newBooking->setDeparture($dateTo);
-            $newBooking->setAccomodation($ownerAccomodation);
-            $newBooking->setUser($tenant);
-            // dd($newBooking);
-            // And now, save datas in DB
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($newBooking);
-            $em->flush();
-
-
-            //Send a message from the tenant to the owner
-            $message = (new \Swift_Message('Réservation de votre logement'))
-                ->setFrom([$tenantEmail => $tenantEmail])
-                ->setTo(array($ownerEmail => $ownerEmail))
-                ->setBody('Bonjour,<br><br> Votre logement a été réservé du ' . $entryDate . ' au ' . $departureDate . ' par ' . $tenantFirstName . ' ' . $tenantLastName . ".<br><br> Cordialement, <br><br> L'équipe AtipiK ", 'text/html');
-
-            // dd($mailer->send($message));
-            $mailer->send($message);
-
-            //Send a confirm message from the owner to the tenant
-            $confirmMessage = (new \Swift_Message('Confirmation de votre réservation'))
-                ->setFrom([$ownerEmail => $ownerEmail])
-                ->setTo(array($tenantEmail => $tenantEmail))
-                ->setBody('Bonjour, <br><br> Votre logement est bien réservé pour la période du ' . $entryDate . ' au ' . $departureDate . '. <br> Passez un bon séjour chez ' . $accomodationName . '. <br><br> Cordialement, <br><br> L\'équipe AtipiK ', 'text/html');
-
-            // dd($mailer->send($message));
-            $mailer->send($message);
-            $mailer->send($confirmMessage);
-            return $this->json('', 201);
- 
+            if($dateFrom < $dateTime) {
+            return $this->json("Vous ne pouvez pas réserver une date inférieure à la date d'aujourd'hui", 400);
         }
-        return $this->json('', 404);
+        else {
+
+             //Modify dates, accomodation and user
+             $newBooking->setEntrance($dateFrom);
+             $newBooking->setDeparture($dateTo);
+             $newBooking->setAccomodation($ownerAccomodation);
+             $newBooking->setUser($tenant);
+             // dd($newBooking);
+             // And now, save datas in DB
+             $em = $this->getDoctrine()->getManager();
+             $em->persist($newBooking);
+             $em->flush();
+ 
+ 
+             //Send a message from the tenant to the owner
+             $message = (new \Swift_Message('Réservation de votre logement'))
+                 ->setFrom([$tenantEmail => $tenantEmail])
+                 ->setTo(array($ownerEmail => $ownerEmail))
+                 ->setBody('Bonjour,<br><br> Votre logement a été réservé du ' . $entryDate . ' au ' . $departureDate . ' par ' . $tenantFirstName . ' ' . $tenantLastName . ".<br><br> Cordialement, <br><br> L'équipe AtipiK ", 'text/html');
+ 
+             // dd($mailer->send($message));
+             $mailer->send($message);
+ 
+             //Send a confirm message from the owner to the tenant
+             $confirmMessage = (new \Swift_Message('Confirmation de votre réservation'))
+                 ->setFrom([$ownerEmail => $ownerEmail])
+                 ->setTo(array($tenantEmail => $tenantEmail))
+                 ->setBody('Bonjour, <br><br> Votre logement est bien réservé pour la période du ' . $entryDate . ' au ' . $departureDate . '. <br> Passez un bon séjour chez ' . $accomodationName . '. <br><br> Cordialement, <br><br> L\'équipe AtipiK ', 'text/html');
+ 
+             // dd($mailer->send($message));
+             $mailer->send($message);
+             $mailer->send($confirmMessage);
+             return $this->json('', 201);
+  
+         }
+         return $this->json('', 404);
+
+        }
+
+           
     }
 
 

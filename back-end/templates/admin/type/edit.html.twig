@@ -1,37 +1,40 @@
 {% extends 'base.html.twig' %}
+
 {% block body %}
 
-<h1 class="typeTitleEdit">Modifier le type d'hebergement</h1>
+<div class="body">
 
-<div class="container">
-{{form_start(form)}}
-
-     <div class="pictureIcon">
-          <div class="pictureTypeAdmin">{{form_widget(form.picture, {'attr': {'placeholder': 'Photo'}}) }}
-          </div>
-
-          <div class="IconTypeAdmin">{{form_widget(form.icon, {'attr': {'placeholder': 'Icon'}}) }}
-          </div>
+     <div class="edit-title">
+          <h3>Modifier le type d'hébergement</h3>
      </div>
 
-     <div class="nameDescThemType">
-          <div class="nameType">{{form_widget(form.name, {'attr': {'placeholder': 'Nom'}}) }}
+     <div class="container-edit-type">
+     {{form_start(form)}}
+
+          <div class="image-form-type">
+               <div class="current-picture-form">{{form_widget(form.picture, {'attr': {'placeholder': 'Photo'}}) }}</div>
+               <div class="current-icon-form">{{form_widget(form.icon, {'attr': {'placeholder': 'Icône'}}) }}</div>
           </div>
 
-          <div class="descriptionType">{{form_widget(form.description, {'attr': {'placeholder': 'Description'}}) }}
-          </div> 
+          <div class="main-input-type">
+               <div class="input-name">{{form_widget(form.name, {'attr': {'placeholder': 'Nom'}}) }}</div>
+               <div class="input-thematic">{{form_widget(form.thematic)}}</div>
+           </div>
 
-          <div class="thematicType">{{form_widget(form.thematic)}}
+          
+          <div class="input-description-type">{{form_widget(form.description, {'attr': {'placeholder': 'Description'}}) }}</div> 
+          
+
+          <div class="validate-button-type">
+               <div>
+                    <button type="submit" class="validate">Valider</button>
+               </div>
+               <div class="back-button">
+                    <a href="{{path('admin_type_browse')}}" class="link-back"> Retour à la liste</a>
+               </div>
           </div>
-     </div>
-
-     <div class="buttonType">
-          <button type="submit" class="btn btn-primary">Valider</button>
-          <a href="{{path('admin_type_browse')}}" class="linkBack"> Retour a la liste</a>
-     </div>
      
 {{form_end(form)}}
-
 </div>
 
 
