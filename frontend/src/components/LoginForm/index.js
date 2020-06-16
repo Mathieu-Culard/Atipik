@@ -52,7 +52,7 @@ const LoginForm = ({
         />
         <TextField
           id="login-panel-password"
-          label="Password"
+          label="Mot de passe"
           type="Password"
           value={password}
           onChange={(e) => changeField('password', e.target.value)}

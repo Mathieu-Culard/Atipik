@@ -22,6 +22,17 @@ const useStyles = makeStyles({
     width: '80vw',
     height: 'fit-content',
     padding: '2rem 1rem',
+    borderRadius: '20px',
+  },
+  paper: {
+    borderRadius: '20px',
+  },
+  label: {
+    color: 'white !important',
+  },
+  outline: {
+    borderColor: 'white !important',
+    backgroundColor: 'white !important',
   },
 });
 const AccomodationTypesDropdown = ({
@@ -47,18 +58,40 @@ const AccomodationTypesDropdown = ({
   const id = open ? 'simple-popover' : undefined;
   return (
     <div className="accomodation-types-dropdown">
-      <FormControl variant="outlined" className={classes.formControl}>
-        <InputLabel id="demo-simple-select-outlined-label">Type d'hébergement</InputLabel>
+      <FormControl
+        variant="outlined"
+        className={classes.formControl}
+        classes={{
+          // root: classes.dropdown,
+          // focused: classes.dropdown,
+          // outlined: classes.dropdown,
+          // notchedOutline: classes.outline,
+        }}
+      >
+        <InputLabel
+          id="demo-simple-select-outlined-label"
+          classes={{
+            root: classes.label,
+            // focused: classes.dropdown,
+            // formControl: classes.dropdown,
+          }}
+        >
+          Type d'hébergement
+        </InputLabel>
         <Select
           open={false}
-          labelId="demo-simple-select-outlined-label"
+          labelId="test"
           id="demo-simple-select-outlined"
           multiple
           onOpen={handleClick}
-          label="Type d'hébergement"
+          label="Type d'hébergement----"
+          classes={{
+            // root: classes.dropdown,
+            // focused: classes.dropdown,
+          }}
         />
       </FormControl>
-      <Popover
+      {/* <Popover
         id={id}
         open={open}
         anchorReference="anchorPosition"
@@ -68,24 +101,45 @@ const AccomodationTypesDropdown = ({
           vertical: 'bottom',
           horizontal: 'center',
         }}
+      > */}
+      <Popover
+        className={classes.paper}
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        // anchorPosition={getAnchorPosition()}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+        classes={{
+          paper: classes.paper,
+        }}
       >
         <Box className={classes.root}>
-          <h2 className="dropdown-title">Types d'hébergements</h2>
-          {accomodationTypes.map((thematic) => {
-            const isSelected = selectedThematics.some((SelectedId) => (SelectedId === thematic.id));
-            return (
-              <Thematic
-                accomodationTypes={accomodationTypes}
-                key={thematic.id}
-                thematic={thematic}
-                selectAll={selectAll}
-                isSelected={isSelected}
-                unselectAll={unselectAll}
-                changeAccomodationTypes={changeAccomodationTypes}
-                accomodationTypesValue={accomodationTypesValue}
-              />
-            );
-          })}
+          {/* <h2 className="dropdown-title">Types d'hébergements</h2> */}
+          <div className="dropdown-content">
+            {accomodationTypes.map((thematic) => {
+              const isSelected = selectedThematics.some((SelectedId) => (SelectedId === thematic.id));
+              return (
+                <Thematic
+                  accomodationTypes={accomodationTypes}
+                  key={thematic.id}
+                  thematic={thematic}
+                  selectAll={selectAll}
+                  isSelected={isSelected}
+                  unselectAll={unselectAll}
+                  changeAccomodationTypes={changeAccomodationTypes}
+                  accomodationTypesValue={accomodationTypesValue}
+                />
+              );
+            })}
+          </div>
         </Box>
       </Popover>
     </div>

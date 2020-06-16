@@ -8,7 +8,7 @@ const DatePicker = ({
   changeDate, dateValue, label, identifier,
 }) => {
   const handleDateChange = (date, formatedDate) => {
-    console.log(formatedDate);
+    // console.log(formatedDate);
     changeDate(identifier, date, formatedDate);
   };
 
@@ -19,6 +19,7 @@ const DatePicker = ({
         size="small"
         disableToolbar
         variant="inline"
+        disablePast
         inputVariant="filled"
         format="dd/MM/yyyy"
         margin="normal"

@@ -11,7 +11,7 @@ import AccomodationTypesDropdown from 'src/containers/AccomodationTypesDropdown'
 import CustomSlider from 'src/components/CustomSlider';
 import AccomodationTypes from 'src/containers/AccomodationTypes';
 
-import background from '../../assets/backgrounds/homeBackground2.png';
+import background from 'src/assets/backgrounds/homeBackground2.png';
 
 const style = (theme) => (
   {
@@ -22,12 +22,10 @@ const style = (theme) => (
     cssLabel: {
       color: 'white',
     },
-
     cssInput: {
       color: 'white',
       borderColor: 'white',
     },
-
     cssFocused: {
       '&$cssLabel': {
         color: '#fe922d !important',
@@ -35,7 +33,7 @@ const style = (theme) => (
       color: 'white !important',
       '&$cssFocused': {
         '&::after': {
-          borderBottomColor: '#e64750 !important',
+          borderBottomColor: '#fe922d !important',
         },
       },
     },
@@ -87,7 +85,7 @@ const Home = ({
               <TextField
                 id="country"
                 variant="standard"
-                disableUnderline={false}
+                // disableUnderline={false}
                 label="Pays"
                 className={classes.textField}
                 size="small"
@@ -171,7 +169,7 @@ const Home = ({
               <TextField
                 // variant="outlined"
                 id="nbNights"
-                label="nb de nuitées"
+                label="Nombre de nuitées"
                 type="number"
                 className={classes.textField}
                 // className={classes.textField}
@@ -212,11 +210,11 @@ const Home = ({
               />
             </div>
           </div>
-          <div className="row">
-            <Link to="/recherche">
-              <button className="search__submit" type="submit" onClick={handleSearch}>Rechercher</button>
-            </Link>
-          </div>
+          {/* <div className="row"> */}
+          <Link to="/recherche">
+            <button className="search__submit" type="submit" onClick={handleSearch}>Rechercher</button>
+          </Link>
+          {/* </div> */}
         </form>
       </section>
       <section className="accomodation-types">

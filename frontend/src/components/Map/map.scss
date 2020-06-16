@@ -1,3 +1,5 @@
+@import 'src/styles/vars';
+
 .map {
   width: 100%;
   height: 100%;
@@ -6,73 +8,110 @@
   }
 }
 
-.pin {
-  z-index: 0;
+.marker {
   position: relative;
-  background-color: grey;
-  border-radius: 50% 50% 50% 0;
-  width: 40px;
-  height: 40px;
-  transform: translate(-20px, -45px) rotate(-45deg);
-  transition: 0.2s;
-
-  &__icon {
-    background-color: white;
-    padding-top: 4px;
-    text-align: center;
-    width: 35px;
-    height: 35px;
-    margin: auto;
-    border-radius: 50%;
-    transform: translate(0px, 2px) rotate(45deg);
-  }
-
-  &__card {
-    display: none;
-  }
-
   &:hover {
-    z-index: 999;
-    width: 250px;
-    height: 260px;
-    border-radius: 0;
-    transform: translate(-100px, -270px) rotate(0deg);
-    transition: 0.1s;
-
-    &::after {
-      content: "";
-      transform: translate(90px, 0px);
-      border-left: 10px solid transparent;
-      border-right: 10px solid transparent;
-      border-top: 10px solid black;
-      position: absolute;
+    .pin {
+      opacity: 0;
     }
-
-    .pin__icon {
-      display: none;
-    }
-
-    .pin__card {
-      
-      font-size: 1.2rem;
-      border: 1px solid black;
-      width: 250px;
-      height: 260px;
-      background-color: white;
+    .marker__card {
       display: block;
+      animation: fade-in-from-none .5s ease-out;
+    }
+  }
+  &__card {
+    z-index: 999;
+    display: none;
+    opacity: 1;
+    position: absolute;
+    width: 200px;
+    bottom: 10px;
+    left: -100px;
+    border-radius: 20px;
+    background-color: white;
+    box-shadow: 3px 3px 3px #888;
+    .slick-arrow {
+      z-index: 10;
+      top: calc(50% + 5px);
+    }
+    .slick-next {
+      right: 10px;
+    }
+    .slick-prev {
+      left: 10px;
+    }
+    .slick-slide img {
+      height: 125px;
+      object-fit: cover;
+    }
+    .slick-dots {
+      z-index: 10;
+      bottom: 0;
+    }
 
-      &__content {
-        padding: .5rem 1rem;
-
-        // background-color: blue;
-        &__title {
-          font-size: 1.2rem;
-        }
-
-        &__location {
-          font-size: 0.8rem;
-        }
+    &__content {
+      padding: .8rem;
+      &__title {
+        font-family: $crimson;
+        font-weight: 700;
+        font-size: 20px;
+      }
+      &__location {
+        font-family: $montserrat;
+        font-weight: 600;
+        font-size: 12px;
+        margin-bottom: .8rem;
+      }
+      &__type {
+        font-family: $montserrat;
+        font-weight: 300;
+        font-size: 12px;
       }
     }
+    &::after {
+      content: "";
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 10px solid white;
+      position: absolute;
+      left: calc(50% - 10px);
+    }
+  }
+
+  .pin {
+    z-index: 0;
+    position: absolute;
+    background-color: grey;
+    border-radius: 50% 50% 50% 0;
+    width: 40px;
+    height: 40px;
+    transform: translate(-20px, -45px) rotate(-45deg);
+    opacity: 1;
+
+    &__icon {
+      background-color: white;
+      padding-top: 4px;
+      text-align: center;
+      width: 35px;
+      height: 35px;
+      margin: auto;
+      border-radius: 50%;
+      transform: translate(0px, 2px) rotate(45deg);
+    }
+  }
+}
+
+@keyframes fade-in-from-none {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  1% {
+    display: block;
+    opacity: 0;
+  }
+  100% {
+    display: block;
+    opacity: 1;
   }
 }

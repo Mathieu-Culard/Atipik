@@ -6,7 +6,7 @@ import MyReservations from 'src/containers/MyReservations';
 
 const InscriptionPage = ({ fetchReservations }) => {
   useEffect(() => {
-    // fetchReservations();
+    fetchReservations();
   }, []);
 
   return (

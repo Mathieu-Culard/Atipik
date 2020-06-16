@@ -33,7 +33,7 @@ const MUISlider = withStyles({
     // boxShadow: '0 0 0 14px rgba(230,71,80,1)',
   },
   rail: {
-    backgroundColor: 'white',
+    backgroundColor: '#e64750',
   },
   track: {
     backgroundColor: '#fe922d',

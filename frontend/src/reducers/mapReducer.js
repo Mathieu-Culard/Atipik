@@ -17,7 +17,6 @@ const initialState = {
   city: '',
   country: '',
   zoom: 13,
-
 };
 
 const mapReducer = (state = initialState, action = {}) => {

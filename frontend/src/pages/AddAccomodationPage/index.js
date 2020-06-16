@@ -11,17 +11,28 @@ import Switch from '@material-ui/core/Switch';
 import ManageAccomodationPanel from 'src/containers/ManageAccomodationPanel';
 import './addAccomodationPage.scss';
 import { useParams } from 'react-router-dom';
-import { Trash } from 'react-feather';
+import { Trash2 } from 'react-feather';
 import Loader from 'src/components/Loader';
+import background from 'src/assets/backgrounds/addAccomodationBackground.png';
+
 
 const useStyles = makeStyles({
   formControl: {
     minWidth: 220,
-    width: '40%',
-    zIndex: 0,
+    width: '35%',
+    // zIndex: 0,
+  },
+  switch: {
+    width: '45%',
+    padding: '1rem',
   },
   description: {
-    width: '100%',
+    width: '40%',
+    height: '100%',
+  },
+  textfield: {
+    minWidth: 220,
+    width: '45%',
   },
 });
 
@@ -75,14 +86,14 @@ const AddAccomodationPage = ({
   }, [isLoading]);
 
   const handleClick = (evt) => {
-    console.log(servicesList);
+    // console.log(servicesList);
     let content = servicesList;
     let identifier = 'services';
     if (evt.target.id === 'extras') {
       identifier = 'extras';
       content = extrasList;
     }
-    console.log(content);
+    // console.log(content);
     setManageAccomodationPanel(content, identifier);
   };
 
@@ -91,12 +102,12 @@ const AddAccomodationPage = ({
   };
 
   const handleFieldsChange = (evt) => {
-    console.log(evt.target.id);
+    // console.log(evt.target.id);
     changeFields(evt.target.id, evt.target.value);
   };
 
   const handleSwitchsChange = (evt) => {
-    console.log(evt.target.id);
+    // console.log(evt.target.id);
     changeSwitchs(evt.target.id);
   };
 
@@ -118,44 +129,51 @@ const AddAccomodationPage = ({
   let isEdit = false;
   if (id) {
     isEdit = true;
+  } else {
+    // eslint-disable-next-line no-param-reassign
+    isLoading = false;
   }
 
   const classes = useStyles();
   return (
     <main className="manage-accomodation">
+      <img src={background} alt="background" className="addBackground" />
       {isLoading && <Loader />}
       {!isLoading && (
         <form className="manage-accomodation__form" onSubmit={handleSubmit}>
           <div className="manage-accomodation__form__images">
-            {isEdit && editPicturesURL.map((picture) => (
-              <React.Fragment key={picture.name}>
-                <img src={`${process.env.REACT_APP_BACKEND_URL}/assets/accomodation/${picture}`} alt="accomodation" className="manage-accomodation__form__image" />
-                <button type="button" data-id={picture} onClick={() => (deletePictureEdit(picture))}> <Trash color="red" /> </button>
-              </React.Fragment>
-            ))}
-            {
-              picturesURL.map((picture) => (
-                <React.Fragment key={picture.name}>
-                  <img src={picture.file} alt="accomodation" className="manage-accomodation__form__image" />
-                  <button type="button" data-id={picture} onClick={() => (deletePicture(picture))}> <Trash color="red" /> </button>
-                </React.Fragment>
-              ))
-            }
+            <div className="manage-accomodation__form__images__content">
+              {isEdit && editPicturesURL.map((picture) => (
+                <div key={picture.name} className="manage-accomodation__form__image">
+                  <img src={`${process.env.REACT_APP_BACKEND_URL}/assets/accomodation/${picture}`} alt="accomodation" />
+                  <button type="button" data-id={picture} onClick={() => (deletePictureEdit(picture))} className="manage-accomodation__form__image__suppr"> <Trash2 color="#e64750" /> </button>
+                </div>
+              ))}
+              {
+                picturesURL.map((picture) => (
+                  <div key={picture.name} className="manage-accomodation__form__image">
+                    <img src={picture.file} alt="accomodation" />
+                    <button type="button" data-id={picture} onClick={() => (deletePicture(picture))} className="manage-accomodation__form__image__suppr"> <Trash2 color="#e64750" /> </button>
+                  </div>
+                ))
+              }
 
-            <label htmlFor="files-input">
+
+            </div>
+            <label htmlFor="files-input" className="manage-accomodation__form__images__label">
               <input
                 id="files-input"
                 type="file"
                 multiple
                 onChange={handleAddPicture}
+                className="manage-accomodation__form__images__input"
               />
               Ajouter
             </label>
           </div>
-
-          <div className="manage-accomodation__form__info">
+          <div className="manage-accomodation__form__info mui-inputs">
             <TextField
-              variant="outlined"
+              // variant="outlined"
               id="title"
               label="Titre"
               className={classes.formControl}
@@ -163,7 +181,7 @@ const AddAccomodationPage = ({
               value={titleValue}
               onChange={handleFieldsChange}
             />
-            <FormControl variant="outlined" className={classes.formControl}>
+            <FormControl className={classes.formControl}>
               <InputLabel id="demo-simple-select-outlined-label">Type</InputLabel>
               <Select
                 // labelId="demo-simple-select-outlined-label"
@@ -181,7 +199,7 @@ const AddAccomodationPage = ({
               </Select>
             </FormControl>
             <TextField
-              variant="outlined"
+              // variant="outlined"
               id="capacity"
               label="Capacité"
               type="number"
@@ -191,7 +209,7 @@ const AddAccomodationPage = ({
               onChange={handleFieldsChange}
             />
             <TextField
-              variant="outlined"
+              // variant="outlined"
               id="nbNights"
               label="nb de nuits minimum"
               type="number"
@@ -201,7 +219,7 @@ const AddAccomodationPage = ({
               onChange={handleFieldsChange}
             />
             <TextField
-              variant="outlined"
+              // variant="outlined"
               id="surface"
               label="Surface"
               type="number"
@@ -211,7 +229,7 @@ const AddAccomodationPage = ({
               onChange={handleFieldsChange}
             />
             <TextField
-              variant="outlined"
+              // variant="outlined"
               id="price"
               label="Prix"
               type="number"
@@ -221,7 +239,7 @@ const AddAccomodationPage = ({
               onChange={handleFieldsChange}
             />
             <TextField
-              variant="outlined"
+              // variant="outlined"
               id="city"
               label="Ville"
               className={classes.formControl}
@@ -230,7 +248,7 @@ const AddAccomodationPage = ({
               onChange={handleFieldsChange}
             />
             <TextField
-              variant="outlined"
+              // variant="outlined"
               id="country"
               label="Pays"
               className={classes.formControl}
@@ -239,7 +257,7 @@ const AddAccomodationPage = ({
               onChange={handleFieldsChange}
             />
             <TextField
-              variant="outlined"
+              // variant="outlined"
               id="adress"
               label="Adresse"
               className={classes.formControl}
@@ -248,9 +266,10 @@ const AddAccomodationPage = ({
               onChange={handleFieldsChange}
             />
           </div>
+
           <div className="manage-accomodation__form__switchs">
             <FormControlLabel
-              className={classes.formControl}
+              className={classes.switch}
               control={(
                 <Switch
                   id="pipedWater"
@@ -260,10 +279,11 @@ const AddAccomodationPage = ({
                 />
               )}
               label="Eau courante"
-              labelPlacement="top"
+              labelPlacement="start"
+
             />
             <FormControlLabel
-              className={classes.formControl}
+              className={classes.switch}
               control={(
                 <Switch
                   id="electricity"
@@ -273,10 +293,11 @@ const AddAccomodationPage = ({
                 />
               )}
               label="Electricité"
-              labelPlacement="top"
+              labelPlacement="start"
+
             />
             <FormControlLabel
-              className={classes.formControl}
+              className={classes.switch}
               control={(
                 <Switch
                   id="accessibility"
@@ -285,11 +306,11 @@ const AddAccomodationPage = ({
                   onChange={handleSwitchsChange}
                 />
               )}
-              label="APMR"
-              labelPlacement="top"
+              label="Accès handicapés"
+              labelPlacement="start"
             />
             <FormControlLabel
-              className={classes.formControl}
+              className={classes.switch}
               control={(
                 <Switch
                   id="smokers"
@@ -299,10 +320,11 @@ const AddAccomodationPage = ({
                 />
               )}
               label="Fumeurs"
-              labelPlacement="top"
+              labelPlacement="start"
+
             />
             <FormControlLabel
-              className={classes.formControl}
+              className={classes.switch}
               control={(
                 <Switch
                   id="animals"
@@ -312,24 +334,24 @@ const AddAccomodationPage = ({
                 />
               )}
               label="Animaux"
-              labelPlacement="top"
+              labelPlacement="start"
+
             />
           </div>
-
-          <div className="manage-accomodation__form__social-links">
+          <div className="manage-accomodation__form__social-links mui-inputs">
             <TextField
               id="facebook"
               label="Lien Facebook"
-              variant="outlined"
-              // className={classes.textField}
+              // variant="outlined"
+              className={classes.textfield}
               value={facebookValue}
               onChange={handleFieldsChange}
             />
             <TextField
-              variant="outlined"
+              // variant="outlined"
               id="instagram"
               label="Lien Instagram"
-              // className={classes.textField}
+              className={classes.textfield}
               value={instagramValue}
               onChange={handleFieldsChange}
             />
@@ -340,35 +362,41 @@ const AddAccomodationPage = ({
               label="Description"
               multiline
               rows={6}
-              variant="outlined"
-              className={classes.description}
+              // variant="outlined"
+              // className={classes.description}
               // className={classes.textField}
               value={descriptionValue}
               onChange={handleFieldsChange}
             />
             <div className="manage-accomodation__form__services-extras">
-              <p>Services</p>
+              <p className="manage-accomodation__form__services-extras__title">Services</p>
               <div className="manage-accomodation__form__services-extras__values">
-                {servicesValue.map((service) => (
-                  <div className="manage-accomodation__form__services-extras__values__item" key={`service${service.id}`}>
-                    <img src={`${process.env.REACT_APP_BACKEND_URL}/assets/icon/${service.icon}`} alt="icon" />
-                    <p>{service.name}</p>
-                  </div>
-                ))}
+                <div className="manage-accomodation__form__services-extras__values__content">
+                  {servicesValue.map((service) => (
+                    <div className="manage-accomodation__form__services-extras__values__content__item" key={`service${service.id}`}>
+                      <img src={`${process.env.REACT_APP_BACKEND_URL}/assets/icon/${service.icon}`} alt="icon" />
+                      <p>{service.name}</p>
+                    </div>
+                  ))}
+                </div>
+                <button id="services" type="button" className="manage-accomodation__form__services-extras__add" onClick={handleClick}>Ajouter</button>
+
               </div>
-              <button id="services" type="button" className="manage-accomodation__form__services-extras__add" onClick={handleClick}>Ajouter</button>
             </div>
             <div className="manage-accomodation__form__services-extras">
-              <p>Extras</p>
+              <p className="manage-accomodation__form__services-extras__title">Extras</p>
               <div className="manage-accomodation__form__services-extras__values">
-                {extrasValue.map((extra) => (
-                  <div className="manage-accomodation__form__services-extras__values__item" key={`extra${extra.id}`}>
-                    <img src={`${process.env.REACT_APP_BACKEND_URL}/assets/icon/${extra.icon}`} alt="icon" />
-                    <p>{extra.name}</p>
-                  </div>
-                ))}
+                <div className="manage-accomodation__form__services-extras__values__content">
+                  {extrasValue.map((extra) => (
+                    <div className="manage-accomodation__form__services-extras__values__content__item" key={`extra${extra.id}`}>
+                      <img src={`${process.env.REACT_APP_BACKEND_URL}/assets/icon/${extra.icon}`} alt="icon" />
+                      <p>{extra.name}</p>
+                    </div>
+                  ))}
+                </div>
+                <button id="extras" type="button" className="manage-accomodation__form__services-extras__add" onClick={handleClick}>Ajouter</button>
               </div>
-              <button id="extras" type="button" className="manage-accomodation__form__services-extras__add" onClick={handleClick}>Ajouter</button>
+
             </div>
           </div>
           <button type="submit" className="manage-accomodation__form__submit">Enregistrer</button>

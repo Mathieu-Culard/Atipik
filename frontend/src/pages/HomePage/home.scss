@@ -6,7 +6,6 @@
 
   .background {
     z-index: -1;
-    background-color: #101010;
     transform: scaleX(-1);
     position: absolute;
     top: -15rem;
@@ -51,18 +50,7 @@
         background-position: 100% 0%;
       }
     }
-    .MuiFormLabel-root.Mui-focused {
-      color: $color-logo-1 !important;
-    }
-    .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
-      border-color: $color-logo-1 !important;
-    }
-    .MuiInput-underline::after {
-      border-bottom: 2px solid $color-logo-1 !important;
-    }
   }
-
-
 
   @media(min-width: 650px) {
     .search {
@@ -75,33 +63,41 @@
       margin-left: auto;
 
       &__formular {
-        background-color: rgba($color: #ccc, $alpha: .2);
+        background-color: rgba(255, 255, 255, 0.2);
         margin-top: 1rem;
+        color:white;
+
         // border: 1px solid #ccc;
-        padding: 1rem;
+        padding: $gutterSmall $gutterLarge;
         border-radius: $radiusLarge;
       }
 
       &__title {
+        color: white;
+        font-weight: $fontSemiBold;
         text-align: left;
+        padding: 0 $gutterLarge;
       }
 
       .row {
-        margin-bottom: 1rem;
+        margin-bottom: $gutterMedium;
         flex-direction: row !important;
-        justify-content: space-around;
+        justify-content: space-between;
 
-        &:last-of-type {
-          margin-bottom: 0;
-        }
+        // &:last-of-type {
+          //   margin-bottom: 0;
+        // }
 
         &__item {
-          width: 20vw;
+          width: 45%;
           margin: 0;
         }
       }
-
+      // &__submit-link{
+        //   align-self: center;
+      // }
       &__submit {
+        margin: auto;
         text-align: center;
         font-size: 1rem;
         width: 13vw;
@@ -119,6 +115,7 @@
     .accomodation-types {
       width: 100%;
       background-color: #101010;
+      padding-bottom: 2rem;
     }
   }
 }

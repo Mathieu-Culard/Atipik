@@ -1,0 +1,62 @@
+@import 'src/styles/vars';
+
+.item {
+  margin: 1rem 1rem .2rem 1rem;
+  width: 30%;
+
+  &__icon {
+    // margin: auto;
+    width: 100px;
+    padding: .5rem 1rem;
+    transition-duration: 0.2s;
+    transform-origin: 50% 50%;
+  }
+
+  &__name {
+    text-align: center;
+  }
+
+  .check {
+    display: none;
+  }
+
+  &__input {
+    border: 1px solid #fff;
+    
+    width: 100%;
+    display: block;
+    // justify-content: center;
+    // width: fit-content;
+    position: relative;
+    cursor: pointer;
+    padding: .5rem;
+
+    &:hover {
+      border: 1px solid #ccc;
+      border-radius: $radiusLarge;
+    }
+    &__container{
+      margin: auto;
+      display: flex;
+      align-items: center;
+      width: 80%;
+    }
+  }
+  :checked+label {
+    border-radius: $radiusLarge;
+    border-color: #ccc;
+    box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, 1);
+  }
+  
+  // :checked + label:before {
+  //   content: "✓";
+  //   background-color: grey;
+  //   transform: scale(1);
+  // }
+  
+  :checked+label img {
+    transform: scale(1.1);
+    // box-shadow: 0 0 5px #333;
+    z-index: -1;
+  }
+}

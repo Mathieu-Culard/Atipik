@@ -187,7 +187,8 @@
             display: block;
             border-radius: $radiusSmall;
             background-color: $color-logo-1;
-            background-image: linear-gradient(90deg, rgba(254, 146, 45, 0) 68%, rgba(230, 71, 80, 1) 100%);
+            background-image: linear-gradient(90deg, rgba(254, 146, 45, 0) 34%, rgba(230, 71, 80, 1) 50%);
+            background-size: 200% 100%;
             border: none;
             height: $gutterLarge;
             color: #fff;
@@ -195,11 +196,10 @@
             font-size: 1.2rem;
             width: 100%;
             overflow: hidden;
-
+            transition: background-position .3s;
 
             &:hover {
-              background-color: $color-logo-2;
-              transition: 0.3s;
+              background-position: 100% 0%;
             }
           }
 
@@ -208,6 +208,7 @@
             border-radius: $radiusSmall;
             padding: 0 !important;
             margin-bottom: $gutterSmall;
+            margin-left: 1rem;
           }
         }
       }

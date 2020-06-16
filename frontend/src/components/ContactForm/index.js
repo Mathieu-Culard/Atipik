@@ -11,6 +11,9 @@ import './contactForm.scss';
 const useStyles = makeStyles({
   textField: {
     width: '100%',
+    resize: 'none',
+    marginBottom: '1rem',
+    padding: '.8rem',
   },
 });
 
@@ -54,7 +57,7 @@ const ContactForm = ({
         error={emailValue !== '' && !regexEmail.test(emailValue)}
       />
       <TextField id="object" label="Objet" className={classes.textField} value={objectValue} onChange={handleChange} />
-      <label className="contact-owner-form__label" htmlFor="message">
+      <label className="contact-page__form__label" htmlFor="message">
         Votre message
         <TextareaAutosize
           className={classes.textField}

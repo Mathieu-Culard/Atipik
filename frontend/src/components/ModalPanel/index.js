@@ -9,6 +9,7 @@ import LoginForm from 'src/containers/LoginForm';
 import InscriptionForm from 'src/containers/InscriptionForm';
 import ContactForm from 'src/containers/ContactForm';
 import LostPasswordForm from 'src/containers/LostPasswordForm';
+import ContactOwnerPanel from 'src/containers/ContactOwnerPanel';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -20,10 +21,17 @@ const useStyles = makeStyles(() => ({
     left: '50%',
     transform: 'translate(-50%,-50%)',
     padding: '2rem',
-    borderRadius: '5px',
+    borderRadius: '20px',
   },
   title: {
     marginBottom: '1rem',
+  },
+  errorMessage: {
+    color: '#e64750',
+    margin: '1rem 0',
+    fontFamily: 'Montserrat',
+    fontWeight: 400,
+    fontSize: '12px',
   },
 }));
 
@@ -42,13 +50,14 @@ const ModalPanel = ({
     >
       <Paper className={classes.box}>
         <h2 className={classes.title}>{title}</h2>
-        {errorMessage !== '' && <p>{errorMessage}</p>}
+        {errorMessage !== '' && <p className={classes.errorMessage}>{errorMessage}</p>}
         {
           {
             LoginForm: <LoginForm />,
             InscriptionForm: <InscriptionForm />,
             ContactForm: <ContactForm />,
             LostPasswordForm: <LostPasswordForm />,
+            ContactOwnerPanel: <ContactOwnerPanel />,
           }[componentName]
         }
       </Paper>

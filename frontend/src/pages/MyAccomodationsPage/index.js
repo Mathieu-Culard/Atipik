@@ -5,37 +5,8 @@ import { Link } from 'react-router-dom';
 import MyAccomodationCard from 'src/components/MyAccomodationsCard';
 import './myAccomodationsPage.scss';
 
-// ================fake data
-// const accomodation = {
-//   id: 1,
-//   pictures: [
-//     'Igloo.jpg',
-//     'Igloo.jpeg',
-//   ],
-//   title: 'Tente tout confort',
-//   capacity: 3,
-//   type: 3,
-//   price: 50,
-//   city: 'Toulouse',
-//   country: 'France',
-//   surface: 20,
-//   electricity: true,
-//   pipedWater: true,
-//   accessibility: false,
-//   smokers: true,
-//   animals: true,
-//   facebookLink: '',
-//   instagramLink: 'https://instagram.com',
-//   services: [2, 0, 4],
-//   extras: [0, 1, 2, 3, 4, 5],
-//   user: {
-//     id: 1,
-//     avatar: 'Igloo.jpeg',
-//     pseudo: 'Jean-Mich\'',
-//   },
-// };
+import background from 'src/assets/backgrounds/myAccomodationsBackground.jpg';
 
-// ================fake data
 const MyAccomodationsPage = ({
   fetchMyAccomodations,
   myAccomodationIds,
@@ -44,13 +15,15 @@ const MyAccomodationsPage = ({
   typeList,
 }) => (
   <main className="my-accomodations">
-
-    {myAccomodations.map((acc) => (
-      <MyAccomodationCard {...acc} key={acc.id} deleteMyAccomodation={deleteMyAccomodation} typeList={typeList} />
-    ))}
-    <Link className="my-accomodations__new-accomodation" to="/gerer-mes-hebergements/nouvel-hebergement">
-      <button type="button">Ajouter un hébergement</button>
-    </Link>
+    <div className="my-accomodations__cards">
+      <img src={background} alt="background" className="background" />
+      {myAccomodations.map((acc) => (
+        <MyAccomodationCard {...acc} key={acc.id} deleteMyAccomodation={deleteMyAccomodation} typeList={typeList} />
+      ))}
+      <Link className="my-accomodations__new-accomodation" to="/gerer-mes-hebergements/nouvel-hebergement">
+        <button type="button">Ajouter un hébergement</button>
+      </Link>
+    </div>
   </main>
 );
 

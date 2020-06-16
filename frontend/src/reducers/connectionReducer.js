@@ -4,6 +4,7 @@ import {
   LOGIN_CHANGED,
   LOG_IN,
   LOG_OUT,
+  SET_LOGGED,
 } from '../actions/connection';
 
 const initialState = {
@@ -45,6 +46,12 @@ const userReducer = (state = initialState, action = {}) => {
       return {
         ...initialState,
       };
+
+    case SET_LOGGED:
+      return {
+        ...state,
+        isLogged: true,
+      }
 
     default: return state;
   }

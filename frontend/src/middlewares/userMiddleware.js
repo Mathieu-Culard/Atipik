@@ -7,7 +7,7 @@ import {
   FETCH_USER_INFOS,
   SAVE_USER_INFOS,
 } from '../actions/user';
-import { logOut } from '../actions/connection';
+import { logOut, setLogged } from '../actions/connection';
 import { fetchMyAccomodations } from '../actions/manageAccomodation';
 
 const userMiddleware = (store) => (next) => (action) => {
@@ -58,6 +58,7 @@ const userMiddleware = (store) => (next) => (action) => {
       })
         .then((response) => {
           store.dispatch(saveUserInfos(response.data));
+          store.dispatch(setLogged());
         })
         .catch(() => {
           store.dispatch(logOut());

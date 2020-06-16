@@ -1,0 +1,16 @@
+@import 'src/styles/vars';
+
+.profile-page {
+  padding: $headerGutter 0 0 0;
+
+  .background {
+    z-index: -1;
+    background: url('../../assets/backgrounds/profileBackground.png');
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+  }
+}

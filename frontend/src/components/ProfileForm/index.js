@@ -12,10 +12,12 @@ import './profileForm.scss';
 
 const useStyles = makeStyles(() => ({
   root: {
-    width: '100%',
+    width: '60%',
+    margin: 'auto',
     borderRadius: '20px',
     border: '1px solid #ccc',
-    padding: '2rem',
+    padding: '5rem',
+    backgroundColor: 'rgba(255, 255, 255, .85)',
   },
   avatarContainer: {
     width: '15vw',
@@ -51,12 +53,12 @@ const useStyles = makeStyles(() => ({
   },
   fields: {
     display: 'grid',
-    gridGap: '1rem',
+    gridGap: '3rem',
     gridTemplateColumns: '1fr 1fr',
   },
   submitButton: {
     display: 'block',
-    margin: '2rem auto 0 auto',
+    margin: '4rem auto 0 auto',
   },
   deleteButton: {
     color: '#aaa',

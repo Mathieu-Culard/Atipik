@@ -1,8 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Modal from '@material-ui/core/Modal';
-import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
@@ -23,71 +21,62 @@ const useStyles = makeStyles(() => ({
 
 const ContactOwnerPanel = ({
   changeField,
-  isContactOwnerPanelOpen,
   message,
   object,
   setContactOwnerPanel,
   sendMessage,
   userId,
   accomodationId,
+  closeModal,
 }) => {
   const classes = useStyles();
   const handleSubmit = (e) => {
     e.preventDefault();
-    setContactOwnerPanel(false);
+    closeModal();
     sendMessage(message, object, userId, accomodationId);
   };
 
   return (
-    <Modal
-      open={isContactOwnerPanelOpen}
-      onClose={() => setContactOwnerPanel(false)}
-      className={classes.root}
-    >
-      <Box component="div" className={classes.box}>
+    <form onSubmit={handleSubmit} className="contact-owner-form">
+      <label className="contact-owner-form__label" htmlFor="contact-owner-object">
+        Objet
+        <TextareaAutosize
+          className="contact-owner-form__input"
+          id="contact-owner-object"
+          label="Objet"
+          value={object}
+          onChange={(e) => changeField('userMessageObject', e.target.value)}
+          autoFocus
+        />
+      </label>
 
-        <form onSubmit={handleSubmit} className="contact-owner-form">
-          <h1 className="contact-owner-form__title">Envoyer un message au propriétaire</h1>
+      <label className="contact-owner-form__label">
+        Votre message
+        <TextareaAutosize
+          className="contact-owner-form__input"
+          id="contact-owner-message"
+          label="Message"
+          value={message}
+          rowsMin={10}
+          onChange={(e) => changeField('userMessage', e.target.value)}
+          resize="none"
+        />
+      </label>
 
-          <label className="contact-owner-form__label" htmlFor="contact-owner-object">
-            Objet
-            <TextareaAutosize
-              className="contact-owner-form__input"
-              id="contact-owner-object"
-              label="Objet"
-              value={object}
-              onChange={(e) => changeField('userMessageObject', e.target.value)}
-            />
-          </label>
-
-          <label className="contact-owner-form__label">
-            Votre message
-            <TextareaAutosize
-              className="contact-owner-form__input"
-              id="contact-owner-message"
-              label="Message"
-              value={message}
-              rowsMin={10}
-              onChange={(e) => changeField('userMessage', e.target.value)}
-            />
-          </label>
-
-          <Button type="submit" variant="text">Envoyer</Button>
-        </form>
-      </Box>
-    </Modal>
+      <Button type="submit" variant="text">Envoyer</Button>
+    </form>
   );
 };
 
 ContactOwnerPanel.propTypes = {
   changeField: PropTypes.func.isRequired,
-  isContactOwnerPanelOpen: PropTypes.bool.isRequired,
   message: PropTypes.string.isRequired,
   object: PropTypes.string.isRequired,
-  setContactOwnerPanel: PropTypes.func.isRequired,
+  // setContactOwnerPanel: PropTypes.func.isRequired,
   sendMessage: PropTypes.func.isRequired,
   userId: PropTypes.number.isRequired,
   accomodationId: PropTypes.number.isRequired,
+  closeModal: PropTypes.func.isRequired,
 };
 
 export default ContactOwnerPanel;

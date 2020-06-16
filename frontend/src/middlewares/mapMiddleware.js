@@ -15,7 +15,7 @@ const mapMiddleware = (store) => (next) => (action) => {
       let zoom = 13;
       if (identifier === 'center' && adress.trim() === '') {
         location = 'France';
-        zoom = 7;
+        zoom = 6.2;
       }
       Geocode.setApiKey(localStorage.getItem('apiKey'));
       Geocode.fromAddress(location)

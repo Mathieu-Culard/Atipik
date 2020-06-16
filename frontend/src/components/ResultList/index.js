@@ -9,6 +9,9 @@ import ResultCard from 'src/components/ResultCard';
 const useStyles = makeStyles(() => ({
   root: {
     overflowY: 'auto',
+    marginLeft: '-20px',
+    paddingLeft: '20px',
+    paddingTop: 0,
   },
 }));
 

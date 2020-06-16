@@ -10,24 +10,36 @@ import { makeStyles } from '@material-ui/core/styles';
 import AccomodationTypesDropdown from 'src/containers/AccomodationTypesDropdown';
 import CustomSlider from 'src/components/CustomSlider';
 
+import './filterPanel.scss';
+
 
 const useStyles = makeStyles(() => ({
   root: {
-    backgroundColor: 'rgba(255, 255, 255, .5)',
+    backgroundColor: 'rgba(255, 255, 255, .85)',
     margin: 'auto',
     borderRadius: '20px',
-    height: '150px',
+    height: '175px',
     gridColumn: '1 / span 2',
     zIndex: 1,
     display: 'grid',
-    gridTemplateColumns: '25% 15% 15% 15% 15% 15%',
+    gridTemplateColumns: '2fr 1fr 1fr 2fr',
+    gridGap: '10rem',
     padding: '0 5rem',
+    width: '100%',
   },
   gridElement: {
-    margin: '.3rem 1rem',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
+    flexWrap: 'wrap',
+    height: '175px',
+    padding: '1.5rem 0',
+  },
+  switchElements: {
+    justifyContent: 'flex-start',
+  },
+  switch: {
+    margin: '.1rem 0',
   },
   chips: {
     display: 'flex',
@@ -42,12 +54,6 @@ const useStyles = makeStyles(() => ({
   },
   chip: {
     margin: '.1rem',
-  },
-  column: {
-    margin: '0 .5rem',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
   },
 }));
 
@@ -77,9 +83,25 @@ const FilterPanel = ({
   const onlyTypes = () => (allTypes.reduce((accumulator, currentValue) => [...accumulator, ...currentValue.types], []));
 
   return (
-    <form className={classes.root} noValidate autoComplete="off">
+    <form className={`${classes.root} filterPanel`} noValidate autoComplete="off">
       <div className={classes.gridElement}>
-        <AccomodationTypesDropdown />
+        <div className="types">
+          <AccomodationTypesDropdown />
+        </div>
+        <div component="ul" className={classes.chips}>
+          {types.map((id) => {
+            const currentType = onlyTypes().find((t) => t.id === id);
+            return (
+              <li key={`type-${id}`}>
+                <Chip
+                  label={currentType.name}
+                  className={classes.chip}
+                  onDelete={() => changeAccomodationTypes(id, false, allTypes)}
+                />
+              </li>
+            );
+          })}
+        </div>
       </div>
       <div className={classes.gridElement}>
         <TextField
@@ -88,7 +110,13 @@ const FilterPanel = ({
           type="number"
           value={(nbNights === 0) ? '' : nbNights}
           onChange={(e) => changeNbNights(e.target.value)}
-          variant="outlined"
+        />
+        <TextField
+          id="nb-person"
+          label="Personnes"
+          type="number"
+          value={(capacity === 0) ? '' : capacity}
+          onChange={(e) => changeCapacity(e.target.value)}
         />
       </div>
       <div className={classes.gridElement}>
@@ -102,68 +130,6 @@ const FilterPanel = ({
           commitChange={commitMaxPriceChange}
           label="Prix"
         />
-      </div>
-      <div className={classes.gridElement}>
-        <FormControlLabel
-          control={(
-            <Switch
-              color="primary"
-              checked={pipedWater}
-              onChange={() => changeFilterSwitch('pipedWater')}
-            />
-          )}
-          label="Eau courante"
-        />
-      </div>
-      <div className={classes.gridElement}>
-        <FormControlLabel
-          control={(
-            <Switch
-              color="primary"
-              checked={electricity}
-              onChange={() => changeFilterSwitch('electricity')}
-            />
-          )}
-          label="Electricité"
-        />
-      </div>
-      <div className={classes.gridElement}>
-        <FormControlLabel
-          control={(
-            <Switch
-              color="primary"
-              checked={animals}
-              onChange={() => changeFilterSwitch('animals')}
-            />
-          )}
-          label="Animaux"
-        />
-      </div>
-      <div component="ul" className={`${classes.chips} ${classes.gridElement}`}>
-        {types.map((id) => {
-          const currentType = onlyTypes().find((t) => t.id === id);
-          return (
-            <li key={`type-${id}`}>
-              <Chip
-                label={currentType.name}
-                className={classes.chip}
-                onDelete={() => changeAccomodationTypes(id, false, allTypes)}
-              />
-            </li>
-          );
-        })}
-      </div>
-      <div className={classes.gridElement}>
-        <TextField
-          id="nb-person"
-          label="Personnes"
-          type="number"
-          value={(capacity === 0) ? '' : capacity}
-          onChange={(e) => changeCapacity(e.target.value)}
-          variant="outlined"
-        />
-      </div>
-      <div className={classes.gridElement}>
         <CustomSlider
           defaultValue={0}
           valueLabelDisplay="on"
@@ -175,28 +141,61 @@ const FilterPanel = ({
           label="Surface"
         />
       </div>
-      <div className={classes.gridElement}>
+      <div className={`${classes.gridElement} ${classes.switchElements}`}>
         <FormControlLabel
           control={(
             <Switch
               color="primary"
-              checked={smokers}
-              onChange={() => changeFilterSwitch('smokers')}
+              checked={pipedWater}
+              onChange={() => changeFilterSwitch('pipedWater')}
+              className={classes.switch}
             />
           )}
-          label="Fumeurs"
+          label="Eau courante"
         />
-      </div>
-      <div className={classes.gridElement}>
+        <FormControlLabel
+          control={(
+            <Switch
+              color="primary"
+              checked={electricity}
+              onChange={() => changeFilterSwitch('electricity')}
+              className={classes.switch}
+            />
+          )}
+          label="Electricité"
+        />
         <FormControlLabel
           control={(
             <Switch
               color="primary"
               checked={apmr}
               onChange={() => changeFilterSwitch('apmr')}
+              className={classes.switch}
             />
           )}
           label="Accès handicapés"
+        />
+        <FormControlLabel
+          control={(
+            <Switch
+              color="primary"
+              checked={smokers}
+              onChange={() => changeFilterSwitch('smokers')}
+              className={classes.switch}
+            />
+          )}
+          label="Fumeurs"
+        />
+        <FormControlLabel
+          control={(
+            <Switch
+              color="primary"
+              checked={animals}
+              onChange={() => changeFilterSwitch('animals')}
+              className={classes.switch}
+            />
+          )}
+          label="Animaux"
         />
       </div>
     </form>

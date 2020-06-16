@@ -10,7 +10,6 @@ import DatePicker from 'src/components/DatePicker';
 import Loader from 'src/components/Loader';
 
 import './accomodationPage.scss';
-import ContactOwnerPanel from '../../containers/ContactOwnerPanel';
 
 const useStyles = makeStyles(() => ({
   // pictures: {
@@ -33,7 +32,6 @@ const AccomodationPage = ({
   fetchAccomodation,
   servicesList,
   extrasList,
-  setContactOwnerPanel,
   openModal,
   isLogged,
   sendReservation,
@@ -42,7 +40,7 @@ const AccomodationPage = ({
 }) => {
   const { id } = useParams();
   useEffect(() => {
-    console.log(id);
+    // console.log(id);
     fetchAccomodation(id);
   }, []);
 
@@ -77,10 +75,10 @@ const AccomodationPage = ({
       openModal('Veuillez vous connecter avant d\' envoyer un message', 'LoginForm');
     }
     else {
-      setContactOwnerPanel(true);
+      openModal('Contacter le propriétaire de cet hébergement', 'ContactOwnerPanel');
     }
   };
-  console.log(accomodation.services);
+  // console.log(accomodation.services);
 
   const services = getServices(servicesList, accomodation.services);
   const extras = getExtras(extrasList, accomodation.extras);
@@ -96,7 +94,7 @@ const AccomodationPage = ({
               <div className="accomodation__head__carrousel">
                 <Slider {...carouselSettings}>
                   {accomodation.pictures.map((picture) => (
-                    <div className="accomodation__head__carrousel__item">
+                    <div className="accomodation__head__carrousel__item" key={picture}>
                       <img src={`${process.env.REACT_APP_BACKEND_URL}/assets/accomodation/${picture}`} alt="" />
                     </div>
                   ))}
@@ -199,7 +197,6 @@ const AccomodationPage = ({
             </div>
           </>
         )}
-      <ContactOwnerPanel />
     </main>
   );
 };
@@ -258,6 +255,7 @@ AccomodationPage.propTypes = {
     avatar: PropTypes.string,
     pseudo: PropTypes.string,
   }).isRequired,
+  openModal: PropTypes.func.isRequired,
 };
 
 export default AccomodationPage;

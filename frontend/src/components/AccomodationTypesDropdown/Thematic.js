@@ -20,13 +20,14 @@ const Thematic = ({
       unselectAll(thematic.id, accomodationTypes);
     }
   };
-
+  const btnClass=isSelected ? 'thematic__btn--active' : 'thematic__btn'
   return (
     <div className="thematic">
       <div className="thematic__head">
         <h2 className="thematic__name">{thematic.name}</h2>
-        {isSelected && <button type="button" className="thematic__btn" onClick={handleClick}>Tout deselectionner</button>}
-        {!isSelected && <button type="button" className="thematic__btn" onClick={handleClick}>Tout selectionner</button>}
+        {/* {isSelected && <button type="button" className="thematic__btn--active" onClick={handleClick}>Tout désélectionner</button>}
+        {!isSelected && <button type="button" className="thematic__btn" onClick={handleClick}>Tout sélectionner</button>} */}
+        <button type="button" className={btnClass} onClick={handleClick}>Tout sélectionner</button>
       </div>
       <div className="thematic__items">
         {thematic.types.map((type) => (

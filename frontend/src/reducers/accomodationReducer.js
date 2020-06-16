@@ -36,6 +36,10 @@ const accomodationReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         isLoading: true,
+        dateFrom: '',
+        dateTo: '',
+        dateToFormated: '',
+        dateFromFormated: '',
       };
     }
     case SAVE_ACCOMODATION:
@@ -60,7 +64,7 @@ const accomodationReducer = (state = initialState, action = {}) => {
         [action.identifier]: action.newValue,
       };
     case CHANGE_DATE: {
-      console.log(action);
+      // console.log(action);
       return {
         ...state,
         [action.identifier]: action.date,

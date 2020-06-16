@@ -45,7 +45,7 @@ const manageAccomodationMiddleware = (store) => (next) => (action) => {
           // for (let i = 0; i < response.data.pictures.length; i += 1) {
           //   store.dispatch(fetchMyAccomodationPictures(response.data.pictures[i]));
           // }
-          console.log(response.data);
+          // console.log(response.data);
           store.dispatch(saveMyAccomodations(response.data));
         })
         .catch((error) => {
@@ -66,7 +66,7 @@ const manageAccomodationMiddleware = (store) => (next) => (action) => {
     case SET_EDIT_MY_ACCOMODATION_INFOS: {
       next(action);
       const { picturesURL } = store.getState();
-      console.log(picturesURL);
+      // console.log(picturesURL);
       break;
     }
     case SUBMIT_ADD_ACCOMODATION_FORM: {
@@ -146,7 +146,7 @@ const manageAccomodationMiddleware = (store) => (next) => (action) => {
                 },
               },
             ).then((response) => {
-              console.log(response);
+              // console.log(response);
               store.dispatch(fetchMyAccomodations(response.data));
               store.dispatch(push('/gerer-mes-hebergements'));
               store.dispatch(openSuccessSnackbar('Hébergement ajouté avec succès', 'success'));

@@ -211,7 +211,7 @@ const manageAccomodationReducer = (state = initialState, action = {}) => {
         pictures: [],
         picturesURL: [],
         editPicturesURL: [],
-        isLoading: false,
+        isLoading: true,
       };
     default: return state;
   }

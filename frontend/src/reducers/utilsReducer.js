@@ -18,7 +18,6 @@ const initialState = {
   success: false,
   successMessage: '',
   errorMessage: '',
-  isContactOwnerPanelOpen: false,
   isManageAccomodationPanelOpen: false,
   regexEmail: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
 };
@@ -67,12 +66,6 @@ const utilsReducer = (state = initialState, action = {}) => {
         ...state,
         success: false,
         successMessage: '',
-      };
-
-    case SET_CONTACT_OWNER_PANEL:
-      return {
-        ...state,
-        isContactOwnerPanelOpen: action.newValue,
       };
 
     case SET_MANAGE_ACCOMODATION_PANEL:

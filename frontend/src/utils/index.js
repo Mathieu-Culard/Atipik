@@ -1,8 +1,9 @@
 
 // used to display accomodationTypeDropdown correctly
 export const getAnchorPosition = () => {
-  const top = window.screen.height / 3;
+  const top = window.screen.height / 1;
   const left = window.screen.width / 2;
+  const bottom = 0;
   return {
     top,
     left,
@@ -168,7 +169,7 @@ export const getMyAccomodationPicturesURL = (statePicturesURL, picturesToAdd) =>
     };
     result.push(elem);
   }
-  console.log(result);
+  // console.log(result);
   return result;
 };
 

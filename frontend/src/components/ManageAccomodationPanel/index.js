@@ -9,15 +9,20 @@ import { makeStyles } from '@material-ui/core/styles';
 import { TextareaAutosize } from '@material-ui/core';
 import Item from './Item';
 
+import './manageAccomodationPanel.scss';
+
 const useStyles = makeStyles(() => ({
   box: {
-    width: '80%',
+    width: '50%',
     height: '650px',
     backgroundColor: '#fff',
     position: 'fixed',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%,-50%)',
+    display: 'flex',
+    flexDirection: 'column',
+    flexWrap: 'wrap',
   },
 }));
 

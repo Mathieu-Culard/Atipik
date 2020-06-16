@@ -9,11 +9,12 @@ import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(() => ({
   pictures: {
-    width: 250,
-    height: 170,
+    width: 200,
+    height: 125,
     flex: '0 0 auto',
     margin: 'auto ',
     overflow: 'hidden',
+    borderRadius: '20px 20px 0 0',
   },
 }));
 
@@ -30,20 +31,20 @@ const Marker = ({
   };
   return (
 
-    <div className="pin">
-      <div className="pin__icon">
-        <img src={`${process.env.REACT_APP_BACKEND_URL}/assets/icon/${type.icon}`} alt="icon" width="25" />
+    <div className="marker">
+      <div className="pin">
+        <div className="pin__icon">
+          <img src={`${process.env.REACT_APP_BACKEND_URL}/assets/icon/${type.icon}`} alt="icon" width="25" />
+        </div>
       </div>
-      <Link to={`/hebergement/${id}`}>
-        <div className="pin__card">
-          <Slider {...carouselSettings} className={classes.pictures}>
-            {pictures.map((picture) => (<div key={picture}><img src={`${process.env.REACT_APP_BACKEND_URL}/assets/accomodation/${picture}`} alt="" width="250" /></div>))}
-          </Slider>
-          <div className="pin__card__content">
-            <h3 className="pin__card__content__title">{title}</h3>
-            <p className="pin__card__content__location">{`${city}, ${country}`}</p>
-            <p>{type.name}</p>
-          </div>
+      <Link to={`/hebergement/${id}`} className="marker__card">
+        <Slider {...carouselSettings} className={classes.pictures}>
+          {pictures.map((picture) => (<div key={picture}><img src={`${process.env.REACT_APP_BACKEND_URL}/assets/accomodation/${picture}`} alt="" width="200" /></div>))}
+        </Slider>
+        <div className="marker__card__content">
+          <h3 className="marker__card__content__title">{title}</h3>
+          <p className="marker__card__content__location">{`${city}, ${country}`}</p>
+          <p className="marker__card__content__type">{type.name}</p>
         </div>
       </Link>
     </div>

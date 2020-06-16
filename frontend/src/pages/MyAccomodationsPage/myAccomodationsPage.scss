@@ -1,56 +1,169 @@
+@import 'src/styles/vars';
+
 .my-accomodations {
   position: relative;
-  width: 90%;
-  margin: auto;
+  width: 100%;
+  margin-bottom: $gutterSmall;
   // height: 1000px;
-  padding: 2rem;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  align-content: flex-start;
+  padding: $headerGutter 7.5% 2rem 7.5%;
+
+
+  &__cards {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-content: flex-start;
+    margin-bottom: $gutterMedium;
+  }
+
+  .background {
+    z-index: -1;
+    background-color: #101010;
+    // transform: scaleX(-1);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    object-fit: cover;
+    width: 100%;
+    height: 100vh;
+  }
 
   &__card {
-    margin: 1rem;
-    border: 1px solid #ccc;
-    padding: 2rem;
-    width: 40%;
-    height: 40%;
+    border-radius: $radiusLarge;
+    margin: 1rem 0;
+    // border: 1px solid #ccc;
+    padding: $gutterMedium;
+    width: 45%;
+    // height: 40%;
     display: flex;
     flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.4);
 
     &__content {
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
       width: 100%;
-      height: 80%;
+      // height: 90%;
 
       &__image {
         display: flex;
         flex-direction: column;
+        max-width: 50%;
 
         & img {
-          width: 250px;
-          height: auto;
+          width: 300px;
+          height: 300px;
+          object-fit: cover;
+          border-radius: $radiusLarge;
         }
       }
 
       &__infos {
-        height: 100%;
-        padding: 1rem;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        // height: 100%;
+        // padding: 1rem;
+
       }
 
       &__info {
-        margin: 0.5rem 0;
-        padding: 1rem;
-        border: 1px solid #ccc;
+        font-weight: $fontMedium;
+        font-size: 0.9rem;
+
+        &__title {
+          color: #fff;
+          padding: .5rem 0;
+        }
+
+        &__content {
+          background-color: rgba(255, 255, 255, 0.84);
+          box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.5);
+          padding: .5rem $gutterSmall;
+          border-radius: $radiusSmall;
+        }
+
+        // margin: 0.5rem 0;
+        // padding: 1rem;
+        // border: 1px solid #ccc;
+      }
+    }
+
+    &__btn {
+      margin: $gutterLarge auto 0 auto;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+
+      &__edit {
+        width: 30%;
+        // margin-right: $gutterSmall;
+        position: relative;
+        right: $gutterMedium;
+
+        & button {
+          border-radius: $radiusSmall;
+          font-family: $montserrat;
+          // font-weight: $fontSemiBold;
+          font-size: 1rem;
+          color: white;
+          border: none;
+          background-color: rgba(254, 146, 45, 0.9);
+          padding: .5rem;
+          width: 100%;
+          height: 100%;
+
+          &:hover {
+            background-color: $color-logo-1;
+          }
+        }
+      }
+
+      &__suppr {
+        border-radius: $radiusSmall;
+        font-family: $montserrat;
+        // font-weight: $fontSemiBold;
+        font-size: 1rem;
+        color: white;
+        border: none;
+        padding: .5rem;
+        width: 20%;
+        background-color: rgba(230, 71, 80, 0.9);
+
+        // height: 100%;
+        &:hover {
+          background-color: $color-logo-2;
+
+        }
       }
     }
   }
 
   &__new-accomodation {
-    padding: 3rem;
+    width: 20%;
+    // padding: 3rem;
     position: absolute;
     bottom: 0;
-    right: 0;
+    right: 40%;
+
+    & button {
+      box-shadow: 0px 0px 28px -7px rgba(255, 255, 255, 0.46);
+      border-radius: $radiusSmall;
+      font-family: $montserrat;
+      // font-weight: $fontSemiBold;
+      font-size: 1rem;
+      // color: white;
+      border: none;
+      background-color: rgba(255, 255, 255, 0.84);
+      padding: $gutterSmall;
+      width: 100%;
+      height: 100%;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.95);
+      }
+    }
   }
 }

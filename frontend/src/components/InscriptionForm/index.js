@@ -74,7 +74,7 @@ const InscriptionForm = ({
           value={password}
         />
         <TextField
-          label="Confirmez le mot de passe"
+          label="Confirmation"
           type="password"
           onChange={(e) => changeField(e.target.value, 'confirmPassword')}
           value={confirmPassword}

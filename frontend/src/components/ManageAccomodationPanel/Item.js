@@ -13,13 +13,15 @@ const Item = ({
     changeExtrasOrServices(identifier, item, !checked);
   };
   return (
-    <>
-      <input type="checkbox" id={`service-${item.id}`} checked={checked} onChange={handleChange} />
-      <label htmlFor={`service-${item.id}`}>
-        <img src={`${process.env.REACT_APP_BACKEND_URL}/assets/icon/${item.icon}`} alt="icon" />
-        <p>{item.name}</p>
+    <div className="item">
+      <input type="checkbox" id={`service-${item.id}`} checked={checked} onChange={handleChange} className="check" />
+      <label htmlFor={`service-${item.id}`} className="item__input">
+        <div className="item__input__container">
+          <img src={`${process.env.REACT_APP_BACKEND_URL}/assets/icon/${item.icon}`} alt="icon" className="item__icon" />
+          <p className="type__name">{item.name}</p>
+        </div>
       </label>
-    </>
+    </div>
   );
 };
 

@@ -32,12 +32,16 @@ const SearchPage = ({
   }, []);
 
   return (
-    <section className="search-page">
-      <FilterPanel />
-      <ResultList elements={accomodations} />
-      {loading && <Loader />}
-      {!loading && <Map />}
-    </section>
+    <>
+
+      <section className="search-page">
+        <div className="background" />
+        <FilterPanel />
+        <ResultList elements={accomodations} />
+        {loading && <Loader />}
+        {!loading && <Map />}
+      </section>
+    </>
   );
 };
 

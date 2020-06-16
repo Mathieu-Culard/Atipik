@@ -4,6 +4,7 @@ export const LOG_IN = 'LOG_IN';
 export const LOGIN_CHANGED = 'LOGIN_CHANGED';
 export const LOG_OUT = 'LOG_OUT';
 export const REMOVE_TOKEN = 'REMOVE_TOKEN';
+export const SET_LOGGED = 'SET_LOGGED';
 
 export const changeConnectionField = (identifier, newValue) => ({
   type: CHANGE_CONNECTION_FIELD,
@@ -26,3 +27,5 @@ export const loginChanged = () => ({
 });
 
 export const removeToken = () => ({ type: REMOVE_TOKEN });
+
+export const setLogged = () => ({ type: SET_LOGGED });
