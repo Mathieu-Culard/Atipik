@@ -1,0 +1,55 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Liste des extras - AtipiK{% endblock %}
+
+{% block body %}
+
+<div class="body">
+
+{{parent()}}
+
+<div class="right-side">
+	<main>
+		<div class="title">
+			<h3>Extras</h3>
+				<a href="{{path('admin_extras_add')}}" class="extra-add">
+    			Ajouter un nouvel extra
+				</a>
+		</div>
+
+		<div class="array">
+			<table class="table">
+                <thead>
+			        <tr class="table-dark">
+					<th scope="col">ID</th>
+					<th scope="col">Icone</th>
+					<th scope="col">Nom</th>
+					<th scope="col">Modifier</th>
+					<th scope="col">Supprimer</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						{% for extra in extras %}
+						<th class="align-middle" scope="row">{{extra.id}}</th>
+						<td class="align-middle"><img src="{{ asset('assets/icon/' ~ extra.icon) }}" class='icon-back' alt=""></td>
+						<td class="align-middle">{{extra.name}}</td>
+						<td class="align-middle">
+							<a href="{{path('admin_extras_edit', {'id' : extra.id })}}">
+								<button type="edit" class="edit">Modifier</button>
+							</a>
+						</td>
+                		<td class="align-middle">{{ form(forms[loop.index0]) }}</td>
+
+					</tr>
+					{% endfor %}
+
+				</tbody>
+			</table>
+		</div>
+	</main>
+</div>
+</div>
+{% endblock %}
+
+

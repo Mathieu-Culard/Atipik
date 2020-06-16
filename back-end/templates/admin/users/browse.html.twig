@@ -1,0 +1,68 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Liste des utilisateurs{% endblock %}
+
+{% block body %}
+
+<div class="body">
+
+{{parent()}}
+
+<div class="right-side">
+    <main>
+        <div class="title">
+            <h3>Utilisateurs de AtipiK</h3>
+            <a href="{{path('admin_users_add')}}" class ="user-add">
+            Ajouter un nouvel utilisateur
+	        </a>
+        </div>
+
+		<div class="array">
+            <table class="table">
+                <thead>
+			        <tr class="table-dark">
+                    <th scope="col">ID</th>
+                    <th scope="col">Avatar</th>
+                    <th scope="col">Nom d'utilisateur</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prénom</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Changer le role</th>
+                    <th scope="col">Supprimer</th>
+                    </tr>
+                </thead>
+                <tbody> 
+                    {% for user in users %}
+                    <tr>
+                    <th class="align-middle" scope="row">{{user.id}}</th>
+                    <td class="align-middle"><img src="{{asset('assets/avatar/'~ user.avatar)}}" style="width:60px" class="icon-back" alt="avatar de {{user.pseudo}}"></td>
+                    <td class="align-middle">{{user.pseudo}}</td>
+                    <td class="align-middle">{{user.lastname}}</td>
+                    <td class="align-middle">{{user.firstname}}</td>
+                    <td class="align-middle">{{user.email}}</td>
+                    {% if (user.roles == ["ROLE_ADMIN"]) %}
+                    <td class="align-middle">Administrateur</td>
+                    {% else %}
+                    <td class="align-middle">Utilisateur</td>
+             	    {% endif %}
+                    <td class="align-middle">
+					{% if (user.roles == ["ROLE_ADMIN"]) %}
+                    <a href="{{ path('admin_users_submit', {'id' : user.id}) }}"><button type="submit" class="submit-user">Utilisateur</button></a>
+						
+                        {% else %}
+						<a href="{{ path('admin_users_submit', {'id' : user.id}) }}"><button type="submit" class="submit-admin">Administrateur</button></a>
+						{% endif %}
+					</td>
+                    <td class="align-middle">{{ form(forms[loop.index0]) }}</td>
+                    {% endfor %}
+                    </tr>
+
+	            </tbody>
+            </table>
+		</div>
+	</main>
+</div>
+</div>
+
+{% endblock %}

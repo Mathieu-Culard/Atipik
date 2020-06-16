@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+<div class="edit-title">
+     <h3>Modifier le service</h3>
+</div>
+
+<div class="container-edit">
+{{form_start(form)}}
+
+         <div class="main-input">
+          <div class="input-name-edit">
+           {% if form_errors(form.name) %}
+          <p style="color:red">{{ form_errors(form.name) }}</p>
+          {% endif %}
+          {{form_widget(form.name, {'attr': {'placeholder': 'Nom'}}) }}
+          </div>
+     </div>  
+
+
+
+     <div class="image-form">
+          <div class="current-icon-form">
+           {% if form_errors(form.icon) %}
+          <p style="color:red">{{ form_errors(form.icon) }}</p>
+          {% endif %}
+               {{form_widget(form.icon, {'attr': {'placeholder': 'Icône'}}) }}
+          </div>
+     </div>
+
+          <div class="validate-button">
+                    <button type="submit" class="validate-edit">Valider</button>
+               <div class="back-button">
+                    <a href="{{path('admin_services_browse')}}" class="link-back"> Retour à la liste</a>
+               </div>
+          </div>
+
+{{form_end(form)}}
+
+
+</div>
+
+
+{% endblock %}

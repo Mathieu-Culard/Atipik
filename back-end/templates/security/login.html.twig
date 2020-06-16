@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+<div class="body-login">
+
+   
+<img src="{{ asset('assets/css/' ~ 'Atipik-orange.png') }}" class="logo-admin">
+   
+<div class="container-login">
+<form method="post">
+
+    {% if app.user %}
+        <div class="mb-3" id="logout">
+            Bonjour {{ app.user.username }}, <a href="{{ path('app_logout') }}" class="link-logout-admin">
+            <br>Se déconnecter</a>
+        </div>
+    {% endif %}
+
+
+    <h2 class="title-admin">Connexion</h2>
+    <!--<h3 class="login">Veuillez vous connecter</h3>-->
+    <div class="input">
+        <label for="input-email" id="label-login">Email</label>
+        <input type="email" value="{{ last_username }}" name="email" id="input-login" class="form-control" required autofocus>
+        <label for="input-password" id="label-login">Mot de passe</label>
+        <input type="password" name="password" id="input-login" class="form-control" required>
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+    </div>
+
+    {% if error %}
+        <div class="alert alert-danger" id="error">Identifiants invalides</div>
+    {% endif %}
+{# {{ error.messageKey|trans(error.messageData, 'security') }} #}
+
+    <button class="submit-authentification" type="submit">
+        Se connecter
+    </button>
+</form>
+</div>
+
+<div class="loader">
+{{ source('/security/loader.svg') }}
+</div>
+
+</div>
+{% endblock %}

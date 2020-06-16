@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+
+<h1 class="typeTitleEdit">Modifier l'hébergement</h1>
+
+<div class="container">
+{{form_start(form)}}
+
+        <div class="thematicType">{{form_widget(form.type)}}
+        </div>
+
+    <div class="buttonType">
+        <button type="submit" class="btn btn-primary">Valider</button>
+    </div>
+
+{{form_end(form)}}
+
+</div>
+
+
+{% endblock %}

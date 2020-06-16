@@ -1,0 +1,241 @@
+.container-login {
+    display: flex;
+    justify-content: center;
+    border: 1px solid #CACFD3 ;
+    border-radius: 1em;
+    margin-top: 10em;
+    font-family: 'Montserrat', sans-serif; 
+    border-color:black;
+    background-color:rgb(221, 215, 215);
+    width:35em;
+    margin-left:50em;
+    height:40em;
+    
+}
+
+form{
+    font-family: 'Montserrat', sans-serif; ;
+  
+}
+
+#label-login {
+   
+    font-size: 1.5em;
+    padding-left: 0.5em;
+   
+}
+
+#input-login {
+    margin-left: 0.5em;
+    margin-bottom: 0.7em;
+    max-width: 19em;
+    
+}
+
+
+
+#logout {
+    font-size: 1.5em;
+    justify-content: flex-end;
+  
+}
+
+#error {
+    font-size: 1.5em;
+    text-align:center;
+
+}
+
+.login{
+    border-style:solid;
+    background-color:white;
+    border-color:#e25e12;
+    border-width:0.03em;
+    border-radius:20px;
+    padding:0.2em;
+    margin-bottom:1.5em;
+    margin-top:0.8em;
+
+   
+}
+
+.submit-authentification{
+    color:white;
+    background-color :#fe922d;
+    font-weight:bold;
+    border-style:none;
+    margin-top:1.7em;
+    margin-left:4em;
+    border-radius:10px;
+    font-size:22px;
+    padding-top:0.8em;
+    padding-bottom:0.8em;
+    padding-right:0.5em;
+    padding-left:0.5em;
+    
+
+}
+
+.submit-authentification:hover{
+    background-color:#e77123;
+}
+
+
+.input{
+    margin-left:2em;
+}
+
+.title-admin{
+    border-style:solid;
+    background-color:white;
+    border:2px solid#e25e12;
+    border-radius:20px;
+    margin-bottom:1.5em;
+    margin-top:1.5em;
+    margin-left:75px;
+    margin-right:75px;
+    text-align:center;
+    font-size:30px;
+    padding-top:0.8em;
+    padding-bottom:0.8em;
+    padding-right:0.5em;
+    padding-left:0.5em;
+   
+}
+.body-login{
+  background:linear-gradient(to bottom left, #2e2d2d, #f3ecec);
+    height:100vh;
+    overflow-x:hidden;    
+}
+
+.logo-admin{
+    height:auto;
+    width:15em;
+    margin-left:60em;
+    margin-bottom:-13em;
+    padding-bottom:5em;
+ 
+    
+}
+
+.link-logout-admin{
+  color:red;
+}
+
+.link-logout-admin:hover{
+  color:#c93e3e;
+}
+
+
+
+
+
+
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100%;
+      text-align:center;
+    }
+    #loader-roulotte {
+      width: 15%;
+     animation:drive 10s infinite linear;
+      margin-top:5em;
+      
+    }
+      .loader__wheel {
+        transform-origin: center;
+        transform-box: fill-box;
+        animation: roll 2s infinite linear;
+      }
+      .loader__front-wheel {
+        transform-origin: center;
+        transform-box: fill-box;
+        animation: bumps 10s infinite linear;
+      }
+      .loader__rear-wheel {
+        animation: bumps 10s .2s infinite linear;
+      }
+
+  
+  @keyframes roll {
+    0% {
+      transform: rotate(0);
+    }
+    50% {
+      transform: rotate(180deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes bumps {
+    0% {
+      transform: translateY(0);
+    }
+    20% {
+      transform: translateY(0);
+    }
+    21% {
+      transform: translateY(-20px);
+    }
+    22% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(0);
+    }
+    51% {
+      transform: translateY(-40px);
+    }
+    52% {
+      transform: translateY(0);
+    }
+    54% {
+      transform: translateY(0);
+    }
+    55% {
+      transform: translateY(-15px);
+    }
+    56% {
+      transform: translateY(0);
+    }
+    73% {
+      transform: translateY(0);
+    }
+    74% {
+      transform: translateY(-20px);
+    }
+    75% {
+      transform: translateY(0);
+    }
+    85% {
+      transform: translateY(0);
+    }
+    86% {
+      transform: translateY(-20px);
+    }
+    87% {
+      transform: translateY(0);
+    }
+    88% {
+      transform: translateY(0);
+    }
+    89% {
+      transform: translateY(-30px);
+    }
+    90% {
+      transform: translateY(0);
+    }
+   
+  }
+    @keyframes drive {
+        0% {
+            transform:translateX(-100%);
+
+        }
+        100% {
+            transform:translateX(100vw);
+        }
+    }
