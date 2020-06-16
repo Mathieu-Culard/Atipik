@@ -1,1 +1,10 @@
 @import 'src/styles/vars';
+
+#root, .app {
+  min-height: 99vh;
+}
+
+.app {
+  position: relative;
+  padding-bottom: 4rem;
+}

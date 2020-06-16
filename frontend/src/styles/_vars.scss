@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@600;700&family=Montserrat:wght@100;300;500;600;700&display=swap');
+
+$crimson: 'Crimson Text',
+serif;
+$montserrat: 'Montserrat',
+sans-serif;
+
+$fontThin:100; //montserrat
+$fontLight:300; //montserrat
+$fontMedium:500; //montserrat
+$fontSemiBold:600; //montserrat + crimson
+$fontBold:700; //montserrat
+
+$color-separator: #ccc;
+$color-grey: #ccc;
+$color-black: #000;
+$color-link-hover-background: #eee;
+
+$color-logo-1: #fe922d;
+$color-logo-2: #e64750;
+
+$backgroundDark: #101010;
+$backgroundLight: #EDEDED;
+
+$box-shadow: 3px 3px 3px #{$color-grey};
+
+$radiusSmall: 5px;
+$radiusLarge: 20px;
+
+$gutterSmall: 1rem;
+$gutterMedium:2rem;
+$gutterLarge:3rem;
+
+$headerGutter: 7%;

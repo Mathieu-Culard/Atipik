@@ -1,0 +1,7 @@
+$desktop: 650px;
+
+@mixin respond-to($media) {
+  @if $media == desktop {
+    @media only screen and (min-width: $desktop) { @content; }
+  }
+}

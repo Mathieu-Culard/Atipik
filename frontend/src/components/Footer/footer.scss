@@ -1,0 +1,15 @@
+@import 'src/styles/vars';
+
+.footer {
+  height: 4rem;
+  padding: 0.5rem .5rem $gutterMedium .5rem;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  justify-content: flex-end;
+  color: rgba(255, 255, 255, .84);
+}

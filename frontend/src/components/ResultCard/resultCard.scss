@@ -1,0 +1,51 @@
+@import 'src/styles/vars';
+
+.search-page {
+  .result-card {
+    .slick-slider {
+      height: 200px;
+      box-shadow: 5px 0 15px #000;
+      border-radius: 20px 0 0 20px;
+
+      .slick-slide img {
+        height: 200px;
+        object-fit: cover;
+        border-radius: 20px 0 0 20px;
+      }
+
+      .slick-dots {
+        bottom: 0;
+
+        &>li>button::before {
+          color: $color-separator;
+        }
+
+        &>li.slick-active>button::before {
+          color: $color-separator;
+        }
+      }
+
+      .slick-prev {
+        left: 5px;
+      }
+
+      .slick-next {
+        right: 5px;
+      }
+
+      .slick-arrow {
+        z-index: 1;
+      }
+    }
+
+  }
+  .MuiListItem-gutters{
+    padding-left: 0;
+  }
+  .MuiCard-root {
+    overflow: visible;
+  }
+  .MuiListItem-root:first-child {
+    padding-top: 0;
+  }
+}
