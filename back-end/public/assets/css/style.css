@@ -76,10 +76,11 @@
       padding:2em;
       text-transform:uppercase;
       border-radius: 10px;
-      background:linear-gradient(to bottom left, #fe922d, #e64750);
       font-weight:bold;
       border : 0px;
-      
+      background-image: linear-gradient(90deg, rgba(254, 146, 45, 1) 34%, rgba(230, 71, 80, 1) 50%);
+      background-size: 200% 100%;
+      transition:background-position .3s;      
   }
 
   .navigation-link-validate{
@@ -89,8 +90,7 @@
   }
 
   .navigation-item-validate:hover{
-    font-weight:bold;
-    color:black;
+    background-position: 100% 0%;
   }
 
   
