@@ -48,7 +48,7 @@ class AuthenticationController extends AbstractController
 
             // on stocke dans $errors la methode du validator symfony
             $errors = $validator->validate($user);
-            dd($errors);
+            //dd($errors);
             // si il y en a au moins une
             if (count($errors) > 0) {
                 // on retourne l'erreur en json

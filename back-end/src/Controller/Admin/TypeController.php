@@ -5,7 +5,6 @@ namespace App\Controller\Admin;
 use App\Entity\Type;
 use App\Form\FormTypeDelete;
 use App\Form\FormType;
-use App\Form\FormTypeEdit;
 use App\Services\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Repository\TypeRepository;
@@ -62,7 +61,7 @@ class TypeController extends AbstractController
      public function edit(Type $type, Request $request, SluggerInterface $slugger, EntityManagerInterface $em) : Response
       {
         //We create a form to edit the type
-        $form = $this->createForm(FormTypeEdit::class, $type);
+        $form = $this->createForm(FormType::class, $type);
         $form->handleRequest($request);
 
         // We make sure the form is submitted correctly and is valid

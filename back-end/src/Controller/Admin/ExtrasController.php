@@ -4,7 +4,6 @@ namespace App\Controller\Admin;
 
 use App\Entity\Extra;
 use App\Form\ExtraType;
-use App\Form\ExtraEditType;
 use App\Form\FormExtraDeleteType;
 use App\Repository\ExtraRepository;
 use App\Services\FileUploader;
@@ -61,7 +60,7 @@ class ExtrasController extends AbstractController
     public function edit(Extra $extra, Request $request, EntityManagerInterface $em, SluggerInterface $slugger)
     {
         // We create a form to edit the extra
-        $form = $this->createForm(ExtraEditType::class, $extra);
+        $form = $this->createForm(ExtraType::class, $extra);
         $form->handleRequest($request);
 
         // We make sure the form is submitted correctly and is valid

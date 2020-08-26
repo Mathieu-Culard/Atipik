@@ -3,11 +3,11 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Accomodation;
+use App\Form\AccomodationDeleteType;
 use App\Repository\AccomodationRepository;
 use App\Repository\PictureRepository;
-use App\Form\AccomodationDeleteType;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -37,7 +37,7 @@ class AccomodationController extends AbstractController
      ];
 
             //We associate to $extras, an array which contain, a delete button for each extra
-            $forms[]= $this->createForm(accomodationDeleteType::class, $accomodations, $formOptions)->createView();
+            $forms[]= $this->createForm(AccomodationDeleteType::class, $accomodations, $formOptions)->createView();
         
         }
           

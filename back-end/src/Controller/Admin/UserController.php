@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\User;
 use App\Form\UserDeleteType;
+//use App\Form\UserBanish;
 use App\Form\UserType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -130,6 +131,7 @@ class UserController extends AbstractController
         // We retrieve the data
         $formDelete->handleRequest($request);
          // If the form is correctly submitted and valid
+        
         if ($formDelete->isSubmitted() && $formDelete->isValid()) {
             // We remove the user
             $em->remove($user);

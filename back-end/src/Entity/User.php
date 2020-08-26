@@ -61,13 +61,12 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
-     *
      * @Assert\NotBlank(
      *      message = "Merci de renseigner votre prénom",
      * )
      * @Assert\Regex(
      *     pattern="/^[-'a-zA-ZÀ-ÖØ-öø-ÿ]+$/",
-     *     message="Votre prénom ne doit comporter que des lettres"
+     *     message="Votre prénom ne peut pas comporter de chiffres ou de caractères spéciaux"
      * )
      */
     private $firstname;
@@ -78,8 +77,8 @@ class User implements UserInterface
      *      message = "Merci de renseigner votre nom",
      * )
      * @Assert\Regex(
-     *     pattern="/^[-'a-zA-ZÀ-ÖØ-öø-ÿ]+$/",
-     *     message="Votre nom ne doit comporter que des lettres"
+     *     pattern="/^[-'a-zA-ZÀ-ÖØ-öø-ÿ\s]+$/",
+     *     message="Votre nom ne peut pas comporter de chiffres ou de caractères spéciaux"
      * )
      */
     private $lastname;
@@ -107,7 +106,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(
-     *      message = "Merci de renseigner votre nom d'utilisateur",
+     *      message = "Merci de renseigner votre pseudo",
      * )
      * @Assert\Regex(
      *     pattern="/^[-'a-zA-ZÀ-ÖØ-öø-ÿ0-9\s]+$/",

@@ -26,15 +26,20 @@ class Type
      * @ORM\Column(type="string", length=255)
      * @ORM\OrderBy({"name" = "ASC"})
      * @Assert\Regex(
-     *pattern="(^[a-zA-Z-éèà]+$)",
-     *message="Le nom du type ne peut contenir ni de caractères spéciaux, ni de chiffres"
+     *      pattern="(^[a-zA-Z-éèà\s]+$)",
+     *      message="Le nom du type ne peut contenir ni de caractères spéciaux, ni de chiffres"
      *)
+     * @Assert\NotBlank(
+     *      message = "Merci de saisir un nom pour votre type d'hébergement",
+     * )
      */
     private $name;
 
     /**
      * @ORM\Column(type="text")
-     *
+     * @Assert\NotBlank(
+     *      message = "Merci de saisir une description associée à ce type d'hébergement",
+     * )
      */
     private $description;
 

@@ -186,10 +186,7 @@ class AccomodationController extends AbstractController
   
          }
          return $this->json('', 404);
-
-        }
-
-           
+        }  
     }
 
 

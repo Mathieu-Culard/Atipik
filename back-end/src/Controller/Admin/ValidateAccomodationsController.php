@@ -4,10 +4,9 @@ namespace App\Controller\Admin;
 
 use App\Entity\Accomodation;
 use App\Entity\User;
-use App\Form\DeleteValidationType;
+use App\Form\AccomodationDeleteType;
 use App\Form\FormAccomodationType;
 use App\Form\UserDeleteType;
-use App\Form\UserBanish;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Repository\AccomodationRepository;
 use App\Repository\UserRepository;
@@ -46,16 +45,15 @@ class ValidateAccomodationsController extends AbstractController
         //We recover the current accomodation (with his id)
         $currentAccomodation = $accomodationRepository->find($id); 
         
-        //We declare a variable $deleteValidationType which create the form with
-        //deleteValidationType
+        //We declare a variable $deleteValidationType which create the form with AccomodationDeleteType
         //in order to reject an accomodation (if there is an inadequate vocabulary for example)
-        $deleteValidationType = $this->createForm(deleteValidationType::class, null, [
+        $deleteValidationType = $this->createForm(AccomodationDeleteType::class, null, [
             'action' => $this->generateUrl('admin_validate_accomodations_delete',['id' => $currentAccomodation->getId()] )
         ]);
 
-        //We declare a variable $userBanish which create the form with userBanish
+        //We declare a variable $userBanish which create the form with UserDeleteType
         //in order to banish a user
-        $userBanish = $this->createForm(UserBanish::class, null, [
+        $userBanish = $this->createForm(UserDeleteType::class, null, [
             'action' => $this->generateUrl('admin_validate_accomodations_banish',['id' => $currentAccomodation->getUser()->getId()] )
         ]);
 
@@ -119,8 +117,8 @@ class ValidateAccomodationsController extends AbstractController
      */
     public function delete(Request $request, EntityManagerInterface $em, Accomodation $accomodation)
     {
-        // We retrieve the form "DeleteValidationType"
-        $formDelete = $this->createForm(DeleteValidationType::class);
+        // We retrieve the form "AccomodationDeleteType"
+        $formDelete = $this->createForm(AccomodationDeleteType::class);
         //We retrieve the data
         $formDelete->handleRequest($request);
 
@@ -141,8 +139,8 @@ class ValidateAccomodationsController extends AbstractController
      */
     public function banish(Request $request, EntityManagerInterface $em, User $user)
     {  
-        //We retrieve the form "UserBanish"
-        $formBanish = $this->createForm(UserBanish::class);
+        //We retrieve the form "UserDeleteType"
+        $formBanish = $this->createForm(UserDeleteType::class);
         //We retrieve the data
         $formBanish->handleRequest($request);
         

@@ -4,8 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Service;
 use App\Form\FormServiceDelete;
-use App\Form\FormServicesType;
-use App\Form\ServiceEditType;
+use App\Form\ServicesType;
 use App\Services\FileUploader;
 use App\Repository\ServiceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -56,7 +55,7 @@ class ServicesController extends AbstractController
     public function edit(Service $service, Request $request,EntityManagerInterface $em, SluggerInterface $slugger, FileUploader $fileUploader) : Response
     {
         //We create a form to edit services
-        $form = $this->createForm(ServiceEditType::class, $service);
+        $form = $this->createForm(ServicesType::class, $service);
         $form->handleRequest($request); 
 
         // We make sure the form is submitted correctly and is valid
@@ -110,7 +109,7 @@ class ServicesController extends AbstractController
         $service = new Service();
 
         //We create a form to edit services
-        $form = $this->createForm(FormServicesType::class, $service);
+        $form = $this->createForm(ServicesType::class, $service);
         $form->handleRequest($request);
 
         // We make sure the form is submitted correctly and is valid
