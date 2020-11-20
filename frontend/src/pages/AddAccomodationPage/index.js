@@ -23,7 +23,7 @@ const useStyles = makeStyles({
     // zIndex: 0,
   },
   switch: {
-    width: '45%',
+    width: 'fit-content',
     padding: '1rem',
   },
   description: {

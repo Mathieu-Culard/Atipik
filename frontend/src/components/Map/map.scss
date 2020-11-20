@@ -1,24 +1,42 @@
 @import 'src/styles/vars';
+@import 'src/styles/responsive';
+
 
 .map {
-  width: 100%;
-  height: 100%;
-  > div > div {
+
+  width: 58%;
+  height: 70vh;
+
+  >div>div {
     border-radius: 20px;
+  }
+
+  // @include desktop-only {
+
+  //   height: 76%;
+  // }
+}
+
+@media(max-width:760px) {
+  .map {
+    width: 100%,
   }
 }
 
 .marker {
   position: relative;
+
   &:hover {
     .pin {
       opacity: 0;
     }
+
     .marker__card {
       display: block;
       animation: fade-in-from-none .5s ease-out;
     }
   }
+
   &__card {
     z-index: 999;
     display: none;
@@ -30,20 +48,25 @@
     border-radius: 20px;
     background-color: white;
     box-shadow: 3px 3px 3px #888;
+
     .slick-arrow {
       z-index: 10;
       top: calc(50% + 5px);
     }
+
     .slick-next {
       right: 10px;
     }
+
     .slick-prev {
       left: 10px;
     }
+
     .slick-slide img {
       height: 125px;
       object-fit: cover;
     }
+
     .slick-dots {
       z-index: 10;
       bottom: 0;
@@ -51,23 +74,27 @@
 
     &__content {
       padding: .8rem;
+
       &__title {
         font-family: $crimson;
         font-weight: 700;
         font-size: 20px;
       }
+
       &__location {
         font-family: $montserrat;
         font-weight: 600;
         font-size: 12px;
         margin-bottom: .8rem;
       }
+
       &__type {
         font-family: $montserrat;
         font-weight: 300;
         font-size: 12px;
       }
     }
+
     &::after {
       content: "";
       border-left: 10px solid transparent;
@@ -106,10 +133,12 @@
     display: none;
     opacity: 0;
   }
+
   1% {
     display: block;
     opacity: 0;
   }
+
   100% {
     display: block;
     opacity: 1;

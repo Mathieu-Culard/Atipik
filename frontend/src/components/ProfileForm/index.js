@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-computed-key */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -18,6 +19,9 @@ const useStyles = makeStyles(() => ({
     border: '1px solid #ccc',
     padding: '5rem',
     backgroundColor: 'rgba(255, 255, 255, .85)',
+    ['@media(max-width:1024px)']: {
+      width: '90%',
+    },
   },
   avatarContainer: {
     width: '15vw',
@@ -55,6 +59,10 @@ const useStyles = makeStyles(() => ({
     display: 'grid',
     gridGap: '3rem',
     gridTemplateColumns: '1fr 1fr',
+    ['@media(max-width:1024px)']: {
+      display: 'flex',
+      flexDirection: 'column',
+    },
   },
   submitButton: {
     display: 'block',

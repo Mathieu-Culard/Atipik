@@ -2,8 +2,8 @@
 @import 'src/styles/responsive';
 
 .header {
-  height: 5%;
-  min-height: 7rem;
+  height: fit-content;
+  // min-height: 5rem;
   padding-top: 1rem;
   color: #fff;
   position: absolute;
@@ -12,6 +12,10 @@
   left: 0;
   right: 0;
   background-color: transparent;
+  @include desktop-only{
+    height: 5%;
+  min-height: 5rem;
+  }
 
   &__top-bar {
     padding: .5rem 0;

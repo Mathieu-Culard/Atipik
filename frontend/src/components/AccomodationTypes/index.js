@@ -17,8 +17,8 @@ const CardStyle = makeStyles((theme) => ({
 }));
 const CardContentStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: 'rgba(0, 0,0 , 0.7) !important',
-    padding: '1.2rem 2rem',
+    backgroundColor: 'rgba(0, 0,0 , 0.4) !important',
+    // padding: '1.2rem 2rem',
   },
 }));
 const CardTitleStyles = makeStyles((theme) => ({

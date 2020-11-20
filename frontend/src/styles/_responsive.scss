@@ -5,3 +5,28 @@ $desktop: 650px;
     @media only screen and (min-width: $desktop) { @content; }
   }
 }
+
+
+$breakpoints:(
+  desktop: 1440px,
+  tabletXL: 1000px,
+  tablet: 650px,
+);
+
+@mixin desktop-only {
+  @media screen and (min-width: map-get($breakpoints, desktop)) {
+    @content;
+  }
+}
+
+@mixin tablet-only {
+  @media screen and (min-width: map-get($breakpoints, tablet)){
+    @content;
+  }
+}
+
+@mixin tabletXL-only {
+  @media screen and (min-width: map-get($breakpoints, tabletXL)){
+    @content;
+  }
+}

@@ -15,7 +15,7 @@ import Thematic from './Thematic';
 const useStyles = makeStyles({
   formControl: {
     zIndex: 0,
-    minWidth: 220,
+    // minWidth: 150,
     width: '100%',
   },
   root: {
@@ -29,6 +29,7 @@ const useStyles = makeStyles({
   },
   label: {
     color: 'white !important',
+    width: '80%',
   },
   outline: {
     borderColor: 'white !important',

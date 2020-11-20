@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-computed-key */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -10,6 +11,7 @@ import InscriptionForm from 'src/containers/InscriptionForm';
 import ContactForm from 'src/containers/ContactForm';
 import LostPasswordForm from 'src/containers/LostPasswordForm';
 import ContactOwnerPanel from 'src/containers/ContactOwnerPanel';
+import ReservationForm from 'src/containers/ReservationForm';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -20,6 +22,11 @@ const useStyles = makeStyles(() => ({
     top: '50%',
     left: '50%',
     transform: 'translate(-50%,-50%)',
+    ['@media(max-width:1024px)']: {
+      top: '25%',
+      left: '25%',
+      transform: 'translate(-16%,-0%)',
+    },
     padding: '2rem',
     borderRadius: '20px',
   },
@@ -58,6 +65,7 @@ const ModalPanel = ({
             ContactForm: <ContactForm />,
             LostPasswordForm: <LostPasswordForm />,
             ContactOwnerPanel: <ContactOwnerPanel />,
+            ReservationForm: <ReservationForm />,
           }[componentName]
         }
       </Paper>

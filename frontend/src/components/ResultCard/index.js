@@ -15,6 +15,7 @@ import './resultCard.scss';
 
 const useStyles = makeStyles(() => ({
   card: {
+    overflow: 'hidden',
     display: 'flex',
     alignItems: 'stretch',
     width: '100%',
@@ -25,10 +26,23 @@ const useStyles = makeStyles(() => ({
     '&:hover': {
       transform: 'translateX(10px)',
     },
+    // eslint-disable-next-line no-useless-computed-key
+    ['@media(max-width:1024px)']: {
+      flexDirection: 'column',
+      height: 'fit-content',
+      '&:hover': {
+        transform: 'translateX(0px)',
+      },
+    },
+
   },
   pictures: {
     width: '220px',
     flex: '0 0 auto',
+    // eslint-disable-next-line no-useless-computed-key
+    ['@media(max-width:1024px)']: {
+      width: '100%',
+    },
   },
   content: {
     display: 'flex',
@@ -41,6 +55,10 @@ const useStyles = makeStyles(() => ({
     margin: '.5rem 0',
     textAlign: 'justify',
     fontWeight: 100,
+    // eslint-disable-next-line no-useless-computed-key
+    ['@media(max-width:1024px)']: {
+      display: 'none',
+    },
   },
   location: {
     fontWeight: 500,

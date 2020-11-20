@@ -18,6 +18,8 @@ const style = (theme) => (
     textField: {
       width: '100%',
       color: 'white',
+      overflow: 'hidden',
+
     },
     cssLabel: {
       color: 'white',

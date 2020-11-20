@@ -1,26 +1,64 @@
 @import 'src/styles/vars';
+@import 'src/styles/responsive';
 
 .search-page {
-  padding: $headerGutter 0 0 0;
+  padding: 5rem 0 0 0;
   margin: auto;
-  height: 100vh;
-  display: grid;
-  grid-template-columns: 2fr 3fr;
-  grid-template-rows: min-content;
-  grid-gap: 2rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  height: fit-content;
+  @include desktop-only {
+    // display: grid;
+    // grid-template-columns: 2fr 3fr;
+    // grid-template-rows: min-content;
+    // grid-gap: 2rem;
+    height: 100vh;
+  }
+
   // .MuiFormLabel-root {
   //   font-family: $montserrat;
   //   padding: $gutterSmall;
   //   z-index: 999;
   // }
   .background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
     background-color: #101010;
     background: url('../../assets/backgrounds/searchBackground.png');
     background-size: cover;
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    z-index: -1;
+
+    @include desktop-only {
+
+      position: absolute;
+
+    }
   }
+
+  .select-panel {
+    height: fit-content;
+    width: fit-content;
+    position: sticky;
+    z-index: 998;
+    top: 20px;
+    border-radius: 20px;
+    padding: $gutterSmall;
+    background-color: rgba(255, 255, 255, .85);
+    &__btn{
+      background-color: transparent;
+      border:none;
+    }
+  }
+
+  @media (min-width: 761px){
+    .select-panel{
+      display: none;
+    }
+  }
+
+
 }
-
-

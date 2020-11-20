@@ -12,6 +12,7 @@ import user from './userReducer';
 import data from './dataReducer';
 import manageAccomodation from './manageAccomodationReducer';
 import reservations from './reservationsReducer';
+import responsive from './responsiveReducer';
 
 const rootReducer = (history) => combineReducers({
   router: connectRouter(history),
@@ -26,6 +27,7 @@ const rootReducer = (history) => combineReducers({
   data,
   manageAccomodation,
   reservations,
+  responsive,
 });
 
 export default rootReducer;

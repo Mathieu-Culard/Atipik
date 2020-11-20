@@ -1,66 +1,147 @@
 @import 'src/styles/vars';
+@import 'src/styles/responsive';
 
+body {
+  overflow-x: hidden;
+}
 
+.extras {
+  border-left: 1px solid #aaa;
+
+  @include tabletXL-only {
+    border: none;
+  }
+}
+
+.services {
+  border-right: 1px solid #aaa;
+
+  @include tabletXL-only {
+    border: none;
+  }
+}
+
+.mobile-reservation-btn {
+
+  display: block;
+  border-radius: $radiusSmall;
+  background-color: $color-logo-1;
+  background-image: linear-gradient(90deg, rgba(254, 146, 45, 0) 34%, rgba(230, 71, 80, 1) 50%);
+  background-size: 200% 100%;
+  border: none;
+  height: $gutterLarge;
+  color: #fff;
+  font-family: $montserrat;
+  font-size: 1.2rem;
+  width: 100%;
+  overflow: hidden;
+  transition: background-position .3s;
+
+  &:hover {
+    background-position: 100% 0%;
+  }
+
+  @include tablet-only {
+    display: none;
+  }
+}
 
 .accomodation {
   font-family: $montserrat;
   background-color: $backgroundDark;
-  overflow: hidden;
+  width: 100vw;
+
 
   &__head {
-    padding-top: $headerGutter;
+    padding-top: 5rem;
     width: 100%;
     height: 100vh;
 
+
     &__carrousel {
+      margin-top: 8rem;
       width: 100%;
-      position: relative;
+      height: 37vh;
+      @include tablet-only{
+        height: 55vh;
+      }
+      @include desktop-only {
+        margin-top: $gutterLarge;
+        position: relative;
+        height: 70vh;
+
+      }
 
       &__item {
-        height: 76vh;
+        height: 37vh;
+        @include tablet-only{
+          height: 55vh;
+        }
+        @include desktop-only {
+          height: 70vh;
+        }
+
         img {
           height: 100%;
           width: auto;
           border-radius: 50px;
           padding: .4rem;
         }
-
       }
+    }
 
-      &__infos {
-        z-index: 1;
+    &__infos {
+      margin-top: $gutterMedium;
+      z-index: 1;
+      padding-left: 8vw;
+      display: flex;
+      position: absolute;
+      top: 5rem;
+      align-items: center;
+      color: #fff;
+
+      @include desktop-only {
         width: 200vw;
-        padding-left: 8vw;
-        display: flex;
-        position: absolute;
+        height: 100vh;
         background: radial-gradient(circle, rgba(16, 16, 16, 0) 57%, rgba(16, 16, 16, 1) 76%, rgba(16, 16, 16, 1) 100%);
-        height: 76vh;
+        margin-top: 0;
         top: 0%;
-        align-items: center;
-        color: #fff;
+      }
+    }
+
+    &__info {
+      max-width: 100vw;
+
+      @include desktop-only {
+        max-width: 20vw;
       }
 
-      &__info {
-        max-width: 20vw;
+      &__title {
+        font-family: $crimson;
+        font-weight: $fontSemiBold;
+        font-size: 2rem;
 
-        &__title {
-          font-family: $crimson;
-          font-weight: $fontSemiBold;
+        @include desktop-only {
           font-size: 4rem;
         }
+      }
 
-        &__location {
-          font-weight: $fontThin;
-        }
+      &__location {
+        font-weight: $fontThin;
       }
     }
 
     &__additional-info {
+      margin-top: $gutterLarge;
       height: 10vh;
       filter: invert(1);
       display: flex;
       align-items: center;
       justify-content: space-between;
+
+      @include desktop-only {
+        margin-top: $gutterSmall;
+      }
 
       &__characteristics {
         width: 100%;
@@ -70,7 +151,11 @@
         align-items: center;
 
         >* {
-          margin-right: $gutterLarge;
+          margin-right: $gutterMedium;
+
+          @include desktop-only {
+            margin-right: $gutterLarge;
+          }
         }
 
         img {
@@ -97,33 +182,65 @@
     }
   }
 
-
-
   &__body {
     background-color: #EDEDED;
-    display: flex;
-    justify-content: space-evenly;
+
+    @include tabletXL-only {
+      display: flex;
+      justify-content: space-evenly;
+    }
 
     &__owner-card {
-      margin-top: 5rem;
-      order: 2;
-      width: 20%;
+      width: 100%;
+
+      @include tabletXL-only {
+        margin-top: 5rem;
+        order: 2;
+        width: 30%;
+      }
+      @include desktop-only{
+        width: 20%;
+      }
 
       &__title {
-        padding-bottom: $gutterSmall;
+        padding-top: $gutterSmall;
         font-weight: $fontSemiBold;
-        font-size: $gutterSmall;
+        font-size: 1rem;
+        text-align: center;
+        @include tablet-only{
+          text-align: left;
+          padding-left:2rem
+        }
+        @include desktop-only{
+          text-align: center;
+          padding-left:0;
+        }
       }
 
       &__card {
-        background-color: #fff;
         border-radius: $radiusLarge;
-        box-shadow: 0px -3px 9px 1px rgba(16, 16, 16, 0.23); // padding: $gutterSmall $gutterSmall;
-        border: 1px solid #ccc;
         display: flex;
         align-items: center;
         flex-direction: column;
 
+        @include tablet-only {
+          flex-direction: row;
+          justify-content: space-evenly;
+        }
+
+        @include tabletXL-only {
+          background-color: #fff;
+          box-shadow: 0px -3px 9px 1px rgba(16, 16, 16, 0.23); // padding: $gutterSmall $gutterSmall;
+          border: 1px solid #ccc;
+          flex-direction: column;
+        }
+
+        &__top {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          flex-wrap: nowrap;
+        }
 
         &__avatar {
           margin-top: $gutterMedium;
@@ -164,12 +281,22 @@
         }
 
         &__reservation {
-          border-radius: 0 0 $radiusLarge $radiusLarge;
-          background-color: $backgroundDark;
-          padding: $gutterMedium;
-          margin-top: $gutterSmall;
-          width: 100%;
-          color: #fff;
+          display: none;
+
+          @include tablet-only {
+            display: inline;
+            border-radius: $radiusLarge;
+            background-color: $backgroundDark;
+            padding: $gutterMedium;
+            margin-top: $gutterSmall;
+            width: 50%;
+            color: #fff;
+          }
+
+          @include tabletXL-only {
+            border-radius: 0 0 $radiusLarge $radiusLarge;
+            width: 100%;
+          }
 
           &>* {
             margin-bottom: $gutterSmall;
@@ -214,45 +341,89 @@
       }
     }
 
-
     &__content {
-      width: 60%;
+      width: 90%;
+      margin: auto;
+
+      @include tabletXL-only {
+        width: 60%;
+        margin: 0;
+      }
+
+      &__services-wrapper {
+        display: flex;
+        justify-content: space-evenly;
+
+        @include tabletXL-only {
+          display: inline;
+        }
+      }
 
       &__description {
 
         &__content {
-          padding: $gutterLarge 0;
+          padding: $gutterMedium 0;
           line-height: 1.5rem;
+
+          @include tabletXL-only {
+            padding: $gutterLarge 0;
+          }
         }
       }
 
       &__services {
         border-top: 1px solid #ccc;
-        padding: $gutterLarge 0 $gutterMedium 0;
+        padding: $gutterMedium 0 $gutterMedium 0;
+        width: 50%;
+
+        @include tabletXL-only {
+          padding: $gutterLarge 0 $gutterMedium 0;
+          width: 100%;
+        }
 
         &__title {
           width: 100%;
           font-size: 1.2rem;
           font-weight: bold;
+          text-align: center;
         }
 
         &__items {
-          max-height: 50vh;
           display: flex;
           flex-direction: column;
-          flex-wrap: wrap;
+          flex-wrap: nowrap;
+
+          @include tabletXL-only {
+            margin-top: $gutterMedium;
+            flex-wrap: wrap;
+            max-height: 50vh;
+          }
+          
         }
 
+
         &__item {
-          width: 20%;
-          justify-content: flex-start;
+
           padding: $gutterMedium 0;
           display: flex;
+          flex-direction: column;
+          justify-content: center;
           align-items: center;
 
+          @include tabletXL-only {
+            width: 20%;
+            justify-content: flex-start;
+            flex-direction: row;
+          }
+
           img {
-            width: 60px;
-            margin-right: $gutterSmall;
+            width: 48px;
+
+            @include tabletXL-only {
+              width: 60px;
+              margin-right: $gutterSmall;
+            }
+
           }
         }
       }
@@ -260,17 +431,24 @@
   }
 
   .slick-prev {
-    position: absolute;
-    z-index: 999;
-    left: 8vw;
-    top: 70%;
+    display: none !important;
+
+    @include desktop-only {
+      position: absolute;
+      z-index: 999;
+      left: 8vw;
+      top: 70%;
+    }
   }
 
   .slick-next {
-    position: absolute;
-    z-index: 999;
-    left: 13vw;
-    top: 70%;
-  }
+    display: none !important;
 
+    @include desktop-only {
+      position: absolute;
+      z-index: 999;
+      left: 13vw;
+      top: 70%;
+    }
+  }
 }

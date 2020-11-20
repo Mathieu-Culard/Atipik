@@ -14,7 +14,7 @@ export const getAnchorPosition = () => {
  * @param {array} checkedItems
  * values that are already present in the state accomodationTypeValue field
  * @param {number} id
- * id of the curretly selected type
+ * id of the currently selected type
  * @param {boolean} checked
  * true if the user select the type that correspond to the id, false if he uncheck it
  *

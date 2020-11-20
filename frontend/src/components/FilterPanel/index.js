@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-computed-key */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -18,25 +19,59 @@ const useStyles = makeStyles(() => ({
     backgroundColor: 'rgba(255, 255, 255, .85)',
     margin: 'auto',
     borderRadius: '20px',
-    height: '175px',
-    gridColumn: '1 / span 2',
-    zIndex: 1,
-    display: 'grid',
-    gridTemplateColumns: '2fr 1fr 1fr 2fr',
-    gridGap: '10rem',
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexWrap: 'wrap',
+    marginBottom: '2rem',
+    // height: '175px',
+    // gridColumn: '1 / span 2',
+    // zIndex: 1,
+    // display: 'grid',
+    // gridTemplateColumns: '2fr 1fr 1fr 2fr',
+    // gridGap: '10rem',
     padding: '0 5rem',
     width: '100%',
+    // ['@media(max-width:1500px)']: {
+    //   height: 'fit-content',
+    //   display: 'flex',
+    //   flexDirection: 'row',
+    //   flexWrap: 'wrap',
+    //   justifyContent: 'space-between',
+    // },
+    ['@media(max-width:760px)']: {
+      display: 'flex',
+      flexDirection: 'column',
+      // width: '90vw',
+      // height: 'fit-content',
+      // margin: 'auto',
+      // marginTop: '8px',
+      // padding: '0 2rem',
+    },
   },
   gridElement: {
+    width: '20%',
+    minWidth: '160px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    flexWrap: 'wrap',
+    flexWrap: 'nowrap',
     height: '175px',
     padding: '1.5rem 0',
+    ['@media(max-width:760px)']: {
+      width: '100%',
+      height: 'fit-content',
+      flexWrap: 'nowrap',
+    },
   },
   switchElements: {
     justifyContent: 'flex-start',
+    flexWrap: 'wrap',
+    flexDirection: 'column',
+    ['@media(max-width:1500px)']: {
+      justifyContent: 'space-around',
+      flexDirection: 'row',
+      width: '100%',
+    },
   },
   switch: {
     margin: '.1rem 0',
@@ -51,6 +86,10 @@ const useStyles = makeStyles(() => ({
     overflowX: 'auto',
     padding: 0,
     margin: '.3rem 1rem',
+    // eslint-disable-next-line no-useless-computed-key
+    ['@media(max-width:650px)']: {
+      flexWrap: 'wrap',
+    },
   },
   chip: {
     margin: '.1rem',

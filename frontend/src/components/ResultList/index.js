@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-computed-key */
 import React from 'react';
 import PropTypes from 'prop-types';
 import List from '@material-ui/core/List';
@@ -12,6 +13,13 @@ const useStyles = makeStyles(() => ({
     marginLeft: '-20px',
     paddingLeft: '20px',
     paddingTop: 0,
+    width: '38%',
+    height: '70vh',
+    ['@media(max-width:760px)']: {
+      width: '100%',
+      height: 'fit-content',
+      overflowY: 'hidden',
+    },
   },
 }));
 

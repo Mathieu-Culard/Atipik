@@ -32,7 +32,7 @@ const App = ({
     fetchAccomodationTypes();
     fetchServices();
     fetchExtras();
-    localStorage.setItem('apiKey', 'AIzaSyDgvwB0FMtMpdC6bgjDKGE-hLGdTFxEhts');
+    localStorage.setItem('apiKey', 'AIzaSyCDoakBZI-Md1X6LZitJoR8g_etZjjYERg');
   }, []);
   return (
     <div className="app">

@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-computed-key */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -13,6 +14,9 @@ import './manageAccomodationPanel.scss';
 
 const useStyles = makeStyles(() => ({
   box: {
+    ['@media(max-width:1000px)']: {
+      width: '90%',
+    },
     width: '50%',
     height: '650px',
     backgroundColor: '#fff',
@@ -21,8 +25,10 @@ const useStyles = makeStyles(() => ({
     left: '50%',
     transform: 'translate(-50%,-50%)',
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'row',
     flexWrap: 'wrap',
+    overflowY: 'auto',
+    justifyContent: 'center',
   },
 }));
 

@@ -1,16 +1,28 @@
 @import 'src/styles/vars';
+@import 'src/styles/responsive';
 
 .search-page {
   .result-card {
+    width: 100%;
+
     .slick-slider {
       height: 200px;
       box-shadow: 5px 0 15px #000;
-      border-radius: 20px 0 0 20px;
+      border-radius: 20px;
+
+      @include desktop-only {
+        border-radius: 20px 0 0 20px;
+      }
 
       .slick-slide img {
         height: 200px;
+        width: 100%;
         object-fit: cover;
-        border-radius: 20px 0 0 20px;
+        border-radius: 20px;
+
+        @include desktop-only {
+          border-radius: 20px 0 0 20px;
+        }
       }
 
       .slick-dots {
@@ -39,13 +51,27 @@
     }
 
   }
-  .MuiListItem-gutters{
-    padding-left: 0;
+
+  .MuiListItem-gutters {
+      padding-right: 0;
+      padding-left: 0;
+      @include desktop-only{
+        padding-right: 16px;
+      }
+    
   }
+
   .MuiCard-root {
-    overflow: visible;
+    overflow: hidden;
+
+    @include desktop-only {
+      overflow: visible;
+    }
   }
+
   .MuiListItem-root:first-child {
-    padding-top: 0;
+    @include desktop-only {
+      padding-top: 0;
+    }
   }
 }

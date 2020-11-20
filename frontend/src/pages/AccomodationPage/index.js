@@ -53,6 +53,17 @@ const AccomodationPage = ({
     slidesToShow: 1,
     slidesToScroll: 1,
     variableWidth: true,
+    responsive: [
+      {
+        breakpoint: 800,
+        settings: {
+          infinite: true,
+          centerMode: true,
+          rows: 1,
+          // dots: true,
+        },
+      },
+    ],
     // infinite: true,
     // speed: 500,
     // slidesToShow: 1,
@@ -78,6 +89,10 @@ const AccomodationPage = ({
       openModal('Contacter le propriétaire de cet hébergement', 'ContactOwnerPanel');
     }
   };
+
+  const handleMobileReservationClick = () => {
+    openModal('Reserver cet hébergement', 'ReservationForm');
+  };
   // console.log(accomodation.services);
 
   const services = getServices(servicesList, accomodation.services);
@@ -99,11 +114,12 @@ const AccomodationPage = ({
                     </div>
                   ))}
                 </Slider>
-                <div className="accomodation__head__carrousel__infos">
-                  <div className="accomodation__head__carrousel__info">
-                    <h1 className="accomodation__head__carrousel__info__title">{accomodation.title}</h1>
-                    <p className="accomodation__head__carrousel__info__location">{`${accomodation.city}, ${accomodation.country}`}</p>
-                  </div>
+
+              </div>
+              <div className="accomodation__head__infos">
+                <div className="accomodation__head__info">
+                  <h1 className="accomodation__head__info__title">{accomodation.title}</h1>
+                  <p className="accomodation__head__info__location">{`${accomodation.city}, ${accomodation.country}`}</p>
                 </div>
               </div>
               <div className="accomodation__head__additional-info">
@@ -140,11 +156,16 @@ const AccomodationPage = ({
               <div className="accomodation__body__owner-card">
                 <h2 className="accomodation__body__owner-card__title">Proposé par</h2>
                 <div className="accomodation__body__owner-card__card">
-                  <img src={`${process.env.REACT_APP_BACKEND_URL}/assets/avatar/${owner.avatar}`} alt="owner-avatar" className="accomodation__body__owner-card__card__avatar" />
-                  <p className="accomodation__body__owner-card__card__pseudo">
-                    {owner.pseudo}
-                  </p>
-                  <button type="button" onClick={handleContactOwnerClick} className="accomodation__body__owner-card__card__contact">Contacter le propriétaire</button>
+                  <div className =" accomodation__body__owner-card__card__top">
+                    <img src={`${process.env.REACT_APP_BACKEND_URL}/assets/avatar/${owner.avatar}`} alt="owner-avatar" className="accomodation__body__owner-card__card__avatar" />
+                    <p className="accomodation__body__owner-card__card__pseudo">
+                      {owner.pseudo}
+                    </p>
+                    <button type="button" onClick={handleContactOwnerClick} className="accomodation__body__owner-card__card__contact">Contacter le propriétaire</button>
+                    <button type="button" className="mobile-reservation-btn" onClick={handleMobileReservationClick}>
+                      Reservez
+                    </button>
+                  </div>
                   <form className="accomodation__body__owner-card__card__reservation" onSubmit={handleReservationSubmit}>
                     <h2 className="accomodation__body__owner-card__card__reservation__title">Je souhaite partir</h2>
                     <div className="accomodation__body__owner-card__card__reservation__form">
@@ -169,32 +190,35 @@ const AccomodationPage = ({
                   {/* <h2 className="accomodation__body__content__description__title">Description</h2> */}
                   <p className="accomodation__body__content__description__content"> {accomodation.description} </p>
                 </div>
-                <div className="accomodation__body__content__services">
-                  <h2 className="accomodation__body__content__services__title">Services</h2>
-                  <div className="accomodation__body__content__services__items">
-                    {services.map((service) => (
-                      <div className="accomodation__body__content__services__item" key={`service${service.id}`}>
-                        <img alt={service.name} src={`${process.env.REACT_APP_BACKEND_URL}/assets/icon/${service.icon}`} />
-                        <p className="accomodation__body__content__services__item__name">{service.name}</p>
-                      </div>
-                    ))}
+                <div className="accomodation__body__content__services-wrapper">
+                  <div className="accomodation__body__content__services">
+                    <h2 className="accomodation__body__content__services__title">Services</h2>
+                    <div className="accomodation__body__content__services__items services">
+                      {services.map((service) => (
+                        <div className="accomodation__body__content__services__item" key={`service${service.id}`}>
+                          <img alt={service.name} src={`${process.env.REACT_APP_BACKEND_URL}/assets/icon/${service.icon}`} />
+                          <p className="accomodation__body__content__services__item__name">{service.name}</p>
+                        </div>
+                      ))}
+                    </div>
+                    {/* <button type="button">Voir tous les services</button> */}
                   </div>
-                  {/* <button type="button">Voir tous les services</button> */}
-                </div>
-                <div className="accomodation__body__content__services">
-                  <h2 className="accomodation__body__content__services__title">Extras</h2>
-                  <div className="accomodation__body__content__services__items">
-                    {extras.map((extra) => (
-                      <div className="accomodation__body__content__services__item" key={`extra${extra.id}`}>
-                        <img alt={extra.name} src={`${process.env.REACT_APP_BACKEND_URL}/assets/icon/${extra.icon}`} />
-                        <p className="accomodation__body__content__services__item__name">{extra.name}</p>
-                      </div>
-                    ))}
+                  <div className="accomodation__body__content__services ">
+                    <h2 className="accomodation__body__content__services__title">Extras</h2>
+                    <div className="accomodation__body__content__services__items extras">
+                      {extras.map((extra) => (
+                        <div className="accomodation__body__content__services__item" key={`extra${extra.id}`}>
+                          <img alt={extra.name} src={`${process.env.REACT_APP_BACKEND_URL}/assets/icon/${extra.icon}`} />
+                          <p className="accomodation__body__content__services__item__name">{extra.name}</p>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                   {/* <button type="button">Voir tous les extras</button> */}
                 </div>
               </div>
             </div>
+
           </>
         )}
     </main>
